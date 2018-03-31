@@ -6,11 +6,13 @@ media_folder: static/assets
 
 collections:
   - name: blog
-    label: Blog
-    folder: blog
+    label: Статті
+    folder: articles
     create: true
     fields:
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: date }
-      - { name: title, label: Title }
-
+      - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "Теги", name: "tags", widget: "list"}      
+      - {label: "Текст", name: "body", widget: "markdown"}      
+      - {label: "Текст", name: "body", widget: "markdown"}      
+      - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+    

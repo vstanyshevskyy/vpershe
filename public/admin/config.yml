@@ -1,6 +1,7 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
+  branch: main
 
 media_folder: static/assets
 
@@ -14,8 +15,7 @@ collections:
       - label: "Теги"
         name: "tags"
         widget: "list"    
-        field:
-          - {label: "Тег", name: "tag", widget: "string"}     
+        default: ["статті", "едукація"] 
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
     

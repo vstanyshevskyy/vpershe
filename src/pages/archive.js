@@ -1,5 +1,4 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Link from 'gatsby-link'
 
 const ArchivePage = () => (
@@ -16,12 +15,10 @@ const articles = [{id: 1 , name: 'New article'}, {id: 2 , name: 'Second article'
 
 const linksList = articles.map((article) => {
   return (
-    <Router key={article.id}>
-      <li style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}><Link to={"/article"+article.id}>Post : { article.name }</Link></li>
-    </Router> 
+    <li style={{
+      color: 'white',
+      textDecoration: 'none',
+    }}><Link to={"/article"+article.id}>Post : { article.name }</Link></li>
   )
 });
 

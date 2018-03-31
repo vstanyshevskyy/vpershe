@@ -4,3 +4,5 @@
 node_modules
 yarn-error.log
 
+public
+!public/admin/config.yml

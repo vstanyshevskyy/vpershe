@@ -10,7 +10,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           node {
             frontmatter {
               path
-              
+              category
+              tags
+              contentType
             }
           }
         }
@@ -24,9 +26,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     console.log(JSON.stringify(result.data.allMarkdownRemark));
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
-        path: node.frontmatter.path,
-        component: path.resolve(`src/templates/article.js`),
-        context: {} // additional data can be passed via context
+        path: node.frontmatter.contentType + '/' + node.frontmatter.path,
+        component: path.resolve(`src/templates/${node.frontmatter.contentType}.js`),
+        context: {
+          slug: node.frontmatter.path,
+        } // additional data can be passed via context
       })
     })
   })

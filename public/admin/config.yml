@@ -11,6 +11,7 @@ collections:
     folder: "content/articles"
     create: true
     fields:
+      - {label: "Type", name: "contentType", widget: "string", default: "articles"}
       - {label: "Url", name: "path", widget: "string"}
       - {label: "Заголовок", name: "title", widget: "string"}
       - {label: "Категорія", name: "category", widget: "string"}

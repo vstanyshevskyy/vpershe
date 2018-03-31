@@ -15,7 +15,7 @@ collections:
         name: "tags"
         widget: "list"    
         field:
-          - {label: Тег, name: tag, widget: string}     
+          - {label: "Тег", name: "tag", widget: "string"}     
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
     

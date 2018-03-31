@@ -33,10 +33,7 @@ const addCategory = (category) => {
 const addPost = (article) => {
   console.log(article);
   return (
-    <li  style={{
-      color: 'red',
-      textDecoration: 'none',
-    }}><Link to={"/article/"+ article.path}>Post : { article.title }</Link>
+    <li><Link to={"/article/"+ article.path}>{ article.title }</Link>
   </li>
   )
 };

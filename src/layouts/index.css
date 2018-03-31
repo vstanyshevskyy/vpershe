@@ -3,9 +3,21 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-body {
-  margin: 0;
+
+@font-face {
+	font-family: Pompadur; /* Имя шрифта */
+	src: url(https://fonts.googleapis.com/css?family=Chicle|Raleway);
 }
+
+body {
+	margin: 0px;
+	font-family: Pompadur, Arial, monospace;
+}
+
+li {
+	list-style: none;
+}
+
 article,
 aside,
 details,
@@ -656,4 +668,31 @@ i:hover {
 	word-wrap: normal;
 	white-space: nowrap;
 	direction: ltr;
+}
+
+/* theme colors
+navbar-light: Lightblue
+ */
+
+#___gatsby > div > div:nth-last-child(1) {
+	max-width: 100% !important;
+}
+
+.btn-round, .inpt-round {
+	transition: 0.6s background !important;
+	padding: 10px 16px !important;
+}
+
+.btn-round {
+	text-align: center;
+}
+
+.btn-round:hover, .inpt-round:hover {
+	color: darkslategray;
+	border: 1px solid darkslategray;
+	background-color: whitesmoke;
+}
+
+.inpt-round {
+	padding: 20px 10px !important;
 }

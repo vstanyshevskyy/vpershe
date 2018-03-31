@@ -1,23 +1,34 @@
 import React from 'react'
+import Link from 'gatsby-link'
+require('./Sider.css');
 
 let slideId = 0;
 let activeSlideId;
-let NEW_SLIDES = [];
 // test data
-const HELP_SLIDES = [
+let HELP_SLIDES = [
 	{
 		id: slideId,
 		state: true,
-		title: 'Salads and first dishes',
-		description: '#1',
-		Image: 'https://i.imgur.com/41VJ6df.jpg'
+		title: 'News Title1',
+		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read' +
+		'Read more at: https://www.brainyquote.com/topics/dog',
+		Image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
+	},
+	{
+		id: slideId + 1,
+		state: false,
+		title: 'News Title2',
+		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read\' +\n' +
+		'\t\t\'Read more at: https://www.brainyquote.com/topics/dog',
+		Image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
 	},
 	{
 		id: slideId + 2,
 		state: false,
-		title: 'Some third-party dish',
-		description: '#3',
-		Image: 'https://i.imgur.com/TWsuMw1.jpg'
+		title: 'News Title3',
+		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read\' +\n' +
+		'\t\t\'Read more at: https://www.brainyquote.com/topics/dog',
+		Image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
 	}
 ];
 
@@ -27,7 +38,7 @@ class Slider extends React.Component {
 		this.state = {
 			slides: HELP_SLIDES,
 			speed: 100,
-			reel: false
+			autoReel: false
 		};
 	}
 	componentDidMount() {
@@ -56,11 +67,6 @@ class Slider extends React.Component {
 				clearInterval(reelRight);
 			}, 24000); */
 		}
-		this.setState(function() {
-			return {
-				reel: turning? true : false
-			}
-		});
 	}
 	slideLeft() {
 		this.state.slides.map(slide => {
@@ -73,10 +79,10 @@ class Slider extends React.Component {
 			return false;
 		}
 		this.state.slides[activeSlideId - 1].state = true;
-		NEW_SLIDES = this.state.slides;
+		HELP_SLIDES = this.state.slides;
 		this.setState(function() {
 			return {
-				slides: NEW_SLIDES
+				slides: HELP_SLIDES
 			}
 		});
 	}
@@ -91,12 +97,15 @@ class Slider extends React.Component {
 			return false;
 		}
 		this.state.slides[activeSlideId + 1].state = true;
-		NEW_SLIDES = this.state.slides;
+		HELP_SLIDES = this.state.slides;
 		this.setState(function() {
 			return {
-				slides: NEW_SLIDES
+				slides: HELP_SLIDES
 			}
 		});
+	}
+	choiceNews(param) {
+		window.location.assign(window.location.hostname + '/' + param);
 	}
 	render() {
 		return (
@@ -109,15 +118,17 @@ class Slider extends React.Component {
 				<ul className="slider-slides">
 					{this.state.slides.map(slide => {
 						return (
-							<li style={slide.style} className={slide.state === true? 'active':'hidden'} key={slide.id}>
-								<h4>{slide.title}</h4>
-								<p>{slide.description}</p>
+							<li style={slide.style} className={slide.state === true? 'active slide':'hidden slide'} key={slide.id}>
+								<h4 className='slide-title'>{slide.title}</h4>
+								<p className='slide-description'>{slide.description}</p>
 								<img src={slide.Image}/>
+								<button className='btn-round slide-btn' onClick={() => this.choiceNews(slide.id)}>
+									explore this news
+								</button>
 							</li>
 						)
 					})}
 				</ul>
-				<button onClick={() => { this.autoReel(true) }}>turn on auto reel</button>
 			</div>
 		)
 	}

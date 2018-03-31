@@ -1,0 +1,72 @@
+.hidden {
+	display: none;
+}
+
+.Slider {
+	margin: 0 auto;
+}
+
+.Slider .slide-controls button {
+	cursor: pointer;
+	padding: 14px 4px;
+}
+
+.Slider .slider-slides {
+	margin: auto;
+}
+
+.Slider .slide-slides li {
+	width: 100%;
+	margin: auto;
+	height: 250px;
+	cursor: pointer;
+	transition: 0.8s opacity;
+}
+
+.Slider .slide-slides li:hover {
+	opacity: .8;
+}
+
+.Slider .slider-slides li > img {
+	width: 76%;
+	float: left;
+	height: 340px;
+	margin: 4px;
+}
+
+.Slider .slide-btn {
+	padding: 12px 10px !important;
+	border: 1px solid coral;
+	position: relative;
+	background-color: whitesmoke;
+	color: gray;
+	top: 120px;
+	left: -14%;
+	opacity: .8;
+	min-height: 68px;
+	width: 160px;
+}
+
+.Slider .slide {
+	text-align: center;
+}
+
+.Slider .slide-controls > button {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	margin: 8px;
+	border: 1px solid coral;
+	background-color: whitesmoke;
+	box-shadow: 1px 2px 2px 2px lightgray;
+}
+
+.Slider .slide-controls > button:hover, .slide-btn {
+	background-color: lightgray;
+}
+
+.Slider .slide-title {
+	font-size: 26px;
+	color: gray;
+	font-weight: bolder;
+}

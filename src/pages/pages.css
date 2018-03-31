@@ -1,2 +1,33 @@
 /* pages stylesheet */
 
+.article-preview .article-item {
+	margin: 10px;
+	text-align: center;
+	box-shadow: 1px 2px 2px 2px lightgray;
+	max-height: 312px;
+	background-color: whitesmoke;
+	border-top-left-radius: 10px;
+	overflow: hidden;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	width: 31.8% !important;
+}
+
+.article-preview {
+	margin-top: 80px;
+}
+
+.article-item .article-item-title {
+	color: coral;
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.article-item.no-overflow {
+	overflow: unset;
+}
+
+.article-item .show-more-btn {
+	position: relative;
+	top: -320px;
+}

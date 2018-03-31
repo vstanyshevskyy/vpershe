@@ -23,7 +23,7 @@ const Header = () => (
             textDecoration: 'none',
           }}
         >
-          Gatsby
+          VPERSHE - відверто про головне
         </Link>
       </h1>
     </div>

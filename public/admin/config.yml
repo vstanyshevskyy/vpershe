@@ -11,8 +11,11 @@ collections:
     create: true
     fields:
       - {label: "Заголовок", name: "title", widget: "string"}
-      - {label: "Теги", name: "tags", widget: "list"}      
-      - {label: "Текст", name: "body", widget: "markdown"}      
-      - {label: "Текст", name: "body", widget: "markdown"}      
+      - label: "Теги"
+        name: "tags"
+        widget: "list"    
+        field:
+          - {label: Тег, name: tag, widget: string}     
+      - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
     

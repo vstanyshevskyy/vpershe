@@ -622,3 +622,38 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://example.com/MaterialIcons-Regular.eot);
+	src: local('Material Icons');
+	src: local('MaterialIcons-Regular');
+	src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+	src: url(https://example.com/MaterialIcons-Regular.woff2) format('woff2');
+	src: url(https://example.com/MaterialIcons-Regular.woff) format('woff');
+	src: url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+i {
+	transition: 0.8s opacity;
+}
+
+i:hover {
+	opacity: .8;
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+}

@@ -9,6 +9,7 @@
     "gatsby-plugin-netlify-cms": "^1.0.12",
     "gatsby-plugin-react-helmet": "^2.0.8",
     "gatsby-source-filesystem": "^1.5.27",
+    "gatsby-transformer-remark": "^1.7.39",
     "react-helmet": "^5.2.0"
   },
   "keywords": [

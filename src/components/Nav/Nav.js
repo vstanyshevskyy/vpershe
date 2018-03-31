@@ -1,11 +1,30 @@
 import React from 'react'
 import Link from 'gatsby-link'
-require('../../layouts/bootstrap/dist/js/bootstrap');
 require('./Nav.css');
 
 export default class NavBar extends React.Component {
-	constructor() {
+	constructor(props) {
 		super();
+		this.state = {
+			activeLink: null,
+			links: [
+				{
+					title: 'Home',
+					href: '/home',
+					active: false
+				},
+				{
+					title: 'About',
+					href: '#about',
+					active: false
+				},
+				{
+					title: 'FAQ',
+					href: '#faq',
+					active: false
+				}
+			]
+		}
 	}
 	render() {
 		return (
@@ -17,29 +36,20 @@ export default class NavBar extends React.Component {
 					</button>
 					<div className="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul className="navbar-nav mr-auto">
-							<li className="nav-item active">
-								<a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-							</li>
-							<li className="nav-item">
-								<a className="nav-link" href="#">Link</a>
-							</li>
-							<li className="nav-item dropdown">
-								<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Dropdown
-								</a>
-								<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a className="dropdown-item" href="#">Action</a>
-								</div>
-							</li>
-							<li className="nav-item">
-								<a className="nav-link disabled" href="#">Disabled</a>
-							</li>
+						{this.state.links.map(link => {
+							return (
+								<li key={link.href} to={link.href} className={link.active?  + 'nav-item' : 'nav-item'}>
+									<Link to="/page-2/">{link.title}</Link>
+								</li>
+							)
+						})}
 						</ul>
 						<form className="form-inline my-2 my-lg-0">
 							<input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
 							<button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 						</form>
 					</div>
+					<a className='brand-logotype'>Vpershe</a>
 				</nav>
 			</div>
 		)

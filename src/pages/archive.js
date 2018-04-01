@@ -1,40 +1,48 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-const ArchivePage = ({data}) => 
-{
+import NavBar from "../components/Nav/Nav";
+
+import "./archive.less";
+
+const ArchivePage = ({data}) => {
   const articles = data.allMarkdownRemark.edges.map(edge => edge.node.frontmatter);
   
   const categories = groupByCategory(articles, "category").map(c => addCategory(c));
   
   return (
-  <div className='container-fluid'>
-	  <div className="panel panel-primary">
-		  <div className="panel-heading">
-			  <h1 className='text-center'>Архів</h1>
-		  </div>
-		  <div className="panel-body">
-			  {categories}
-		  </div>
-	  </div>
-  </div>
-)};
+      <div>
+          <NavBar />
+          <div className='container'>
+              <div className="row">
+                  <h1 className='text-center'>Архів</h1>
+
+                  <div className="col-xs-12">
+                      <div className="panel-body">
+                          {categories}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  )
+};
 
 const addCategory = (category) => {
-
   const posts = category.articles.map((a) => addPost(a));
+
   return (
     <div>
-      <h2>{category.name}</h2>
-      <ul>{posts}</ul>
+      <h3>{category.name}</h3>
+      <ul className="article-list">{posts}</ul>
     </div>
   )};
 
 
 const addPost = (article) => {
   return (
-	  <li>
-      <Link to={"/articles/"+ article.path}>{ article.title }</Link>
+	  <li className="article-item">
+        <Link to={"/articles/"+ article.path}>{ article.title }</Link>
 	  </li>
   )
 };

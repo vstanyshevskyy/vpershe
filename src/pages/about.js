@@ -4,6 +4,10 @@ import Navbar from '../components/Nav/Nav';
 
 require('../layouts/bootstrap/dist/css/bootstrap.css');
 
+import FirstImage from './images/katya.jpg';
+
+import SecondImage from './images/yulia.jpg';
+
 const AboutPage = () => {
   return (
     <div>
@@ -39,7 +43,7 @@ const AboutPage = () => {
                     <a href="http://facebook.com/katya.myachina">
                         <img
                             className="img-circle text-center"
-                            src="assets/katya.jpg"
+                            src={FirstImage}
                             width="140"
                             height="140"
                         />
@@ -66,7 +70,7 @@ const AboutPage = () => {
                     <a href="http://facebook.com/yulia.kovalchuk.568">
                         <img
                             className="img-circle text-center"
-                            src="assets/yulia.jpg"
+                            src={SecondImage}
                             width="140"
                             height="140"/>
                     </a>

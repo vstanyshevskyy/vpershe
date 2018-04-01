@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageSnippet from '../elements/messageSnippet';
+require('../../layouts/bootstrap/dist/css/bootstrap.css')
 
 const fooStyles = {
 	foo: {
@@ -105,33 +106,33 @@ export default class Feedback extends React.Component {
 	}
 	render() {
 		return (
-			<footer style={fooStyles.foo} className='footer'>
+			<footer style={fooStyles.foo} className='footer text-center'>
 				<div className='container'>
 					<div className='row'>
 						<form name="requestUs" data-netlify="true" netlify-honeypot="bot-field" method="POST" action="https://formspree.io/your@email.com"
 						      action="request successfully sended" netlify
 						      onSubmit={this.handleSubmit} className='col-md-4 col-md-6 make-request'>
 							<div>
-								<h4>make request</h4>
+								<h4>Форма зворотнього зв'язку</h4>
 							</div>
 							<div className='form-group'>
 								<input type="text" onChange={(e) => {this.handleChange(e, 'topic')}} value={this.state.requestForm.topic}
-								       placeholder="request topic" className='form-control inpt-round' name="topic"/>
+								       placeholder="Тема" className='form-control inpt-round' name="topic"/>
 							</div>
 							<div className='form-group'>
 								<input type="text" onChange={(e) => {this.handleChange(e, 'title')}} value={this.state.requestForm.title}
-								       placeholder="question title" className='form-control inpt-round' name="title"/>
+								       placeholder="Питання" className='form-control inpt-round' name="title"/>
 							</div>
 							<div className='form-group'>
 								<input type="text" onChange={(e) => {this.handleChange(e, 'requestAdditions')}} value={this.state.requestForm.requestAdditions}
-								       placeholder="request additions" className='form-control inpt-round' name="requestAdditions"/>
+								       placeholder="Додаткові дані" className='form-control inpt-round' name="requestAdditions"/>
 							</div>
 							<div className='form-group'>
 								<input type="email" onChange={(e) => {this.handleChange(e, 'contactEmail')}} value={this.state.requestForm.contactEmail}
-								       placeholder="contact email" className='form-control inpt-round' name="contactEmail"/>
+								       placeholder="Контактна адреса" className='form-control inpt-round' name="contactEmail"/>
 							</div>
-							<button className='btn-round send-request-btn' style={fooStyles.btn}
-							        value="submit">ask us or push important theme</button>
+							<button className='btn-lg btn-default' style={fooStyles.btn}
+							        value="submit">Надіслати</button>
 						</form>
 					</div>
 				</div>

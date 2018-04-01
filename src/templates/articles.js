@@ -1,19 +1,21 @@
 import React from 'react'
 import graphql from 'graphql'
-import {Link, withPrefix} from 'gatsby-link'
-// import translit from 'cyrillic-to-translit-js'
+import {withPrefix} from 'gatsby-link'
+import Link from 'gatsby-link'
 
 export default function Template ({ data }) {
   const post = data.markdownRemark.frontmatter;
-
   const image = post.image ? <img src={withPrefix(post.image)} alt={post.title}/> : null;
-
-  // const ukTranslit = translit({ preset: "uk" }).transform;
   return (
     <div>
       <h1>{post.title}</h1>
-      {/* <div>Category: <Link to={`/categories/${ukTranslit(post.category)}`}>{post.category}</Link></div> */}
       {image}
+      <div>Категорія: <Link to={`/categories/${post.category}`}>{post.category}</Link></div>
+      <div>Теги: {
+        (post.tags || []).map((tag, index)=>{
+          return (<span key={index}>{!!index && ", "}<Link to={`/tags/${tag}`}>{tag}</Link></span>);
+        })
+      }</div>
       <div className="content" dangerouslySetInnerHTML={{__html: data.markdownRemark.html}}></div>
     </div>
   )
@@ -28,6 +30,7 @@ export const pageQuery = graphql`
         category        
         title
         image
+        tags
       }
     }
 

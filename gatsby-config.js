@@ -5,6 +5,7 @@ module.exports = {
 	plugins: [
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-netlify-cms',
+		'gatsby-remark-responsive-iframe',
 		'gatsby-transformer-remark',
 		{
 			resolve: 'gatsby-source-filesystem',

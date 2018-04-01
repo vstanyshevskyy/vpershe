@@ -11,28 +11,84 @@ const fooStyles = {
 };
 
 export default class Footer extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		this.state = {
+			requestForm: {
+				title: '',
+				topic: '',
+				contactEmail: ''
+			}
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	handleSubmit(e) {
+		e.preventDefault();
+		console.log(this.state.requestForm);
+	}
+	handleChange(event, entityType) {
+		const part = event.target.value;
+		console.log(part);
+		switch (entityType) {
+			case 'topic': {
+				this.setState((previous) => {
+					return {
+						requestForm: {
+							topic: part,
+							title: previous.title,
+							contactEmail: previous.contactEmail
+						}
+					}
+				});
+				break;
+			}
+			case 'title': {
+				this.setState((previous) => {
+					return {
+						requestForm: {
+							topic: previous.topic,
+							title: part,
+							contactEmail: previous.contactEmail
+						}
+					}
+				});
+				break;
+			}
+			case 'contactEmail': {
+				this.setState((previous) => {
+					return {
+						requestForm: {
+							topic: previous.topic,
+							title: previous.title,
+							contactEmail: part
+						}
+					}
+				});
+				break;
+			}
+		}
 	}
 	render() {
 		return (
 			<footer style={fooStyles.foo} className='footer'>
 				<div className='container'>
 					<div className='row'>
-						<form className='col-md-4 col-md-6'>
+						<form onSubmit={this.handleSubmit} className='col-md-4 col-md-6'>
 							<div>
-								<h4>Make Request</h4>
+								<h4>make request</h4>
 							</div>
 							<div className='form-group'>
-								<input type="text" className='form-control inpt-round' name="topic"/>
+								<input type="text" onChange={(e) => {this.handleChange(e, 'topic')}} value={this.state.requestForm.topic} className='form-control inpt-round'/>
 							</div>
 							<div className='form-group'>
-								<input type="text" className='form-control inpt-round' name="title"/>
+								<input type="text" onChange={(e) => {this.handleChange(e, 'title')}} value={this.state.requestForm.title} className='form-control inpt-round'/>
 							</div>
 							<div className='form-group'>
-								<input type="text" className='form-control inpt-round' name="additionals"/>
+								<input type="email" onChange={(e) => {this.handleChange(e, 'contactEmail')}} value={this.state.requestForm.contactEmail} className='form-control inpt-round'/>
 							</div>
-							<button className='btn-round send-request-btn' style={fooStyles.btn} onClick={() => sendRequest()}>ask us or push important theme</button>
+							<button className='btn-round send-request-btn' style={fooStyles.btn}
+							        value="submit">ask us or push important theme</button>
 						</form>
 					</div>
 				</div>

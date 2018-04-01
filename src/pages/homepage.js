@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from '../components/Slider/Slider';
 import ArticlesCategories from '../components/Categories/Categories';
 import Modal from '../components/Modal/Modal';
-import NavBar from '../components/Nav/Nav';
 require('./pages.css');
 
 export const TEST_ARTICLES = [
@@ -171,3 +170,21 @@ export default class HomePage extends React.Component {
 		)
 	}
 }
+
+export const pageQuery = graphql`
+query Articles {
+	allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "articles"} }}){
+		edges{
+		 node{
+			 frontmatter{
+				 title
+				 category
+				 path
+				 publishTime
+				 contentType
+			 }
+		 }
+		}
+	}
+}
+`

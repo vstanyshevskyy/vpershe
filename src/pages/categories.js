@@ -10,3 +10,5 @@ const CategoriesPage = ({data}) => {
 		</div>
 	)
 };
+
+export default CategoriesPage;

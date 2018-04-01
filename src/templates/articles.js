@@ -2,12 +2,14 @@ import React from 'react'
 import graphql from 'graphql'
 import {withPrefix} from 'gatsby-link'
 import Link from 'gatsby-link'
+import Navbar from '../components/Nav/Nav';
 
 export default function Template ({ data }) {
   const post = data.markdownRemark.frontmatter;
   const image = post.image ? <img src={withPrefix(post.image)} alt={post.title}/> : null;
   return (
     <div>
+      <Navbar />
       <h1>{post.title}</h1>
       {image}
       <div>Категорія: <Link to={`/categories/${post.category}`}>{post.category}</Link></div>

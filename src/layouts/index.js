@@ -16,7 +16,6 @@ const TemplateWrapper = ({ children }) => (
 					{ name: 'keywords', content: 'sample, something' },
 				]}
 			/>
-			<Header />
 			<div
 				style={{
 					margin: '0 auto'

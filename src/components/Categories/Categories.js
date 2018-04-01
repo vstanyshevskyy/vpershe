@@ -1,7 +1,7 @@
 import React from 'react'
-import TEST_ARTICLES from '../../pages/homepage';
+// import TEST_ARTICLES from '../../pages/homepage';
 import { articleCategories } from '../../store/categories';
-
+const TEST_ARTICLES = [];
 const categoriesStyles = {
 	box: {
 		marginTop: '40px'

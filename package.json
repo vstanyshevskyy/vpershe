@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Vpershe <test@gmail.com>",
   "dependencies": {
+    "classnames": "^2.2.5",
     "bootstrap": "3.3.7",
     "fetch": "^1.1.0",
     "gatsby": "^1.9.241",
@@ -11,6 +12,8 @@
     "gatsby-plugin-less": "^1.1.8",
     "gatsby-plugin-netlify-cms": "^1.0.12",
     "gatsby-plugin-react-helmet": "^2.0.8",
+    "react-helmet": "^5.2.0",
+    "reactstrap": "^5.0.0",
     "gatsby-remark-responsive-iframe": "^1.4.18",
     "jquery": "^3.3.1",
     "prop-types": "^15.6.1",

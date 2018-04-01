@@ -6,8 +6,8 @@ import Header from '../components/Header';
 import Feedback from '../components/Feedback/Feedback';
 
 import {withPrefix} from 'gatsby-link'
-import Link from 'gatsby-link'	
-import AvocadoTestImage from './images/avocado.png';	
+import Link from 'gatsby-link'
+import AvocadoTestImage from './images/avocado.png';
 require('./pages.css');
 require('./home-page.less');
 
@@ -87,7 +87,7 @@ export default class HomePage extends React.Component {
 										}
 										return (
 											<div style={style} className={item.more? 'col-md-4 col-sm-12 article-item no-overflow' : 'col-md-4 article-item'} key={index}>
-												
+
 												<h5 className='article-item-title'><Link to={`/articles/${item.path}`}>{item.title}
 												</Link></h5>
 											</div>

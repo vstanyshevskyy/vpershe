@@ -9,7 +9,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         edges {
           node {
             frontmatter {
-              path
+							path
+							image
               category
               tags
               contentType

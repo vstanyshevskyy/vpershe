@@ -17,7 +17,6 @@ const TemplateWrapper = ({ children }) => (
 				]}
 			/>
 			<Header />
-			<NavBar />
 			<div
 				style={{
 					margin: '0 auto'

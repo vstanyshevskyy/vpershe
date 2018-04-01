@@ -11,7 +11,7 @@ const fooStyles = {
 	}
 };
 
-export default class Footer extends React.Component {
+export default class Feedback extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

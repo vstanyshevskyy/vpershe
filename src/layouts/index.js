@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/Header'
 import NavBar from '../components/Nav/Nav';
-import Footer from '../components/Footer/Footer';
 import './index.css'
 
 const TemplateWrapper = ({ children }) => (
@@ -24,7 +23,6 @@ const TemplateWrapper = ({ children }) => (
 				{children()}
 			</div>
 		</div>
-		<Footer />
 	</div>
 )
 

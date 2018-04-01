@@ -3,6 +3,7 @@ import Slider from '../components/Slider/Slider';
 import ArticlesCategories from '../components/Categories/Categories';
 import Modal from '../components/Modal/Modal';
 import Header from '../components/Header';
+import Feedback from '../components/Feedback/Feedback';
 
 import {withPrefix} from 'gatsby-link'
 import Link from 'gatsby-link'	
@@ -98,6 +99,7 @@ export default class HomePage extends React.Component {
 						</div>
 					</div>
 				</div>
+				<Feedback />
 			</div>
 		)
 	}

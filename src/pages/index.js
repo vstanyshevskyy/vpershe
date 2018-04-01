@@ -73,7 +73,7 @@ export default class HomePage extends React.Component {
 				<div className='row'>
 					<div className='col-md-4'>
 						<h2>Фан</h2>
-						<Link className='col-md-12 avocado-item' style={avocadoStyle}>
+						<Link to="/avocado-test/" className='col-md-12 avocado-item' style={avocadoStyle}>
 						</Link>
 					</div>
 					<div className='col-md-8'>

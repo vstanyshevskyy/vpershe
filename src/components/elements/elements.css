@@ -1,0 +1,73 @@
+.message-snippet {
+	position: absolute;
+	padding: 10px;
+	width: 45%;
+	margin-left: 18%;
+	margin-top: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 1px 2px 1px lightgray;
+	transition: 1.2s opacity;
+}
+
+.message-snippet.hidden-before {
+	opacity: 0.1;
+}
+
+.message-snippet > p {
+	margin-top: 20px;
+	color: white;
+}
+
+.message-snippet.orange {
+	background-color: orange;
+}
+
+.message-snippet.darkred {
+	background-color: darkred;
+}
+
+.message-snippet.green {
+	background-color: green;
+}
+
+.message-snippet .close {
+	position: relative;
+	margin: 10px;
+	float: right;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.btn-scroll-top {
+	position: fixed;
+	bottom: 120px;
+	margin-left: 47.5%;
+	width: 68px;
+	height: 68px;
+	text-align: center;
+	border-radius: 50%;
+	background-color: lightgray;
+	transition: 0.8s background-color;
+	color: gray;
+	display: flex;
+	cursor: pointer;
+	font-weight: bolder;
+	flex-direction: column;
+}
+
+.btn-scroll-top:hover, .btn-scroll-top:after {
+	background-color: orange;
+}
+
+.btn-scroll-top > span {
+	font-size: 12px;
+	position: relative;
+	top: 20px;
+}
+
+.btn-scroll-top > i {
+	position: relative;
+	top: 32px;
+}

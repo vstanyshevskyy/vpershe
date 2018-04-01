@@ -1,33 +1,15 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import './index.less'
+import NavBar from '../Nav/Nav'
 
 const Header = () => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          Gatsby
-        </Link>
-      </h1>
+  <div className='header'>
+    <NavBar />
+    <div className="bg-white">
+        <div className='title'>Про прое<span className="text-italic">к</span>т</div>
+        <div className='description'>Замовчування і табуйованість теми сексу вдома та відсутність сексуальної освіти у школах часом має жахливі наслідки, зокрема ранні й небажані вагітності, психологічні травми, згвалтування й венеричні захворювання. Натомість, як переконує світовий досвід, усього цього підліткам допомагає уникнути сексуальна освіта або ж статеве виховання у школах та дитячих садочках. Саме тому в Англії, Швеції, Німеччині та багатьох інших європейських країнах курс сексуальної освіти у школі є обов’язковим. Яка ж вона, європейська сексуальна освіта? </div>
     </div>
   </div>
-)
+);
 
 export default Header

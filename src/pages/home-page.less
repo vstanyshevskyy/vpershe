@@ -1,0 +1,45 @@
+.container-fluid {
+  padding: 0!important;
+}
+.avocado-item {
+  margin-left: 10px;
+  margin-top: 15px;
+  background-size: cover;
+  background-position: center center;
+}
+.avocado-item,
+.article-preview .article-item {
+  height: 300px!important;
+  width: 300px!important;
+  position: relative;
+  padding: 0!important;
+  box-shadow: none;
+  border-radius: 0;
+  background-color: #DDDDDD;
+  background-size: cover;
+  background-position: center center;
+
+  .article-item-title {
+    display: flex;
+    vertical-align: middle;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    color: #000;
+    width: 100%;
+    height: 70px;
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(180,180,180,.5);
+    a {
+      width: 100%;
+      text-align: center;
+      color: #fff;
+    }
+  }
+}
+
+.article-preview {
+  overflow-x: auto;
+  margin-top: 15px;
+}

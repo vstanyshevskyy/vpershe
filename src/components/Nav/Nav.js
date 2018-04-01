@@ -12,8 +12,8 @@ class Navbar extends React.Component {
     return <div className='navbar'>
     <div className='logo'><Link to='/'><img src={logo} /></Link></div>
     <div className='menu'>
-      <Link to='/archive'>Статті</Link>
-      <Link to='/forum'>Форум</Link>
+      <Link to='/archive'>Архів</Link>
+      <Link to='/'>Форум</Link>
       <Link to='/about'>Про проект</Link>
       <Link to='/'>FAQ</Link>
     </div>

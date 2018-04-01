@@ -170,3 +170,21 @@ export default class HomePage extends React.Component {
 		)
 	}
 }
+
+export const pageQuery = graphql`
+query Articles {
+	allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "articles"} }}){
+		edges{
+		 node{
+			 frontmatter{
+				 title
+				 category
+				 path
+				 publishTime
+				 contentType
+			 }
+		 }
+		}
+	}
+}
+`

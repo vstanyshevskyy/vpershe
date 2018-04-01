@@ -14,6 +14,7 @@ collections:
       - {label: "Type", name: "contentType", widget: "string", default: "articles"}
       - {label: "Url", name: "path", widget: "string"}
       - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "Фото для привернення уваги", name: "image", widget: "image"}
       - {label: "Категорія", name: "category", widget: "string"}
       - label: "Теги"
         name: "tags"
@@ -21,4 +22,7 @@ collections:
         default: ["статті", "едукація"] 
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+      - {label: "Meta Title", name: "metaTitle", widget: "string"}
+      - {label: "Meta Keywords", name: "metaKeywords", widget: "string"}
+      - {label: "Meta Description", name: "metaDescription", widget: "string"}
     

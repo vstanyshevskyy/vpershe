@@ -1,11 +1,13 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Navbar from '../components/Nav/Nav';
 
 require('../layouts/bootstrap/dist/css/bootstrap.css')
 
 const AboutPage = () => {
   return (
     <div className="container">
+      <Navbar />
       <div className="row flex-nowrap justify-content-between align-items-center">
         <div className="col text-center">
           <h1>Про нас</h1>

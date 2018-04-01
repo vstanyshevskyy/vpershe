@@ -1,10 +1,16 @@
 .container-fluid {
   padding: 0!important;
 }
-
+.avocado-item {
+  margin-left: 10px;
+  margin-top: 15px;
+  background-size: cover;
+  background-position: center center;
+}
+.avocado-item,
 .article-preview .article-item {
-  height: 300px;
-  width: 300px;
+  height: 300px!important;
+  width: 300px!important;
   position: relative;
   padding: 0!important;
   box-shadow: none;
@@ -12,6 +18,8 @@
   background-color: #DDDDDD;
 
   .article-item-title {
+    display: flex;
+    vertical-align: middle;
     position: absolute;
     bottom: 0;
     margin: 0;
@@ -28,6 +36,5 @@
 
 .article-preview {
   overflow-x: auto;
-  .articles-wrapper {
-  }
+  margin-top: 15px;
 }

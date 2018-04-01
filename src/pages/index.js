@@ -6,6 +6,7 @@ import Header from '../components/Header';
 
 import {withPrefix} from 'gatsby-link'
 import Link from 'gatsby-link'	
+import AvocadoTestImage from './images/avocado.png';	
 require('./pages.css');
 require('./home-page.less');
 
@@ -61,24 +62,24 @@ export default class HomePage extends React.Component {
 				image: a.node.frontmatter.image,
 			}
 		});
+		const avocadoStyle = {
+			backgroundImage: `url(${AvocadoTestImage})`
+		}
 		return (
 			<div className='container-fluid'>
 				<Header />
 				<Modal modalConfig={this.state.modalConfig}/>
 				<div className='row'>
-					{/* <div className='col-md-12'> */}
-						{/* <Slider /> */}
-					{/* </div> */}
-					
 					<div className='col-md-4'>
-						<h2>Пройти тест на авокадо</h2>
-						<div className='hp-card'></div>
+						<h2>Фан</h2>
+						<Link className='col-md-12 avocado-item' style={avocadoStyle}>
+						</Link>
 					</div>
 					<div className='col-md-8'>
 						<h2>Останні дописи</h2>
 						<div className='container-fluid article-preview'>
 							{articles !== null ?
-								<div className='row articles-wrapper'>
+								<div className='row articles-wrapper' style={({width: 320 * articles.length})}>
 									{articles.map((item, index) => {
 										const style = {
 											backgroundImage: `url(${withPrefix(item.image)})`
@@ -96,9 +97,6 @@ export default class HomePage extends React.Component {
 							}
 						</div>
 					</div>
-					{/* <div className='col-md-12'> */}
-						{/* <ArticlesCategories /> */}
-					{/* </div> */}
 				</div>
 			</div>
 		)

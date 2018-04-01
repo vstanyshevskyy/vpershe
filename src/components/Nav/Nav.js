@@ -12,10 +12,10 @@ class Navbar extends React.Component {
     return <div className='navbar'>
     <div className='logo'><Link to='/'><img src={logo} /></Link></div>
     <div className='menu'>
-      <Link to='#'>Статті</Link>
-      <Link to='#'>Форум</Link>
-      <Link to='#'>Про проект</Link>
-      <Link to='#'>FAQ</Link>
+      <Link to='/archive'>Статті</Link>
+      <Link to='/forum'>Форум</Link>
+      <Link to='/about'>Про проект</Link>
+      <Link to='/faq'>FAQ</Link>
     </div>
     <div className='social-links'>
     <br /></div>

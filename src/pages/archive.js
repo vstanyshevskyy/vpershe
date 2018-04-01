@@ -8,9 +8,15 @@ const ArchivePage = ({data}) =>
   const categories = groupByCategory(articles, "category").map(c => addCategory(c));
   
   return (
-  <div>
-    <h1>Архів</h1>   
-    {categories}
+  <div className='container-fluid'>
+	  <div className="panel panel-primary">
+		  <div className="panel-heading">
+			  <h1 className='text-center'>Архів</h1>
+		  </div>
+		  <div className="panel-body">
+			  {categories}
+		  </div>
+	  </div>
   </div>
 )};
 

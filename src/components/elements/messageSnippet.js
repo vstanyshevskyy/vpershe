@@ -5,7 +5,7 @@ export default class MessageSnippet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: props.open,
+			open: props.messageSuccessState,
 			fromClose: false,
 			hiddenBefore: '',
 			cases: {
@@ -58,13 +58,16 @@ export default class MessageSnippet extends React.Component {
 	}
 	render() {
 		return (
-			<div className={this.state.open ? this.state.cases[this.state.case].theme + ' message-snippet' :
-				this.state.cases[this.state.case].theme + ' message-snippet hidden ' + this.state.hiddenBefore}>
-				<p className='close' onClick={this.closeSnippet}>
-					<i className="material-icons">close</i>
-				</p>
-				<small>#!</small>
-				<p>{this.state.value}</p>
+			<div>{this.props.messageSuccessState}
+				<div className={this.props.messageSuccessState ? this.state.cases[this.state.case].theme + ' message-snippet' :
+					this.state.cases[this.state.case].theme + ' message-snippet hidden ' + this.state.hiddenBefore}>
+					<p className='close' onClick={this.closeSnippet}>
+						<i className="material-icons">close</i>
+					</p>
+					<small>#!</small>
+					<p>{this.state.value}</p>
+					{this.props.messageSuccessState}
+				</div>
 			</div>
 		)
 	}

@@ -10,24 +10,21 @@ let HELP_SLIDES = [
 		id: slideId,
 		state: true,
 		title: 'News Title1',
-		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read' +
-		'Read more at: https://www.brainyquote.com/topics/dog',
+		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read. Read more at: https://www.brainyquote.com/topics/dog',
 		Image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
 	},
 	{
 		id: slideId + 1,
 		state: false,
 		title: 'News Title2',
-		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read\' +\n' +
-		'\t\t\'Read more at: https://www.brainyquote.com/topics/dog',
+		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read. Read more at: https://www.brainyquote.com/topics/dog',
 		Image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
 	},
 	{
 		id: slideId + 2,
 		state: false,
 		title: 'News Title3',
-		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read\' +\n' +
-		'\t\t\'Read more at: https://www.brainyquote.com/topics/dog',
+		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read. Read more at: https://www.brainyquote.com/topics/dog',
 		Image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
 	}
 ];
@@ -51,22 +48,6 @@ class Slider extends React.Component {
 			// HERE WE CAN RUN FUNCTION FOR CHANGE HELP_SLIDERS data to real
 			// and re-check
 		}, 4000);
-	}
-	autoReel(turning) {
-		if (turning) {
-			const reelLeft = setInterval(() => {
-				this.slideLeft();
-				console.log('Slider get left..');
-			}, this.state.speed);
-			const reelRight = setInterval(() => {
-				this.slideRight();
-				console.log('Slider get right..');
-			}, this.state.speed*2);
-			/* setTimeout(() => {
-				clearInterval(reelLeft);
-				clearInterval(reelRight);
-			}, 24000); */
-		}
 	}
 	slideLeft() {
 		this.state.slides.map(slide => {

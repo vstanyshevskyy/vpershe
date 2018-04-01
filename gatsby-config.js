@@ -12,6 +12,14 @@ module.exports = {
 				path: `${__dirname}/content/articles`,
 				name: 'articles',
 			},
+		},
+		{
+			resolve: 'gatsby-plugin-mailchimp',
+			options: {
+				hostname: 'string',
+				listId: 'string',
+				settings: 'object'
+			}
 		}
 	],
 };

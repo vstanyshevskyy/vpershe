@@ -28,8 +28,6 @@ export default class ArticlesCategories extends React.Component {
 			activeCategory: null,
 			articlesNews: TEST_ARTICLES
 		};
-		// const articles = data.allMarkdownRemark.edges.map(edge => edge.node.frontmatter);
-		// console.log(articles);
 	}
 	exploreAllCategories() {
 		window.location.assign('/categories');

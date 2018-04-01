@@ -26,7 +26,7 @@ export default class Modal extends React.Component {
 				{this.state.visible?
 					<div className='modal-window' style={modalStyles}>
 						<div className='close-modal'>
-							<button onClick={(e) => this.close()}>x</button>
+							<button onClick={() => this.close()}>x</button>
 						</div>
 						<div className='container'>
 							<div className='row'>

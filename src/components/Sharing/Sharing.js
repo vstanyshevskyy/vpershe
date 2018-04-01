@@ -12,14 +12,20 @@ export default class Sharing extends React.Component {
 }
 
 function SocialSharing() {
-	return <div className='social-sharing'>
+	return (
+		<div className='social-sharing'>
 		<ul>
 			<li>
-				<a href="/">share in facebook</a>
+				<a href="/">
+					<i class="material-icons">face</i>
+				</a>
 			</li>
 			<li>
-				<a href="/">share to instagram</a>
+				<a href="/">
+					<i class="material-icons">insert_emoticon</i>
+				</a>
 			</li>
 		</ul>
 	</div>
+	)
 }

@@ -62,9 +62,7 @@ export default class NavBar extends React.Component {
 			}
 		});
 	}
-	choiceArticle(param) {
-
-	}
+	choiceArticle(param) {}
 	activateExtrimSearch(value) {}
 	openAbout() {
 		console.log('About modal must be opened!');
@@ -78,7 +76,7 @@ export default class NavBar extends React.Component {
 							return (
 								link.href === '#about'?
 									<li key={link.href} className={link.active?  + 'nav-item' : 'nav-item'}>
-										<button className='' onClick={this.openAbout}>Look on {link.title}</button>
+										<button onClick={this.openAbout}>Look on {link.title}</button>
 									</li> :
 									<li key={link.href} className={link.active?  + 'nav-item' : 'nav-item'}>
 										<Link to={link.href}>{link.title}</Link>
@@ -97,7 +95,7 @@ export default class NavBar extends React.Component {
 							<div className='col-md-6'>
 								<p>search for actual articles</p>
 								<form className="form-inline">
-									<input onKeyPress={(e) => {this.activateSearch(searchValue.value)}}
+									<input onKeyPress={() => {this.activateSearch(searchValue.value)}}
 									       id="searchValue" className="inpt-round form-control" type="search" placeholder="Search" aria-label="Search" />
 								</form>
 								{this.state.searchResults.state?

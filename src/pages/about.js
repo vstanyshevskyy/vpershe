@@ -1,11 +1,13 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Navbar from '../components/Nav/Nav';
 
 require('../layouts/bootstrap/dist/css/bootstrap.css')
 
 const AboutPage = () => {
   return (
     <div className="container">
+      <Navbar />
       <div className="row flex-nowrap justify-content-between align-items-center">
         <div className="col text-center">
           <h1>Про нас</h1>
@@ -33,7 +35,7 @@ const AboutPage = () => {
         <a href="http://facebook.com/katya.myachina">
           <img
             className="img-circle text-center"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            src="assets/katya.jpg"
             width="140"
             height="140"
           />
@@ -74,7 +76,7 @@ const AboutPage = () => {
           <a href="http://facebook.com/yulia.kovalchuk.568">
           <img
             className="img-circle text-center"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            src="assets/yulia.jpg"
             width="140"
             height="140"/>
             </a>

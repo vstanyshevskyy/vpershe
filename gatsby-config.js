@@ -7,6 +7,7 @@ module.exports = {
 		'gatsby-plugin-netlify-cms',
 		'gatsby-remark-responsive-iframe',
 		'gatsby-transformer-remark',
+		'gatsby-plugin-less',
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {

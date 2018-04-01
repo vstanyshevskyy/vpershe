@@ -6,25 +6,53 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
+  Tooltip
 } from 'reactstrap';
+import classNames from 'classnames';
+import './avocado-test.css';
 
 const QuizCard = props => {
-  const { title, subtitle, text, imageSrc, imageWidth, imageHeight } = props;
+  const {
+    title,
+    subtitle,
+    text,
+    imageSrc,
+    imageWidth,
+    imageHeight,
+    isAnswered,
+    quizStarted,
+    isEnd
+  } = props;
+  const classForItemCard = classNames('item-card', {
+    'item-card--right': quizStarted
+  });
+  const classForAvocadoContainer = classNames('avocado-container', {
+    'avocado-centered': !quizStarted
+  });
+  const classForThought = classNames('avocado-thought', {
+    'end-thought': isEnd
+  });
 
   return (
     <Card>
-      <CardImg
-        style={{float: 'left'}}
-        width={imageWidth}
-        height={imageHeight}
-        src={imageSrc}
-        alt="Avocado"
+      <div className={classForAvocadoContainer}>
+        <CardImg
+          className="avocado-running"
+          width={imageWidth}
+          height={imageHeight}
+          src={imageSrc}
+          alt="Avocado"
         />
-      <CardBody className="item-card">
-        <CardTitle>{ title }</CardTitle>
-        <CardSubtitle>{ subtitle }</CardSubtitle>
-        <CardText>{ text }</CardText>
+        {
+          (isAnswered || !quizStarted || isEnd) &&
+            <div className="clearfix thought-container">
+              <span className={classForThought}>{ subtitle }</span>
+            </div>
+        }
+      </div>
+      <CardBody className={classForItemCard}>
+        <CardText className="text-wrapper">{ text }</CardText>
       </CardBody>
     </Card>
   );

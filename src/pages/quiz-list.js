@@ -1,17 +1,20 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import QuizCard from '../components/avocado-test/quiz-card';
 
 const AvocadoTest = () => (
   <div>
-    <Link to="/avocado-test/">
-      <QuizCard
-        title="Авокадо Тест"
-        text="Пройти тест"
-        imageWidth="200"
-        imageHeight="200"
-        imageSrc="http://www.learningzonexpress.com/media/catalog/product/cache/1/image/650x/9df78eab33525d08d6e5fb8d27136e95/5/0/507515.jpg"
-      />
+    <Link className="quiz-list-item" to="/avocado-test/">
+      <div style={{display: 'inline-block'}}>
+        <img
+            width="200"
+            height="200"
+            src="https://i.pinimg.com/originals/8e/25/80/8e2580e4a14839afc2ce1dc02f51bc0e.gif"
+            alt="Avocado sTest"
+        />
+      </div>
+      <div>
+        <span>Пройти Авокадо Тест</span>
+      </div>
     </Link>
   </div>
 );

@@ -81,12 +81,12 @@ class AvocadoTest extends Component {
 
     switch(true) {
       case !quizStarted:
-        result = `Зміни в тілі під час перехідного віку, як і будь що пов’язане зі здоров’ям,
+        result = `Зміни в тілі під час перехідного віку, як і будь-що пов’язане зі здоров’ям,
          завжди огорнуте туманом бабусиних прикмет, народних засобів та міфів.
          Чи зможе Авокадо перехитрити тебе та навішати тобі на вуха лапшу? Час перевірити!`;
         break;
       case isEnd:
-        result = 'Молодець!';
+        result = this.getEndText();
         break;
       case isAnswered:
         result = answer;
@@ -98,16 +98,53 @@ class AvocadoTest extends Component {
     return result;
   }
 
+  getPercentage() {
+    return this.correctAnswers / this.questionsData.length;
+  }
+
+  getEndText() {
+    const percentage = this.getPercentage();
+
+    if (percentage <= 0.25) {
+      return `Хоч нас все життя і вчать слухатися дорослих,
+       в сексі та здоров'ї ліпше вірити науковим фактам, а не бабці Любі з третього під'їзда ;)
+       Тобі ще є чому навчитися в сексуальній освіті,
+       тож лишайся з нами і ми тебе всього навчимо - це буде захоплива подорож. :)`;
+    }
+
+    if (percentage <= 0.5) {
+      return `Непогано, але тобі ще є чого навчитися. Нічого, якщо лишишся з ВПЕРШЕ,
+       тебе чекає захоплива подорож через космічні системи знань з сексуальної освіти!
+       Тримайся міцніше - скоро станеш експертом! ;)`;
+    }
+
+    if (percentage <= 0.75) {
+      return `А тебе важко надурити! ;) Але якщо хочеш стати першокласним космонавтом сексуальної
+       освіти, доведеться ще трошки повчитися. Лишайся з ВПЕРШЕ - ми з цим допоможемо :)`;
+    }
+
+    return `Вау, хто це тут такий крутелик? Тебе неможливо надурити,
+     адже ти відчуваєш брехню на запах навіть за сто світлових років!
+     Але чи ти розбираєшся так само добре в інших сферах сексуальної освіти? ;)
+     Лишайся на ВПЕРШЕ і перевіряй свої знання разом з нами!`;
+  }
+
   getEndSubtitle() {
-    if (this.correctAnswers === 1) {
-      return `${this.correctAnswers} правильнa відповідь`;
+    const percentage = this.getPercentage();
+
+    if (percentage <= 0.25) {
+      return 'Ти - новонароджене авокадо!';
     }
 
-    if (this.correctAnswers > 1 && this.correctAnswers < 5) {
-      return `${this.correctAnswers} правильні відповіді`;
+    if (percentage <= 0.5) {
+      return 'Ти - юне авокадо!';
     }
 
-    return `${this.correctAnswers} правильних відповідей`;
+    if (percentage <= 0.75) {
+      return 'Ти - молоде авокадо!';
+    }
+
+    return 'Ти - зріле авокадо!';
   }
 
   getSubtitle(questionData, isEnd) {
@@ -118,7 +155,7 @@ class AvocadoTest extends Component {
 
     switch(true) {
       case !quizStarted:
-        subtitle = 'Міфи про дорослішання (або "лапшометр"?)';
+        subtitle = 'Хелоу!';
         break;
       case isEnd:
         subtitle = this.getEndSubtitle();
@@ -127,10 +164,10 @@ class AvocadoTest extends Component {
         subtitle = '';
         break;
       case answerGuessed:
-        subtitle = 'Cаме так';
+        subtitle = 'Cаме так!';
         break;
       case !answerGuessed:
-        subtitle = 'Не зовсім';
+        subtitle = 'Неправда';
     }
 
     return subtitle;
@@ -139,9 +176,9 @@ class AvocadoTest extends Component {
   getAnswerButtons() {
     return (
       <div className="answer-btn-group">
-        <Button className="choice-btn" onClick={this.answerFalse}>Міф</Button>
+        <Button className="choice-btn myth-btn" onClick={this.answerFalse}>Міф</Button>
         чи
-        <Button className="choice-btn" onClick={this.answerTrue}>Реальність</Button>
+        <Button className="choice-btn reality-btn" onClick={this.answerTrue}>Реальність</Button>
         ?
       </div>
     );
@@ -162,28 +199,39 @@ class AvocadoTest extends Component {
     const subtitle = this.getSubtitle(questionContainer, isEnd);
 
     return (
-      <div>
+      <div className="quiz-body">
         <div className="quiz-container">
           <QuizCard
-            title="Avocado Test"
             subtitle={subtitle}
             text={text}
-            imageHeight="400"
-            imaageWidth="400"
-            imageSrc="http://www.learningzonexpress.com/media/catalog/product/cache/1/image/650x/9df78eab33525d08d6e5fb8d27136e95/5/0/507515.jpg"
+            isAnswered={isAnswered}
+            quizStarted={quizStarted}
+            isEnd={isEnd}
+            imageHeight="300"
+            imageWidth="400"
+            imageSrc="https://i.pinimg.com/originals/8e/25/80/8e2580e4a14839afc2ce1dc02f51bc0e.gif"
           />
           {
-            (quizStarted && !isEnd) && this.getAnswerButtons()
+            (!isAnswered && quizStarted && !isEnd) && this.getAnswerButtons()
           }
         </div>
         <div className="btn-container">
         {
           isEnd ?
-            <Link to="/quiz-list/">Перейти до списку вікторин</Link>
+            <Link to="/quiz-list/">
+              <Button className="next-btn end-btn">Перейти до списку вікторин</Button>
+            </Link>
             :
-            <Button className="next-btn" onClick={this.goAhead} disabled={this.isNextStepDisabled()}>
-              Далі
-            </Button>
+              (!quizStarted || isAnswered) ?
+              <Button className="next-btn" onClick={this.goAhead} disabled={this.isNextStepDisabled()}>
+                {
+                  quizStarted ?
+                  <span>Далі</span>
+                  :
+                  <span>Почати гру</span>
+                }
+              </Button>
+              : null
         }
       </div>
       </div>

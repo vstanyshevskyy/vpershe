@@ -1,15 +1,19 @@
 import React from 'react'
 import graphql from 'graphql'
-import Link from 'gatsby-link'
+import {Link, withPrefix} from 'gatsby-link'
 // import translit from 'cyrillic-to-translit-js'
 
 export default function Template ({ data }) {
   const post = data.markdownRemark.frontmatter;
+
+  const image = post.image ? <img src={withPrefix(post.image)} alt={post.title}/> : null;
+
   // const ukTranslit = translit({ preset: "uk" }).transform;
   return (
     <div>
       <h1>{post.title}</h1>
       {/* <div>Category: <Link to={`/categories/${ukTranslit(post.category)}`}>{post.category}</Link></div> */}
+      {image}
       <div className="content" dangerouslySetInnerHTML={{__html: data.markdownRemark.html}}></div>
     </div>
   )
@@ -21,8 +25,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         path
-        category
+        category        
         title
+        image
       }
     }
 
@@ -30,7 +35,7 @@ export const pageQuery = graphql`
       edges{
         node{
           frontmatter{
-            title
+            title            
             path
           }
         }

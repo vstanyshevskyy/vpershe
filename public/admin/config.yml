@@ -3,7 +3,8 @@ backend:
   repo: vstanyshevskyy/vpershe
   branch: main
 
-media_folder: static/assets
+media_folder: "static/assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
   - name: blog

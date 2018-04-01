@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/Header'
+import NavBar from '../components/Nav/Nav';
 import './index.css'
 
 const TemplateWrapper = ({ children }) => (
@@ -14,6 +15,7 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
     <Header />
+	<NavBar />
     <div
       style={{
         margin: '0 auto',

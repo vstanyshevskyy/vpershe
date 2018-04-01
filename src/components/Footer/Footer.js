@@ -1,26 +1,40 @@
 import React from 'react';
 
+const fooStyles = {
+	foo: {
+		marginTop: '40px',
+		padding: '10px'
+	},
+	btn: {
+		fontSize: '10px'
+	}
+};
+
 export default class Footer extends React.Component {
 	constructor() {
 		super();
 	}
 	render() {
 		return (
-			<footer className='footer'>
+			<footer style={fooStyles.foo} className='footer'>
 				<div className='container'>
-					<h4>Make Request</h4>
-					<form className='form-group'>
-						<div className='form-control'>
-							<input type="text" name="topic"/>
-						</div>
-						<div className='form-control'>
-							<input type="text" name="title"/>
-						</div>
-						<div className='form-control'>
-							<input type="text" name="additionals"/>
-						</div>
-						<button>ask us or push important theme</button>
-					</form>
+					<div className='row'>
+						<form className='col-md-4 col-md-6'>
+							<div>
+								<h4>Make Request</h4>
+							</div>
+							<div className='form-group'>
+								<input type="text" className='form-control inpt-round' name="topic"/>
+							</div>
+							<div className='form-group'>
+								<input type="text" className='form-control inpt-round' name="title"/>
+							</div>
+							<div className='form-group'>
+								<input type="text" className='form-control inpt-round' name="additionals"/>
+							</div>
+							<button className='btn-round send-request-btn' style={fooStyles.btn} onClick={() => sendRequest()}>ask us or push important theme</button>
+						</form>
+					</div>
 				</div>
 			</footer>
 		)

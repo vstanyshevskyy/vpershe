@@ -5,4 +5,7 @@ node_modules
 yarn-error.log
 
 # Build directory
-/public
+public
+!public/admin/config.yml
+npm-debug.log
+package.loc

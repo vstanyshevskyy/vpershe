@@ -1,18 +1,24 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
+  branch: main
 
 media_folder: static/assets
 
 collections:
   - name: blog
     label: Статті
-    folder: articles
+    folder: "content/articles"
     create: true
     fields:
+      - {label: "Type", name: "contentType", widget: "string", default: "articles"}
+      - {label: "Url", name: "path", widget: "string"}
       - {label: "Заголовок", name: "title", widget: "string"}
-      - {label: "Теги", name: "tags", widget: "list"}      
-      - {label: "Текст", name: "body", widget: "markdown"}      
-      - {label: "Текст", name: "body", widget: "markdown"}      
+      - {label: "Категорія", name: "category", widget: "string"}
+      - label: "Теги"
+        name: "tags"
+        widget: "list"    
+        default: ["статті", "едукація"] 
+      - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
     

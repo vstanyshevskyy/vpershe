@@ -11,6 +11,12 @@
 	padding: 14px 4px;
 }
 
+.Slider .slide-controls {
+	margin-top: 200px;
+	position: absolute;
+	left: 35%;
+}
+
 .Slider .slider-slides {
 	margin: auto;
 }
@@ -20,11 +26,6 @@
 	margin: auto;
 	height: 250px;
 	cursor: pointer;
-	transition: 0.8s opacity;
-}
-
-.Slider .slide-slides li:hover {
-	opacity: .8;
 }
 
 .Slider .slider-slides li > img {
@@ -32,6 +33,11 @@
 	float: left;
 	height: 340px;
 	margin: 4px;
+	transition: 0.8s opacity;
+}
+
+.Slider .slide-slides li img:hover {
+	opacity: .8;
 }
 
 .Slider .slide-btn {
@@ -41,10 +47,10 @@
 	background-color: whitesmoke;
 	color: gray;
 	top: 120px;
-	left: -14%;
+	left: -12%;
 	opacity: .8;
 	min-height: 68px;
-	width: 160px;
+	width: 172px;
 }
 
 .Slider .slide {

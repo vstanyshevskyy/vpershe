@@ -4,7 +4,8 @@
 	margin: 10px;
 	text-align: center;
 	box-shadow: 1px 2px 2px 2px lightgray;
-	max-height: 312px;
+	max-height: 308px;
+	z-index: 2000;
 	background-color: whitesmoke;
 	border-top-left-radius: 10px;
 	overflow: hidden;
@@ -17,9 +18,15 @@
 	margin-top: 80px;
 }
 
+.article-item blockquote {
+	background-color: whitesmoke;
+	color: gray;
+}
+
 .article-item .article-item-title {
 	color: coral;
-	font-size: 18px;
+	font-size: 24px;
+	line-height: 24px;
 	font-weight: bolder;
 }
 
@@ -30,4 +37,22 @@
 .article-item .show-more-btn {
 	position: relative;
 	top: -320px;
+	left: -32%;
+	border: 1px solid coral;
+}
+
+.category-card {
+	transition: .8s opacity;
+	cursor: pointer;
+	padding: 20px 48px;
+	box-shadow: 1px 2px 2px 2px lightgray;
+}
+
+.category-card img {
+	min-height: 280px;
+	width: 100%;
+}
+
+.category-card:hover {
+	opacity: .8;
 }

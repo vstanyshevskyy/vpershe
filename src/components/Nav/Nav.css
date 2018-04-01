@@ -21,11 +21,10 @@
 	font-size: 20px;
 	color: lightblue;
 	font-weight: bolder;
-	background: url(https://thumbs.dreamstime.com/z/teamwork-social-people-logo-24643406.jpg) no-repeat center;
+	background: url(https://media1.tenor.com/images/bd8bffd78009eab632d34294f1b760bb/tenor.gif?itemid=10152547) no-repeat center;
 	height: 96px;
 	text-align: center;
-	top: -20px;
-	border-radius: 50%;
+	top: -18px;
 	padding-top: 38px;
 }
 
@@ -52,7 +51,7 @@
 .start-search {
 	position: relative;
 	float: right;
-	top: 50px;
+	top: 28px;
 }
 
 .start-search .btn {

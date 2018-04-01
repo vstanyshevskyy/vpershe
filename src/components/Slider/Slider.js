@@ -105,7 +105,7 @@ class Slider extends React.Component {
 		});
 	}
 	choiceNews(param) {
-		window.location.assign(window.location.hostname + '/' + param);
+		window.location.assign('/articles/' + param);
 	}
 	render() {
 		return (
@@ -116,14 +116,14 @@ class Slider extends React.Component {
 					<button onClick={(e) => {this.slideRight(e)}}>forward</button>
 				</div>
 				<ul className="slider-slides">
-					{this.state.slides.map(slide => {
+					{this.state.slides.map((slide, index) => {
 						return (
 							<li style={slide.style} className={slide.state === true? 'active slide':'hidden slide'} key={slide.id}>
 								<h4 className='slide-title'>{slide.title}</h4>
 								<p className='slide-description'>{slide.description}</p>
 								<img src={slide.Image}/>
 								<button className='btn-round slide-btn' onClick={() => this.choiceNews(slide.id)}>
-									explore this news
+									explore news #{index}
 								</button>
 							</li>
 						)

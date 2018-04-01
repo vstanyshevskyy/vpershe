@@ -7,7 +7,6 @@ import Footer from '../components/Footer/Footer';
 
 const IndexPage = () => (
   <div className='container-fluid'>
-	  <NavBar />
 	  <HomePage />
 	  <Footer />
   </div>

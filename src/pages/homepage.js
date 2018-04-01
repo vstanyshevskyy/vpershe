@@ -1,5 +1,8 @@
 import React from 'react';
 import Slider from '../components/Slider/Slider';
+import ArticlesCategories from '../components/Categories/Categories';
+import Modal from '../components/Modal/Modal';
+import NavBar from '../components/Nav/Nav';
 require('./pages.css');
 
 export const TEST_ARTICLES = [
@@ -93,7 +96,12 @@ export default class HomePage extends React.Component {
 			article.more = false;
 		});
 		this.state = {
-			articlesNews: TEST_ARTICLES
+			articlesNews: TEST_ARTICLES,
+			modalConfig: {
+				id: "#about",
+				title: "About Service",
+				additionals: "Content here"
+			}
 		}
 	}
 	componentDidMount() {
@@ -122,6 +130,7 @@ export default class HomePage extends React.Component {
 	render() {
 		return (
 			<div className='container-fluid'>
+				<Modal modalConfig={this.state.modalConfig}/>
 				<div className='row'>
 					<div className='col-md-12'>
 						<Slider />
@@ -132,7 +141,7 @@ export default class HomePage extends React.Component {
 								<div className='row'>
 									{this.state.articlesNews.map((item, index) => {
 										return (
-											<div className={item.more? 'col-md-4 col-sm-6 article-item no-overflow' : 'col-md-4 article-item'} key={index}>
+											<div className={item.more? 'col-md-4 col-sm-12 article-item no-overflow' : 'col-md-4 article-item'} key={index}>
 												<h5 className='article-item-title'>{item.name}</h5>
 												<p>{item.more}</p>
 												<blockquote>
@@ -153,6 +162,9 @@ export default class HomePage extends React.Component {
 								<div className='col-md-4'>Empty News</div>
 							}
 						</div>
+					</div>
+					<div className='col-md-12'>
+						<ArticlesCategories />
 					</div>
 				</div>
 			</div>

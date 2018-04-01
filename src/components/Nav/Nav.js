@@ -1,7 +1,10 @@
 import React from 'react'
 import Link from 'gatsby-link'
 require('./Nav.css');
-import TEST_ARTICLES from '../../pages/homepage';
+require('../../layouts/ui-elems.css');
+import { TEST_ARTICLES } from '../../pages/homepage';
+import Sharing from '../../components/Sharing/Sharing';
+
 export default class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -10,7 +13,7 @@ export default class NavBar extends React.Component {
 			links: [
 				{
 					title: 'Home',
-					href: '/home',
+					href: '/homepage',
 					active: false
 				},
 				{
@@ -20,7 +23,7 @@ export default class NavBar extends React.Component {
 				},
 				{
 					title: 'FAQ',
-					href: '#faq',
+					href: '/faq',
 					active: false
 				}
 			],
@@ -33,10 +36,21 @@ export default class NavBar extends React.Component {
 		this.activateSearch = this.activateSearch.bind(this);
 	}
 	activateSearch(value) {
+		if (value.length === 0) {
+			this.setState(() => {
+				return {
+					searchResults: {
+						state: false,
+						values: []
+					}
+				}
+			});
+			return;
+		}
 		const results = [];
 		this.state.articlesNews.map(news => {
-			if (news.name.match(value)) {
-				results.push(value);
+			if (news.name.indexOf(value) !== -1) {
+				results.push(news);
 			}
 		});
 		this.setState(() => {
@@ -46,7 +60,14 @@ export default class NavBar extends React.Component {
 					values: results
 				}
 			}
-		})
+		});
+	}
+	choiceArticle(param) {
+
+	}
+	activateExtrimSearch(value) {}
+	openAbout() {
+		console.log('About modal must be opened!');
 	}
 	render() {
 		return (
@@ -55,39 +76,57 @@ export default class NavBar extends React.Component {
 					<ul className="navbar-nav mr-auto">
 						{this.state.links.map(link => {
 							return (
-								<li key={link.href} className={link.active?  + 'nav-item' : 'nav-item'}>
-									<Link to={link.href}>{link.title}</Link>
-								</li>
+								link.href === '#about'?
+									<li key={link.href} className={link.active?  + 'nav-item' : 'nav-item'}>
+										<button className='' onClick={this.openAbout}>Look on {link.title}</button>
+									</li> :
+									<li key={link.href} className={link.active?  + 'nav-item' : 'nav-item'}>
+										<Link to={link.href}>{link.title}</Link>
+									</li>
 							)
 						})}
 						<li className='brand-area'>
 							<a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							   className="navbar-brand" href="#">Vpershe</a>
+							   className="navbar-brand">Vpershe</a>
 							<span className="navbar-toggler-icon"></span>
 						</li>
 					</ul>
+					<Sharing />
 					<div className='start-search'>
-						<form className="form-inline">
-							<input onKeyPress={(e) => {this.activateSearch(searchValue.value)}}
-							       id="searchValue" className="inpt-round form-control" type="search" placeholder="Search" aria-label="Search" />
-							<button className="btn-round btn btn-outline-success" type="submit">Search</button>
-						</form>
-						{this.state.searchResults.state?
-							<div className='search-results'>
-								<div className='row'>
-									<div className='col-md-12'>
-										<ul>
-											{this.state.searchResults.values.map((val, index) => {
-												return (
-													<li key={index}>{val.name}</li>
-												)
-											})}
-										</ul>
-									</div>
-								</div>
-							</div> :
-							false
-						}
+						<div className='row'>
+							<div className='col-md-6'>
+								<p>search for actual articles</p>
+								<form className="form-inline">
+									<input onKeyPress={(e) => {this.activateSearch(searchValue.value)}}
+									       id="searchValue" className="inpt-round form-control" type="search" placeholder="Search" aria-label="Search" />
+								</form>
+								{this.state.searchResults.state?
+									<div className='search-results'>
+										<div className='row'>
+											<div className='col-md-12'>
+												<ul className='dropdown'>
+													{this.state.searchResults.values.map((val, index) => {
+														return (
+															<li key={index}>
+																<Link to={val.href}>{val.name}</Link>
+															</li>
+														)
+													})}
+												</ul>
+											</div>
+										</div>
+									</div> :
+									false
+								}
+							</div>
+							<div className='col-md-6'>
+								<p>typing your problem question</p>
+								<form className="form-inline">
+									<input onKeyPress={(e) => {this.activateExtrimSearch(searchValue.value)}}
+									       id="extrimSearchValue" className="inpt-round form-control" type="search" placeholder="Search" aria-label="Search" />
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</nav>

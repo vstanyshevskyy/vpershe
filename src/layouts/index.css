@@ -675,7 +675,11 @@ navbar-light: Lightblue
  */
 
 #___gatsby > div > div:nth-last-child(1) {
-	max-width: 100% !important;
+	max-width: 98% !important;
+}
+
+#___gatsby > div > div:nth-last-child(1) > div {
+	max-width: 98%;
 }
 
 #___gatsby > div > div:nth-last-child(3) {

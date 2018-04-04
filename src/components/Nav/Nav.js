@@ -15,7 +15,8 @@ class Navbar extends React.Component {
       <Link to='/archive'>Архів</Link>
       <Link to='/'>Форум</Link>
       <Link to='/about'>Про проект</Link>
-      <Link to='/'>FAQ</Link>
+      <Link to='/fsq'>FAQ</Link>
+	  <Link to='/'>Пройти тест!</Link>
     </div>
     <div className='social-links'>
     <br /></div>

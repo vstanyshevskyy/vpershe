@@ -1,48 +1,22 @@
 import React from 'react'
+import { DATA_MOCKS } from '../../utils/entity-mocks';
 require('./Sider.css');
 
 let activeSlideId;
 // test data
-let HELP_SLIDES = [
-	{
-		id: 0,
-		state: true,
-		title: 'News Title1',
-		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read. Read more at: https://www.brainyquote.com/topics/dog',
-		image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
-	},
-	{
-		id: 1,
-		state: false,
-		title: 'News Title2',
-		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read. Read more at: https://www.brainyquote.com/topics/dog',
-		image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
-	},
-	{
-		id: 2,
-		state: false,
-		title: 'News Title3',
-		description: 'Outside of a dog, a book is a man`s best friend. Inside of a dog it`s too dark to read. Read more at: https://www.brainyquote.com/topics/dog',
-		image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg'
-	}
-];
+let HELP_SLIDES = DATA_MOCKS.SLIDER_MOCK;
 
 class Slider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			slides: HELP_SLIDES,
+			slides: HELP_SLIDES || [],
 			speed: 100,
-			articles: props.articles || [],
+			articles: props.articles,
 			autoReel: false
 		};
 	}
 	componentDidMount() {
-		this.setState(function() {
-			return {
-				speed: 1000
-			}
-		});
 		setTimeout(() => {
 			const updatedSlides = [];
 			if (this.state.articles.length) {
@@ -62,6 +36,10 @@ class Slider extends React.Component {
 						slides: updatedSlides
 					}
 				})
+			} else {
+				this.setState({
+					slides: HELP_SLIDES
+				});
 			}
 		}, 1000);
 	}

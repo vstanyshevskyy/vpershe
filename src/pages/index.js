@@ -4,8 +4,6 @@ require('./pages.css');
 require('./home-page.less');
 require('../layouts/bootstrap/dist/css/bootstrap.css');
 
-export const TEST_ARTICLES = [];
-
 const IndexPage = (props) => {
 	const articles = (props.data.allMarkdownRemark.edges || []).map(a => {
 		return {

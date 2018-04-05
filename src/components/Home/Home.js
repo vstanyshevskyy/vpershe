@@ -1,25 +1,21 @@
 import React from 'react';
+import Link from 'gatsby-link';
 import Slider from '../../components/Slider/Slider';
 import ArticlesCategories from '../../components/Categories/Categories';
 import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header';
 import Feedback from '../../components/Feedback/Feedback';
-import Link from 'gatsby-link'
 import AvocadoTestImage from '../../pages/images/avocado.png';
-import {TEST_ARTICLES} from "../../pages/index";
 
 export default class HomeComponent extends React.Component {
 	constructor(props) {
 		super(props);
-		TEST_ARTICLES.map(article => {
-			article.more = false;
-		});
 		this.state = {
 			articles: props.articles || [],
 			modalConfig: {
-				id: "#about",
-				title: "About Service",
-				additionals: "Content here"
+				id: '#about',
+				title: 'About Service',
+				additionals: 'Content here'
 			}
 		}
 	}
@@ -51,7 +47,7 @@ export default class HomeComponent extends React.Component {
 			<div className='container-fluid'>
 				<Header />
 				<Modal modalConfig={this.state.modalConfig}/>
-				<Slider articles={this.state.articles ? this.state.articles : []}/>
+				<Slider articles={this.state.articles}/>
 				<div className='row'>
 					<div className='col-md-10'>
 						<h2>Останні дописи</h2>

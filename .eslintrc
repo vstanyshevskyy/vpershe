@@ -1,0 +1,44 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": "airbnb",
+  "globals": {
+  },
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "class-methods-use-this": 0,
+    "comma-dangle": ["error", "never"],
+    "func-names": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 1,
+    "indent": ["error", 2],
+    "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ] } ],
+    "jsx-a11y/label-has-for": 1,
+    "jsx-a11y/anchor-has-content": 1,
+    "jsx-a11y/no-static-element-interactions": 1,
+    "no-func-assign": 0,
+    "no-loop-func": 0,
+    "no-nested-ternary": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-param-reassign": [2, { "props": false }],
+    "no-shadow": ["error", { "hoist": "functions" }],
+    "prefer-arrow-callback": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-no-bind": 1,
+    "react/no-array-index-key": 1,
+    "react/prefer-stateless-function": 1,
+    "react/prop-types": 1,
+    "react/react-in-jsx-scope": 0,
+    "react/require-default-props": 0,
+    "react/sort-comp": 1,
+    "space-before-function-paren": 0,
+    "linebreak-style": 0
+  }
+}

@@ -1,17 +1,17 @@
 .dropdown {
-	padding: 20px;
-	position: absolute;
-	background-color: whitesmoke;
-	z-index: 2000;
-	width: 220px;
+  padding: 20px;
+  position: absolute;
+  background-color: whitesmoke;
+  z-index: 2000;
+  width: 220px;
 }
 
 .dropdown li {
-	padding: 10px 12px;
-	border: 1px solid gray;
-	color: gray;
+  padding: 10px 12px;
+  border: 1px solid gray;
+  color: gray;
 }
 
 .dropdown li:hover {
-	background-color: lightblue;
+  background-color: lightblue;
 }

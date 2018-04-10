@@ -16,6 +16,12 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "bootstrap": "3.3.7",
@@ -43,6 +49,7 @@
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.15.0-rc.13",
     "prettier": "^1.11.1"
   }
 }

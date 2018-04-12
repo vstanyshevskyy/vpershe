@@ -1,20 +1,15 @@
-import React from 'react'
+import React from 'react';
 import {
   Card,
   CardImg,
   CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  Tooltip
+  CardBody
 } from 'reactstrap';
 import classNames from 'classnames';
 import './avocado-test.css';
 
 const QuizCard = props => {
   const {
-    title,
     subtitle,
     text,
     imageSrc,
@@ -56,6 +51,6 @@ const QuizCard = props => {
       </CardBody>
     </Card>
   );
-}
+};
 
-export default QuizCard
+export default QuizCard;

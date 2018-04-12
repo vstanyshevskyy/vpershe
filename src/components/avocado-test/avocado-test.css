@@ -18,7 +18,7 @@
 .choice-btn {
   margin: 0 12px;
   cursor: pointer;
-	height: 45px;
+  height: 45px;
   width: 222px;
   border-radius: 6px;
   border: none;
@@ -36,9 +36,9 @@
 }
 
 .next-btn {
-	height: 45px;
+  height: 45px;
   width: 231px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 6px;
   background-color: #f7cc44;
   box-shadow: 0 13px 28px 0 rgba(0,0,0,0.29);
@@ -53,7 +53,7 @@
 }
 
 .item-card {
-  margin-top: 5px;
+  margin-top: 5px ;
   min-width: 200px;
   max-height: 400px;
   overflow: auto;
@@ -61,8 +61,8 @@
 
 .item-card--right {
   position: absolute;
-  top: 250px;
-  left: 350px;
+  top: 150px;
+  left: 300px;
   width: 650px;
   max-height: 250px;
   overflow: auto;
@@ -77,7 +77,6 @@
   height: 100%;
   margin: 0;
   background: #98cbc4;
-  margin-top: -1.45rem;
 }
 
 .avocado-running {
@@ -97,7 +96,7 @@
   max-width: 600px;
 }
 
-.avocado-centered .avocado-running{
+.avocado-centered .avocado-running {
   left: 100px;
 }
 
@@ -116,8 +115,55 @@
   text-align: center;
 }
 
+.thought-container::before {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 15%;
+  margin-top: -20px;
+  border-width: 20px 15px 30px 40px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  -ms-transform: rotate(130deg);
+  transform: rotate(285deg);
+}
+
+/*.thought-container::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 15%;
+  margin-top: -20px;
+  border-width: 20px 15px 30px 40px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  -ms-transform: rotate(130deg);
+  transform: rotate(285deg);
+}*/
+
+.thought-container--correct {
+  box-shadow: 0 7px 28px 0 #389F46;
+}
+
+.thought-container--incorrect {
+  box-shadow: 0 7px 28px 0 #FF8153;
+}
+
+.thought-container--correct .avocado-thought {
+  color: #389F46;
+}
+
+.thought-container--incorrect .avocado-thought {
+  color: #FC6C38;
+}
+
+.thought-container--result .avocado-thought {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
 .avocado-thought {
-	height: 44px;
+  height: 44px;
   width: 156px;
   color: #389F46;
   font-size: 33px;
@@ -134,12 +180,49 @@
 .text-wrapper {
   color: #fff;
   text-align: center;
-  margin: 0 50px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.question-count {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.text-wrapper::-webkit-scrollbar-button {
+    background-color: #fff;
+    border-radius: 0px;
+    display: block;
+    height: 5px;
+}
+
+.text-wrapper::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 5px;
+}
+
+.text-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #bfbdbd;
+}
+
+.text-wrapper::-webkit-scrollbar-track,
+.text-wrapper::-webkit-scrollbar-track:hover,
+.text-wrapper::-webkit-scrollbar-button:hover {
+  background-color: #fff;
+}
+
+.text-wrapper::-webkit-scrollbar {
+  width: 4px;
 }
 
 @media only screen and (min-width: 1040px) {
   .item-card--right {
     left: 400px;
+    min-width: 650px;
+    padding-right: 100px;
+    width: auto;
   }
 }
 
@@ -160,8 +243,30 @@
     max-height: 150px;
   }
 
-  .avocado-running {
-    left: 0;
+  /*.thought-container {
+    width: 160px;
+    height: 45px;
+    right: 10px;
+  }*/
+
+  .thought-container--result .avocado-thought {
+    /*font-size: 16px;*/
+    margin-top: 0;
+  }
+
+  .avocado-thought {
+    font-size: 20px;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .item-card--right {
+    margin-top: 15px;
+  }
+
+  .avocado-container {
+    height: 200px;
   }
 
   .thought-container {
@@ -170,23 +275,26 @@
     right: 10px;
   }
 
-  .avocado-thought {
-    margin-top: 0;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .avocado-container {
-    height: 200px;
+  .thought-container--result .avocado-thought {
+    font-size: 14px;
   }
 
   .avocado-running {
     left: 0;
-    width: 200px;
+    margin-top: 5px;
+    width: 250px;
     height: 200px;
   }
 
+  .avocado-centered .avocado-running {
+    left: 0;
+  }
+
+  .item-card--right {
+    max-height: 225px;
+  }
+
   .text-wrapper {
-    margin: 0 10px;
+    margin: 5px 10px;
   }
 }

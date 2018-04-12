@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Link from 'gatsby-link';
 import { Button } from 'reactstrap';
 import quizQuestionsData from './questions';
 import QuizCard from './quiz-card';
-import './avocado-test.css'
+import './avocado-test.css';
 
 class AvocadoTest extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class AvocadoTest extends Component {
     const { shortAnswer } = questionData;
 
     if (answerTrue !== shortAnswer) {
-      this.correctAnswers--;
+      this.correctAnswers -= 1;
     }
   }
 
@@ -49,7 +49,7 @@ class AvocadoTest extends Component {
     }
 
     return data;
-  };
+  }
 
   answerTrue() {
     this.setState({
@@ -79,20 +79,23 @@ class AvocadoTest extends Component {
     const { question, answer } = questionData;
     let result;
 
-    switch(true) {
-      case !quizStarted:
-        result = `Зміни в тілі під час перехідного віку, як і будь-що пов’язане зі здоров’ям,
+    switch (true) {
+    case !quizStarted:
+      result = `Зміни в тілі під час перехідного віку, як і будь-що пов’язане зі здоров’ям,
          завжди огорнуте туманом бабусиних прикмет, народних засобів та міфів.
          Чи зможе Авокадо перехитрити тебе та навішати тобі на вуха лапшу? Час перевірити!`;
-        break;
-      case isEnd:
-        result = this.getEndText();
-        break;
-      case isAnswered:
-        result = answer;
-        break;
-      case !isAnswered:
-        result = question;
+      break;
+    case isEnd:
+      result = this.getEndText();
+      break;
+    case isAnswered:
+      result = answer;
+      break;
+    case !isAnswered:
+      result = question;
+      break;
+    default:
+      result = '';
     }
 
     return result;
@@ -153,22 +156,26 @@ class AvocadoTest extends Component {
     const answerGuessed = answerTrue === shortAnswer;
     let subtitle;
 
-    switch(true) {
-      case !quizStarted:
-        subtitle = 'Хелоу!';
-        break;
-      case isEnd:
-        subtitle = this.getEndSubtitle();
-        break;
-      case !isAnswered:
-        subtitle = '';
-        break;
-      case answerGuessed:
-        subtitle = 'Cаме так!';
-        break;
-      case !answerGuessed:
-        subtitle = 'Неправда';
+    switch (true) {
+    case !quizStarted:
+      subtitle = 'Хелоу!';
+      break;
+    case isEnd:
+      subtitle = this.getEndSubtitle();
+      break;
+    case !isAnswered:
+      subtitle = '';
+      break;
+    case answerGuessed:
+      subtitle = 'Cаме так!';
+      break;
+    case !answerGuessed:
+      subtitle = 'Неправда';
+      break;
+    default:
+      subtitle = '';
     }
+
 
     return subtitle;
   }
@@ -216,27 +223,27 @@ class AvocadoTest extends Component {
           }
         </div>
         <div className="btn-container">
-        {
-          isEnd ?
-            <Link to="/quiz-list/">
-              <Button className="next-btn end-btn">Перейти до списку вікторин</Button>
-            </Link>
-            :
+          {
+            isEnd ?
+              <Link to="/quiz-list/">
+                <Button className="next-btn end-btn">Перейти до списку вікторин</Button>
+              </Link>
+              :
               (!quizStarted || isAnswered) ?
-              <Button className="next-btn" onClick={this.goAhead} disabled={this.isNextStepDisabled()}>
-                {
-                  quizStarted ?
-                  <span>Далі</span>
-                  :
-                  <span>Почати гру</span>
-                }
-              </Button>
-              : null
-        }
-      </div>
+                <Button className="next-btn" onClick={this.goAhead} disabled={this.isNextStepDisabled()}>
+                  {
+                    quizStarted ?
+                      <span>Далі</span>
+                      :
+                      <span>Почати гру</span>
+                  }
+                </Button>
+                : null
+          }
+        </div>
       </div>
     );
   }
 }
 
-export default AvocadoTest
+export default AvocadoTest;

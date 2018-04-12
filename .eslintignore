@@ -1,0 +1,5 @@
+
+*.snap
+src/utils/**
+src/layouts/bootstrap/**
+src/**/images/**

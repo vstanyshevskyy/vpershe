@@ -1,79 +1,79 @@
 .hidden {
-	display: none;
+  display: none;
 }
 
 .Slider {
-	margin: 0 auto;
-	margin-top: 40px;
+  margin: 0 auto;
+  margin-top: 40px;
 }
 
 .Slider .slide-controls button {
-	cursor: pointer;
-	padding: 14px 4px;
+  cursor: pointer;
+  padding: 14px 4px;
 }
 
 .Slider .slide-controls {
-	margin-top: 200px;
-	position: absolute;
-	left: 35%;
+  margin-top: 200px;
+  position: absolute;
+  left: 35%;
 }
 
 .Slider .slider-slides {
-	margin: auto;
+  margin: auto;
 }
 
 .Slider .slide-slides li {
-	width: 100%;
-	margin: auto;
-	height: 250px;
-	cursor: pointer;
+  width: 100%;
+  margin: auto;
+  height: 250px;
+  cursor: pointer;
 }
 
 .Slider .slider-slides li > img {
-	width: 76%;
-	float: left;
-	height: 340px;
-	margin: 4px;
-	transition: 0.8s opacity;
+  width: 76%;
+  float: left;
+  height: 340px;
+  margin: 4px;
+  transition: 0.8s opacity;
 }
 
 .Slider .slide-slides li img:hover {
-	opacity: .8;
+  opacity: .8;
 }
 
 .Slider .slide-btn {
-	padding: 12px 10px !important;
-	border: 1px solid coral;
-	position: relative;
-	background-color: whitesmoke;
-	color: gray;
-	top: 120px;
-	left: -12%;
-	opacity: .8;
-	min-height: 68px;
-	width: 172px;
+  padding: 12px 10px !important;
+  border: 1px solid coral;
+  position: relative;
+  background-color: whitesmoke;
+  color: gray;
+  top: 120px;
+  left: -12%;
+  opacity: .8;
+  min-height: 68px;
+  width: 172px;
 }
 
 .Slider .slide {
-	text-align: center;
+  text-align: center;
 }
 
 .Slider .slide-controls > button {
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
-	margin: 8px;
-	border: 1px solid coral;
-	background-color: whitesmoke;
-	box-shadow: 1px 2px 2px 2px lightgray;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: 8px;
+  border: 1px solid coral;
+  background-color: whitesmoke;
+  box-shadow: 1px 2px 2px 2px lightgray;
 }
 
 .Slider .slide-controls > button:hover, .slide-btn {
-	background-color: lightgray;
+  background-color: lightgray;
 }
 
 .Slider .slide-title {
-	font-size: 26px;
-	color: gray;
-	font-weight: bolder;
+  font-size: 26px;
+  color: gray;
+  font-weight: bolder;
 }

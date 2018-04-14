@@ -5,17 +5,17 @@ html {
 }
 
 @font-face {
-	font-family: Pompadur; /* Имя шрифта */
-	src: url(https://fonts.googleapis.com/css?family=Chicle|Raleway);
+  font-family: Pompadur; /* Имя шрифта */
+  src: url(https://fonts.googleapis.com/css?family=Chicle|Raleway);
 }
 
 body {
-	margin: 0px;
-	font-family: Pompadur, Arial, monospace;
+  margin: 0px;
+  font-family: Pompadur, Arial, monospace;
 }
 
 li {
-	list-style: none;
+  list-style: none;
 }
 
 article,
@@ -636,83 +636,75 @@ pre tt:after {
 }
 
 @font-face {
-	font-family: 'Material Icons';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://example.com/MaterialIcons-Regular.eot);
-	src: local('Material Icons');
-	src: local('MaterialIcons-Regular');
-	src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
-	src: url(https://example.com/MaterialIcons-Regular.woff2) format('woff2');
-	src: url(https://example.com/MaterialIcons-Regular.woff) format('woff');
-	src: url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot);
+  src: local('Material Icons');
+  src: local('MaterialIcons-Regular');
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+  src: url(https://example.com/MaterialIcons-Regular.woff2) format('woff2');
+  src: url(https://example.com/MaterialIcons-Regular.woff) format('woff');
+  src: url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 i {
-	transition: 0.8s opacity;
+  transition: 0.8s opacity;
 }
 
 i:hover {
-	opacity: .8;
+  opacity: .8;
 }
 
 .material-icons {
-	font-family: 'Material Icons';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 24px;
-	display: inline-block;
-	line-height: 1;
-	text-transform: none;
-	letter-spacing: normal;
-	word-wrap: normal;
-	white-space: nowrap;
-	direction: ltr;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 }
 
 /* theme colors
 navbar-light: Lightblue
  */
 
-#___gatsby > div > div:nth-last-child(1) {
-	max-width: 98% !important;
-}
-
-#___gatsby > div > div:nth-last-child(1) > div {
-	max-width: 98%;
-}
-
 #___gatsby > div > div:nth-last-child(3) {
-	margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .btn-round, .inpt-round {
-	transition: 0.6s background !important;
-	padding: 10px 16px !important;
+  transition: 0.6s background !important;
+  padding: 10px 16px !important;
 }
 
 .btn-round {
-	text-align: center;
+  text-align: center;
 }
 
 .btn-round:hover, .inpt-round:hover {
-	color: darkslategray;
-	border: 1px solid darkslategray;
-	background-color: whitesmoke;
+  color: darkslategray;
+  border: 1px solid darkslategray;
+  background-color: whitesmoke;
 }
 
 .inpt-round {
-	padding: 20px 10px !important;
+  padding: 20px 10px !important;
 }
 
 @font-face {
-	font-family: 'Material Icons';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://example.com/MaterialIcons-Regular.eot);
-	src: local('Material Icons'),
-	local('MaterialIcons-Regular'),
-	url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-	url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-	url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot);
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+  url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+  url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }

@@ -22,23 +22,23 @@
     }
   },
   "dependencies": {
+    "bootstrap": "^4.1.0",
     "classnames": "^2.2.5",
-    "bootstrap": "3.3.7",
     "fetch": "^1.1.0",
     "gatsby": "^1.9.241",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-less": "^1.1.8",
+    "gatsby-plugin-mailchimp": "^1.0.0",
     "gatsby-plugin-netlify-cms": "^1.0.12",
     "gatsby-plugin-react-helmet": "^2.0.8",
-    "react-helmet": "^5.2.0",
-    "reactstrap": "^5.0.0",
     "gatsby-remark-responsive-iframe": "^1.4.18",
-    "jquery": "^3.3.1",
-    "prop-types": "^15.6.1",
     "gatsby-source-filesystem": "^1.5.27",
     "gatsby-transformer-remark": "^1.7.39",
-    "gatsby-plugin-mailchimp": "^1.0.0",
-    "react-disqus-thread": "^0.4.0"
+    "jquery": "^3.3.1",
+    "prop-types": "^15.6.1",
+    "react-disqus-thread": "^0.4.0",
+    "react-helmet": "^5.2.0",
+    "reactstrap": "^5.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

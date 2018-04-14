@@ -1,56 +1,13 @@
 import React from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
-
-import Modal from '../components/Modal/Modal';
+import './pages.css';
+import './home-page.less';
 import Header from '../components/Header';
 import Feedback from '../components/Feedback/Feedback';
 import AvocadoTestImage from './images/avocado.png';
-import './pages.css';
-import './home-page.less';
-import '../layouts/bootstrap/dist/css/bootstrap.css';
-
-export const TEST_ARTICLES = [
-];
 
 export default class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-    TEST_ARTICLES.forEach(article => {
-      article.more = false;
-    });
-    this.state = {
-      articlesNews: TEST_ARTICLES,
-      modalConfig: {
-        id: '#about',
-        title: 'About Service',
-        additionals: 'Content here'
-      }
-    };
-  }
-  componentDidMount() {
-    const { articlesNews } = this.state;
-
-    if (articlesNews) {
-      articlesNews.forEach(news => {
-        news.more = false;
-      });
-    }
-  }
-  showLittleMore(param) {
-    const index = this.state.articlesNews.map(function(e) { return e.name; }).indexOf(param.name);
-    if (!param.more) {
-      this.state.articlesNews[index].more = true;
-      this.setState(() => ({
-        articlesNews: this.state.articlesNews
-      }));
-    } else {
-      this.state.articlesNews[index].more = false;
-      this.setState(() => ({
-        articlesNews: this.state.articlesNews
-      }));
-    }
-  }
   render() {
     const articles = (this.props.data.allMarkdownRemark.edges || []).map(a => ({
       title: a.node.frontmatter.title,
@@ -62,37 +19,17 @@ export default class HomePage extends React.Component {
       backgroundImage: `url(${AvocadoTestImage})`
     };
     return (
-      <div className="container-fluid">
+      <div className="row">
         <Header />
-        <Modal modalConfig={this.state.modalConfig} />
-        <div className="row">
-          <div className="col-md-4">
-            <h2>Фан</h2>
-            <Link to="/avocado-test/" className="col-md-12 avocado-item" style={avocadoStyle} />
-          </div>
-          <div className="col-md-8">
-            <h2>Останні дописи</h2>
-            <div className="container-fluid article-preview">
-              {articles !== null ?
-                <div className="row articles-wrapper" style={({ width: 320 * articles.length })}>
-                  {articles.map((item, index) => {
-                    const style = {
-                      backgroundImage: `url(${withPrefix(item.image)})`
-                    };
-                    return (
-                      <div style={style} className={item.more ? 'col-md-4 col-sm-12 article-item no-overflow' : 'col-md-4 article-item'} key={index}>
-
-                        <h5 className="article-item-title">
-                          <Link to={`/articles/${item.path}`}>
-                            {item.title}
-                          </Link>
-                        </h5>
-                      </div>
-                    );
-                  })}
-                </div> :
-                <div className="col-md-4">Empty News</div>
-              }
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-4">
+              <h2>Фан</h2>
+              <Link to="/avocado-test/" className="col-md-12 avocado-item" style={avocadoStyle} />
+            </div>
+            <div className="col-md-8">
+              <h2>Останні дописи</h2>
+              <Articles articles={articles} />
             </div>
           </div>
         </div>
@@ -101,6 +38,31 @@ export default class HomePage extends React.Component {
     );
   }
 }
+
+const Articles = props => {
+  const noArticlesText = 'Ми тільки нещодавно створили сайт і зараз активно працюємо над контентом. Перевірте згодом';
+  const articles = props.articles.length ?
+    props.articles.map(article => {
+      const style = {
+        backgroundImage: `url(${withPrefix(article.image)})`
+      };
+      return (
+        <div className="article-item no-overflow" style={style}>
+          <h4 className="article-item-title">
+            <Link to={`/articles/${article.path}`}>{article.title}</Link>
+          </h4>
+        </div>);
+    })
+    : noArticlesText;
+
+  return (
+    <div className="article-preview">
+      <div className="row articles-wrapper" style={({ width: 320 * articles.length })}>
+        {articles}
+      </div>
+    </div>
+  );
+};
 
 export const pageQuery = graphql`
 query Articles {

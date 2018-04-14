@@ -674,10 +674,6 @@ i:hover {
 navbar-light: Lightblue
  */
 
-#___gatsby > div > div:nth-last-child(1) {
-  max-width: 100% !important;
-}
-
 #___gatsby > div > div:nth-last-child(3) {
   margin-bottom: 0 !important;
 }

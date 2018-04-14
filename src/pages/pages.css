@@ -41,6 +41,16 @@
   border: 1px solid coral;
 }
 
+.article-card {
+	text-align: center;
+	box-shadow: 1px 2px 1px 1px whitesmoke;
+}
+
+.article-card img {
+	height: 200px;
+	padding: 8px;
+}
+
 .category-card {
   transition: .8s opacity;
   cursor: pointer;

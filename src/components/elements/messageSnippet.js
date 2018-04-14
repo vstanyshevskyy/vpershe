@@ -60,7 +60,7 @@ export default class MessageSnippet extends React.Component {
     return (
       <div>{this.props.messageSuccessState}
         <div className={this.props.messageSuccessState ? `${this.state.cases[this.state.case].theme} message-snippet` :
-          `${this.state.cases[this.state.case].theme} message-snippet hidden ${this.state.hiddenBefore}`}
+          `${this.state.cases[this.state.case].theme} message-snippet d-none hidden ${this.state.hiddenBefore}`}
         >
           <p className="close" onClick={this.closeSnippet} role="presentation">
             <i className="material-icons">close</i>

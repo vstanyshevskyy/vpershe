@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../components/Nav';
 import FirstImage from './images/katya.jpg';
 import SecondImage from './images/yulia.jpg';
-
+import '../layouts/bootstrap/dist/css/bootstrap.css';
 
 const AboutPage = () => (
   <div>

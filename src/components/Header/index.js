@@ -1,6 +1,6 @@
 import React from 'react';
-import './index.less';
 import NavBar from '../Nav';
+import './index.less';
 
 const Header = () => (
   <div className="header">

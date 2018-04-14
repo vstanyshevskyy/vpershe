@@ -1,11 +1,11 @@
 import React from 'react';
 import MessageSnippet from '../elements/messageSnippet';
-import '../../layouts/bootstrap/dist/css/bootstrap.css';
 
 const fooStyles = {
   foo: {
     marginTop: '40px',
-    padding: '10px'
+    padding: '10px',
+    width: '100%'
   },
   btn: {
     fontSize: '10px'
@@ -94,7 +94,7 @@ export default class Feedback extends React.Component {
   }
   render() {
     return (
-      <footer style={fooStyles.foo} className="footer text-center">
+      <footer style={fooStyles.foo} className="footer text-center col-xs-12">
         <div className="container">
           <div className="row">
             <form

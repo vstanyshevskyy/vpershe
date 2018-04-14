@@ -1,12 +1,11 @@
 import React from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
+import './pages.css';
+import './home-page.less';
 import Header from '../components/Header';
 import Feedback from '../components/Feedback/Feedback';
 import AvocadoTestImage from './images/avocado.png';
-import './pages.css';
-import './home-page.less';
-import '../layouts/bootstrap/dist/css/bootstrap.css';
 
 export default class HomePage extends React.Component {
   render() {
@@ -22,14 +21,16 @@ export default class HomePage extends React.Component {
     return (
       <div className="row">
         <Header />
-        <div className="col-xs-12">
-          <div className="col-md-4">
-            <h2>Фан</h2>
-            <Link to="/avocado-test/" className="col-md-12 avocado-item" style={avocadoStyle} />
-          </div>
-          <div className="col-md-8">
-            <h2>Останні дописи</h2>
-            <Articles articles={articles} />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-4">
+              <h2>Фан</h2>
+              <Link to="/avocado-test/" className="col-md-12 avocado-item" style={avocadoStyle} />
+            </div>
+            <div className="col-md-8">
+              <h2>Останні дописи</h2>
+              <Articles articles={articles} />
+            </div>
           </div>
         </div>
         <Feedback />
@@ -46,7 +47,7 @@ const Articles = props => {
         backgroundImage: `url(${withPrefix(article.image)})`
       };
       return (
-        <div className="col-md-4 col-sm-12 article-item no-overflow" style={style}>
+        <div className="article-item no-overflow" style={style}>
           <h4 className="article-item-title">
             <Link to={`/articles/${article.path}`}>{article.title}</Link>
           </h4>

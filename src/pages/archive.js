@@ -2,7 +2,7 @@ import React from 'react';
 import graphql from 'graphql';
 import Link from 'gatsby-link';
 
-import NavBar from '../components/Nav/Nav';
+import NavBar from '../components/Nav';
 
 import './archive.less';
 

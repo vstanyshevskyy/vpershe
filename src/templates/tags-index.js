@@ -1,7 +1,7 @@
 import React from 'react';
 import graphql from 'graphql';
 import Link from 'gatsby-link';
-import Navbar from '../components/Nav/Nav';
+import Navbar from '../components/Nav';
 
 export default function Template (props) {
   return (

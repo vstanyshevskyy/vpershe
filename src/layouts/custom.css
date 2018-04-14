@@ -1,15 +1,1 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&subset=cyrillic');
-
-@media screen and (max-width: 700px) {
-  .navbar .menu {
-    flex-direction: column;
-    padding: 20px;
-    a {
-      font-size: 13px;
-      background-color: white;
-    }
-  }
-  .header .description {
-    display: none !important;
-  }
-}

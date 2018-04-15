@@ -26,4 +26,29 @@ collections:
       - {label: "Meta Title", name: "metaTitle", widget: "string", required: false }
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
-    
+  - name: settings
+    label: Налаштування
+    files:
+      - label: "Футер"
+        name: "footer"
+        file: "content/settings/footer.md"
+        fields:
+          - name: "contentType"
+            widget: "hidden"
+            default: "footer_settings"
+          - label: "Блоки"
+            name: "blocks"
+            widget: "list"
+            fields:
+              - {label: Заголовок, name: title, widget: string, default: ""}
+              - {label: Контент, name: content, widget: markdown, default: ""}
+              - {label: Завантажувати пізніше, name: lazyLoad, widget: boolean, default: false}
+          - label: "Копірайт"
+            name: "copyrightText"
+            widget: "string"
+          - label: "Посилання в самому низу"
+            name: "bottomLinks"
+            widget: "list"
+            fields:
+              - {label: Текст, name: text, widget: string, default: ""}
+              - {label: URL, name: url, widget: string, default: ""}

@@ -34,7 +34,6 @@ query FooterData {
         blocks {
           title
           content
-          lazyLoad
         }
         copyrightText
         bottomLinks {

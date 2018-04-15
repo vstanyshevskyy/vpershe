@@ -42,7 +42,6 @@ collections:
             fields:
               - {label: Заголовок, name: title, widget: string, default: ""}
               - {label: Контент, name: content, widget: markdown, default: ""}
-              - {label: Завантажувати пізніше, name: lazyLoad, widget: boolean, default: false}
           - label: "Копірайт"
             name: "copyrightText"
             widget: "string"

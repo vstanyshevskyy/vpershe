@@ -94,7 +94,7 @@ export default class Feedback extends React.Component {
   }
   render() {
     return (
-      <footer style={fooStyles.foo} className="footer text-center col-xs-12">
+      <footer style={fooStyles.foo} className="text-center col-xs-12">
         <div className="container">
           <div className="row">
             <form

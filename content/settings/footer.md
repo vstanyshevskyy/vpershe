@@ -1,4 +1,5 @@
 ---
+contentType: footer_settings
 blocks:
   - content: >-
       This demo site is only for demonstration purposes. All images are

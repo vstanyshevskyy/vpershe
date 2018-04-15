@@ -4,7 +4,7 @@ blocks:
       This demo site is only for demonstration purposes. All images are
       copyrighted to their respective owners. All content cited is derived from
       their respective sources.
-    title: Disclaimer
+    title: Disclaimer!
   - content: >-
       <iframe title="footer-fb-frame" data-adapt-container-width="true"
       className="footer__fb-iframe"

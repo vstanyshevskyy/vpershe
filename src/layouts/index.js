@@ -1,11 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import graphql from 'graphql';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import Footer from '../components/footer';
 
-const TemplateWrapper = ({ children }) => (
+export default ({
+  children, data:
+  { allMarkdownRemark: { edges: [{ node: { frontmatter: footerData } }] } }
+}) => (
   <div className="container-fluid">
     <Helmet
       title="Vpershe Site"
@@ -15,11 +18,31 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
     {children()}
+    <div className="row">
+      <Footer {...footerData} />
+    </div>
   </div>
 );
 
-TemplateWrapper.propTypes = {
-  children: PropTypes.func
-};
-
-export default TemplateWrapper;
+export const pageQuery = graphql`
+query FooterData {
+  allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "footer_settings"} }}){
+    edges{
+     node{
+       frontmatter{
+        contentType
+        blocks {
+          title
+          content
+        }
+        copyrightText
+        bottomLinks {
+          url
+          text
+        }
+       }
+     }
+    }
+  }
+}
+`;

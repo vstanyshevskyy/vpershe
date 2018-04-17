@@ -7,7 +7,6 @@ import './index.less';
 
 // TODO:
 /*
-  1. Category Link
   2. Subtitle
   3. Prev and next article
   4. More from Category
@@ -22,16 +21,20 @@ export default function Template ({ data }) {
       <div className="row content" role="main">
         <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
         <article className="col-12" itemScope itemType="http://schema.org/Article">
-          <div className="col-xs-12">
+          <header className="col-xs-12">
+            <div className="article-category-container">
+              <Link to={`/categories/${post.category}`} className="category-link">
+                <span itemProp="articleSection">{post.category}</span>
+              </Link>
+            </div>
             <h1 itemProp="headline">{post.title}</h1>
             {image}
-            <div className="col-gray">Категорія: <Link to={`/categories/${post.category}`}>{post.category}</Link></div>
             <div className="col-gray">Теги: {
               (post.tags || []).map((tag, index) => (<span key={index}>{!!index && ', '}<Link to={`/tags/${tag}`}>{tag}</Link></span>))
             }
             </div>
             <div className="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
-          </div>
+          </header>
         </article>
       </div>
     </div>

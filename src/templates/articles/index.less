@@ -1,16 +1,32 @@
-.col-gray {
-  color: gray;
-  font-size: 12px;
+.article-category-container {
+  margin-bottom: 5px;
 
-  a {
-    color: gray;
-
+  .category-link {
+    @transition: border-color .375s ease-in-out,background-color .375s ease-in-out,color .375s ease-in-out;
+    display: inline-block;
+    position: relative;
+    padding: 2px 9px;
+    border-width: 1px;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    pointer-events: auto;
+    border-style: solid;
+    text-shadow: none;
+    border-color: #e6e6e6;
+    background-color: #e6e6e6;
+    color: #000;
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+  
     &:hover {
-      text-decoration: underline;
+      border-color: #ffd91d;
+      background-color: #ffd91d;
+      color: #fff;
+      text-decoration: none;
     }
   }
-}
-
-.content {
-  margin-top: 25px;
 }

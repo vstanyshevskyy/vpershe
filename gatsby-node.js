@@ -44,7 +44,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       });
       createPage({
         path: `${node.frontmatter.contentType}/${node.frontmatter.path}`,
-        component: path.resolve(`src/templates/${node.frontmatter.contentType}.js`),
+        component: path.resolve(`src/templates/${node.frontmatter.contentType}/index.js`),
         context: {
           slug: node.frontmatter.path
         } // additional data can be passed via context

@@ -1,8 +1,9 @@
 import React from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
+import Breadcrumbs from '../../components/breadcrumbs';
 
-import './articles.less';
+import './index.less';
 
 export default function Template ({ data }) {
   const post = data.markdownRemark.frontmatter;
@@ -10,6 +11,7 @@ export default function Template ({ data }) {
 
   return (
     <div>
+      <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
       <div className="container">
         <div className="row">
           <div className="col-xs-12">

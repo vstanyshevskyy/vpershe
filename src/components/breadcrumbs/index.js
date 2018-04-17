@@ -10,7 +10,7 @@ const defaultLinks = [{
 export default props => {
   const links = [...defaultLinks, ...props.links];
   return (
-    <nav className="breadcrumbs row">
+    <nav className="breadcrumbs col-12">
       <p className="breadcrumbs-label">Ви тут:</p>
       <ol itemScope="" itemType="http://schema.org/BreadcrumbList">
         {links.map((link, index) => {

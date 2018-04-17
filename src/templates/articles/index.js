@@ -5,17 +5,25 @@ import Breadcrumbs from '../../components/breadcrumbs';
 
 import './index.less';
 
+// TODO:
+/*
+  1. Category Link
+  2. Subtitle
+  3. Prev and next article
+  4. More from Category
+*/
+
 export default function Template ({ data }) {
   const post = data.markdownRemark.frontmatter;
   const image = post.image ? <img src={withPrefix(post.image)} alt={post.title} className="img-thumbnail" /> : null;
 
   return (
-    <div>
-      <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
-      <div className="container">
-        <div className="row">
+    <div className="container">
+      <div className="row content" role="main">
+        <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
+        <article className="col-12" itemScope itemType="http://schema.org/Article">
           <div className="col-xs-12">
-            <h1>{post.title}</h1>
+            <h1 itemProp="headline">{post.title}</h1>
             {image}
             <div className="col-gray">Категорія: <Link to={`/categories/${post.category}`}>{post.category}</Link></div>
             <div className="col-gray">Теги: {
@@ -24,7 +32,7 @@ export default function Template ({ data }) {
             </div>
             <div className="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
           </div>
-        </div>
+        </article>
       </div>
     </div>
   );

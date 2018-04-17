@@ -15,6 +15,7 @@ collections:
       - {label: "Type", name: "contentType", widget: "string", default: "articles"}
       - {label: "Url", name: "path", widget: "string"}
       - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "Підзаголовок", name: "subtitle", widget: "string"}
       - {label: "Фото для привернення уваги", name: "image", widget: "image", required: false}
       - {label: "Категорія", name: "category", widget: "string"}
       - label: "Теги"

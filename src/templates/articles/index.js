@@ -18,7 +18,7 @@ export default function Template ({ data }) {
 
   return (
     <div className="container">
-      <div className="row content" role="main">
+      <div className="row article" role="main">
         <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
         <article className="col-12" itemScope itemType="http://schema.org/Article">
           <header className="col-xs-12">
@@ -28,6 +28,10 @@ export default function Template ({ data }) {
               </Link>
             </div>
             <h1 itemProp="headline">{post.title}</h1>
+            { post.subtitle && post.subtitle.length
+              ? <h2 className="subtitle" itemProp="description">{post.subtitle}</h2>
+              : null
+            }
             {image}
             <div className="col-gray">Теги: {
               (post.tags || []).map((tag, index) => (<span key={index}>{!!index && ', '}<Link to={`/tags/${tag}`}>{tag}</Link></span>))
@@ -49,6 +53,7 @@ export const pageQuery = graphql`
         path
         category
         title
+        subtitle
         image
         tags
       }

@@ -1,12 +1,10 @@
 import React from 'react';
 
-import Navbar from '../components/Nav';
 import FirstImage from './images/katya.jpg';
 import SecondImage from './images/yulia.jpg';
 
 const AboutPage = () => (
   <div>
-    <Navbar />
     <div className="container">
       <div className="row flex-nowrap justify-content-between align-items-center">
         <div className="col text-center">

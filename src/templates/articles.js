@@ -1,7 +1,6 @@
 import React from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
-import Navbar from '../components/Nav';
 
 import './articles.less';
 
@@ -11,7 +10,6 @@ export default function Template ({ data }) {
 
   return (
     <div>
-      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col-xs-12">

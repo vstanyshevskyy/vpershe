@@ -3,7 +3,6 @@ import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
 import './pages.css';
 import './home-page.less';
-import Header from '../components/Header';
 import Feedback from '../components/Feedback/Feedback';
 import AvocadoTestImage from './images/avocado.png';
 
@@ -20,7 +19,6 @@ export default class HomePage extends React.Component {
     };
     return (
       <div className="row">
-        <Header />
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-4">

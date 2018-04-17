@@ -3,10 +3,12 @@ import Helmet from 'react-helmet';
 import graphql from 'graphql';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../components/Header';
+import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 
 export default ({
-  children, data:
+  children, location, data:
   { allMarkdownRemark: { edges: [{ node: { frontmatter: footerData } }] } }
 }) => (
   <div className="container-fluid">
@@ -17,6 +19,9 @@ export default ({
         { name: 'keywords', content: 'sample, something' }
       ]}
     />
+    {
+      location.pathname === '/' ? <Header /> : <Navbar className="row" />
+    }
     {children()}
     <div className="row">
       <Footer {...footerData} />

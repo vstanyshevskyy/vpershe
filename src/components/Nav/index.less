@@ -1,14 +1,17 @@
 .navbar {
-  width: 90%;
   height: 80px;
-  border-radius: 8px;
-  box-shadow: 0 2px 14px 0 rgba(0,0,0,0.14);
-  margin: 0 auto;
-  display: flex;
-  flex-grow: grow;
-  position: relative;
   font-family: Roboto, sans-serif;
   padding: .5rem 18px;
+  margin-bottom: 20px;
+  &:after {
+    position: absolute;
+    border-top: 1px solid #ddd;
+    content: '';
+    display: block;
+    left:0;
+    top: 80px;
+    width: 100%;
+  }
   
   &.bg-light {
     background-color: white!important;
@@ -66,7 +69,6 @@
 }
 
 .navbar .social-links {
-  display: flex;
-  align-self: center;
-  margin: auto;
+  width: 123px;
+
 }

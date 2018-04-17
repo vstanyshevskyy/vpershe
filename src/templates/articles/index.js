@@ -7,15 +7,12 @@ import './index.less';
 
 // TODO:
 /*
-  2. Subtitle
   3. Prev and next article
   4. More from Category
 */
 
 export default function Template ({ data }) {
   const post = data.markdownRemark.frontmatter;
-  const image = post.image ? <img src={withPrefix(post.image)} alt={post.title} className="img-thumbnail" /> : null;
-
   return (
     <div className="container">
       <div className="row article" role="main">
@@ -32,7 +29,17 @@ export default function Template ({ data }) {
               ? <h2 className="subtitle" itemProp="description">{post.subtitle}</h2>
               : null
             }
-            {image}
+            {
+              post.image ?
+                <figure className="featured-image" itemProp="image" itemScope="" itemType="http://schema.org/ImageObject">
+                  <img src={withPrefix(post.image)} alt={post.title} />
+                  <meta itemProp="url" content={withPrefix(post.image)} />
+                  <meta itemProp="width" content="1600" />
+                  <meta itemProp="height" content="900" />
+                </figure> :
+                null
+            }
+
             <div className="col-gray">Теги: {
               (post.tags || []).map((tag, index) => (<span key={index}>{!!index && ', '}<Link to={`/tags/${tag}`}>{tag}</Link></span>))
             }

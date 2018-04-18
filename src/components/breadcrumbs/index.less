@@ -1,0 +1,38 @@
+.breadcrumbs {
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 15px;
+  color: #999;
+  
+  .breadcrumbs-label {
+    margin: 0;
+    position: absolute !important;
+    clip: rect(1px,1px,1px,1px);
+  }
+
+  ol {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .breadcrumbs-item {
+    display: inline-block;
+    max-width: 200px;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+  }
+
+  .breadcrumbs-item + .breadcrumbs-item:before {
+    display: inline-block;
+    margin-right: inherit;
+    content: "\203a";
+  }
+
+  a {
+    color: #000;
+  }
+}

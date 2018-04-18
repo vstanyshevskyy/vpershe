@@ -2,8 +2,6 @@ import React from 'react';
 import graphql from 'graphql';
 import Link from 'gatsby-link';
 
-import NavBar from '../components/Nav';
-
 import './archive.less';
 
 const addPost = article => (
@@ -46,7 +44,6 @@ const ArchivePage = ({ data }) => {
 
   return (
     <div>
-      <NavBar />
       <div className="container">
         <div className="row">
           <h1 className="text-center">Архів</h1>

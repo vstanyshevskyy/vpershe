@@ -3,7 +3,7 @@ import NavBar from '../Nav';
 import './index.less';
 
 const Header = () => (
-  <div className="header">
+  <div className="header row">
     <NavBar />
     <div>
       <div className="title">Про прое<span className="text-italic">к</span>т</div>

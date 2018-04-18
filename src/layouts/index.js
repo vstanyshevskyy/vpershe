@@ -11,21 +11,21 @@ export default ({
   children, location, data:
   { allMarkdownRemark: { edges: [{ node: { frontmatter: footerData } }] } }
 }) => (
-  <div className="container-fluid">
-    <Helmet
-      title="Vpershe Site"
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' }
-      ]}
-    />
-    {
-      location.pathname === '/' ? <Header /> : <Navbar className="row" />
-    }
-    {children()}
-    <div className="row">
-      <Footer {...footerData} />
+  <div>
+    <div className="container-fluid">
+      <Helmet
+        title="Vpershe Site"
+        meta={[
+          { name: 'description', content: 'Sample' },
+          { name: 'keywords', content: 'sample, something' }
+        ]}
+      />
+      {
+        location.pathname === '/' ? <Header /> : <Navbar className="row" />
+      }
     </div>
+    {children()}
+    <Footer {...footerData} />
   </div>
 );
 

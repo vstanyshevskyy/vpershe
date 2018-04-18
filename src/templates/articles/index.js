@@ -1,20 +1,17 @@
 import React from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
+import moment from 'moment';
 import Breadcrumbs from '../../components/breadcrumbs';
 
 import './index.less';
-
-// TODO:
-/*
-  4. More from Category
-*/
 
 export default function Template ({
   pathContext: { slug: articlePath },
   data: { allArticles: { articles: allArticles } }
 }) {
   const articleData = allArticles.filter(a => a.article.data.path === articlePath)[0];
+  moment.locale('uk');
   const post = Object.assign(
     {
       html: articleData.article.html,
@@ -23,12 +20,17 @@ export default function Template ({
     },
     ...articleData.article.data
   );
-
+  const moreFromCategory = allArticles.filter(a =>
+    a.article.data.category === post.category
+    && a.article.data.title !== post.title
+    && (post.next && post.next.title !== a.article.data.title)
+    && (post.previous && post.previous.title !== a.article.data.title))
+    .map(a => a.article.data);
   return (
     <div className="container">
       <div className="row article" role="main">
         <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
-        <article className="col-8" itemScope itemType="http://schema.org/Article">
+        <article className="col-sm-12 col-lg-8" itemScope itemType="http://schema.org/Article">
           <header>
             <div className="article-category-container">
               <Link to={`/categories/${post.category}`} className="square-link">
@@ -87,6 +89,48 @@ export default function Template ({
               </ul>
             </div>
           </nav>
+          { moreFromCategory.length ?
+            (
+              <aside className="more-from-category">
+                <h2 className="category-title">
+                  <span>Більше про:&nbsp;
+                    <Link to={`/categories/${post.category}`}>{post.category}</Link>
+                  </span>
+                </h2>
+                <div className="collection">
+                  <div className="collection-viewport">
+                    <ul className="category-items">
+                      { moreFromCategory.map((article, index) => (
+                        <li key={index} className="category-item">
+                          <article>
+                            <figure className="item-featured-media">
+                              <Link className="frame" to={`/articles/${article.path}`}>
+                                <img alt={article.title} src={article.image} />
+                              </Link>
+                            </figure>
+                            <div className="category-item-body">
+                              <header className="category-item-header">
+                                <h3 className="category-item-title">
+                                  <Link to={`/articles/${article.path}`} rel="bookmark">
+                                    {article.title}
+                                  </Link>
+                                </h3>
+                              </header>
+                              <footer>
+                                <time className="category-item-date" dateTime={moment(article.publishTime).format('YYYY-MM-DDTHH:mm:ss')} title={moment(article.publishTime).format('MMM DD, YYYY, hh:mm')}>
+                                  {moment(article.publishTime).fromNow()}
+                                </time>
+                              </footer>
+                            </div>
+                          </article>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </aside>)
+            : null }
+
         </article>
       </div>
     </div>

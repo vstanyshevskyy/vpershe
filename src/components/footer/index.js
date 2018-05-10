@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import { Container, Row, Col } from 'reactstrap';
+import SocialIcons from '../social-icons';
 import './index.less';
 
 const BOOTSTRAP_COLUMNS_COUNT = 12;
@@ -29,6 +30,12 @@ export default props => (
           {props.bottomLinks.map(link => (
             <Link key={link.url} to={link.url}>{link.text}</Link>
           ))}
+          <SocialIcons
+            icons={props.socialIcons}
+            listClassName="social-icons-container"
+            listItemClassName="social-icons-item"
+            linkClassName="social-icons-link"
+          />
         </Col>
       </Row>
     </Container>

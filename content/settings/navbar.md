@@ -7,7 +7,7 @@ socialIcons:
     url: 'https://www.twitter.com'
   - type: Instagram
     url: 'https://www.instagram.com'
-  - type: Google Plus
+  - type: Google
     url: 'https://www.google.com'
 ---
 

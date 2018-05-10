@@ -4,8 +4,6 @@
 
 # Build directory
 public
-public/*
-!public/admin/config.yml
 package.loc
 
 # webstorm files

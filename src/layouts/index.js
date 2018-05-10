@@ -55,6 +55,10 @@ query FooterData {
     edges{
      node{
        frontmatter{
+        links {
+          text
+          url
+        }
         socialIcons {
           type
           url

@@ -36,10 +36,8 @@ export default class VpersheNav extends React.Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar className="justify-content-center col-md-8">
           <Nav className="justify-content-center" navbar>
-            <NavItem><Link to="/archive">Архів</Link></NavItem>
-            <NavItem><Link to="/">Форум</Link></NavItem>
-            <NavItem><Link to="/about">Про проект</Link></NavItem>
-            <NavItem><Link to="/faq">FAQ</Link></NavItem>
+            {(this.props.links || []).map(link =>
+              <NavItem key={link.url}><Link to={link.url}>{link.text}</Link></NavItem>)}
           </Nav>
         </Collapse>
         <SocialIcons icons={this.props.socialIcons} />

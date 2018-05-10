@@ -2,13 +2,13 @@
 contentType: navbar_settings
 links:
   - text: Архів
-    url: '/archive'
+    url: /archive/
   - text: Форум
-    url: '/'
+    url: /
   - text: Про проект
-    url: '/about'
+    url: /about
   - text: FAQ
-    url: '/faq'
+    url: /faq
 socialIcons:
   - type: Facebook
     url: 'https://www.facebook.com/katya.myachina'

@@ -2,7 +2,7 @@
 contentType: navbar_settings
 links:
   - text: Архів
-    url: /archive/
+    url: /archive
   - text: Форум
     url: /
   - text: Про проект

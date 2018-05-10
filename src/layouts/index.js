@@ -8,8 +8,10 @@ import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 
 export default ({
-  children, location, data:
-  { allMarkdownRemark: { edges: [{ node: { frontmatter: footerData } }] } }
+  children, location, data: {
+    FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
+    NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] }
+  }
 }) => (
   <div>
     <div className="container-fluid">
@@ -21,17 +23,17 @@ export default ({
         ]}
       />
       {
-        location.pathname === '/' ? <Header /> : <Navbar className="row" />
+        location.pathname === '/' ? <Header {...navbarSettings} /> : <Navbar className="row" {...navbarSettings} />
       }
     </div>
     {children()}
-    <Footer {...footerData} />
+    <Footer {...footerData} {...navbarSettings} />
   </div>
 );
 
 export const pageQuery = graphql`
 query FooterData {
-  allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "footer_settings"} }}){
+  FooterSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "footer_settings"} }}){
     edges{
      node{
        frontmatter{
@@ -44,6 +46,22 @@ query FooterData {
         bottomLinks {
           url
           text
+        }
+       }
+     }
+    }
+  }
+  NavbarSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "navbar_settings"} }}){
+    edges{
+     node{
+       frontmatter{
+        links {
+          text
+          url
+        }
+        socialIcons {
+          type
+          url
         }
        }
      }

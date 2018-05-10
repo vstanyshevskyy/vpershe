@@ -52,3 +52,31 @@ collections:
             fields:
               - {label: Текст, name: text, widget: string, default: ""}
               - {label: URL, name: url, widget: string, default: ""}
+      - label: "Навігація"
+        name: "navbar"
+        file: "content/settings/navbar.md"
+        fields:
+          - name: "contentType"
+            widget: "hidden"
+            default: "navbar_settings"
+          - label: "Меню"
+            name: "links"
+            widget: "list"
+            fields:
+              - label: "Текст"
+                name: "text"
+                widget: "string"
+              - label: "Посилання"
+                name: "url"
+                widget: "string"
+          - label: "Соцмережі"
+            name: "socialIcons"
+            widget: "list"
+            fields:
+              - label: "Мережа"
+                name: "type"
+                widget: "select"
+                options: ["Facebook", "Twitter", "Instagram", "Google Plus"]
+              - label: "Посилання"
+                name: "url"
+                widget: "string"

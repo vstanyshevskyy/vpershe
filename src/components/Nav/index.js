@@ -8,6 +8,8 @@ import {
   Nav,
   NavItem
 } from 'reactstrap';
+
+import SocialIcons from '../social-icons';
 import logo from './images/logo.png';
 import './index.less';
 
@@ -28,21 +30,17 @@ export default class VpersheNav extends React.Component {
   render() {
     return (
       <Navbar color="light" light expand="md" className={this.props.className}>
-        <NavbarBrand href="/">
+        <NavbarBrand href="/" className="col-2">
           <img src={logo} alt="Вперше" />
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem><Link to="/archive">Архів</Link></NavItem>
-            <NavItem><Link to="/">Форум</Link></NavItem>
-            <NavItem><Link to="/about">Про проект</Link></NavItem>
-            <NavItem><Link to="/faq">FAQ</Link></NavItem>
+        <Collapse isOpen={this.state.isOpen} navbar className="justify-content-center col-md-8">
+          <Nav className="justify-content-center" navbar>
+            {(this.props.links || []).map(link =>
+              <NavItem key={link.url}><Link to={link.url}>{link.text}</Link></NavItem>)}
           </Nav>
-          <div className="social-links ml-auto">
-            <br />
-          </div>
         </Collapse>
+        <SocialIcons icons={this.props.socialIcons} />
       </Navbar>);
   }
 }

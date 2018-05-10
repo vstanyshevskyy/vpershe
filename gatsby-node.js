@@ -1,7 +1,8 @@
 const path = require('path');
 
 const SKIP_TYPES = [
-  'footer_settings'
+  'footer_settings',
+  'navbar_settings'
 ];
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
@@ -27,7 +28,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
-    console.log(JSON.stringify(result.data.allMarkdownRemark));
     const categories = [];
     const tags = [];
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
@@ -50,8 +50,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         } // additional data can be passed via context
       });
     });
-    console.log(categories);
-    console.log(tags);
     categories.forEach(category => {
       createPage({
         path: `categories/${category}`,

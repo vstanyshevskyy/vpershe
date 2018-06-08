@@ -2,7 +2,8 @@ const path = require('path');
 
 const SKIP_TYPES = [
   'footer_settings',
-  'navbar_settings'
+  'navbar_settings',
+  'general_settings'
 ];
 
 exports.createPages = ({ boundActionCreators, graphql }) => {

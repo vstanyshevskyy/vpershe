@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: main
+  branch: metadata
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
@@ -43,7 +43,7 @@ collections:
             name: 'title'
             widget: string
           - label: 'Title template (формат для заголовку інших сторінок)'
-            name: 'title'
+            name: 'titleTemplate'
             widget: string
           - label: 'Meta Description'
             name: 'metaDescription'

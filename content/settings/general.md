@@ -1,6 +1,6 @@
 ---
 contentType: 'general_settings'
-favicon: ''
+favicon: /assets/uploads/icon.ico
 title: ''
 titleTemplate: ''
 metaDescription: ''

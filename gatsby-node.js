@@ -11,7 +11,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   return graphql(`
     {
-      allMarkdownRemark {
+      pages: allMarkdownRemark {
         edges {
           node {
             frontmatter {
@@ -24,6 +24,25 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
+      settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "general_settings"}}}) {
+        edges {
+          node {
+            frontmatter {
+              title
+              url
+              titleTemplate
+              organizationTitle
+              defaultAuthor
+              favicon
+              metaDescription
+              metaKeywords
+              fbTitle
+              fbImage
+              fbDescription
+            }
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
@@ -31,7 +50,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
     const categories = [];
     const tags = [];
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    result.data.pages.edges.forEach(({ node }) => {
       if (SKIP_TYPES.indexOf(node.frontmatter.contentType) > -1) {
         return;
       }
@@ -43,11 +62,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           tags.push(tag);
         }
       });
+      const url = `${node.frontmatter.contentType}/${node.frontmatter.path}`;
       createPage({
-        path: `${node.frontmatter.contentType}/${node.frontmatter.path}`,
+        path: url,
         component: path.resolve(`src/templates/${node.frontmatter.contentType}/index.js`),
         context: {
-          slug: node.frontmatter.path
+          slug: node.frontmatter.path,
+          path: url,
+          parentUrl: node.frontmatter.contentType,
+          settings: result.data.settings.edges[0].node.frontmatter
         } // additional data can be passed via context
       });
     });

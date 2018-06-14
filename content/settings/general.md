@@ -1,6 +1,9 @@
 ---
 contentType: general_settings
 favicon: /assets/uploads/icon.ico
+url: https://vpershe.netlify.com
+organizationTitle: Вперше
+defaultAuthor: Katya Myachina
 title: Вперше - секс-едукація для тінейджерів
 titleTemplate: ' - Вперше - секс-едукація для тінейджерів'
 metaDescription: Вперше - це перший ресурс який відповість на всі твої запитання про це

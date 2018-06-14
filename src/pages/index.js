@@ -1,23 +1,30 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
 import './pages.css';
 import './home-page.less';
 import Feedback from '../components/Feedback/Feedback';
+import SEO from '../components/SEO';
 import AvocadoTestImage from './images/avocado.png';
 
-export default class HomePage extends React.Component {
-  render() {
-    const articles = (this.props.data.allMarkdownRemark.edges || []).map(a => ({
-      title: a.node.frontmatter.title,
-      category: a.node.frontmatter.category,
-      path: a.node.frontmatter.path,
-      image: a.node.frontmatter.image
-    }));
-    const avocadoStyle = {
-      backgroundImage: `url(${AvocadoTestImage})`
-    };
-    return (
+export default function Template ({
+  data: {
+    articles: { edges: rawArticles },
+    settings: { edges: [{ node: { frontmatter: settings } }] }
+  }
+}) {
+  const articles = (rawArticles || []).map(a => ({
+    title: a.node.frontmatter.title,
+    category: a.node.frontmatter.category,
+    path: a.node.frontmatter.path,
+    image: a.node.frontmatter.image
+  }));
+  const avocadoStyle = {
+    backgroundImage: `url(${AvocadoTestImage})`
+  };
+  return (
+    <Fragment>
+      <SEO defaults={settings} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-4">
@@ -31,8 +38,8 @@ export default class HomePage extends React.Component {
           <Feedback />
         </div>
       </div>
-    );
-  }
+    </Fragment>
+  );
 }
 
 const Articles = props => {
@@ -62,7 +69,7 @@ const Articles = props => {
 
 export const pageQuery = graphql`
 query Articles {
-  allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "articles"} }}){
+  articles: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "articles"} }}){
     edges{
      node{
        frontmatter{
@@ -74,6 +81,22 @@ query Articles {
          contentType
        }
      }
+    }
+  }
+  settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "general_settings"}}}) {
+    edges {
+      node {
+        frontmatter {
+          title
+          url
+          favicon
+          metaDescription
+          metaKeywords
+          fbTitle
+          fbImage
+          fbDescription
+        }
+      }
     }
   }
 }

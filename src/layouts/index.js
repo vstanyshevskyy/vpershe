@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import graphql from 'graphql';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,13 +14,6 @@ export default ({
 }) => (
   <div>
     <div className="container-fluid">
-      <Helmet
-        title="Vpershe Site"
-        meta={[
-          { name: 'description', content: 'Sample' },
-          { name: 'keywords', content: 'sample, something' }
-        ]}
-      />
       {
         location.pathname === '/' ? <Header {...navbarSettings} /> : <Navbar className="row" {...navbarSettings} />
       }

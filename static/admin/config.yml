@@ -39,6 +39,18 @@ collections:
           - label: 'favicon'
             name: 'favicon'
             widget: image
+          - label: 'URL сайту'
+            name: 'url'
+            widget: string
+          - label: 'Назва організації, від імені якої постимо контент'
+            name: 'organizationTitle'
+            widget: string
+          - label: 'Автор по замовчуванню'
+            name: 'defaultAuthor'
+            widget: string
+          - label: 'Фото автора по замовчуванню'
+            name: 'defaultAuthorImage'
+            widget: image
           - label: 'Title (Текст заголовку вікна браузера на головній)'
             name: 'title'
             widget: string

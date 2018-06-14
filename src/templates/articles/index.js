@@ -5,9 +5,15 @@ import moment from 'moment';
 import Breadcrumbs from '../../components/breadcrumbs';
 
 import './index.less';
+import SEO from '../../components/SEO';
 
 export default function Template ({
-  pathContext: { slug: articlePath },
+  pathContext: {
+    slug: articlePath,
+    settings,
+    path,
+    parentUrl
+  },
   data: { allArticles: { articles: allArticles } }
 }) {
   const articleData = allArticles.filter(a => a.article.data.path === articlePath)[0];
@@ -26,8 +32,18 @@ export default function Template ({
     && (post.next && post.next.title !== a.article.data.title)
     && (post.previous && post.previous.title !== a.article.data.title))
     .map(a => a.article.data);
+  const seoData = {
+    title: post.title,
+    image: post.image,
+    metaKeywords: post.metaKeywords,
+    metaDescription: post.metaDescription,
+    publishTime: post.publishTime,
+    url: path,
+    parentUrl
+  };
   return (
     <div className="container">
+      <SEO data={seoData} isBlogPost defaults={settings} />
       <div className="row article" role="main">
         <Breadcrumbs links={[{ text: 'Статті', url: '/articles' }, { text: post.title }]} />
         <article className="col-sm-12 col-lg-8" itemScope itemType="http://schema.org/Article">
@@ -167,6 +183,8 @@ export const pageQuery = graphql`
             image
             category
             publishTime
+            metaKeywords
+            metaDescription
           }
         }
       }

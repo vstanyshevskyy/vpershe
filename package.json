@@ -25,7 +25,7 @@
     "bootstrap": "^4.1.0",
     "classnames": "^2.2.5",
     "fetch": "^1.1.0",
-    "gatsby": "^1.9.241",
+    "gatsby": "^1.9.270",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-less": "^1.1.8",
     "gatsby-plugin-mailchimp": "^1.0.0",

@@ -1,75 +1,121 @@
 import React, { Fragment } from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
+import moment from 'moment';
+import { Row, Col } from 'reactstrap';
+import FaEnvelope from 'react-icons/lib/fa/envelope';
 import './pages.css';
 import './home-page.less';
 import Feedback from '../components/Feedback/Feedback';
 import SEO from '../components/SEO';
-import AvocadoTestImage from './images/avocado.png';
+import ArticlesCards from '../components/articles-cards';
+
+const getQuizBlock = ({ quizTitle, quizCta }) => (
+  <div className="avocado-test-link">
+    <h2>{quizTitle}</h2>
+    <Link to="/avocado-test/" className="avocado-test__image-link">
+      <img src="/assets/uploads/avocado-running.gif" alt="Веселе авокадо біжить проходити тест" />
+    </Link>
+    <Link to="/avocado-test/" className="btn btn-primary">
+      {quizCta}
+    </Link>
+  </div>
+);
 
 export default function Template ({
   data: {
     articles: { edges: rawArticles },
-    settings: { edges: [{ node: { frontmatter: settings } }] }
+    settings: { edges: [{ node: { frontmatter: settings } }] },
+    homepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] }
   }
 }) {
-  const articles = (rawArticles || []).map(a => ({
-    title: a.node.frontmatter.title,
-    category: a.node.frontmatter.category,
-    path: a.node.frontmatter.path,
-    image: a.node.frontmatter.image
-  }));
-  const avocadoStyle = {
-    backgroundImage: `url(${AvocadoTestImage})`
-  };
+  moment.locale('uk');
+
+  const articles = (rawArticles || []).map(a => a.node.frontmatter);
+  const latestArticles = articles.slice(0, homepageSettings.latestArticlesCount);
+  const otherArticles = articles.slice(
+    homepageSettings.latestArticlesCount,
+    homepageSettings.otherArticlesCount
+  );
   return (
     <Fragment>
       <SEO defaults={settings} />
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-4">
-            <h2>Фан</h2>
-            <Link to="/avocado-test/" className="col-md-12 avocado-item" style={avocadoStyle} />
-          </div>
-          <div className="col-md-8">
-            <h2>Останні дописи</h2>
-            <Articles articles={articles} />
-          </div>
-          <Feedback />
-        </div>
+      <div className="container-fluid latest-articles-container">
+        <Row>
+          <h2 className="latest-articles-title">
+            <strong>{homepageSettings.latestArticlesHeader}</strong>
+          </h2>
+          { latestArticles.map((article, index) => {
+            const style = {
+              backgroundImage: `url(${withPrefix(article.image)})`
+            };
+            return (
+              <Col key={index} xs={12} md={12 / homepageSettings.latestArticlesCount} className="article-container">
+                <article className="snax-list">
+                  <figure className="entry-featured-media" style={style}>
+                    <Link to={`/articles/${article.path}`} />
+                  </figure>
+                  <header className="article-header">
+                    <h3 className="article-title">
+                      <Link to={`/articles/${article.path}`}>{article.title}</Link>
+                    </h3>
+                  </header>
+                </article>
+              </Col>
+            );
+          }) }
+        </Row>
+      </div>
+      <div className="container-fluid other-articles">
+        <Row className="d-block d-sm-none quiz-container-mobile">
+          <Col xs={12}>
+            {getQuizBlock(homepageSettings)}
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={8}>
+            { otherArticles.length ?
+              <Fragment>
+                <ArticlesCards
+                  titleText={homepageSettings.otherArticlesHeader}
+                  articles={otherArticles}
+                  useVerticalLayout
+                  articleClassNames="col-xs-12 col-md-6"
+                />
+                <Link to="/archive">{homepageSettings.seeAllArticlesText}</Link>
+              </Fragment> :
+              null }
+          </Col>
+          <Col xs={12} md={4} className="sidebar">
+            <div className="d-none d-sm-block">
+              {getQuizBlock(homepageSettings)}
+            </div>
+            <div className="feedback-form">
+              <div className="envelope-icon">
+                <FaEnvelope />
+              </div>
+              <h2>{homepageSettings.contactFormTitle}</h2>
+              <Feedback
+                email={homepageSettings.contactFormEmail}
+                buttonText={homepageSettings.contactFormCta}
+              />
+              <div className="will-not-spam">
+                {homepageSettings.contactFormBottomText}
+              </div>
+            </div>
+          </Col>
+        </Row>
       </div>
     </Fragment>
   );
 }
 
-const Articles = props => {
-  const noArticlesText = 'Ми тільки нещодавно створили сайт і зараз активно працюємо над контентом. Перевірте згодом';
-  const articles = props.articles.length ?
-    props.articles.map(article => {
-      const style = {
-        backgroundImage: `url(${withPrefix(article.image)})`
-      };
-      return (
-        <div className="article-item no-overflow" style={style}>
-          <h4 className="article-item-title">
-            <Link to={`/articles/${article.path}`}>{article.title}</Link>
-          </h4>
-        </div>);
-    })
-    : noArticlesText;
-
-  return (
-    <div className="article-preview">
-      <div className="row articles-wrapper" style={({ width: 320 * articles.length })}>
-        {articles}
-      </div>
-    </div>
-  );
-};
-
 export const pageQuery = graphql`
 query Articles {
-  articles: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "articles"} }}){
+  articles: allMarkdownRemark(
+    filter: { frontmatter:  { contentType: { eq: "articles"} }}
+    sort: { fields: [frontmatter___publishTime], order: DESC }
+  ){
     edges{
      node{
        frontmatter{
@@ -95,6 +141,25 @@ query Articles {
           fbTitle
           fbImage
           fbDescription
+        }
+      }
+    }
+  }
+  homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
+    edges {
+      node {
+        frontmatter {
+          latestArticlesCount
+          otherArticlesCount
+          latestArticlesHeader
+          otherArticlesHeader
+          quizTitle
+          quizCta
+          contactFormEmail
+          contactFormTitle
+          contactFormBottomText
+          contactFormCta
+          seeAllArticlesText
         }
       }
     }

@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: metadata
+  branch: main
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
@@ -72,6 +72,48 @@ collections:
           - label: 'FB Image'
             name: 'fbImage'
             widget: image
+      - label: 'Головна сторінка'
+        name: 'homepage'
+        file: 'content/settings/homepage.md'
+        fields:
+          - name: 'contentType'
+            widget: 'hidden'
+            default: 'homepage_settings'
+          - label: 'Кількість найсвіжіших статей'
+            name: 'latestArticlesCount'
+            widget: 'number'
+            valueType: 'int'
+          - label: 'Кількість інших статей'
+            name: 'otherArticlesCount'
+            widget: 'number'
+            valueType: 'int'
+          - label: 'Заголовок для найсвіжих статей'
+            name: 'latestArticlesHeader'
+            widget: 'string'
+          - label: 'Заголовок для інших статей'
+            name: 'otherArticlesHeader'
+            widget: 'string'
+          - label: 'Заголовок для тесту'
+            name: 'quizTitle'
+            widget: 'string'
+          - label: 'Текст кнопки тесту'
+            name: 'quizCta'
+            widget: 'string'
+          - label: 'Email для форми'
+            name: 'contactFormEmail'
+            widget: 'string'
+          - label: 'Заголовок форми'
+            name: 'contactFormTitle'
+            widget: 'string'
+          - label: 'Текст внизу форми'
+            name: 'contactFormBottomText'
+            widget: 'string'
+          - label: 'Текст кнопки форми'
+            name: 'contactFormCta'
+            widget: 'string'
+          - label: 'Текст посилання дивитись всі статті'
+            name: 'seeAllArticlesText'
+            widget: 'string'
       - label: "Футер"
         name: "footer"
         file: "content/settings/footer.md"

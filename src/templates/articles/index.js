@@ -5,6 +5,7 @@ import moment from 'moment';
 import Breadcrumbs from '../../components/breadcrumbs';
 
 import './index.less';
+import ArticlesCards from '../../components/articles-cards';
 import SEO from '../../components/SEO';
 
 export default function Template ({
@@ -106,45 +107,12 @@ export default function Template ({
             </div>
           </nav>
           { moreFromCategory.length ?
-            (
-              <aside className="more-from-category">
-                <h2 className="category-title">
-                  <span>Більше про:&nbsp;
-                    <Link to={`/categories/${post.category}`}>{post.category}</Link>
-                  </span>
-                </h2>
-                <div className="collection">
-                  <div className="collection-viewport">
-                    <ul className="category-items">
-                      { moreFromCategory.map((article, index) => (
-                        <li key={index} className="category-item">
-                          <article>
-                            <figure className="item-featured-media">
-                              <Link className="frame" to={`/articles/${article.path}`}>
-                                <img alt={article.title} src={article.image} />
-                              </Link>
-                            </figure>
-                            <div className="category-item-body">
-                              <header className="category-item-header">
-                                <h3 className="category-item-title">
-                                  <Link to={`/articles/${article.path}`} rel="bookmark">
-                                    {article.title}
-                                  </Link>
-                                </h3>
-                              </header>
-                              <footer>
-                                <time className="category-item-date" dateTime={moment(article.publishTime).format('YYYY-MM-DDTHH:mm:ss')} title={moment(article.publishTime).format('MMM DD, YYYY, hh:mm')}>
-                                  {moment(article.publishTime).fromNow()}
-                                </time>
-                              </footer>
-                            </div>
-                          </article>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </aside>)
+            <ArticlesCards
+              titlePrefix="Більше про: "
+              titleLink={`/categories/${post.category}`}
+              titleText={post.category}
+              articles={moreFromCategory}
+            />
             : null }
 
         </article>

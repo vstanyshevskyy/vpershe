@@ -3,6 +3,7 @@ module.exports = {
     title: 'Vpershe Site'
   },
   plugins: [
+    'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify-cms',
     'gatsby-remark-responsive-iframe',

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import graphql from 'graphql';
 import Link, { withPrefix } from 'gatsby-link';
 import moment from 'moment';
@@ -38,7 +38,7 @@ export default function Template ({
     homepageSettings.otherArticlesCount
   );
   return (
-    <Fragment>
+    <React.Fragment>
       <SEO defaults={settings} />
       <div className="container-fluid latest-articles-container">
         <Row>
@@ -75,7 +75,7 @@ export default function Template ({
         <Row>
           <Col xs={12} md={8}>
             { otherArticles.length ?
-              <Fragment>
+              <React.Fragment>
                 <ArticlesCards
                   titleText={homepageSettings.otherArticlesHeader}
                   articles={otherArticles}
@@ -83,7 +83,7 @@ export default function Template ({
                   articleClassNames="col-xs-12 col-md-6"
                 />
                 <Link to="/archive">{homepageSettings.seeAllArticlesText}</Link>
-              </Fragment> :
+              </React.Fragment> :
               null }
           </Col>
           <Col xs={12} md={4} className="sidebar">
@@ -106,7 +106,7 @@ export default function Template ({
           </Col>
         </Row>
       </div>
-    </Fragment>
+    </React.Fragment>
   );
 }
 

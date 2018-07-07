@@ -1,3 +1,11 @@
+.quiz-body .card {
+  background-color: transparent;
+}
+
+.quiz-body .card img {
+  width: auto;
+}
+
 .quiz-list-item{
   text-decoration: none;
 }
@@ -9,10 +17,10 @@
 }
 
 .btn-container {
-  height: 55px;
   display: block;
   margin: 0 auto;
   text-align: center;
+  padding: 20px 0 35px;
 }
 
 .choice-btn {
@@ -69,7 +77,7 @@
 }
 
 .quiz-container {
-  height: 470px;
+  min-height: 470px;
 }
 
 .quiz-body {

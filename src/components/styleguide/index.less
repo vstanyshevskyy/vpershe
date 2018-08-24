@@ -5,8 +5,10 @@
 @clr-highlight: #FED901;
 @clr-highlight--night: #000553;
 @clr-text--night: @white;
+@clr-night: #34387C;
 
-
+@content-width: 996px;
+@mobile-padding: 5px;
 @font-size-text: 16px;
 @line-height-text: 24px;
 @font-size-h2: 48px;
@@ -21,7 +23,13 @@
 @screen-sm-max: 720px;
 @screen-xs-max: 320px;
 
+
+* {
+  box-sizing: border-box;  
+}
+
 body, html {
+  font-family: @font-primary;
   color: @clr-text;
   font-size: @font-size-text;
   line-height: @line-height-text;
@@ -44,7 +52,9 @@ h3 {
   background: transparent;
 }
 
-input {
+input,
+textarea {
+  font-family: @font-primary;
   font-size: @font-size-form-ctrl;
   padding: 14px 16px;
   border: none;

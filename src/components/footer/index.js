@@ -1,44 +1,32 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Container, Row, Col } from 'reactstrap';
 import SocialIcons from '../social-icons';
 import './index.less';
-
-const BOOTSTRAP_COLUMNS_COUNT = 12;
+import logo from './images/logo.png';
 
 export default props => (
-  <footer className="container-fluid footer">
-    <Container>
-      <Row>
-        {
-          props.blocks.map((block, index) => (
-            <Col key={index} xs={12} lg={BOOTSTRAP_COLUMNS_COUNT / props.blocks.length}>
-              <h5 className="block-title">{ block.title }</h5>
-              <div dangerouslySetInnerHTML={{ __html: block.content }} />
-            </Col>
-          ))
-        }
-      </Row>
-    </Container>
-    <Row className="separator" />
-    <Container className="footer-bottom">
-      <Row>
-        <Col sm="8" xs="12" >
-          {props.copyrightText}
-        </Col>
-        <Col xs="12" sm="4" className="text-sm-right">
-          {props.bottomLinks.map(link => (
-            <Link key={link.url} to={link.url}>{link.text}</Link>
-          ))}
-          <SocialIcons
-            icons={props.socialIcons}
-            listClassName="social-icons-container"
-            listItemClassName="social-icons-item"
-            linkClassName="social-icons-link"
-          />
-        </Col>
-      </Row>
-    </Container>
+  <footer className="footer">
+    <div className="footer__inner">
+      <div className="footer__logo-icons-wrapper">
+        <Link href="/" className="nav__logo"><img src={logo} alt="Вперше" /></Link>
+        <SocialIcons
+          icons={props.socialIcons}
+          listClassName="social-icons-container"
+          listItemClassName="social-icons-item"
+          linkClassName="social-icons-link--footer"
+        />
+      </div>
+      <ul className="footer__nav" role="navigation">
+        {props.bottomLinks.map(link => (
+          <li className="footer__nav-item" key={link.url} >
+            <Link className="footer__nav-link" to={link.url}>{link.text}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className="footer__copyright">
+        {props.copyrightText}
+      </div>
+    </div>
   </footer>
 );
 

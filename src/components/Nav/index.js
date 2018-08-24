@@ -1,13 +1,8 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from 'reactstrap';
+import classNames from 'classnames';
+import FaBars from 'react-icons/lib/fa/bars';
+import FaClose from 'react-icons/lib/fa/close';
 
 import SocialIcons from '../social-icons';
 import logo from './images/logo.png';
@@ -28,19 +23,25 @@ export default class VpersheNav extends React.Component {
     });
   }
   render() {
+    const navClasses = classNames('nav', {
+      'nav--expanded': this.state.isOpen
+    });
     return (
-      <Navbar color="light" light expand="md" className={this.props.className}>
-        <NavbarBrand href="/" className="col-2">
-          <img src={logo} alt="Вперше" />
-        </NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar className="justify-content-center col-md-8">
-          <Nav className="justify-content-center" navbar>
-            {(this.props.links || []).map(link =>
-              <NavItem key={link.url}><Link to={link.url}>{link.text}</Link></NavItem>)}
-          </Nav>
-        </Collapse>
-        <SocialIcons icons={this.props.socialIcons} />
-      </Navbar>);
+      <nav className={navClasses}>
+        <div className="nav__inner">
+          <Link href="/" className="nav__logo"><img src={logo} alt="Вперше" /></Link>
+          <button onClick={this.toggle} className="nav__burger-btn">
+            { this.state.isOpen ? <FaClose /> : <FaBars /> }
+          </button>
+          <ul className="nav__menu">
+            {(this.props.links || []).map(link => (
+              <li className="nav__menu-item" key={link.url}>
+                <Link className="nav__menu-link" to={link.url}>{link.text}</Link>
+              </li>))}
+          </ul>
+          <SocialIcons listItemClassName="nav__social-icons-item" linkClassName="nav__social-icons-item-link" listClassName="nav__social-icons" icons={this.props.socialIcons} />
+        </div>
+      </nav>
+    );
   }
 }

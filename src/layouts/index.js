@@ -1,24 +1,27 @@
 import React from 'react';
 import graphql from 'graphql';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../components/Header';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import './reset.css';
+import '../components/styleguide/index.less';
+import Feedback from '../components/Feedback';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 
 export default ({
-  children, location, data: {
+  /* children, */ data: {
     FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
-    NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] }
+    NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
+    HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] }
   }
 }) => (
   <div>
-    <div className="container-fluid">
-      {
-        location.pathname === '/' ? <Header {...navbarSettings} /> : <Navbar className="row" {...navbarSettings} />
-      }
-    </div>
-    {children()}
+    <Navbar {...navbarSettings} />
+    <Feedback
+      email={homepageSettings.contactFormEmail}
+      buttonText={homepageSettings.contactFormCta}
+    />
+    {/* {children()} */}
     <Footer {...footerData} {...navbarSettings} />
   </div>
 );
@@ -57,6 +60,18 @@ query FooterData {
         }
        }
      }
+    }
+  }
+  HomepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
+    edges {
+      node {
+        frontmatter {
+          contactFormEmail
+          contactFormTitle
+          contactFormBottomText
+          contactFormCta
+        }
+      }
     }
   }
 }

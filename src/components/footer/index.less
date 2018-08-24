@@ -1,29 +1,37 @@
+@import '../styleguide/index.less';
+
 .footer {
-  background-color: #f2f2f2;
-  padding-top: 10px;
-  font-size: 15px;
-  color: #666;
-  .block-title {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 18px;
-    margin: 20px 0;
-    color: #000;
-  }
-  .separator {
-    border-top: 1px solid #999;
-    margin-top: 20px;
-  }
-  iframe {
-    border: 0;
-  }
+  background-color: @clr-night;
+  min-height: 304px; 
+  color: @white;
 }
 
-.footer-bottom {
-  line-height: 50px;
-  font-size: 14px;
-  position: relative;
-  a {
-    color: #666;
+.footer__inner {
+  max-width: @content-width;
+  padding: 40px @mobile-padding;
+}
+.footer__logo-icons-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+// TODO - move to social links component
+.social-icons-link--footer {
+  color: @white;
+}
+
+.footer__nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+
+.footer__nav-link {
+  color: @white;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 }

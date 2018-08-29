@@ -28,7 +28,7 @@ collections:
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
-  - name: articles
+  - name: stories
     label: Історії
     folder: "content/stories"
     create: true
@@ -49,7 +49,7 @@ collections:
       - {label: "Час публікації", name: "publishTime", widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
-  - name: articles
+  - name: sexoteca
     label: Сексотека
     folder: "content/sexoteca"
     create: true

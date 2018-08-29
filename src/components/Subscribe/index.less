@@ -1,0 +1,50 @@
+@import '../styleguide/variables.less';
+
+.subscribe {
+  width: 100%;
+  background-color: @clr-highlight;
+  overflow: hidden;
+}
+
+.subscribe__form {
+  width: 100%;
+  max-width: 720px;
+  padding: @mobile-padding;
+  display: flex;
+  justify-content: space-between;
+  margin: 80px auto;
+}
+.subscribe_header {
+  width: 180px;
+  margin-top: -7px;
+}
+
+.subscribe__form-email {
+  width: 325px;
+  height: 48px;
+  margin-right: 10px;
+  margin-top:-2px;
+  vertical-align: bottom;
+}
+
+.subscribe__form-btn {
+  vertical-align: middle;
+}
+
+@media screen and (max-width: @screen-sm-max) {
+
+  .subscribe__form {
+    flex-direction: column;
+    margin: 35px auto;
+  }
+  .subscribe_header {
+    width: 100%;
+  }
+
+  .subscribe__form-email,
+  .subscribe__form-btn {
+    margin-top: 20px;
+    max-width: 100%;  
+
+  }
+}

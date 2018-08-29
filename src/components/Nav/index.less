@@ -1,19 +1,33 @@
-@import '../styleguide/index.less';
+@import '../styleguide/variables.less';
 @navbar-height: 70px;
+@nav-shadow: 0 4px 5px -2px rgba(0,0,0,.05);
 .nav {
   height: @navbar-height;
   width: 100%;
-  box-shadow: 0 3px 6px rgba(0,0,0,.05);
+  overflow:hidden;
+  box-shadow: @nav-shadow;
+}
+
+.nav--custom {
+  box-shadow: none;
+  max-width: @content-width;
+  margin: 0 auto;
 }
 
 .nav__inner {
-  width: 100%;
+  max-width: 100%;
+  height: 100%;
   margin: 0 auto;
-  max-width: @content-width + 2 * @mobile-padding;
-  padding: 0 @mobile-padding;
+  width: @content-width;
+  padding: 0 @desktop-padding;
   display: flex;
   position:relative;
   justify-content: space-between;
+  background-color: @white;
+}
+.nav__inner--custom {
+  box-shadow: @nav-shadow;
+  z-index: 1;
 }
 
 .nav__logo {
@@ -21,6 +35,7 @@
   max-width: 119px;
   display: flex;
   margin-top: 5px;
+  z-index: 1;
   img {
     width: auto;
     height: 100%;
@@ -56,25 +71,50 @@
     box-shadow: 2px 1px #0080B1;
   }
 
+  .nav__menu-link--stories.nav__menu-link--current,
+  .nav__menu-link--stories:hover,
+  .nav__menu-link--stories:active {
+    color: @clr-blue;
+  }
+  .nav__menu-link--articles.nav__menu-link--current,
+  .nav__menu-link--articles:hover,
+  .nav__menu-link--articles:active {
+    color: @clr-night;
+  }
+  .nav__menu-link--sexoteca.nav__menu-link--current,
+  .nav__menu-link--sexoteca:hover,
+  .nav__menu-link--sexoteca:active {
+    color: @clr-mint-3;
+  }
+  .nav__menu-link--advice.nav__menu-link--current,
+  .nav__menu-link--advice:hover,
+  .nav__menu-link--advice:active {
+    color: @clr-rose;
+  }
+
   &:nth-child(1) .nav__menu-link:hover:after,
+  &:nth-child(1) .nav__menu-link--current:after,
   &:nth-child(1) .nav__menu-link:active:after {
     animation: shadowFadeOut1 .75s;
     animation-fill-mode:forwards;
     z-index: -1;
   }
   &:nth-child(2) .nav__menu-link:hover:after,
+  &:nth-child(2) .nav__menu-link--current:after,
   &:nth-child(2) .nav__menu-link:active:after {
     animation: shadowFadeOut2 .75s;
     animation-fill-mode:forwards;
     z-index: -1;
   }
   &:nth-child(3) .nav__menu-link:hover:after,
+  &:nth-child(3) .nav__menu-link--current:after,
   &:nth-child(3) .nav__menu-link:active:after {
     animation: shadowFadeOut3 .75s;
     animation-fill-mode:forwards;
     z-index: -1;
   }
   &:nth-child(4) .nav__menu-link:hover:after,
+  &:nth-child(4) .nav__menu-link--current:after,
   &:nth-child(4) .nav__menu-link:active:after {
     z-index: -1;
     animation: shadowFadeOut4 .75s;
@@ -108,6 +148,7 @@
   text-decoration: none;
   position: relative;
   z-index: 0;
+  transition: color .2s linear;
   &:after {
     content: '';
     display: block;
@@ -127,7 +168,7 @@
   align-items: space-between;
   position:absolute;
   top: 22px;
-  right: 0;
+  right: @desktop-padding;
 }
 .nav__social-icons-item {
   margin: 0 7px;
@@ -151,6 +192,9 @@
 }
 
 @media screen and (max-width: @screen-sm-max) {
+  .nav__inner {
+    padding: 0 @mobile-padding;
+  }
   .nav__burger-btn {
     display: block;
   }

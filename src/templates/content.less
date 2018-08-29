@@ -1,0 +1,36 @@
+@import "../components/styleguide/variables.less";
+
+.content__title {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.content__subtitle {
+  font-style: italic;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.content__date {
+  color: @clr-gray;
+  text-align: center;
+  font-size: 14px;
+  &:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: @clr-highlight;
+    margin: 20px auto;
+
+  }
+}
+
+.content__content {
+  max-width: 70%;
+  margin: 0 auto;
+  h2, h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}

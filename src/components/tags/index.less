@@ -1,0 +1,52 @@
+@import '../styleguide/variables.less';
+.tags {
+}
+.tags__title {
+  margin-bottom: 25px;
+  transition: color .2s linear;
+} 
+
+.tags__title--advice {
+  color: @clr-rose;
+}
+.tags__title--articles {
+  color: @clr-night;
+}
+.tags__title--stories {
+  color: @clr-blue;
+}
+.tags__title--sexoteca {
+  color: @clr-mint-3;
+}
+
+.tags__tag {
+  padding: 4px 12px;
+  font-size: 16px;
+  margin-right: 5px;
+  margin-bottom: 13px;
+  border-radius: 30px;
+  display: inline-block;
+  transition: background-color .2s linear;
+}
+.tags__tag--advice {
+  background-color: @clr-rose-light;
+}
+.tags__tag--articles {
+  background-color: @clr-gray-2;
+}
+.tags__tag--stories {
+  background-color: @clr-blue-2;
+}
+.tags__tag--sexoteca {
+  background-color: @clr-mint-2;
+}
+
+.tags__tag-link {
+  text-decoration: none;
+  color: @clr-gray;
+  &--current,
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}

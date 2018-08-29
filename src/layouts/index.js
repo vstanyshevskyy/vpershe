@@ -1,5 +1,7 @@
 import React from 'react';
 import graphql from 'graphql';
+import Helmet from 'react-helmet';
+import classNames from 'classnames';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './reset.css';
@@ -7,24 +9,37 @@ import '../components/styleguide/index.less';
 import Feedback from '../components/Feedback';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
+import './index.less';
 
 export default ({
-  /* children, */ data: {
+  children, location, data: {
     FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
     NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
     HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] }
   }
-}) => (
-  <div>
-    <Navbar {...navbarSettings} />
-    <Feedback
-      email={homepageSettings.contactFormEmail}
-      buttonText={homepageSettings.contactFormCta}
-    />
-    {/* {children()} */}
-    <Footer {...footerData} {...navbarSettings} />
-  </div>
-);
+}) => {
+  const wrapperClasses = classNames(
+    'page-wrapper',
+    {
+      'page-wrapper--custom': location.pathname.split('/')[1]
+    },
+    `page-wrapper--${location.pathname.split('/')[1]}`
+  );
+  return (
+    <div className={wrapperClasses}>
+      <Helmet>
+        <html lang="uk" />
+      </Helmet>
+      <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
+      <Feedback
+        email={homepageSettings.contactFormEmail}
+        title={homepageSettings.contactFormTitle}
+      />
+      {children()}
+      <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
+    </div>
+  );
+};
 
 export const pageQuery = graphql`
 query FooterData {
@@ -68,8 +83,6 @@ query FooterData {
         frontmatter {
           contactFormEmail
           contactFormTitle
-          contactFormBottomText
-          contactFormCta
         }
       }
     }

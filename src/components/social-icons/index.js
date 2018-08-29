@@ -29,7 +29,7 @@ export default class SocialIcons extends React.Component {
       <ul className={listClassName}>
         {(this.props.icons || []).map(icon => (
           <li key={icon.type} className={listItemClassName}>
-            <a className={linkClassName} href={icon.url}>
+            <a className={linkClassName} href={icon.url} title={icon.type}>
               {this.getIconComponent(icon)}
             </a>
           </li>))}

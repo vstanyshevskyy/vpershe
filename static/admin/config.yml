@@ -28,7 +28,7 @@ collections:
         widget: "list"    
         default: [] 
       - {label: "Текст", name: "body", widget: "markdown"}
-      - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+      - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
   - name: stories
@@ -52,7 +52,7 @@ collections:
         widget: "list"    
         default: [] 
       - {label: "Текст", name: "body", widget: "markdown"}
-      - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+      - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
   - name: sexoteca
@@ -76,7 +76,7 @@ collections:
         widget: "list"    
         default: [] 
       - {label: "Текст", name: "body", widget: "markdown"}
-      - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+      - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
   - name: pages
@@ -94,7 +94,7 @@ collections:
       - {label: "Фото для каруселі на головній (170*170)", name: "carousel_image", widget: "image", required: false}
       - {label: "Фото для каруселі ALT", name: "carousel_image_alt", widget: "string", required: false}
       - {label: "Текст", name: "body", widget: "markdown"}
-      - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+      - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
   - name: advice
@@ -110,7 +110,7 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
-      - {label: "Час публікації", name: "publishTime", widget: "datetime"}
+      - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
   - name: settings
     label: Налаштування
     files:

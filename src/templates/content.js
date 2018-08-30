@@ -20,7 +20,11 @@ export default props => {
           : null }
         <h1 className="content__title">{pageData.title}</h1>
         <div className="content__subtitle">{pageData.title}</div>
-        <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>
+        {
+          pageData.publishTime
+            ? <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>
+            : null
+        }
         <div className="content__content" dangerouslySetInnerHTML={{ __html: pageData.html }} />
       </article>
       <aside>

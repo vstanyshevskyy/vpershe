@@ -11,12 +11,10 @@ links:
     url: /advice
 socialIcons:
   - type: Facebook
-    url: 'https://www.facebook.com/katya.myachina'
-  - type: Twitter
-    url: 'https://www.twitter.com'
+    url: 'https://www.facebook.com/vpershe'
   - type: Instagram
-    url: 'https://www.instagram.com'
-  - type: Google
-    url: 'https://www.google.com'
+    url: 'https://www.instagram.com/vpershe'
+  - type: Google Plus
+    url: 'mailto:vpersheproject@gmail.com'
 ---
 

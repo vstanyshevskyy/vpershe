@@ -200,6 +200,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
     ['advice', 'articles', 'stories', 'sexoteca'].forEach(contentType => {
       const contentByTags = {};
+      if (!result.data[contentType]) {
+        return;
+      }
       result.data[contentType].edges.forEach(e => {
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {

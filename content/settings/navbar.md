@@ -14,7 +14,7 @@ socialIcons:
     url: 'https://www.facebook.com/vpershe'
   - type: Instagram
     url: 'https://www.instagram.com/vpershe'
-  - type: Google Plus
+  - type: Google
     url: 'mailto:vpersheproject@gmail.com'
 ---
 

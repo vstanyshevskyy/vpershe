@@ -310,7 +310,7 @@ collections:
               - label: "Мережа"
                 name: "type"
                 widget: "select"
-                options: ["Facebook", "Twitter", "Instagram", "Google Plus"]
+                options: ["Facebook", "Twitter", "Instagram", "Google"]
               - label: "Посилання"
                 name: "url"
                 widget: "string"

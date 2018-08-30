@@ -3789,6 +3789,12 @@ gatsby-paginate@^1.0.16:
   dependencies:
     path "^0.12.7"
 
+gatsby-plugin-google-tagmanager@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-1.0.19.tgz#5cd048aabc5720a66a24446aa69bd09f151e8eb1"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 gatsby-plugin-less@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-less/-/gatsby-plugin-less-1.1.8.tgz#206e6b44996e976856260ff3ff2fe166ddd6173e"

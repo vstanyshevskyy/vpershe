@@ -5,7 +5,7 @@ import './index.less';
 export default props => (
   <li className="article-card">
     <Link to={props.url}>
-      <img className="article-card__image" src={props.image} alt="" />
+      <img alt={props.image_alt} className="article-card__image" src={props.image} />
     </Link>
     <Link className={`article-card__title article-card__title--${props.contentType}`} to={props.url}>
       {props.title}

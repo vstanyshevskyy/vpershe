@@ -16,9 +16,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               title
               subtitle
               image
+              image_alt
               carousel_featured
               carousel_image
+              carousel_image_alt
               list_image
+              list_image_alt
               tags
               publishTime
               metaKeywords
@@ -37,9 +40,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               title
               subtitle
               image
+              image_alt
               carousel_featured
               carousel_image
+              carousel_image_alt
               list_image
+              list_image_alt
               tags
               publishTime
               metaKeywords
@@ -58,9 +64,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               title
               subtitle
               image
+              image_alt
               carousel_featured
               carousel_image
+              carousel_image_alt
               list_image
+              list_image_alt
               tags
               publishTime
               metaKeywords
@@ -78,6 +87,27 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               url
               title
               tags
+              contentType
+            }
+          }
+        }
+      }
+      pages: allMarkdownRemark (filter: { frontmatter:  { contentType: { eq: "pages"}}}) {
+        edges {
+          node {
+            html
+            frontmatter {
+              path
+              title
+              subtitle
+              image
+              image_alt
+              carousel_featured
+              carousel_image
+              carousel_image_alt
+              publishTime
+              metaKeywords
+              metaDescription
               contentType
             }
           }
@@ -103,6 +133,66 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
+      advice_settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "advice_settings"}}}) {
+        edges {
+          node {
+            frontmatter {
+              contentType
+              title
+              metaDescription
+              metaKeywords
+              tags_title
+              tags_metaDescription
+              tags_metaKeywords
+            }
+          }
+        }
+      }
+      stories_settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "stories_settings"}}}) {
+        edges {
+          node {
+            frontmatter {
+              contentType
+              title
+              metaDescription
+              metaKeywords
+              tags_title
+              tags_metaDescription
+              tags_metaKeywords
+            }
+          }
+        }
+      }
+      articles_settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "articles_settings"}}}) {
+        edges {
+          node {
+            frontmatter {
+              contentType
+              title
+              metaDescription
+              metaKeywords
+              tags_title
+              tags_metaDescription
+              tags_metaKeywords
+            }
+          }
+        }
+      }
+      sexoteca_settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "sexoteca_settings"}}}) {
+        edges {
+          node {
+            frontmatter {
+              contentType
+              title
+              metaDescription
+              metaKeywords
+              tags_title
+              tags_metaDescription
+              tags_metaKeywords
+            }
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
@@ -119,6 +209,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         });
       });
+      const settings = result.data[`${contentType}_settings`].edges[0].node.frontmatter;
       createPaginatedPages({
         edges: result.data[contentType].edges,
         createPage,
@@ -127,10 +218,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         pathPrefix: contentType,
         context: {
           contentType,
-          tags: Object.keys(contentByTags)
+          tags: Object.keys(contentByTags),
+          settings: {
+            title: settings.title,
+            keywords: settings.metaKeywords,
+            description: settings.metaDescription
+          }
         }
       });
       Object.keys(contentByTags).forEach(tag => {
+        const tagsSettings = Object.assign({}, result.data[`${contentType}_settings`].edges[0].node.frontmatter);
+        Object.keys(tagsSettings).forEach(key => {
+          tagsSettings[key] = tagsSettings[key].replace(/{{tag}}/gi, tag);
+        });
         createPaginatedPages({
           edges: contentByTags[tag],
           createPage,
@@ -140,7 +240,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           context: {
             contentType,
             tag,
-            tags: Object.keys(contentByTags)
+            tags: Object.keys(contentByTags),
+            settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
+              title: tagsSettings.tags_title,
+              description: tagsSettings.tags_metaDescription,
+              keywords: tagsSettings.tags_metaKeywords
+            })
           }
         });
       });
@@ -150,11 +255,31 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             path: `${contentType}/${e.node.frontmatter.path}`,
             component: path.resolve('src/templates/content.js'),
             context: {
-              data: e.node
+              data: e.node,
+              settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
+                title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
+                description: e.node.frontmatter.metaDescription,
+                keywords: e.node.frontmatter.metaKeywords
+              })
             } // additional data can be passed via context
           });
         });
       }
     });
+    result.data.pages.edges.forEach(e => {
+      createPage({
+        path: e.node.frontmatter.path,
+        component: path.resolve('src/templates/content.js'),
+        context: {
+          data: e.node,
+          settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
+            title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
+            description: e.node.frontmatter.metaDescription,
+            keywords: e.node.frontmatter.metaKeywords
+          })
+        } // additional data can be passed via context
+      });
+    });
+
   });
 };

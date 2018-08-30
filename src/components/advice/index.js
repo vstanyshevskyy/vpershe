@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Link from 'gatsby-link';
 import Config from '../../config';
 import './index.less';
 
@@ -9,11 +10,12 @@ export default props => (
       { props.items.map((item, index) => {
         const page = Math.floor(index / Config.advice.perPage) + 1;
         const displayPage = page === 1 ? '' : `/${page}`;
+        const url = `/advice${displayPage}#${item.url}`;
         return (
-          <li className="advice__item">
-            <a className="advice__item-link" href={`/advice${displayPage}#${item.url}`}>
+          <li key={url} className="advice__item">
+            <Link className="advice__item-link" to={url}>
               {item.title}
-            </a>
+            </Link>
           </li>
         );
       })

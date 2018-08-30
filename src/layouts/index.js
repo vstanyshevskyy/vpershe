@@ -6,7 +6,7 @@ import classNames from 'classnames';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './reset.css';
 import '../components/styleguide/index.less';
-import Feedback from '../components/Feedback';
+import Feedback from '../components/feedback';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 import './index.less';

@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import graphql from 'graphql';
-import Link, { withPrefix } from 'gatsby-link';
+import React from 'react';
 import moment from 'moment';
 import './index.less';
 import TagsList from '../components/tags';
@@ -20,13 +18,14 @@ function getAdviceList(group) {
 }
 function getArticlesList(group, contentType) {
   return group.map(g => {
-    const url = `/articles/${g.node.frontmatter.path}`;
+    const url = `/${contentType}/${g.node.frontmatter.path}`;
     return (
       <ArticleCard
         url={url}
         title={g.node.frontmatter.title}
         subtitle={g.node.frontmatter.subtitle}
         image={g.node.frontmatter.list_image}
+        image_alt={g.node.frontmatter.list_image_alt}
         contentType={contentType}
       />
     );
@@ -35,38 +34,44 @@ function getArticlesList(group, contentType) {
 
 function getItems(contentType, group) {
   switch (contentType) {
-    case 'advice':
-      return getAdviceList(group);
-    case 'articles':
-      return getArticlesList(group, contentType);
-    case 'stories':
-      return getArticlesList(group, contentType);
-    case 'sexoteca':
-      return getArticlesList(group, contentType);
-    default:
-      return null;
+  case 'advice':
+    return getAdviceList(group);
+  case 'articles':
+    return getArticlesList(group, contentType);
+  case 'stories':
+    return getArticlesList(group, contentType);
+  case 'sexoteca':
+    return getArticlesList(group, contentType);
+  default:
+    return null;
   }
 }
-export default class IndexPage extends Component {
-  render() {
-    const {
-      group, index, pageCount
-    } = this.props.pathContext;
-    const contentType = this.props.pathContext.pathPrefix.split('/')[0];
-    const allTags = this.props.pathContext.additionalContext.tags;
-    moment.locale('uk');
+export default props => {
+  const {
+    group, index, pageCount
+  } = props.pathContext;
+  const contentType = props.pathContext.pathPrefix.split('/')[0];
+  const allTags = props.pathContext.additionalContext.tags;
+  const settings = props.pathContext.additionalContext.settings;
+  moment.locale('uk');
 
-    return (
-      <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
-        <ul className={`index-page__list index-page__list--${contentType}`}>
-          <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
-            {allTags.length ? <TagsList pageName={contentType} current={this.props.pathContext.additionalContext.tag} tags={allTags} /> : null}
-          </div>
-          { getItems(contentType, group) }
-        </ul>
-        <hr className={`hr hr--${contentType} hr--pagination`} />
-        <Pagination pages={pageCount} current={index} prefix={contentType} />
-      </main>
-    );
-  }
-}
+  return (
+    <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
+      <SEO {...{ data: settings }} />
+      <ul className={`index-page__list index-page__list--${contentType}`}>
+        <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
+          {allTags.length
+            ? <TagsList
+              pageName={contentType}
+              current={props.pathContext.additionalContext.tag}
+              tags={allTags}
+            />
+            : null}
+        </div>
+        { getItems(contentType, group) }
+      </ul>
+      <hr className={`hr hr--${contentType} hr--pagination`} />
+      <Pagination pages={pageCount} current={index} prefix={contentType} />
+    </main>
+  );
+};

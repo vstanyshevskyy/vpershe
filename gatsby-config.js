@@ -8,6 +8,13 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-less',
     {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-KMZ98TT',
+        includeInDevelopment: true
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/articles`,
@@ -33,6 +40,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/advice`,
         name: 'advice'
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/pages`,
+        name: 'pages'
       }
     },
     {

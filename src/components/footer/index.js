@@ -5,7 +5,6 @@ import SocialIcons from '../social-icons';
 import './index.less';
 
 export default props => {
-
   const footerClasses = classNames('footer', {
     'footer--custom': props.className
   });
@@ -13,7 +12,7 @@ export default props => {
     <footer className={footerClasses}>
       <div className="footer__inner">
         <div className="footer__logo-icons-wrapper">
-          <Link href="/" className="nav__logo footer__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
+          <Link to="/" className="nav__logo footer__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
           <SocialIcons
             icons={props.socialIcons}
             listClassName="social-icons-container social-icons-container--black"

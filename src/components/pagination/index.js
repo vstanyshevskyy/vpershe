@@ -11,9 +11,10 @@ export default props => {
         'pagination__link--current': i + 1 === props.current
       }
     );
+    const url = `/${props.prefix}/${i === 0 ? '' : i + 1}`;
     pages.push((
-      <li className="pagination__page">
-        <a className={classes} href={`/${props.prefix}/${i === 0 ? '' : i + 1}`}>
+      <li key={url} className="pagination__page">
+        <a className={classes} href={url}>
           {i + 1}
         </a>
       </li>

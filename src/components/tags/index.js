@@ -1,8 +1,7 @@
 import React from 'react';
-import Link, { withPrefix } from 'gatsby-link';
+import Link from 'gatsby-link';
 import classNames from 'classnames';
 import './index.less';
-
 
 export default props => {
   return (
@@ -15,7 +14,7 @@ export default props => {
             'tags__tag-link--current': tag === props.current
           });
           return (
-            <li className={`tags__tag tags__tag--${props.pageName}`}>
+            <li key={url} className={`tags__tag tags__tag--${props.pageName}`}>
               <Link className={linkClasses} to={url}>
                 {tag}
               </Link>

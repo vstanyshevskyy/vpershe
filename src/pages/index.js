@@ -1,6 +1,5 @@
 import React from 'react';
 import graphql from 'graphql';
-import Link, { withPrefix } from 'gatsby-link';
 import moment from 'moment';
 import './index.less';
 import SEO from '../components/SEO';
@@ -9,7 +8,6 @@ import Carousel from '../components/carousel';
 import Advice from '../components/advice';
 import ArticlesTiles from '../components/articles-tiles';
 import ArticlesList from '../components/articles-list';
-import Config from '../config';
 
 export default function Template ({
   data: {
@@ -53,15 +51,16 @@ query HomePage {
     sort: { fields: [frontmatter___publishTime], order: DESC }
   ){
     edges{
-     node{
-       frontmatter {
-         title
-         contentType
-         path
-         subtitle
-         carousel_image
-       }
-     }
+      node{
+        frontmatter {
+          title
+          contentType
+          path
+          subtitle
+          carousel_image
+          carousel_image_alt
+        }
+      }
     }
   }
   homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
@@ -80,15 +79,16 @@ query HomePage {
     sort: { fields: [frontmatter___publishTime], order: DESC }
   ){
     edges{
-     node{
-       frontmatter {
-         title
-         contentType
-         path
-         subtitle
-         list_image
-       }
-     }
+      node{
+        frontmatter {
+          title
+          contentType
+          path
+          subtitle
+          list_image
+          list_image_alt
+        }
+      }
     }
   }
   articles: allMarkdownRemark(
@@ -97,15 +97,16 @@ query HomePage {
     limit: 2
   ){
     edges{
-     node{
-       frontmatter {
-         title
-         contentType
-         path
-         subtitle
-         list_image
-       }
-     }
+      node{
+        frontmatter {
+          title
+          contentType
+          path
+          subtitle
+          list_image
+          list_image_alt
+        }
+      }
     }
   }
   settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "general_settings"}}}) {

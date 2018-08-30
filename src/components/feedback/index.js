@@ -17,7 +17,7 @@ export default class Feedback extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
-    if (this.state.isOpen) {
+    if (!this.state.isOpen) {
       if (!window) {
         return;
       }

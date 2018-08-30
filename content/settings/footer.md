@@ -1,7 +1,9 @@
 ---
 contentType: footer_settings
 blocks: []
-copyrightText: Вперше - Секс-едукація для тінейджерів
+copyrightText: >-
+  © 2018 Vpershe Україна. Сексуальна освіта для підлітків. Головний редактор –
+  Katya Myachina.
 bottomLinks:
   - text: Про проект
     url: /about

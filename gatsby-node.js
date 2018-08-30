@@ -202,6 +202,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       const contentByTags = {};
       result.data[contentType].edges.forEach(e => {
         e.node.frontmatter.tags.forEach(tag => {
+          if (!tag) {
+            return;
+          }
           if (contentByTags[tag]) {
             contentByTags[tag].push(e);
           } else {

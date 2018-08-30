@@ -30,7 +30,7 @@ export default function Template (props) {
       </div>
       <Subscribe email={homepageSettings.contactFormEmail} />
       <div className="homepage__about">
-        <h1 className="homepage__about-header highlighted">Про Проект</h1>
+        <h1 className="homepage__about-header highlighted">Про проект</h1>
         <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject}} />
       </div>
       {

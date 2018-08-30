@@ -1,132 +1,112 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import graphql from 'graphql';
-import Link, { withPrefix } from 'gatsby-link';
 import moment from 'moment';
-import { Row, Col } from 'reactstrap';
-import FaEnvelope from 'react-icons/lib/fa/envelope';
-import './pages.css';
-import './home-page.less';
-import Feedback from '../components/Feedback/Feedback';
+import './index.less';
 import SEO from '../components/SEO';
-import ArticlesCards from '../components/articles-cards';
-
-const getQuizBlock = ({ quizTitle, quizCta }) => (
-  <div className="avocado-test-link">
-    <h2>{quizTitle}</h2>
-    <Link to="/avocado-test/" className="avocado-test__image-link">
-      <img src="/assets/uploads/avocado-running.gif" alt="Веселе авокадо біжить проходити тест" />
-    </Link>
-    <Link to="/avocado-test/" className="btn btn-primary">
-      {quizCta}
-    </Link>
-  </div>
-);
+import Subscribe from '../components/Subscribe';
+import Carousel from '../components/carousel';
+import Advice from '../components/advice';
+import ArticlesTiles from '../components/articles-tiles';
+import ArticlesList from '../components/articles-list';
 
 export default function Template ({
   data: {
+    carouselItems: {edges: carouselItemsRaw},
+    stories: { edges: rawStories },
     articles: { edges: rawArticles },
+    advice: { edges: rawAdvice },
     settings: { edges: [{ node: { frontmatter: settings } }] },
-    homepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] }
+    homepageSettings: { edges: [{ node: homepageSettings }] }
   }
 }) {
+  const carouselItems = carouselItemsRaw.map(c => c.node.frontmatter);
+  const stories = rawStories.map(c => c.node.frontmatter);
+  const articles = rawArticles.map(c => c.node.frontmatter);
   moment.locale('uk');
-
-  const articles = (rawArticles || []).map(a => a.node.frontmatter);
-  const latestArticles = articles.slice(0, homepageSettings.latestArticlesCount);
-  const otherArticles = articles.slice(
-    homepageSettings.latestArticlesCount,
-    homepageSettings.otherArticlesCount
-  );
+  const advice = rawAdvice.map(a => a.node.frontmatter);
   return (
-    <Fragment>
+    <div>
       <SEO defaults={settings} />
-      <div className="container-fluid latest-articles-container">
-        <Row>
-          <h2 className="latest-articles-title">
-            <strong>{homepageSettings.latestArticlesHeader}</strong>
-          </h2>
-          { latestArticles.map((article, index) => {
-            const style = {
-              backgroundImage: `url(${withPrefix(article.image)})`
-            };
-            return (
-              <Col key={index} xs={12} md={12 / homepageSettings.latestArticlesCount} className="article-container">
-                <article className="snax-list">
-                  <figure className="entry-featured-media" style={style}>
-                    <Link to={`/articles/${article.path}`} />
-                  </figure>
-                  <header className="article-header">
-                    <h3 className="article-title">
-                      <Link to={`/articles/${article.path}`}>{article.title}</Link>
-                    </h3>
-                  </header>
-                </article>
-              </Col>
-            );
-          }) }
-        </Row>
+      <Carousel items={carouselItems} />
+      <div className="homepage__about">
+        <h1 className="homepage__about-header highlighted">Про Проект</h1>
+        <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageSettings.html}} />
       </div>
-      <div className="container-fluid other-articles">
-        <Row className="d-block d-sm-none quiz-container-mobile">
-          <Col xs={12}>
-            {getQuizBlock(homepageSettings)}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={8}>
-            { otherArticles.length ?
-              <Fragment>
-                <ArticlesCards
-                  titleText={homepageSettings.otherArticlesHeader}
-                  articles={otherArticles}
-                  useVerticalLayout
-                  articleClassNames="col-xs-12 col-md-6"
-                />
-                <Link to="/archive">{homepageSettings.seeAllArticlesText}</Link>
-              </Fragment> :
-              null }
-          </Col>
-          <Col xs={12} md={4} className="sidebar">
-            <div className="d-none d-sm-block">
-              {getQuizBlock(homepageSettings)}
-            </div>
-            <div className="feedback-form">
-              <div className="envelope-icon">
-                <FaEnvelope />
-              </div>
-              <h2>{homepageSettings.contactFormTitle}</h2>
-              <Feedback
-                email={homepageSettings.contactFormEmail}
-                buttonText={homepageSettings.contactFormCta}
-              />
-              <div className="will-not-spam">
-                {homepageSettings.contactFormBottomText}
-              </div>
-            </div>
-          </Col>
-        </Row>
+      <hr />
+      <div className="homepage__stories">
+        <h2 className="homepage__stories-title highlighted">Історії</h2>
+        <ArticlesList items={stories} />
       </div>
-    </Fragment>
+      <Subscribe email={homepageSettings.contactFormEmail} />
+      <ArticlesTiles items={articles} />
+      <Advice items={advice} />
+    </div>
   );
 }
 
 export const pageQuery = graphql`
-query Articles {
-  articles: allMarkdownRemark(
-    filter: { frontmatter:  { contentType: { eq: "articles"} }}
+query HomePage {
+  carouselItems: allMarkdownRemark(
+    filter: { frontmatter:  { carousel_featured: { eq: true} }}
     sort: { fields: [frontmatter___publishTime], order: DESC }
   ){
     edges{
-     node{
-       frontmatter{
-         title
-         category
-         path
-         image
-         publishTime
-         contentType
-       }
-     }
+      node{
+        frontmatter {
+          title
+          contentType
+          path
+          subtitle
+          carousel_image
+          carousel_image_alt
+        }
+      }
+    }
+  }
+  homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
+    edges {
+      node {
+        html
+        frontmatter {
+          contactFormEmail
+          contactFormTitle
+        }
+      }
+    }
+  }
+  stories: allMarkdownRemark(
+    filter: { frontmatter:  { contentType: { eq: "stories"} }}
+    sort: { fields: [frontmatter___publishTime], order: DESC }
+  ){
+    edges{
+      node{
+        frontmatter {
+          title
+          contentType
+          path
+          subtitle
+          list_image
+          list_image_alt
+        }
+      }
+    }
+  }
+  articles: allMarkdownRemark(
+    filter: { frontmatter:  { contentType: { eq: "articles"} }}
+    sort: { fields: [frontmatter___publishTime], order: DESC }
+    limit: 2
+  ){
+    edges{
+      node{
+        frontmatter {
+          title
+          contentType
+          path
+          subtitle
+          list_image
+          list_image_alt
+        }
+      }
     }
   }
   settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "general_settings"}}}) {
@@ -145,21 +125,12 @@ query Articles {
       }
     }
   }
-  homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
+  advice: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "advice"}}}) {
     edges {
       node {
         frontmatter {
-          latestArticlesCount
-          otherArticlesCount
-          latestArticlesHeader
-          otherArticlesHeader
-          quizTitle
-          quizCta
-          contactFormEmail
-          contactFormTitle
-          contactFormBottomText
-          contactFormCta
-          seeAllArticlesText
+          title
+          url
         }
       }
     }

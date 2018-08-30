@@ -1,0 +1,49 @@
+@import "../components/styleguide/variables.less";
+
+.index-page {
+  position: relative;
+}
+
+.index-page__content-wrapper {
+  width: 100%;
+  max-width: 1160px;
+  padding: 80px 30px;
+  background-color: @white;
+  margin: 0 auto;
+  padding-bottom: 95px;
+}
+.index-page__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.index-page__list:after {
+  content: "";
+  flex: auto;
+}
+
+
+.tags {
+  // position: absolute;
+}
+
+.tags--advice {
+  width: ~"calc(50% - 15px)";
+}
+
+.pagination {
+  width: 100%;
+  clear: both;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: @screen-sm-max) {
+  .index-page__content-wrapper {
+    width: 100%;
+    padding: 40px @mobile-padding;
+  }
+  .index-page__list {
+    justify-content: space-around;
+  }
+}

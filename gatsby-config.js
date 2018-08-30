@@ -5,9 +5,15 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify-cms',
-    'gatsby-remark-responsive-iframe',
     'gatsby-transformer-remark',
     'gatsby-plugin-less',
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-KMZ98TT',
+        includeInDevelopment: true
+      }
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -18,16 +24,36 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'settings',
-        path: `${__dirname}/content/settings/`
+        path: `${__dirname}/content/stories`,
+        name: 'stories'
       }
     },
     {
-      resolve: 'gatsby-plugin-mailchimp',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        hostname: 'string',
-        listId: 'string',
-        settings: 'object'
+        path: `${__dirname}/content/sexoteca`,
+        name: 'sexoteca'
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/advice`,
+        name: 'advice'
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/pages`,
+        name: 'pages'
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'settings',
+        path: `${__dirname}/content/settings/`
       }
     }
   ]

@@ -1,0 +1,49 @@
+@import "../components/styleguide/variables.less";
+
+.content__title {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.content__subtitle {
+  font-style: italic;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.content__date {
+  color: @clr-gray;
+  text-align: center;
+  font-size: 14px;
+  &:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: @clr-highlight;
+    margin: 20px auto;
+
+  }
+}
+
+.content__img {
+  margin: 0 auto;
+  display: block;
+  max-width: 100%;
+}
+
+.content__content {
+  max-width: 70%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  h2, h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: @screen-sm-max) {
+  .content__content {
+    max-width: 100%;
+  }
+}

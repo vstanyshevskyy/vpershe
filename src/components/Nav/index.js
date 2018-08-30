@@ -1,16 +1,10 @@
 import React from 'react';
-import Link from 'gatsby-link';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from 'reactstrap';
+import Link, { withPrefix } from 'gatsby-link';
+import classNames from 'classnames';
+import FaBars from 'react-icons/lib/fa/bars';
+import FaClose from 'react-icons/lib/fa/close';
 
 import SocialIcons from '../social-icons';
-import logo from './images/logo.png';
 import './index.less';
 
 export default class VpersheNav extends React.Component {
@@ -28,19 +22,35 @@ export default class VpersheNav extends React.Component {
     });
   }
   render() {
+    const navClasses = classNames('nav', {
+      'nav--expanded': this.state.isOpen,
+      'nav--custom': this.props.className
+    });
+    const navInnerClasses = classNames('nav__inner', {
+      'nav__inner--custom': this.props.className
+    });
     return (
-      <Navbar color="light" light expand="md" className={this.props.className}>
-        <NavbarBrand href="/" className="col-2">
-          <img src={logo} alt="Вперше" />
-        </NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar className="justify-content-center col-md-8">
-          <Nav className="justify-content-center" navbar>
-            {(this.props.links || []).map(link =>
-              <NavItem key={link.url}><Link to={link.url}>{link.text}</Link></NavItem>)}
-          </Nav>
-        </Collapse>
-        <SocialIcons icons={this.props.socialIcons} />
-      </Navbar>);
+      <nav className={navClasses}>
+        <div className={navInnerClasses}>
+          <Link to="/" className="nav__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
+          <button onClick={this.toggle} className="nav__burger-btn">
+            { this.state.isOpen ? <FaClose /> : <FaBars /> }
+          </button>
+          <ul className="nav__menu">
+            {(this.props.links || []).map(link => {
+              const linkClasses = classNames('nav__menu-link', {
+                'nav__menu-link--current': this.props.location.startsWith(link.url)
+              }, `nav__menu-link--${link.url.split('/')[1]}`);
+              return (
+                <li className="nav__menu-item" key={link.url}>
+                  <Link className={linkClasses} to={link.url}>{link.text}</Link>
+                </li>
+              );
+            })}
+          </ul>
+          <SocialIcons listItemClassName="nav__social-icons-item" linkClassName="nav__social-icons-item-link" listClassName="nav__social-icons" icons={this.props.socialIcons} />
+        </div>
+      </nav>
+    );
   }
 }

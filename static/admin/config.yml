@@ -277,16 +277,10 @@ collections:
           - name: "contentType"
             widget: "hidden"
             default: "footer_settings"
-          - label: "Блоки"
-            name: "blocks"
-            widget: "list"
-            fields:
-              - {label: Заголовок, name: title, widget: string, default: ""}
-              - {label: Контент, name: content, widget: markdown, default: ""}
           - label: "Копірайт"
             name: "copyrightText"
             widget: "string"
-          - label: "Посилання в самому низу"
+          - label: "Посилання в самом у низу"
             name: "bottomLinks"
             widget: "list"
             fields:

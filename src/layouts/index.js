@@ -48,10 +48,6 @@ query FooterData {
      node{
        frontmatter{
         contentType
-        blocks {
-          title
-          content
-        }
         copyrightText
         bottomLinks {
           url

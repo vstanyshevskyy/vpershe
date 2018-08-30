@@ -15,7 +15,7 @@ export default props => {
           <Link to="/" className="nav__logo footer__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
           <SocialIcons
             icons={props.socialIcons}
-            listClassName="social-icons-container social-icons-container--black"
+            listClassName="social-icons-container social-icons-container--black footer__social-icons-container"
             listItemClassName="social-icons-item"
             linkClassName="social-icons-link--footer"
           />

@@ -15,7 +15,9 @@ export default props => {
     <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
       <SEO {...{ data: settings }} />
       <article>
-        <img className="content__img" src={withPrefix(pageData.image)} alt="" />
+        { pageData.image
+          ? <img className="content__img" src={withPrefix(pageData.image)} alt="" />
+          : null }
         <h1 className="content__title">{pageData.title}</h1>
         <div className="content__subtitle">{pageData.title}</div>
         <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>

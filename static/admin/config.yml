@@ -136,6 +136,9 @@ collections:
           - label: 'Фото автора по замовчуванню'
             name: 'defaultAuthorImage'
             widget: image
+          - label: 'Title Template'
+            name: 'titleTemplate'
+            widget: string
           - label: 'Title (Текст заголовку вікна браузера на головній)'
             name: 'title'
             widget: string

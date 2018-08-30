@@ -6,6 +6,7 @@ organizationTitle: Вперше
 defaultAuthor: Katya Myachina
 defaultAuthorImage: /assets/uploads/avocado-running.gif
 title: Вперше - сексуальна освіта для підлітків
+titleTemplate: '- Вперше - сексуальна освіта для підлітків'
 metaDescription: Вперше - це перший ресурс який відповість на всі твої запитання про це
 metaKeywords: 'Вперше, едукація, тінейджер'
 fbTitle: Вперше - сексуальна освіта для підлітків

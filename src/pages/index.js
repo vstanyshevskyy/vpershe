@@ -82,6 +82,7 @@ query HomePage {
   stories: allMarkdownRemark(
     filter: { frontmatter:  { contentType: { eq: "stories"} }}
     sort: { fields: [frontmatter___publishTime], order: DESC }
+    limit: 4
   ){
     edges{
       node{
@@ -130,7 +131,10 @@ query HomePage {
       }
     }
   }
-  advice: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "advice"}}}) {
+  advice: allMarkdownRemark(
+    filter: { frontmatter:  { contentType: { eq: "advice"}}}
+    limit: 10
+  ) {
     edges {
       node {
         frontmatter {

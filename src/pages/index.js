@@ -1,6 +1,7 @@
 import React from 'react';
 import graphql from 'graphql';
 import moment from 'moment';
+import Link from 'gatsby-link';
 import './index.less';
 import SEO from '../components/SEO';
 import Subscribe from '../components/Subscribe';
@@ -27,6 +28,7 @@ export default function Template (props) {
       <div className="homepage__stories">
         <h2 className="homepage__stories-title highlighted">Історії</h2>
         <ArticlesList items={stories} />
+        <Link to="/stories" className="link__all-records">Всі історії</Link>
       </div>
       <Subscribe email={homepageSettings.contactFormEmail} />
       <div className="homepage__about">

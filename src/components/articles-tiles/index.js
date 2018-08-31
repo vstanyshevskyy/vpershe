@@ -12,7 +12,7 @@ export default props => (
           return (
             <li key={url} className="article-tiles__article">
               <div className="article-tiles__article-wrapper">
-                <Link to={url}>
+                <Link to={url} className="article-tiles__article-image-link">
                   <img alt={i.list_image_alt} className="article-tiles__article-image" src={i.list_image} />
                 </Link>
                 <Link to={url} className="article-tiles__article-link">{i.title}</Link>
@@ -22,5 +22,6 @@ export default props => (
         })
       }
     </ul>
+    <Link to="/articles" className="link__all-records">Всі статті</Link>
   </div>
 );

@@ -29,11 +29,32 @@
   }
 }
 
+.article-tiles__article-image-link {
+  display: block;
+  position: relative;
+  line-height:0;
+  font-size: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16);
+  &:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #7C7C7C;
+    opacity: .3;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 .article-tiles__article-image {
   opacity: .8;
   max-width: 100%;
   width: 533px;
   height: 332px;
+  object-position: center;
+  object-fit: cover;
 }
 
 .article-tiles__article-link {

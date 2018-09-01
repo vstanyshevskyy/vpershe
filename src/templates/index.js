@@ -24,7 +24,7 @@ function getArticlesList(group, contentType) {
         url={url}
         title={g.node.frontmatter.title}
         subtitle={g.node.frontmatter.subtitle}
-        image={g.node.frontmatter.list_image}
+        image={g.node.frontmatter.list_image_articles || g.node.frontmatter.list_image}
         image_alt={g.node.frontmatter.list_image_alt}
         contentType={contentType}
       />

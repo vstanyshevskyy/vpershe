@@ -19,7 +19,7 @@ export default props => {
           ? <img className="content__img" src={withPrefix(pageData.image)} alt="" />
           : null }
         <h1 className="content__title">{pageData.title}</h1>
-        <div className="content__subtitle">{pageData.title}</div>
+        <div className="content__subtitle">{pageData.subtitle}</div>
         {
           pageData.publishTime
             ? <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>

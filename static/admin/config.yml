@@ -21,6 +21,7 @@ collections:
       - {label: "Додати до каруселі на головній", name: "carousel_featured", widget: "boolean", required: false}
       - {label: "Фото для каруселі на головній (170*170)", name: "carousel_image", widget: "image", required: false}
       - {label: "Фото для каруселі ALT", name: "carousel_image_alt", widget: "string", required: false}
+      - {label: "Фото для списку (250*250)", name: "list_image_articles", widget: "image", required: false}
       - {label: "Фото для списку (533*332)", name: "list_image", widget: "image", required: false}
       - {label: "Фото для списку ALT", name: "list_image_alt", widget: "string", required: false}
       - label: "Теги"

@@ -19,7 +19,6 @@ export default function Template (props) {
   const homepageSettings = props.data.homepageSettings.edges[0].node.frontmatter;
   moment.locale('uk');
   const advice = ((props.data.advice || {}).edges || []).map(a => a.node.frontmatter);
-  console.log(homepageSettings);
   return (
     <div>
       <SEO defaults={settings} />

@@ -1,7 +1,7 @@
 ---
 contentType: general_settings
 favicon: /assets/uploads/icon.ico
-url: 'https://vpershe.netlify.com'
+url: 'https://vpershe.com'
 organizationTitle: Вперше
 defaultAuthor: Katya Myachina
 defaultAuthorImage: /assets/uploads/avocado-running.gif

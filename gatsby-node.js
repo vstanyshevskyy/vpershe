@@ -21,6 +21,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               carousel_image
               carousel_image_alt
               list_image
+              list_image_articles
               list_image_alt
               tags
               publishTime

@@ -10,53 +10,44 @@ export default props => {
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 4,
+    slidesToScroll: 6,
     initialSlide: 0,
+    lazyLoad: true,
     responsive: [
       {
         breakpoint: 1160,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 4,
-          initialSlide: 0,
-          infinite: true,
-          dots: false
+          slidesToScroll: 5,
+          initialSlide: 0
         }
       },
       {
         breakpoint: 980,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false
+          slidesToScroll: 4
         }
       },
       {
         breakpoint: 820,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false
+          slidesToScroll: 3
         }
       },
       {
         breakpoint: 645,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: false
+          slidesToScroll: 2
         }
       },
       {
         breakpoint: 460,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false
+          slidesToScroll: 1
         }
       }
     ]

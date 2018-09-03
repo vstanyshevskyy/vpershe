@@ -60,7 +60,7 @@ export default props => {
           return (
             <div key={url} className="slider__item">
               <Link to={url} className="slider__item-image-link ">
-                <img alt={i.carousel_image_alt} className="slider__item-picture" src={withPrefix(i.carousel_image)} />
+                <img width="170" height="170" alt={i.carousel_image_alt} className="slider__item-picture" src={withPrefix(i.carousel_image)} />
               </Link>
               <Link to={url} className="slider__item-title ">{i.title}</Link>
             </div>

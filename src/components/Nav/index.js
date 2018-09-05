@@ -33,7 +33,7 @@ export default class VpersheNav extends React.Component {
       <nav className={navClasses}>
         <div className={navInnerClasses}>
           <Link to="/" className="nav__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
-          <button onClick={this.toggle} className="nav__burger-btn">
+          <button onClick={this.toggle} className="nav__burger-btn" aria-label="Menu">
             { this.state.isOpen ? <FaClose /> : <FaBars /> }
           </button>
           <ul className="nav__menu">

@@ -7,6 +7,8 @@ links:
     url: /articles
   - text: Сексотека
     url: /sexoteca
+  - text: Поради
+    url: /advice
 socialIcons:
   - type: Facebook
     url: 'https://www.facebook.com/vpershe'

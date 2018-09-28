@@ -3,9 +3,32 @@ import { withPrefix } from 'gatsby-link';
 import moment from 'moment';
 import './content.less';
 import TagsList from '../components/tags';
-import Carousel from '../components/carousel';
+import ArticleCard from '../components/article-card';
 import RelatedLinks from '../components/realted-links';
 import SEO from '../components/SEO';
+
+const getRelatedArticlesBottom = items => {
+  if (!items.length) return null;
+  return (
+    <div className="content__related-items-bottom">
+      <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
+      <ul className="content__related-items-bottom-list">
+        { items.map(item => {
+          return (
+            <ArticleCard
+              url={item.path}
+              title={item.title}
+              subtitle={item.subtitle}
+              image={item.list_image_articles || item.list_image}
+              image_alt={item.list_image_alt}
+              contentType={item.contentType}
+            />
+          );})
+        }
+      </ul>
+    </div>
+  );
+};
 
 export default props => {
   moment.locale('uk');
@@ -13,7 +36,7 @@ export default props => {
     html: props.pathContext.data.html
   }, props.pathContext.data.frontmatter);
   const settings = props.pathContext.settings;
-  const carouselItems = (pageData.related_bottom || []).map(c => c.node.frontmatter);
+  const relatedBottom = (pageData.related_bottom || []).map(c => c.node.frontmatter);
   return (
     <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
       <SEO {...{ data: settings }} />
@@ -47,14 +70,7 @@ export default props => {
             ? <TagsList pageName={pageData.contentType} tags={pageData.tags} />
             : null
         }
-        {
-          carouselItems.length ? (
-            <div className="content__related-items-bottom">
-              <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
-              <Carousel className="slider--content" items={carouselItems} />
-            </div>)
-            : null
-        }
+        { getRelatedArticlesBottom(relatedBottom) }
       </aside>
 
     </div>

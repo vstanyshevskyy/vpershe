@@ -9,6 +9,7 @@ import '../components/styleguide/index.less';
 import Feedback from '../components/feedback';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
+import Subscribe from '../components/Subscribe';
 import './index.less';
 
 export default ({
@@ -36,6 +37,7 @@ export default ({
         title={homepageSettings.contactFormTitle}
       />
       {children()}
+      <Subscribe email={homepageSettings.contactFormEmail} className={location.pathname.split('/')[1]} />
       <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
     </div>
   );

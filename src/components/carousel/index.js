@@ -68,8 +68,9 @@ export default class Carousel extends React.Component {
     });
   }
   render() {
+    const sliderClasses = classNames('slider', this.props.className);
     return (
-      <Slider className="slider" {...this.settings}>
+      <Slider className={sliderClasses} {...this.settings}>
         {
           this.props.items.map((i, index) => {
             const url = `/${i.contentType}/${i.path}`;

@@ -28,6 +28,16 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
+      - label: "Цікаве для тебе"
+        name: "related_sidebar"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+      - label: "Схожі матеріали"
+        name: "related_bottom"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -52,6 +62,16 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
+      - label: "Цікаве для тебе"
+        name: "related_sidebar"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+      - label: "Схожі матеріали"
+        name: "related_bottom"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -76,6 +96,16 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
+      - label: "Цікаве для тебе"
+        name: "related_sidebar"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+      - label: "Схожі матеріали"
+        name: "related_bottom"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}

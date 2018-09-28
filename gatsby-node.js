@@ -28,6 +28,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               metaKeywords
               metaDescription
               contentType
+              related_sidebar {
+                path
+              }
+              related_bottom {
+                path
+              }
             }
           }
         }
@@ -52,6 +58,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               metaKeywords
               metaDescription
               contentType
+              related_sidebar {
+                path
+              }
+              related_bottom {
+                path
+              }
             }
           }
         }
@@ -76,6 +88,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               metaKeywords
               metaDescription
               contentType
+              related_sidebar {
+                path
+              }
+              related_bottom {
+                path
+              }
             }
           }
         }
@@ -194,17 +212,39 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
+      homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
+        edges {
+          node {
+            frontmatter {
+              contactFormEmail
+              contactFormTitle
+            }
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
+    const homePageSettings = result.data.homepageSettings.edges[0].node.frontmatter;
     ['advice', 'articles', 'stories', 'sexoteca'].forEach(contentType => {
       const contentByTags = {};
       if (!result.data[contentType]) {
         return;
       }
-      result.data[contentType].edges.forEach(e => {
+      const contentItems = result.data[contentType].edges || [];
+      contentItems.forEach(e => {
+        e.node.frontmatter.related_sidebar = (e.node.frontmatter.related_sidebar || [])
+          .map(({ path }) => {
+            const item = contentItems.find(el => el.node.frontmatter.path === path);
+            return {
+              url: item.node.frontmatter.path,
+              title: item.node.frontmatter.title
+            };
+          });
+        e.node.frontmatter.related_bottom = (e.node.frontmatter.related_bottom || [])
+          .map(({ path }) => contentItems.find(el => el.node.frontmatter.path === path));
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {
             return;
@@ -218,7 +258,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       });
       const settings = result.data[`${contentType}_settings`].edges[0].node.frontmatter;
       createPaginatedPages({
-        edges: result.data[contentType].edges,
+        edges: contentItems,
         createPage,
         pageTemplate: 'src/templates/index.js',
         pageLength: config[contentType].perPage,
@@ -266,27 +306,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
                 title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
                 description: e.node.frontmatter.metaDescription,
-                keywords: e.node.frontmatter.metaKeywords
+                keywords: e.node.frontmatter.metaKeywords,
+                contactFormEmail: homePageSettings.contactFormEmail
               })
             } // additional data can be passed via context
           });
         });
       }
     });
-    result.data.pages.edges.forEach(e => {
-      createPage({
-        path: e.node.frontmatter.path,
-        component: path.resolve('src/templates/content.js'),
-        context: {
-          data: e.node,
-          settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
-            title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
-            description: e.node.frontmatter.metaDescription,
-            keywords: e.node.frontmatter.metaKeywords
-          })
-        } // additional data can be passed via context
-      });
-    });
-
   });
 };

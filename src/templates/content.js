@@ -33,7 +33,11 @@ export default props => {
         <div className="content__article-wrapper">
           <div className="content__content" dangerouslySetInnerHTML={{ __html: pageData.html }} />
           <aside className="content__sidebar">
-            <RelatedLinks links={pageData.related_sidebar} />
+            {
+              pageData.related_sidebar.length
+                ? <RelatedLinks links={pageData.related_sidebar} />
+                : null
+            }
           </aside>
         </div>
       </article>
@@ -43,12 +47,16 @@ export default props => {
             ? <TagsList pageName={pageData.contentType} tags={pageData.tags} />
             : null
         }
-        <div className="content__related-items-bottom">
-          <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
-          <Carousel className="slider--content" items={carouselItems} />
-        </div>
+        {
+          carouselItems.length ? (
+            <div className="content__related-items-bottom">
+              <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
+              <Carousel className="slider--content" items={carouselItems} />
+            </div>)
+            : null
+        }
       </aside>
-      
+
     </div>
   );
 };

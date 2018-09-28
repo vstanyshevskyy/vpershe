@@ -30,18 +30,14 @@ collections:
         default: [] 
       - label: "Цікаве для тебе"
         name: "related_sidebar"
-        widget: "relation"
-        collection: "articles"
-        searchFields: ["title"]
-        valueField: "path"
-        displayFields: ["title", "subtitle"]
-      - label: "Цікаве для тебе"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+      - label: "Схожі матеріали"
         name: "related_bottom"
-        widget: "relation"
-        collection: "articles"
-        searchFields: ["title"]
-        valueField: "path"
-        displayFields: ["title", "subtitle"]
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -66,6 +62,16 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
+      - label: "Цікаве для тебе"
+        name: "related_sidebar"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+      - label: "Схожі матеріали"
+        name: "related_bottom"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -90,6 +96,16 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
+      - label: "Цікаве для тебе"
+        name: "related_sidebar"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+      - label: "Схожі матеріали"
+        name: "related_bottom"
+        widget: "list"
+        fields:
+          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}

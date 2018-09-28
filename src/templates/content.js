@@ -11,6 +11,7 @@ export default props => {
     html: props.pathContext.data.html
   }, props.pathContext.data.frontmatter);
   const settings = props.pathContext.settings;
+  console.log(pageData);
   return (
     <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
       <SEO {...{ data: settings }} />

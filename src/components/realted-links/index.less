@@ -1,0 +1,33 @@
+@import '../styleguide/variables';
+
+.related-articles {
+  border: 1px solid @clr-highlight;
+  padding: 15px;
+}
+
+.related-articles__title {
+  margin-bottom: 20px;
+}
+
+.related-articles__link {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  margin-bottom: 20px;
+  &:after {
+    content: '';
+    display: block;
+    width:60px;
+    border-top: 1px solid @clr-highlight;
+    margin-top: 5px;
+  }
+  &:last-child {
+    &:after {
+      display: none;
+    }
+  }
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}

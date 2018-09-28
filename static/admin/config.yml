@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: main
+  branch: relative-articles
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
@@ -28,6 +28,20 @@ collections:
         name: "tags"
         widget: "list"    
         default: [] 
+      - label: "Цікаве для тебе"
+        name: "related_sidebar"
+        widget: "relation"
+        collection: "articles"
+        searchFields: ["title"]
+        valueField: "path"
+        displayFields: ["title", "subtitle"]
+      - label: "Цікаве для тебе"
+        name: "related_bottom"
+        widget: "relation"
+        collection: "articles"
+        searchFields: ["title"]
+        valueField: "path"
+        displayFields: ["title", "subtitle"]
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}

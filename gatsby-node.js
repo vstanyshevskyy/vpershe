@@ -246,9 +246,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               url: `/${item.node.frontmatter.contentType}/${item.node.frontmatter.path}`,
               title: item.node.frontmatter.title
             } : null;
-          });
+          }).filter(el => el);
         e.node.frontmatter.related_bottom = (e.node.frontmatter.related_bottom || [])
-          .map(({ path }) => relatedContent.find(el => el.node.frontmatter.path === path));
+          .map(({ path }) => relatedContent.find(el => el.node.frontmatter.path === path))
+          .filter(el => el);
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {
             return;

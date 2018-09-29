@@ -228,6 +228,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(result.errors);
     }
     const homePageSettings = result.data.homepageSettings.edges[0].node.frontmatter;
+    const relatedContent = []
+      .concat(result.data.articles.edges)
+      .concat(result.data.stories.edges)
+      .concat(result.data.sexoteca.edges);
     ['advice', 'articles', 'stories', 'sexoteca'].forEach(contentType => {
       const contentByTags = {};
       if (!result.data[contentType]) {
@@ -237,14 +241,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       contentItems.forEach(e => {
         e.node.frontmatter.related_sidebar = (e.node.frontmatter.related_sidebar || [])
           .map(({ path }) => {
-            const item = contentItems.find(el => el.node.frontmatter.path === path);
-            return {
-              url: item.node.frontmatter.path,
+            const item = relatedContent.find(el => el.node.frontmatter.path === path);
+            return item ? {
+              url: `/${item.node.frontmatter.contentType}/${item.node.frontmatter.path}`,
               title: item.node.frontmatter.title
-            };
-          });
+            } : null;
+          }).filter(el => el);
         e.node.frontmatter.related_bottom = (e.node.frontmatter.related_bottom || [])
-          .map(({ path }) => contentItems.find(el => el.node.frontmatter.path === path));
+          .map(({ path }) => relatedContent.find(el => el.node.frontmatter.path === path))
+          .filter(el => el);
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {
             return;

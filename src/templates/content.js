@@ -57,7 +57,7 @@ export default props => {
           <div className="content__content" dangerouslySetInnerHTML={{ __html: pageData.html }} />
           <aside className="content__sidebar">
             {
-              pageData.related_sidebar.length
+              pageData.related_sidebar && pageData.related_sidebar.length
                 ? <RelatedLinks links={pageData.related_sidebar} />
                 : null
             }

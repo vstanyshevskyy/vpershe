@@ -1,19 +1,12 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: content-consolidation
+  branch: main
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: content
-    label: Весь контент - краще не чіпати
-    folder: "content/content"
-    create: false
-    fields:
-      - {label: "Type", name: "contentType", widget: "hidden", default: "articles"}
-      - {label: "Url", name: "path", widget: "string"}
   - name: articles
     label: Статті
     folder: "content/content"
@@ -41,13 +34,13 @@ collections:
         widget: "list"
         required: false
         fields:
-          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+          - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
       - label: "Схожі матеріали"
         name: "related_bottom"
         widget: "list"
         required: false
         fields:
-          - {widget: "relation", name: 'path', collection: "articles", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+          - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -78,13 +71,13 @@ collections:
         widget: "list"
         required: false
         fields:
-          - {widget: "relation", name: 'path', collection: "stories", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+          - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
       - label: "Схожі матеріали"
         name: "related_bottom"
         widget: "list"
         required: false
         fields:
-          - {widget: "relation", name: 'path', collection: "stories", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+          - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -115,13 +108,13 @@ collections:
         widget: "list"
         required: false
         fields:
-          - {widget: "relation", name: 'path', collection: "sexoteca", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+          - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
       - label: "Схожі матеріали"
         name: "related_bottom"
         widget: "list"
         required: false
         fields:
-          - {widget: "relation", name: 'path', collection: "sexoteca", searchFields: ["title"], displayFields: ["title", "subtitle"], valueField: "path"}
+          - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
       - {label: "Текст", name: "body", widget: "markdown"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
@@ -364,3 +357,12 @@ collections:
               - label: "Посилання"
                 name: "url"
                 widget: "string"
+  - name: content
+    label: Весь контент - краще не чіпати
+    folder: "content/content"
+    create: false
+    fields:
+      - {label: "Type", name: "contentType", widget: "hidden", default: "articles"}
+      - {label: "Url", name: "path", widget: "string"}
+      - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "Підзаголовок", name: "subtitle", widget: "string"}

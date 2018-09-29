@@ -1,15 +1,23 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: main
+  branch: content-consolidation
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
+  - name: content
+    label: Весь контент - краще не чіпати
+    folder: "content/content"
+    create: false
+    fields:
+      - {label: "Type", name: "contentType", widget: "hidden", default: "articles"}
+      - {label: "Url", name: "path", widget: "string"}
   - name: articles
     label: Статті
-    folder: "content/articles"
+    folder: "content/content"
+    filter: {field: "contentType", value: "articles"}
     create: true
     fields:
       - {label: "Type", name: "contentType", widget: "hidden", default: "articles"}
@@ -46,7 +54,8 @@ collections:
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
   - name: stories
     label: Історії
-    folder: "content/stories"
+    folder: "content/content"
+    filter: {field: "contentType", value: "stories"}
     create: true
     fields:
       - {label: "Type", name: "contentType", widget: "hidden", default: "stories"}
@@ -82,7 +91,8 @@ collections:
       - {label: "Meta Description", name: "metaDescription", widget: "string", required: false}
   - name: sexoteca
     label: Сексотека
-    folder: "content/sexoteca"
+    folder: "content/content"
+    filter: {field: "contentType", value: "sexoteca"}
     create: true
     fields:
       - {label: "Type", name: "contentType", widget: "hidden", default: "sexoteca"}

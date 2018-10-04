@@ -1,6 +1,7 @@
 const path = require('path');
 const config = require('./src/config');
 const createPaginatedPages = require('gatsby-paginate');
+const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
@@ -241,14 +242,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       contentItems.forEach(e => {
         e.node.frontmatter.related_sidebar = (e.node.frontmatter.related_sidebar || [])
           .map(({ path }) => {
-            const item = relatedContent.find(el => el.node.frontmatter.path === path);
+            const filteredPath = path ? path.replace(PATH_REPLACE_REGEX, '') : path;
+            console.log(filteredPath);
+            const item = relatedContent.find(el => el.node.frontmatter.path === filteredPath);
             return item ? {
               url: `/${item.node.frontmatter.contentType}/${item.node.frontmatter.path}`,
               title: item.node.frontmatter.title
             } : null;
           }).filter(el => el);
         e.node.frontmatter.related_bottom = (e.node.frontmatter.related_bottom || [])
-          .map(({ path }) => relatedContent.find(el => el.node.frontmatter.path === path))
+          .map(({ path }) => {
+            const filteredPath = path ? path.replace(PATH_REPLACE_REGEX, '') : path;
+            return relatedContent.find(el => el.node.frontmatter.path === filteredPath);
+          })
           .filter(el => el);
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {

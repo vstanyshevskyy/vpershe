@@ -243,7 +243,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         e.node.frontmatter.related_sidebar = (e.node.frontmatter.related_sidebar || [])
           .map(({ path }) => {
             const filteredPath = path ? path.replace(PATH_REPLACE_REGEX, '') : path;
-            console.log(filteredPath);
             const item = relatedContent.find(el => el.node.frontmatter.path === filteredPath);
             return item ? {
               url: `/${item.node.frontmatter.contentType}/${item.node.frontmatter.path}`,

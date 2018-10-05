@@ -8,7 +8,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   return graphql(`
     {
-      articles: allMarkdownRemark (filter: { frontmatter:  { contentType: { eq: "articles"}}}) {
+      articles: allMarkdownRemark (
+        filter: { frontmatter:  { contentType: { eq: "articles" } } }
+        sort: { fields: [frontmatter___publishTime], order: DESC }
+      ) {
         edges {
           node {
             html
@@ -39,7 +42,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
-      stories: allMarkdownRemark (filter: { frontmatter:  { contentType: { eq: "stories"}}}) {
+      stories: allMarkdownRemark (
+        filter: { frontmatter:  { contentType: { eq: "stories" } } }
+        sort: { fields: [frontmatter___publishTime], order: DESC }
+      ) {
         edges {
           node {
             html
@@ -69,7 +75,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
-      sexoteca: allMarkdownRemark (filter: { frontmatter:  { contentType: { eq: "sexoteca"}}}) {
+      sexoteca: allMarkdownRemark (
+        filter: { frontmatter:  { contentType: { eq: "sexoteca" } } }
+        sort: { fields: [frontmatter___publishTime], order: DESC }
+      ) {
         edges {
           node {
             html
@@ -99,7 +108,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
-      advice: allMarkdownRemark (filter: { frontmatter:  { contentType: { eq: "advice"}}}) {
+      advice: allMarkdownRemark (
+        filter: { frontmatter:  { contentType: { eq: "advice" } } }
+        sort: { fields: [frontmatter___publishTime], order: DESC }
+      ) {
         edges {
           node {
             html

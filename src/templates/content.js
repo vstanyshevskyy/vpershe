@@ -1,6 +1,7 @@
 import React from 'react';
 import { withPrefix } from 'gatsby-link';
 import moment from 'moment';
+import 'moment/locale/uk';
 import './content.less';
 import TagsList from '../components/tags';
 import ArticleCard from '../components/article-card';

@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import './index.less';
 import TagsList from '../components/tags';
 import Pagination from '../components/pagination';
@@ -53,7 +52,6 @@ export default props => {
   const contentType = props.pathContext.pathPrefix.split('/')[0];
   const allTags = props.pathContext.additionalContext.tags;
   const settings = props.pathContext.additionalContext.settings;
-  moment.locale('uk');
 
   return (
     <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>

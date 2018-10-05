@@ -1,6 +1,5 @@
 import React from 'react';
 import graphql from 'graphql';
-import moment from 'moment';
 import Link from 'gatsby-link';
 import './index.less';
 import SEO from '../components/SEO';
@@ -17,7 +16,6 @@ export default function Template (props) {
   const settings = props.data.settings.edges[0].node.frontmatter;
   const homepageAboutProject = props.data.homepageSettings.edges[0].node.html;
   const homepageSettings = props.data.homepageSettings.edges[0].node.frontmatter;
-  moment.locale('uk');
   const advice = ((props.data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <div>

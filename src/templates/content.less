@@ -86,6 +86,15 @@
   margin-bottom: 35px;
 }
 
+.content__tags-social-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__addthis {
+  margin-top: 40px;
+}
+
 @media screen and (max-width: @screen-sm-max) {
   .content__content {
     width: 100%;
@@ -100,6 +109,12 @@
     margin-bottom: 30px;
   }
   .content__article-wrapper {
+    flex-direction: column;
+  }
+
+  .content__tags-social-container {
+    display: flex;
+    justify-content: space-between;
     flex-direction: column;
   }
 }

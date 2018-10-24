@@ -10,5 +10,8 @@ module.exports = {
   },
   sexoteca: {
     perPage: 10
+  },
+  addThis: {
+    id: 'ra-5bd037984fa57551'
   }
 };

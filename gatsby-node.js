@@ -336,5 +336,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
     });
+    result.data.pages.edges.forEach(e => {
+      createPage({
+        path: e.node.frontmatter.path,
+        component: path.resolve('src/templates/content.js'),
+        context: {
+          data: e.node,
+          settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
+            title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
+            description: e.node.frontmatter.metaDescription,
+            keywords: e.node.frontmatter.metaKeywords
+          })
+        } // additional data can be passed via context
+      });
+    });
   });
 };

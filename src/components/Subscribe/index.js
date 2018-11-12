@@ -1,33 +1,80 @@
 import React from 'react';
 import classNames from 'classnames';
+import 'whatwg-fetch';
+import Heart from 'react-icons/lib/fa/heart';
+import Cookies from 'universal-cookie';
+import config from '../../config';
 import './index.less';
 
-export default props => {
-  const subscribeClasses = classNames('subscribe', {
-    'subscribe--custom': props.className
-  });
-  return (
-    <div className={subscribeClasses}>
-      <form
-        className="subscribe__form"
-        action={`https://formspree.io/${props.email}`}
-        method="POST"
-      >
-        <h3 className="subscribe_header">Найцікавіше, для тебе!</h3>
-        <div className="subscribe__controls">
-          <input
-            aria-label="Введи свій email для того щоб регулярно отримувати наші публікації"
-            id="subscribe__form-email"
-            className="subscribe__form-email"
-            type="email"
-            required
-            name="_replyto"
-            placeholder="Твій e-mail"
-          />
-          <input type="hidden" name="_language" value="uk" />
-          <button className="btn subscribe__form-btn">Підписатися</button>
-        </div>
-      </form>
-    </div>
-  );
-};
+class SubscribeForm extends React.Component {
+  constructor() {
+    super();
+    this.cookies = new Cookies();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      subscribed: this.cookies.get('subscribed'),
+      inProgress: false
+    };
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    this.setState({ inProgress: true });
+    window.fetch(config.subscribeApiUrl, {
+      method: 'POST',
+      body: data
+    })
+      .then(res => res.json())
+      .then(() => {
+        this.setState({
+          thanks: true,
+          inProgress: false
+        });
+        this.cookies.set('subscribed', true, {
+          path: '/'
+        });
+      });
+  }
+  render() {
+    if (this.state.subscribed) {
+      return null;
+    }
+    const subscribeClasses = classNames('subscribe', {
+      'subscribe--custom': this.props.className,
+      'subscribe--thanks': this.state.thanks,
+      'subscribe--in-progress': this.state.inProgress
+    });
+    const thanksMessage = (
+      <div className={subscribeClasses}>
+        <Heart className="subscribe__heart" />
+        <p className="h3">{this.props.thanksTitle}</p>
+        <p>{this.props.thanksText}</p>
+      </div>
+    );
+    return this.state.thanks ? thanksMessage : (
+      <div className={subscribeClasses}>
+        <form
+          className="subscribe__form"
+          onSubmit={this.handleSubmit}
+        >
+          <h3 className="subscribe_header">{this.props.title}</h3>
+          <div className="subscribe__controls">
+            <input
+              aria-label={this.props.emailLabel}
+              id="subscribe__form-email"
+              className="subscribe__form-email"
+              type="email"
+              required
+              name="email"
+              placeholder={this.props.emailPlaceholder}
+            />
+            <button className="btn subscribe__form-btn">{this.props.buttonText}</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default SubscribeForm;

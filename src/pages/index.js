@@ -16,6 +16,7 @@ export default function Template (props) {
   const settings = props.data.settings.edges[0].node.frontmatter;
   const homepageAboutProject = props.data.homepageSettings.edges[0].node.html;
   const homepageSettings = props.data.homepageSettings.edges[0].node.frontmatter;
+  const subscribeSettings = props.data.subscribeSettings.edges[0].node.frontmatter;
   const advice = ((props.data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <div>
@@ -27,7 +28,14 @@ export default function Template (props) {
         <ArticlesList items={stories} />
         <Link to="/stories" className="link__all-records">Всі історії</Link>
       </div>
-      <Subscribe email={homepageSettings.contactFormEmail} />
+      <Subscribe
+        title={subscribeSettings.title}
+        emailPlaceholder={subscribeSettings.email_placeholder}
+        emailLabel={subscribeSettings.email_label}
+        buttonText={subscribeSettings.button_text}
+        thanksTitle={subscribeSettings.thanks_title}
+        thanksText={subscribeSettings.thanks_text}
+      />
       <div className="homepage__about">
         <h1 className="homepage__about-header highlighted">Про проект</h1>
         <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject}} />
@@ -72,6 +80,20 @@ query HomePage {
         frontmatter {
           contactFormEmail
           contactFormTitle
+        }
+      }
+    }
+  }
+  subscribeSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "subscribe_form_settings"}}}) {
+    edges {
+      node {
+        frontmatter {
+          title
+          email_placeholder
+          email_label
+          button_text
+          thanks_title
+          thanks_text
         }
       }
     }

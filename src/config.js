@@ -13,5 +13,6 @@ module.exports = {
   },
   addThis: {
     id: 'ra-5bd037984fa57551'
-  }
+  },
+  subscribeApiUrl: 'https://script.google.com/macros/s/AKfycbzzoeCNdoW8Z1hDArHesKeV4yFQvbBTHr1fbLJ79933AswMoFc/exec?alt=json'
 };

@@ -16,7 +16,8 @@ export default ({
   children, location, data: {
     FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
     NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
-    HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] }
+    HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] },
+    SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
   }
 }) => {
   const wrapperClasses = classNames(
@@ -37,7 +38,15 @@ export default ({
         title={homepageSettings.contactFormTitle}
       />
       {children()}
-      <Subscribe email={homepageSettings.contactFormEmail} className={location.pathname.split('/')[1]} />
+      <Subscribe
+        className={location.pathname.split('/')[1]}
+        title={subscribeSettings.title}
+        emailPlaceholder={subscribeSettings.email_placeholder}
+        emailLabel={subscribeSettings.email_label}
+        buttonText={subscribeSettings.button_text}
+        thanksTitle={subscribeSettings.thanks_title}
+        thanksText={subscribeSettings.thanks_text}
+      />
       <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
     </div>
   );
@@ -81,6 +90,20 @@ query FooterData {
         frontmatter {
           contactFormEmail
           contactFormTitle
+        }
+      }
+    }
+  }
+  SubscribeSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "subscribe_form_settings"}}}) {
+    edges {
+      node {
+        frontmatter {
+          title
+          email_placeholder
+          email_label
+          button_text
+          thanks_title
+          thanks_text
         }
       }
     }

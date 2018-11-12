@@ -33,7 +33,9 @@
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
     "react-slick": "^0.23.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "universal-cookie": "^3.0.4",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

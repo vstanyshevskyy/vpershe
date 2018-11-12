@@ -6,6 +6,31 @@
   overflow: hidden;
 }
 
+.subscribe--thanks {
+  min-height: 250px;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.subscribe--in-progress {
+  animation: pulse 5s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: @clr-highlight;
+  }
+  100% {
+    background-color: lighten(@clr-highlight, 80%);
+  }
+}
+
+.subscribe__heart {
+  font-size: 72px;
+  margin-bottom: 30px;
+  color: @white;
+}
 .subscribe--custom {
   max-width: @content-width;
   margin: 0 auto;

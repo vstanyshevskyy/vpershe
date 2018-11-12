@@ -1,18 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
-import 'whatwg-fetch';
 import Heart from 'react-icons/lib/fa/heart';
-import Cookies from 'universal-cookie';
 import config from '../../config';
 import './index.less';
 
 class SubscribeForm extends React.Component {
   constructor() {
     super();
-    this.cookies = new Cookies();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      subscribed: this.cookies.get('subscribed'),
       inProgress: false
     };
   }
@@ -31,15 +27,9 @@ class SubscribeForm extends React.Component {
           thanks: true,
           inProgress: false
         });
-        this.cookies.set('subscribed', true, {
-          path: '/'
-        });
       });
   }
   render() {
-    if (this.state.subscribed) {
-      return null;
-    }
     const subscribeClasses = classNames('subscribe', {
       'subscribe--custom': this.props.className,
       'subscribe--thanks': this.state.thanks,

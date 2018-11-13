@@ -40,21 +40,6 @@ h6 {
   font-size: 16px;
 }
 
-h1.highlighted,
-h2.highlighted {
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 10px;
-    background-color: @clr-highlight;
-    top: 24px;
-    left: ~"calc(-1 * (100vw - @{content-width})/2 - 11px)";
-    width: ~"calc((100vw - @{content-width})/2)";
-  }
-  margin-left: -2px;
-}
-
 h3,
 .h3 {
   font-size: @font-size-h3;

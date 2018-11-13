@@ -24,7 +24,7 @@ export default function Template (props) {
       <Carousel items={carouselItems} />
       <ArticlesTiles items={articles} />
       <div className="homepage__stories">
-        <h2 className="homepage__stories-title highlighted">Історії</h2>
+        <h2 className="homepage__stories-title">Історії</h2>
         <ArticlesList items={stories} />
         <Link to="/stories" className="link__all-records">Всі історії</Link>
       </div>
@@ -37,7 +37,7 @@ export default function Template (props) {
         thanksText={subscribeSettings.thanks_text}
       />
       <div className="homepage__about">
-        <h1 className="homepage__about-header highlighted">Про проект</h1>
+        <h1 className="homepage__about-header">Про проект</h1>
         <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject}} />
       </div>
       {

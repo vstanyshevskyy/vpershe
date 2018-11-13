@@ -4,7 +4,7 @@ import './index.less';
 
 export default props => (
   <div className="articles-tiles">
-    <h2 className="highlighted">Статті</h2>
+    <h2>Статті</h2>
     <ul className="articles-tiles__list">
       {
         props.items.map(i => {

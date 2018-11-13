@@ -125,10 +125,10 @@ hr {
 }
 
 blockquote {
-  padding-left: 75px;
+  padding-left: 65px;
   padding-bottom: 20px;
   font-style: italic;
-  color: @clr-gray;
+  color: @clr-text;
   margin: 30px 0;
   position: relative;
   font-size: @block-quote-font-size;
@@ -137,14 +137,13 @@ blockquote {
   &:before {
     content:"“";
     display: block;
-    border-left: 4px solid @clr-gray-2;
     color: @clr-highlight;
     position: absolute;
     font-size: 100px;
-    left: 0;
+    left: -5px;
     top: 0;
     padding-top: 25px;
-    padding-left: 5px;
+    padding-left: 0;
   }
 }
 

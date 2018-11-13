@@ -113,12 +113,45 @@
 }
 
 .btn.feedback__form-btn {
-
   display: block;
   margin: 20px auto 0;
 }
 
+.feedback__toggle-icon {
+  display: none;
+}
+
 @media screen and (max-width: @screen-sm-max) {
+  .feedback__toggler-text {
+    display: none;
+  }
+  .feedback__toggler {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: @clr-highlight;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    &:after {
+      display: block;
+      content: 'П';
+      width: 56px;
+      height: 56px;
+      line-height: 56px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+  .feedback__toggle-icon {
+    display: block;
+    position: fixed;
+    bottom:18px;
+    right: 17px;
+    width: 40px;
+    height: 40px;
+  }
   .feedback__email-input {
     width: 100%;
     margin-bottom: 20px;

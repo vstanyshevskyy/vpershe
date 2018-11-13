@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.8 38.77">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #202020;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Orion_chats" transform="matrix(-0.259, -0.966, 0.966, -0.259, 7.795, 41.154)">
+    <path id="layer1" class="cls-1" d="M18.751,2A14.138,14.138,0,0,0,6.28,22.8L3.2,31.689l8.836-3.08A14.138,14.138,0,1,0,18.751,2Z"/>
+  </g>
+</svg>

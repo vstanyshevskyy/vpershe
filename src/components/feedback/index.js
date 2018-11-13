@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import FaClose from 'react-icons/lib/fa/close';
+import { withPrefix } from 'gatsby-link';
 import './index.less';
 
 export default class Feedback extends React.Component {
@@ -37,8 +38,9 @@ export default class Feedback extends React.Component {
     });
     return (
       <div className={classes}>
-        <div role="button" tabIndex="0" onKeyPress={this.keyboardToggle} onClick={this.toggle} className="feedback__toggler">
+        <div role="button" tabIndex="0" onKeyPress={this.keyboardToggle} onClick={this.toggle} className="feedback__toggler" aria-label="Потрібна порада?">
           <div className="feedback__toggler-text">Потрібна порада?</div>
+          <img className="feedback__toggle-icon" src={withPrefix('assets/chat.svg')} alt="" />
         </div>
         <div role="none" className="form__fader" onClick={this.toggle} />
         <form

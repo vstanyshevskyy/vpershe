@@ -42,7 +42,6 @@ export default class Feedback extends React.Component {
           <div className="feedback__toggler-text">Потрібна порада?</div>
           <img className="feedback__toggle-icon" src={withPrefix('assets/chat.svg')} alt="" />
         </div>
-        <div role="none" className="form__fader" onClick={this.toggle} />
         <form
           className="feedback__form"
           action={`https://formspree.io/${this.props.email}`}

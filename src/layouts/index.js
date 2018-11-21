@@ -28,27 +28,30 @@ export default ({
     `page-wrapper--${location.pathname.split('/')[1]}`
   );
   return (
-    <div className={wrapperClasses}>
-      <Helmet>
-        <html lang="uk" />
-      </Helmet>
-      <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
+    <React.Fragment>
       <Feedback
         email={homepageSettings.contactFormEmail}
         title={homepageSettings.contactFormTitle}
       />
-      {children()}
-      <Subscribe
-        className={location.pathname.split('/')[1]}
-        title={subscribeSettings.title}
-        emailPlaceholder={subscribeSettings.email_placeholder}
-        emailLabel={subscribeSettings.email_label}
-        buttonText={subscribeSettings.button_text}
-        thanksTitle={subscribeSettings.thanks_title}
-        thanksText={subscribeSettings.thanks_text}
-      />
-      <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
-    </div>
+      <div className={wrapperClasses}>
+        <Helmet>
+          <html lang="uk" />
+        </Helmet>
+        <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
+
+        {children()}
+        <Subscribe
+          className={location.pathname.split('/')[1]}
+          title={subscribeSettings.title}
+          emailPlaceholder={subscribeSettings.email_placeholder}
+          emailLabel={subscribeSettings.email_label}
+          buttonText={subscribeSettings.button_text}
+          thanksTitle={subscribeSettings.thanks_title}
+          thanksText={subscribeSettings.thanks_text}
+        />
+        <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -6,7 +6,7 @@ export default props => (
   <ul className="articles-list">
     {
       props.items.map(i => {
-        const url = `/stories/${i.path}`;
+        const url = `/${i.contentType || 'stories'}/${i.path}`;
         return (
           <ArticleCard
             key={url}

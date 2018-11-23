@@ -1,7 +1,19 @@
 const path = require('path');
 const config = require('./src/config');
 const createPaginatedPages = require('gatsby-paginate');
-const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
+
+const prepareRelatedContent = (input, allContent) => {
+  const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
+  return (input || [])
+    .map(({ path }) => {
+      if (!path) {
+        return null;
+      }
+      const filteredPath = path.replace(PATH_REPLACE_REGEX, '');
+      const item = allContent.find(content => content.path === filteredPath);
+      return item;
+    }).filter(el => el);
+};
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
@@ -252,30 +264,16 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
       const contentItems = result.data[contentType].edges || [];
       contentItems.forEach(e => {
-        e.node.frontmatter.related_sidebar = (e.node.frontmatter.related_sidebar || [])
-          .map(({ path }) => {
-            const filteredPath = path ? path.replace(PATH_REPLACE_REGEX, '') : path;
-            const item = relatedContent.find(el => el.node.frontmatter.path === filteredPath);
-            return item ? {
-              url: `/${item.node.frontmatter.contentType}/${item.node.frontmatter.path}`,
-              title: item.node.frontmatter.title
-            } : null;
-          }).filter(el => el);
-        e.node.frontmatter.related_bottom = (e.node.frontmatter.related_bottom || [])
-          .map(({ path }) => {
-            const filteredPath = path ? path.replace(PATH_REPLACE_REGEX, '') : path;
-            return relatedContent.find(el => el.node.frontmatter.path === filteredPath);
-          })
-          .filter(el => el);
+        const allContentPrepared = relatedContent.map(c => c.node.frontmatter);
+        e.node.frontmatter.related_sidebar =
+          prepareRelatedContent(e.node.frontmatter.related_sidebar, allContentPrepared);
+        e.node.frontmatter.related_bottom =
+          prepareRelatedContent(e.node.frontmatter.related_bottom, allContentPrepared);
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {
             return;
           }
-          if (contentByTags[tag]) {
-            contentByTags[tag].push(e);
-          } else {
-            contentByTags[tag] = [e];
-          }
+          contentByTags[tag] = (contentByTags[tag] || []).concat(e);
         });
       });
       const settings = result.data[`${contentType}_settings`].edges[0].node.frontmatter;

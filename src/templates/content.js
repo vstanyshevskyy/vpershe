@@ -43,7 +43,11 @@ export default class Content extends React.Component {
       html: this.props.pathContext.data.html
     }, this.props.pathContext.data.frontmatter);
     const settings = this.props.pathContext.settings;
-    const relatedBottom = (pageData.related_bottom || []).map(c => c.node.frontmatter);
+    const relatedBottom = (pageData.related_bottom || []);
+    const relatedAside = (pageData.related_sidebar || []).map(item => ({
+      url: `/${item.contentType}/${item.path}`,
+      title: item.title
+    }));
     return (
       <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
         <SEO {...{ data: settings }} />
@@ -65,7 +69,7 @@ export default class Content extends React.Component {
             <aside className="content__sidebar">
               {
                 pageData.related_sidebar && pageData.related_sidebar.length
-                  ? <RelatedLinks links={pageData.related_sidebar} />
+                  ? <RelatedLinks links={relatedAside} />
                   : null
               }
             </aside>

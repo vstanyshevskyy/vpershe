@@ -12,45 +12,67 @@ import Footer from '../components/footer';
 import Subscribe from '../components/Subscribe';
 import './index.less';
 
-export default ({
-  children, location, data: {
-    FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
-    NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
-    HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] },
-    SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPageBlurred: false
+    };
+    this.blurPage = this.blurPage.bind(this);
   }
-}) => {
-  const wrapperClasses = classNames(
-    'page-wrapper',
-    {
-      'page-wrapper--custom': location.pathname.split('/')[1]
-    },
-    `page-wrapper--${location.pathname.split('/')[1]}`
-  );
-  return (
-    <div className={wrapperClasses}>
-      <Helmet>
-        <html lang="uk" />
-      </Helmet>
-      <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
-      <Feedback
-        email={homepageSettings.contactFormEmail}
-        title={homepageSettings.contactFormTitle}
-      />
-      {children()}
-      <Subscribe
-        className={location.pathname.split('/')[1]}
-        title={subscribeSettings.title}
-        emailPlaceholder={subscribeSettings.email_placeholder}
-        emailLabel={subscribeSettings.email_label}
-        buttonText={subscribeSettings.button_text}
-        thanksTitle={subscribeSettings.thanks_title}
-        thanksText={subscribeSettings.thanks_text}
-      />
-      <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
-    </div>
-  );
-};
+  blurPage() {
+    this.setState({
+      isPageBlurred: !this.state.isPageBlurred
+    });
+  }
+  render () {
+    const {
+      children, location, data: {
+        FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
+        NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
+        HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] },
+        SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
+      }
+    } = this.props;
+    const wrapperClasses = classNames(
+      'page-wrapper',
+      {
+        'page-wrapper--custom': location.pathname.split('/')[1],
+        'page-wrapper--blurred': this.state.isPageBlurred
+      },
+      `page-wrapper--${location.pathname.split('/')[1]}`
+    );
+    return (
+      <React.Fragment>
+        <div className={wrapperClasses}>
+          <Helmet>
+            <html lang="uk" />
+          </Helmet>
+          <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
+          {children()}
+          <Subscribe
+            className={location.pathname.split('/')[1]}
+            title={subscribeSettings.title}
+            emailPlaceholder={subscribeSettings.email_placeholder}
+            emailLabel={subscribeSettings.email_label}
+            buttonText={subscribeSettings.button_text}
+            thanksTitle={subscribeSettings.thanks_title}
+            thanksText={subscribeSettings.thanks_text}
+          />
+          <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
+        </div>
+        <Feedback
+          email={homepageSettings.contactFormEmail}
+          title={homepageSettings.contactFormTitle}
+          onBoxToggle={this.blurPage}
+        />
+      </React.Fragment>
+    );
+  }
+}
+
+export default Layout;
+
 
 export const pageQuery = graphql`
 query FooterData {

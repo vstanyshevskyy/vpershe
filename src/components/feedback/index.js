@@ -24,6 +24,9 @@ export default class Feedback extends React.Component {
       }
       window.scrollTo(0, 0);
     }
+    if (this.props.onBoxToggle) {
+      this.props.onBoxToggle();
+    }
   }
   keyboardToggle(e) {
     if (e.charCode && e.charCode === 13) {

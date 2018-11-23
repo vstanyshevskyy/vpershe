@@ -55,21 +55,6 @@
     margin-bottom: 40px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.05);
   }
-  & + .page-wrapper {
-    @blur: 20px;
-    @animation-duration: .3s;
-    -webkit-filter: blur(@blur);
-    -moz-filter: blur(@blur);
-    -o-filter: blur(@blur);
-    -ms-filter: blur(@blur); 
-    filter: blur(@blur); 
-    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
-    -webkit-transition: @animation-duration -webkit-filter linear;
-    -moz-transition: @animation-duration -moz-filter linear;
-    -ms-transition: @animation-duration -ms-filter linear;
-    -o-transition: @animation-duration -o-filter linear;
-    transition: @animation-duration filter linear;
-  }
 }
 
 .feedback__form-close {

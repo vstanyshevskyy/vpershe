@@ -5,34 +5,15 @@ import 'moment/locale/uk';
 import Config from '../config';
 import './content.less';
 import TagsList from '../components/tags';
-import ArticleCard from '../components/article-card';
+import ArticlesList from '../components/articles-list';
 import RelatedLinks from '../components/realted-links';
 import SEO from '../components/SEO';
 
-const getRelatedArticlesBottom = items => {
-  if (!items.length) return null;
-  return (
-    <div className="content__related-items-bottom">
-      <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
-      <ul className="content__related-items-bottom-list">
-        { items.map(item => {
-          return (
-            <ArticleCard
-              url={item.path}
-              title={item.title}
-              subtitle={item.subtitle}
-              image={item.list_image_articles || item.list_image}
-              image_alt={item.list_image_alt}
-              contentType={item.contentType}
-            />
-          ); })
-        }
-      </ul>
-    </div>
-  );
-};
-
 export default class Content extends React.Component {
+  constructor() {
+    super();
+    this.renderRelatedArticles = this.renderRelatedArticles.bind(this);
+  }
   componentDidMount = () => {
     this.mountAddThis();
   }
@@ -42,6 +23,19 @@ export default class Content extends React.Component {
       `//s7.addthis.com/js/300/addthis_widget.js#pubid=${Config.addThis.id}`;
     script.async = true;
     document.body.appendChild(script);
+  }
+  renderRelatedArticles = items => {
+    if (!items.length) return null;
+    const articles = items.map(i => {
+      i.list_image = i.list_image_articles || i.list_image;
+      return i;
+    });
+    return (
+      <div className="content__related-items-bottom">
+        <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
+        <ArticlesList items={articles} />
+      </div>
+    );
   }
   render() {
     moment.locale('uk');
@@ -86,7 +80,7 @@ export default class Content extends React.Component {
             }
             <div className="content__addthis addthis_inline_share_toolbox" />
           </div>
-          { getRelatedArticlesBottom(relatedBottom) }
+          { this.renderRelatedArticles(relatedBottom) }
         </aside>
 
       </div>

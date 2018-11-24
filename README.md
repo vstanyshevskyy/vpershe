@@ -1,5 +1,5 @@
 # Vpershe
-![Vpershe logo](https://raw.githubusercontent.com/vstanyshevskyy/vpershe/main/static/assets/logo/eng_black_text.svg)
+![Vpershe logo](https://raw.githubusercontent.com/vstanyshevskyy/vpershe/main/static/assets/logo/eng_black_text.png)
 
 Vpershe.com is for sex education for teenagers. Here they can find interactive and verified information about the body, health or ask a question.
 

@@ -268,10 +268,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       });
       const contentTypeTags = Object.keys(contentByTags);
+      const template = contentType === 'advice' ? 'advice' : 'articles';
       createPaginatedPages({
         edges: contentItems,
         createPage,
-        pageTemplate: 'src/templates/index.js',
+        pageTemplate: `src/templates/${template}ListPage.js`,
         pageLength: config[contentType].perPage,
         pathPrefix: contentType,
         context: {
@@ -291,7 +292,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         createPaginatedPages({
           edges: contentByTags[tag],
           createPage,
-          pageTemplate: 'src/templates/index.js',
+          pageTemplate: `src/templates/${template}ListPage.js`,
           pageLength: config[contentType].perPage,
           pathPrefix: `${contentType}/tags/${tag}`,
           context: {

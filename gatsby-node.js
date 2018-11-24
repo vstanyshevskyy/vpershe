@@ -237,38 +237,29 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
-      homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
-        edges {
-          node {
-            frontmatter {
-              contactFormEmail
-              contactFormTitle
-            }
-          }
-        }
-      }
     }
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
-    const homePageSettings = result.data.homepageSettings.edges[0].node.frontmatter;
+    const globalSettings = result.data.settings.edges[0].node.frontmatter;
     const relatedContent = []
       .concat(result.data.articles.edges)
       .concat(result.data.stories.edges)
-      .concat(result.data.sexoteca.edges);
+      .concat(result.data.sexoteca.edges)
+      .map(c => c.node.frontmatter);
     ['advice', 'articles', 'stories', 'sexoteca'].forEach(contentType => {
-      const contentByTags = {};
       if (!result.data[contentType]) {
         return;
       }
+      const contentByTags = {};
       const contentItems = result.data[contentType].edges || [];
+      const settings = result.data[`${contentType}_settings`].edges[0].node.frontmatter;
       contentItems.forEach(e => {
-        const allContentPrepared = relatedContent.map(c => c.node.frontmatter);
-        e.node.frontmatter.related_sidebar =
-          prepareRelatedContent(e.node.frontmatter.related_sidebar, allContentPrepared);
-        e.node.frontmatter.related_bottom =
-          prepareRelatedContent(e.node.frontmatter.related_bottom, allContentPrepared);
+        e.node.frontmatter = Object.assign({}, e.node.frontmatter, {
+          related_sidebar: prepareRelatedContent(e.node.frontmatter.related_sidebar, relatedContent),
+          related_bottom: prepareRelatedContent(e.node.frontmatter.related_bottom, relatedContent)
+        });
         e.node.frontmatter.tags.forEach(tag => {
           if (!tag) {
             return;
@@ -276,7 +267,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           contentByTags[tag] = (contentByTags[tag] || []).concat(e);
         });
       });
-      const settings = result.data[`${contentType}_settings`].edges[0].node.frontmatter;
+      const contentTypeTags = Object.keys(contentByTags);
       createPaginatedPages({
         edges: contentItems,
         createPage,
@@ -285,7 +276,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         pathPrefix: contentType,
         context: {
           contentType,
-          tags: Object.keys(contentByTags),
+          tags: contentTypeTags,
           settings: {
             title: settings.title,
             keywords: settings.metaKeywords,
@@ -293,10 +284,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       });
-      Object.keys(contentByTags).forEach(tag => {
-        const tagsSettings = Object.assign({}, result.data[`${contentType}_settings`].edges[0].node.frontmatter);
-        Object.keys(tagsSettings).forEach(key => {
-          tagsSettings[key] = tagsSettings[key].replace(/{{tag}}/gi, tag);
+      contentTypeTags.forEach(tag => {
+        Object.keys(settings).forEach(key => {
+          settings[key] = settings[key].replace(/{{tag}}/gi, tag);
         });
         createPaginatedPages({
           edges: contentByTags[tag],
@@ -308,10 +298,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             contentType,
             tag,
             tags: Object.keys(contentByTags),
-            settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
-              title: tagsSettings.tags_title,
-              description: tagsSettings.tags_metaDescription,
-              keywords: tagsSettings.tags_metaKeywords
+            settings: Object.assign({}, globalSettings, {
+              title: settings.tags_title,
+              description: settings.tags_metaDescription,
+              keywords: settings.tags_metaKeywords
             })
           }
         });
@@ -323,11 +313,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             component: path.resolve('src/templates/content.js'),
             context: {
               data: e.node,
-              settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
-                title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
+              settings: Object.assign({}, globalSettings, {
+                title: `${e.node.frontmatter.title}${globalSettings.titleTemplate}`,
                 description: e.node.frontmatter.metaDescription,
-                keywords: e.node.frontmatter.metaKeywords,
-                contactFormEmail: homePageSettings.contactFormEmail
+                keywords: e.node.frontmatter.metaKeywords
               })
             } // additional data can be passed via context
           });
@@ -340,8 +329,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         component: path.resolve('src/templates/content.js'),
         context: {
           data: e.node,
-          settings: Object.assign({}, result.data.settings.edges[0].node.frontmatter, {
-            title: `${e.node.frontmatter.title}${result.data.settings.edges[0].node.frontmatter.titleTemplate}`,
+          settings: Object.assign({}, globalSettings, {
+            title: `${e.node.frontmatter.title}${globalSettings.titleTemplate}`,
             description: e.node.frontmatter.metaDescription,
             keywords: e.node.frontmatter.metaKeywords
           })

@@ -15,7 +15,6 @@ export default function Template (props) {
   const articles = ((props.data.articles || {}).edges || []).map(c => c.node.frontmatter);
   const settings = props.data.settings.edges[0].node.frontmatter;
   const homepageAboutProject = props.data.homepageSettings.edges[0].node.html;
-  const homepageSettings = props.data.homepageSettings.edges[0].node.frontmatter;
   const subscribeSettings = props.data.subscribeSettings.edges[0].node.frontmatter;
   const advice = ((props.data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
@@ -38,16 +37,16 @@ export default function Template (props) {
       />
       <div className="homepage__about">
         <h1 className="homepage__about-header">Про проект</h1>
-        <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject}} />
+        <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject }} />
       </div>
       {
         advice && advice.length
-          ? <hr />
-          : null
-      }
-      {
-        advice && advice.length
-          ? <Advice items={advice} />
+          ? (
+            <React.Fragment>
+              <hr />
+              <Advice items={advice} />
+            </React.Fragment>
+          )
           : null
       }
     </div>

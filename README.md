@@ -1,23 +1,24 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# Vpershe
+![Vpershe logo](https://raw.githubusercontent.com/vstanyshevskyy/vpershe/main/static/assets/logo/eng_black_text.svg)
+
+Vpershe.com is for sex education for teenagers. Here they can find interactive and verified information about the body, health or ask a question.
+
+## Development
+
+If you would like to contribute - you're always welcome. Just leave a me a note
 
 For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
 
-## Install
+### Install
 
 Make sure that you have the Gatsby CLI program installed:
 ```sh
 npm install --global gatsby-cli
 ```
 
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
-
 Then you can run it by:
 ```sh
-cd gatsby-example-site
+cd vpershe
 npm run develop
 ```
 

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
 import Link, { withPrefix } from 'gatsby-link';
+import SliderButton from './PrevNextButton';
 import './index.less';
 
 export default class Carousel extends React.Component {
@@ -14,6 +15,8 @@ export default class Carousel extends React.Component {
 
     this.onSliderInit = this.onSliderInit.bind(this);
     this.settings = {
+      prevArrow: <SliderButton />,
+      nextArrow: <SliderButton />,
       dots: false,
       infinite: false,
       speed: 500,

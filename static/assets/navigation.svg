@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 27.999">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fed901;
+      }
+    </style>
+  </defs>
+  <path id="Orion_navigation-up" class="cls-1" d="M43,40a2.992,2.992,0,0,1-2.121-.879l-8.89-8.635-8.868,8.635a3,3,0,1,1-4.242-4.242L31.989,22,45.121,34.879A3,3,0,0,1,43,40Z" transform="translate(40 -18) rotate(90)"/>
+</svg>

@@ -7,7 +7,7 @@ formInstructions: >-
   або наші кваліфіковані експерти, відповімо тобі на імейл.
 emailLabel: Твій e-mail
 allowToShareLabel: 'Я згоден(а), щоб моє питання з’явилося у розділі «Поради».'
-yesLabel: Так!
+yesLabel: Так
 noLabel: Ні
 questionAreaLabel: 'Постав своє питання, поділись історією, запитай поради'
 submitButtonText: Надіслати

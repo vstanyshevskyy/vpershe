@@ -6,7 +6,7 @@ import classNames from 'classnames';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './reset.css';
 import '../components/styleguide/index.less';
-import Feedback from '../components/feedback';
+import Questionbox from '../components/questionbox';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 import Subscribe from '../components/subscribe';
@@ -61,7 +61,7 @@ class Layout extends React.Component {
           />
           <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
         </div>
-        <Feedback
+        <Questionbox
           email={homepageSettings.contactFormEmail}
           title={homepageSettings.contactFormTitle}
           onBoxToggle={this.blurPage}

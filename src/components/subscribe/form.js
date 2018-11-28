@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import Heart from 'react-icons/lib/fa/heart';
-import config from '../../config';
 import './index.less';
 
 class SubscribeForm extends React.Component {
@@ -14,20 +13,16 @@ class SubscribeForm extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const data = new FormData(event.target);
-
     this.setState({ inProgress: true });
-    window.fetch(config.subscribeApiUrl, {
-      method: 'POST',
-      body: data
-    })
-      .then(res => res.json())
-      .then(() => {
-        this.setState({
-          thanks: true,
-          inProgress: false
-        });
+    const promise = this.props.onSubmit
+      ? this.props.onSubmit(event)
+      : Promise.resolve();
+    promise.then(() => {
+      this.setState({
+        thanks: true,
+        inProgress: false
       });
+    });
   }
   render() {
     const subscribeClasses = classNames('subscribe', {

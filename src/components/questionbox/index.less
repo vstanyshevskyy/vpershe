@@ -5,6 +5,7 @@
   top: 30%;
   right: 0;
   z-index: 1; 
+  font-size: 14px;
 }
 
 .questionbox__toggler {
@@ -31,9 +32,27 @@
   width: 180px;
 }
 
-.questionbox__form {
+.questionbox__container {
   display: none;
+  max-width: 620px;
+  width: 100%;
+  padding: 30px;
+  background-color: @clr-highlight;
+  margin: 0 auto;
+  position: relative;
+  top: 10%;
+  margin-bottom: 40px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
 }
+
+.questionbox__form {
+  width: 100%;
+}
+
+.questionbox__form--in-progress {
+  opacity: .7;
+}
+
 .questionbox--open {
   width: 100%;
   height: 100%;
@@ -42,18 +61,8 @@
   .questionbox__toggler {
     display: none;
   }
-
-  .questionbox__form {
+  .questionbox__container {
     display: block;
-    max-width: 620px;
-    width: 100%;
-    padding: 30px;
-    background-color: @clr-highlight;
-    margin: 0 auto;
-    position: relative;
-    top: 10%;
-    margin-bottom: 40px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
   }
 }
 
@@ -79,12 +88,34 @@
   font-size: 0;
 }
 
+.questionbox__email-input {
+  float: left;
+}
+
+.questionbox__form-allow-to-share-text {
+  float: left;
+  width: 200px;
+  margin: -2px 20px 0 40px;
+}
+.questionbox__form-radio-btn {
+  margin-top:0;
+  vertical-align: middle;
+}
+.questionbox__form-radio-btn--no {
+  margin-left: 25px;
+}
+.questionbox__form-radiogroup {
+  float:left;
+  margin-top: 10px;
+}
+
 .questionbox__form-textarea {
   width: 100%;
-  height: 360px;
+  height: 250px;
   border: none;
   box-shadow: 0 3px 6px rgba(0,0,0,0.05);
   margin-top: 35px;
+  line-height: 1.5;
 }
 
 .questionbox__form-btn {
@@ -107,6 +138,26 @@
 
 .questionbox__toggle-icon {
   display: none;
+}
+
+.questionbox__thanks-container {
+  text-align: center;
+}
+
+.questionbox__heart {
+  color: #fff;
+  font-size: 130px;
+  margin: 30px 0;
+}
+
+.questionbox__thanks-title {
+  font-size: @font-size-h3;
+  font-weight: bold;
+}
+
+.questionbox__thanks-text {
+  max-width: 70%;
+  margin: 20px auto 80px;
 }
 
 @media screen and (max-width: @screen-sm-max) {
@@ -144,8 +195,16 @@
     width: 100%;
     margin-bottom: 20px;
   }
-  .questionbox__form-age {
-    margin-left: 0;
+  .questionbox__form-label,
+  .questionbox__email-input,
+  .questionbox__form-radiogroup,
+  .questionbox__form-allow-to-share-text {
+    float: none;
+  }
+
+  .questionbox__form-allow-to-share-text {
+    width: 100%;
+    margin: 0;
   }
   .questionbox__form-textarea {
     height: 250px;

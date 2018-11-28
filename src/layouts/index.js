@@ -3,7 +3,6 @@ import graphql from 'graphql';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import './reset.css';
 import '../components/styleguide/index.less';
 import Questionbox from '../components/questionbox';
@@ -26,11 +25,12 @@ class Layout extends React.Component {
     });
   }
   render () {
+    console.log(this.props);
     const {
       children, location, data: {
         FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
         NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
-        HomepageSettings: { edges: [{ node: { frontmatter: homepageSettings } }] },
+        QuestionBoxSettings: { edges: [{ node: { frontmatter: questionBoxSettings } }] },
         SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
       }
     } = this.props;
@@ -61,11 +61,7 @@ class Layout extends React.Component {
           />
           <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
         </div>
-        <Questionbox
-          email={homepageSettings.contactFormEmail}
-          title={homepageSettings.contactFormTitle}
-          onBoxToggle={this.blurPage}
-        />
+        <Questionbox {...questionBoxSettings} onBoxToggle={this.blurPage} />
       </React.Fragment>
     );
   }
@@ -106,12 +102,21 @@ query FooterData {
      }
     }
   }
-  HomepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
+  QuestionBoxSettings: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "ask_box_settings"}}}) {
     edges {
       node {
         frontmatter {
-          contactFormEmail
-          contactFormTitle
+          toggleButtonText
+          formInstructions
+          emailLabel
+          allowToShareLabel
+          yesLabel
+          noLabel
+          questionAreaLabel
+          submitButtonText
+          thanksTitle
+          thanksTextAllowedToShare
+          thanksTextNotAllowedToShare
         }
       }
     }

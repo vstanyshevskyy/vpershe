@@ -3,7 +3,7 @@ import graphql from 'graphql';
 import Link from 'gatsby-link';
 import './index.less';
 import SEO from '../components/SEO';
-import Subscribe from '../components/Subscribe';
+import Subscribe from '../components/subscribe';
 import Carousel from '../components/carousel';
 import Advice from '../components/advice';
 import ArticlesTiles from '../components/articles-tiles';

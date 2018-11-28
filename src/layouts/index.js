@@ -9,7 +9,7 @@ import '../components/styleguide/index.less';
 import Feedback from '../components/feedback';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
-import Subscribe from '../components/Subscribe';
+import Subscribe from '../components/subscribe';
 import './index.less';
 
 class Layout extends React.Component {

@@ -15,7 +15,7 @@ export default class QuestionboxForm extends React.Component {
     this.state = {
       isOpen: false,
       inProgress: false,
-      sent: true
+      sent: false
     };
   }
   handleSubmit(event) {

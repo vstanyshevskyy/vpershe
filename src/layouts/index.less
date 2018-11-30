@@ -2,7 +2,12 @@
 
 .page-wrapper {
   background-color: @white; 
-  transition: background-color .2s linear;
+  @animation-duration: .3s;
+  -webkit-transition: @animation-duration all linear;
+  -moz-transition: @animation-duration all linear;
+  -ms-transition: @animation-duration all linear;
+  -o-transition: @animation-duration all linear;
+  transition: @animation-duration all linear;
 }
 
 .page-wrapper--articles {
@@ -23,16 +28,10 @@
 
 .page-wrapper--blurred {
   @blur: 20px;
-  @animation-duration: .3s;
   -webkit-filter: blur(@blur);
   -moz-filter: blur(@blur);
   -o-filter: blur(@blur);
   -ms-filter: blur(@blur); 
   filter: blur(@blur); 
   filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
-  -webkit-transition: @animation-duration -webkit-filter linear;
-  -moz-transition: @animation-duration -moz-filter linear;
-  -ms-transition: @animation-duration -ms-filter linear;
-  -o-transition: @animation-duration -o-filter linear;
-  transition: @animation-duration filter linear;
 }

@@ -213,7 +213,6 @@ collections:
         file: 'content/settings/team.md'
         fields:
           - {label: "Type", name: "contentType", widget: "hidden", default: "team"}
-          - {label: "Заголовок", name: "title", widget: "string"}
           - label: "Група"
             name: "groups"
             widget: "list"
@@ -232,6 +231,15 @@ collections:
                     - {label: "Роль", name: "role", widget: "string"}
                     - {label: "Email", name: "email", widget: "string"}
                     - {label: "Фото", name: "photo", widget: "image"}
+          - label: 'Page Title'
+            name: 'title'
+            widget: 'string'
+          - label: 'Meta Description'
+            name: 'metaDescription'
+            widget: string
+          - label: 'Meta Keywords'
+            name: 'metaKeywords'
+            widget: string
       - label: 'Статті'
         name: 'articles'
         file: 'content/settings/articles.md'

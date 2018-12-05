@@ -13,9 +13,11 @@ export default class Content extends React.Component {
   constructor() {
     super();
     this.renderRelatedArticles = this.renderRelatedArticles.bind(this);
+    this.makeLinksOpenInNewTab = this.makeLinksOpenInNewTab.bind(this);
   }
   componentDidMount = () => {
     this.mountAddThis();
+    this.makeLinksOpenInNewTab();
   }
   mountAddThis = () => {
     const script = document.createElement('script');
@@ -23,6 +25,12 @@ export default class Content extends React.Component {
       `//s7.addthis.com/js/300/addthis_widget.js#pubid=${Config.addThis.id}`;
     script.async = true;
     document.body.appendChild(script);
+  }
+  makeLinksOpenInNewTab() {
+    this.contentNode.querySelectorAll('a').forEach(el => {
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
   }
   renderRelatedArticles = items => {
     if (!items.length) return null;
@@ -65,7 +73,11 @@ export default class Content extends React.Component {
             }
           </div>
           <div className="content__article-wrapper">
-            <div className="content__content" dangerouslySetInnerHTML={{ __html: pageData.html }} />
+            <div
+              className="content__content"
+              dangerouslySetInnerHTML={{ __html: pageData.html }}
+              ref={c => { this.contentNode = c; }}
+            />
             <aside className="content__sidebar">
               {
                 pageData.related_sidebar && pageData.related_sidebar.length

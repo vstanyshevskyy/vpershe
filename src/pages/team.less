@@ -1,0 +1,92 @@
+@import '../components/styleguide/variables.less';
+
+.teams-list {
+  text-align: center;
+}
+
+.teams-list__team {
+  margin-bottom: 100px;
+}
+
+.teams-list__team-title {
+  margin-bottom: 10px;
+}
+
+.teams-list__team-persons-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.teams-list__team-person {
+  padding: 0 20px;
+  margin-top: 65px;
+}
+
+.teams-list__team-person--1-of-3 {
+  width: 33%;
+}
+
+.teams-list__team-person--1-of-4 {
+  width: 25%;
+}
+
+.teams-list__team-person-silhoute {
+  background-color: #131986;
+  border-radius: 50%;
+  width: 70%;
+  padding-top: 70%;
+  margin: 0 auto;
+  position: relative;
+  background-image: url('/assets/silhoute.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%; 
+}
+
+
+.teams-list__team-person-photo {
+  border-radius: 50%;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.teams-list__team-person-attribute:empty {
+  display: none;
+}
+
+.teams-list__team-person-attribute + .teams-list__team-person-attribute {
+  margin-top: 10px;
+}
+
+.teams-list__team-person-attribute--name {
+  font-size: 24px;
+  line-height: 32px;
+  margin-top: 25px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.teams-list__team-person-attribute--email,
+.teams-list__team-person-attribute--details {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.teams-list__team-person-attribute--email {
+  word-break: break-word;
+}
+
+
+@media screen and (max-width: @screen-sm-max) { 
+  .teams-list__team-person--1-of-3 ,
+  .teams-list__team-person--1-of-4 {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) {
+  .teams-list__team-person--1-of-3 ,
+  .teams-list__team-person--1-of-4 {
+    width: 100%;
+  }
+}

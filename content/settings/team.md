@@ -1,4 +1,5 @@
 ---
+contentType: team
 groups:
   - name: Команда
     people:
@@ -21,7 +22,9 @@ groups:
           role: test
     perLine: 3
   - name: Автор(к)и
+    perLine: 4
   - name: Експерти
+    perLine: 3
     people:
       - person:
           email: Львів
@@ -36,5 +39,6 @@ groups:
 title: Наша команда - Вперше
 metaDescription: Команда - автори вперше
 metaKeywords: 'Комнада, вперше'
+fbImage: /assets/uploads/full_logo.png
 ---
 

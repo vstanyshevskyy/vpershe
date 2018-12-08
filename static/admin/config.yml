@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: team-page
+  branch: main
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
@@ -212,13 +212,22 @@ collections:
         name: 'team'
         file: 'content/settings/team.md'
         fields:
-          - {label: "Type", name: "contentType", widget: "hidden", default: "team"}
+          - name: "contentType"
+            widget: "hidden"
+            default: "team"
           - label: "Група"
             name: "groups"
             widget: "list"
             default: []
             fields:
               - {label: Назва, name: name, widget: string, default: ""}
+              - label: "Кількість в рядку (3/4)"
+                name: "perLine"
+                widget: "number"
+                default: 3
+                valueType: "int"
+                min: 3
+                max: 4
               - label: "Люди"
                 name: "people"
                 widget: "list"
@@ -230,6 +239,7 @@ collections:
                     - {label: "Ім'я Прізвище", name: "name", widget: "string"}
                     - {label: "Роль", name: "role", widget: "string"}
                     - {label: "Email", name: "email", widget: "string"}
+                    - {label: "Деталі", name: "details", widget: "string"}
                     - {label: "Фото", name: "photo", widget: "image"}
           - label: 'Page Title'
             name: 'title'
@@ -240,6 +250,9 @@ collections:
           - label: 'Meta Keywords'
             name: 'metaKeywords'
             widget: string
+          - label: 'FB Image'
+            name: 'fbImage'
+            widget: image
       - label: 'Статті'
         name: 'articles'
         file: 'content/settings/articles.md'

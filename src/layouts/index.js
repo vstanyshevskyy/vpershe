@@ -46,6 +46,11 @@ class Layout extends React.Component {
         <div className={wrapperClasses}>
           <Helmet>
             <html lang="uk" />
+            <link href="/assets/icon-57x57.png" sizes="57x57" rel="apple-touch-icon" />
+            <link href="/assets/icon-72x72.png" sizes="72x72" rel="apple-touch-icon" />
+            <link href="/assets/icon-114x114.png" sizes="114x114" rel="apple-touch-icon" />
+            <link href="/assets/icon-144x144.png" sizes="144x144" rel="apple-touch-icon" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
           </Helmet>
           <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
           {children()}

@@ -14,6 +14,12 @@ groups:
           email: lizapanch@gmail.com
           name: Ліза Панченко
           role: SMM-менеджерка
+      - person:
+          details: test
+          email: test
+          name: test
+          role: test
+    perLine: 3
   - name: Автор(к)и
   - name: Експерти
     people:

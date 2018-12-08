@@ -41,6 +41,19 @@ module.exports = {
         name: 'settings',
         path: `${__dirname}/content/settings/`
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Vpershe',
+        short_name: 'Vpershe',
+        start_url: '/',
+        background_color: '#f7f0eb',
+        theme_color: '#fff',
+        display: 'minimal-ui',
+        icon: 'static/assets/icon-512px.png'
+      }
+    },
+    'gatsby-plugin-offline'
   ]
 };

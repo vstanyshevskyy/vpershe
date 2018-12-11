@@ -121,7 +121,7 @@ const SEO = ({ data = {}, isBlogPost, defaults = {} }) => {
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
-      {isBlogPost ? <meta property="og:type" content="article" /> : null}
+      <meta property="og:type" content={isBlogPost ? 'article' : 'website'} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={fbDescription} />
       <meta property="og:image" content={image} />

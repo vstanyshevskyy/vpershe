@@ -319,7 +319,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               data: e.node,
               settings: Object.assign({}, globalSettings, {
                 url,
-                title: `${e.node.frontmatter.title}${globalSettings.titleTemplate}`,
+                title: `${e.node.frontmatter.title}`,
                 description: e.node.frontmatter.metaDescription,
                 keywords: e.node.frontmatter.metaKeywords
               }),

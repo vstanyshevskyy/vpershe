@@ -60,7 +60,7 @@ export default class Content extends React.Component {
     const seoData = Object.assign({}, settings, { image: pageData.image });
     return (
       <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
-        <SEO {...{ data: seoData, defaults: globalSettings }} />
+        <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
         <article className="content__article">
           { pageData.image
             ? <img className="content__img" src={withPrefix(pageData.image)} alt="" />

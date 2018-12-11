@@ -282,7 +282,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             title: settings.title,
             keywords: settings.metaKeywords,
             description: settings.metaDescription
-          }
+          },
+          globalSettings
         }
       });
       contentTypeTags.forEach(tag => {
@@ -303,22 +304,26 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               title: settings.tags_title,
               description: settings.tags_metaDescription,
               keywords: settings.tags_metaKeywords
-            })
+            }),
+            globalSettings
           }
         });
       });
       if (contentType !== 'advice') {
         result.data[contentType].edges.forEach(e => {
+          const url = `${contentType}/${e.node.frontmatter.path}`;
           createPage({
-            path: `${contentType}/${e.node.frontmatter.path}`,
+            path: url,
             component: path.resolve('src/templates/content.js'),
             context: {
               data: e.node,
               settings: Object.assign({}, globalSettings, {
+                url,
                 title: `${e.node.frontmatter.title}${globalSettings.titleTemplate}`,
                 description: e.node.frontmatter.metaDescription,
                 keywords: e.node.frontmatter.metaKeywords
-              })
+              }),
+              globalSettings
             } // additional data can be passed via context
           });
         });

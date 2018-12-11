@@ -8,13 +8,15 @@ export default props => {
   const {
     index, pageCount,
     additionalContext: {
-      tag, tags, settings, contentType
+      tag, tags, settings, globalSettings, contentType
     }
   } = props.pathContext;
+  const url = `${props.pathContext.pathPrefix}${index === 1 ? '' : `/${index}`}`;
+  const seoData = Object.assign({}, settings, { url });
 
   return (
     <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
-      <SEO {...{ data: settings }} />
+      <SEO {...{ data: seoData, defaults: globalSettings }} />
       <ul className={`index-page__list index-page__list--${contentType}`}>
         <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
           {tags.length

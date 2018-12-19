@@ -19,10 +19,15 @@ groups:
           photo: /assets/uploads/img_0570.jpg
           role: Менеджерка онлайн-спільнот
       - person:
-          details: test
-          email: test
-          name: test
-          role: test
+          details: ''
+          email: ''
+          name: Юлія Бенюх
+          photo: /assets/uploads/11160674_1037756749575309_1534353746737673711_n.jpg
+          role: Дизайнерка
+      - person:
+          name: Віталій Станішевський
+          photo: /assets/uploads/13876296_928152557295522_156450320673897050_n.jpg
+          role: 'Технічний адміністратор '
     perLine: 3
   - name: Автор(к)и
     perLine: 4

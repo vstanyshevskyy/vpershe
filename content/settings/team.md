@@ -43,6 +43,16 @@ groups:
           name: Дана Яковенко
           photo: /assets/uploads/image-2018-11-01-191046.jpg
           role: Практикуюча психологиня
+      - person:
+          email: 'Міжнародна академія здорового життя, м. Торонто, Канада'
+          name: Олена Березовська
+          photo: /assets/uploads/201.jpg
+          role: 'Гінекологиня, дослідниця'
+      - person:
+          email: Київ
+          name: Даня Столбунов
+          photo: /assets/uploads/36852215_960787320765855_5697258072146182144_n.jpg
+          role: Активіст підліткового руху Teenergizer
     perLine: 3
 title: Наша команда - Вперше
 metaDescription: Команда - автори вперше

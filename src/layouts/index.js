@@ -2,6 +2,7 @@ import React from 'react';
 import graphql from 'graphql';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
+import { withPrefix } from 'gatsby-link';
 
 import './reset.css';
 import '../components/styleguide/index.less';
@@ -33,10 +34,11 @@ class Layout extends React.Component {
         SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
       }
     } = this.props;
+    const isHomePage = !(location.pathname.split('/')[1]);
     const wrapperClasses = classNames(
       'page-wrapper',
       {
-        'page-wrapper--custom': location.pathname.split('/')[1],
+        'page-wrapper--custom': !isHomePage,
         'page-wrapper--blurred': this.state.isPageBlurred
       },
       `page-wrapper--${location.pathname.split('/')[1]}`
@@ -53,17 +55,27 @@ class Layout extends React.Component {
             <meta name="apple-mobile-web-app-capable" content="yes" />
           </Helmet>
           <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
+          {
+            !isHomePage
+              ? <img className="wrapper__graffiti graffiti wrapper__graffiti--stars" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
+              : null
+          }
+          <img className="wrapper__graffiti graffiti wrapper__graffiti--arrows" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
           {children()}
-          <Subscribe
-            className={location.pathname.split('/')[1]}
-            title={subscribeSettings.title}
-            emailPlaceholder={subscribeSettings.email_placeholder}
-            emailLabel={subscribeSettings.email_label}
-            buttonText={subscribeSettings.button_text}
-            thanksTitle={subscribeSettings.thanks_title}
-            thanksText={subscribeSettings.thanks_text}
-          />
-          <Footer {...footerData} {...navbarSettings} className={location.pathname.split('/')[1]} />
+          {
+            location.pathname.split('/')[1]
+              ? <Subscribe
+                title={subscribeSettings.title}
+                emailPlaceholder={subscribeSettings.email_placeholder}
+                emailLabel={subscribeSettings.email_label}
+                buttonText={subscribeSettings.button_text}
+                thanksTitle={subscribeSettings.thanks_title}
+                thanksText={subscribeSettings.thanks_text}
+              />
+              : null
+          }
+
+          <Footer {...footerData} {...navbarSettings} />
         </div>
         <Questionbox {...questionBoxSettings} onBoxToggle={this.blurPage} />
       </React.Fragment>

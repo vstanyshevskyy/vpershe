@@ -7,6 +7,13 @@
   justify-content: space-between;
   margin-top: 90px;
   padding: 0 @desktop-padding;
+  position:relative;
+}
+
+.homepage__graffiti--about-starts {
+  position: absolute;
+  top: 50%;
+  left: -30px;
 }
 
 .homepage__about-text {
@@ -17,12 +24,21 @@
 
 .homepage__stories {
   max-width: @content-width;
-  margin: 60px auto;
+  margin: 60px auto 20px;
   padding: 0 @desktop-padding;
+}
+
+.homepage__graffiti--stories-eye  {
+  margin: 0 auto;
+  display: block;
 }
 
 .homepage__stories-title {
   margin-bottom: 70px;
+}
+
+.homepage__graffiti--vpershe {
+  margin-left: -25px;
 }
 
 @media screen and (max-width: @screen-sm-max) {
@@ -38,5 +54,15 @@
 
   .homepage__about-text {
     margin-top: 20px;
+  }
+
+  .homepage__graffiti--vpershe {
+    margin-left: 0;
+  }
+
+  .homepage__graffiti--about-starts {
+    right: 10px;
+    top: -5px;
+    left: auto;
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Heart from 'react-icons/lib/fa/heart';
+import { withPrefix } from 'gatsby-link';
 import './index.less';
 
 class SubscribeForm extends React.Component {
@@ -26,7 +27,6 @@ class SubscribeForm extends React.Component {
   }
   render() {
     const subscribeClasses = classNames('subscribe', {
-      'subscribe--custom': this.props.className,
       'subscribe--thanks': this.state.thanks,
       'subscribe--in-progress': this.state.inProgress
     });
@@ -54,6 +54,7 @@ class SubscribeForm extends React.Component {
               name="email"
               placeholder={this.props.emailPlaceholder}
             />
+            <img className="subscribe__graffiti graffiti graffiti--birds" alt="" width="67" src={withPrefix('assets/graffiti/birds.svg')} aria-hidden="true" />
             <button className="btn subscribe__form-btn">{this.props.buttonText}</button>
           </div>
         </form>

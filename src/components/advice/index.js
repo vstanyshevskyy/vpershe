@@ -1,11 +1,12 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import Link, { withPrefix } from 'gatsby-link';
 import Config from '../../config';
 import './index.less';
 
 export default props => (
   <div className="advice">
     <h2>Поради</h2>
+    <img className="advice__graffiti advice__graffiti--moon graffiti graffiti--moon" alt="" width="78" src={withPrefix('assets/graffiti/moon.svg')} aria-hidden="true" />
     <ul className="advice__list">
       { props.items.map((item, index) => {
         const page = Math.floor(index / Config.advice.perPage) + 1;
@@ -21,5 +22,6 @@ export default props => (
       })
       }
     </ul>
+    <img className="advice__graffiti advice__graffiti--planet graffiti graffiti--planet" alt="" width="99" src={withPrefix('assets/graffiti/planet.svg')} aria-hidden="true" />
   </div>
 );

@@ -2,6 +2,8 @@
 
 .page-wrapper {
   background-color: @white; 
+  border: 10px solid @clr-highlight;
+  overflow: hidden;
   @animation-duration: .3s;
   -webkit-transition: @animation-duration all linear;
   -moz-transition: @animation-duration all linear;
@@ -10,20 +12,21 @@
   transition: @animation-duration all linear;
 }
 
-.page-wrapper--articles {
-  background-color: @clr-mint-2;
-}
-
-.page-wrapper--advice {
-  background-color: @clr-mint;
-}
 
 .page-wrapper--stories {
-  background-color: @clr-rose-2;
+  border-color: @clr-rose-3;
+}
+
+.page-wrapper--articles {
+  border-color: @clr-mint-4;
 }
 
 .page-wrapper--sexoteca {
-  background-color: @clr-gray-3;
+  border-color: @clr-violet;
+}
+
+.page-wrapper--advice {
+  border-color: @clr-blue-4;
 }
 
 .page-wrapper--blurred {
@@ -34,4 +37,38 @@
   -ms-filter: blur(@blur); 
   filter: blur(@blur); 
   filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
+}
+
+.wrapper__graffiti--stars {
+  position: absolute;
+  left: 20px;
+  top: 420px;
+}
+
+.wrapper__graffiti--arrows {
+  position: absolute;
+  right: 10px;
+  top: 800px;
+}
+
+@media screen and (max-width: @screen-sm-max) {
+  .page-wrapper {
+    border: none;
+  }
+
+  .wrapper__graffiti--stars {
+    position: absolute;
+    left: 20px;
+    top: 250px;
+  }
+
+  .wrapper__graffiti--arrows {
+    display: none;
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) {
+  .wrapper__graffiti--stars {
+    display: none;
+  }
 }

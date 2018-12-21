@@ -1,19 +1,12 @@
 import React from 'react';
 import Link, { withPrefix } from 'gatsby-link';
-import classNames from 'classnames';
 import SocialIcons from '../social-icons';
 import './index.less';
 
 export default props => {
-  const footerClasses = classNames('footer', {
-    'footer--custom': props.className
-  });
-  const footerInnerClasses = classNames('footer__inner', {
-    'footer__inner--custom': props.className
-  });
   return (
-    <footer className={footerClasses}>
-      <div className={footerInnerClasses}>
+    <footer className="footer">
+      <div className="footer__inner">
         <div className="footer__logo-icons-wrapper">
           <Link to="/" className="nav__logo footer__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
           <SocialIcons

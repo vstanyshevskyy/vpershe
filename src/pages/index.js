@@ -1,6 +1,6 @@
 import React from 'react';
 import graphql from 'graphql';
-import Link from 'gatsby-link';
+import Link, { withPrefix } from 'gatsby-link';
 import './index.less';
 import SEO from '../components/SEO';
 import Subscribe from '../components/subscribe';
@@ -23,8 +23,10 @@ export default function Template (props) {
       <Carousel items={carouselItems} />
       <ArticlesTiles items={articles} />
       <div className="homepage__stories">
+        <img className="homepage__graffiti homepage__graffiti--stories-eye graffiti graffiti--eye" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
         <h2 className="homepage__stories-title">Історії</h2>
         <ArticlesList items={stories} />
+        <img className="homepage__graffiti homepage__graffiti--vpershe graffiti graffiti--vpershe" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
         <Link to="/stories" className="link__all-records">Всі історії</Link>
       </div>
       <Subscribe
@@ -37,6 +39,7 @@ export default function Template (props) {
       />
       <div className="homepage__about">
         <h1 className="homepage__about-header">Про проект</h1>
+        <img className="homepage__graffiti homepage__graffiti--about-starts graffiti graffiti--stars" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
         <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject }} />
       </div>
       {

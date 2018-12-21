@@ -8,7 +8,7 @@ export default props => (
     <ul className="related-articles__list">
       {
         (props.links || []).map(link => (
-          <li>
+          <li className="related-articles__list-item">
             <Link key={link.url} className="related-articles__link" to={link.url}>{link.title}</Link>
           </li>
         ))

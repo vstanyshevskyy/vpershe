@@ -31,6 +31,7 @@ module.exports = class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
+          <link rel="manifest" href="/manifest.webmanifest" />
           <link href="/assets/icon-57x57.png" sizes="57x57" rel="apple-touch-icon" />
           <link href="/assets/icon-72x72.png" sizes="72x72" rel="apple-touch-icon" />
           <link href="/assets/icon-114x114.png" sizes="114x114" rel="apple-touch-icon" />

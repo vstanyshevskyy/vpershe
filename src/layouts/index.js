@@ -7,7 +7,7 @@ import { withPrefix } from 'gatsby-link';
 import './reset.css';
 import '../components/styleguide/index.less';
 import Questionbox from '../components/questionbox';
-import Navbar from '../components/Nav';
+import Navbar from '../components/navigation';
 import Footer from '../components/footer';
 import Subscribe from '../components/subscribe';
 import './index.less';

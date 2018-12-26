@@ -9,6 +9,9 @@ import Navbar from '../components/navigation';
 import Footer from '../components/footer';
 import Subscribe from '../components/subscribe';
 
+import '../components/styleguide/index.less';
+import './index.less';
+
 class Layout extends React.Component {
   constructor(props) {
     super(props);

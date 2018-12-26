@@ -1,6 +1,5 @@
 import React from 'react';
-import graphql from 'graphql';
-import Link, { withPrefix } from 'gatsby-link';
+import { graphql, Link, withPrefix } from 'gatsby';
 import './index.less';
 import SEO from '../components/SEO';
 import Subscribe from '../components/subscribe';
@@ -9,14 +8,14 @@ import Advice from '../components/advice';
 import ArticlesTiles from '../components/articles-tiles';
 import ArticlesList from '../components/articles-list';
 
-export default function Template (props) {
-  const carouselItems = ((props.data.carouselItems || {}).edges || []).map(c => c.node.frontmatter);
-  const stories = ((props.data.stories || {}).edges || []).map(c => c.node.frontmatter);
-  const articles = ((props.data.articles || {}).edges || []).map(c => c.node.frontmatter);
-  const settings = props.data.settings.edges[0].node.frontmatter;
-  const homepageAboutProject = props.data.homepageSettings.edges[0].node.html;
-  const subscribeSettings = props.data.subscribeSettings.edges[0].node.frontmatter;
-  const advice = ((props.data.advice || {}).edges || []).map(a => a.node.frontmatter);
+export default function Template ({ data }) {
+  const carouselItems = ((data.carouselItems || {}).edges || []).map(c => c.node.frontmatter);
+  const stories = ((data.stories || {}).edges || []).map(c => c.node.frontmatter);
+  const articles = ((data.articles || {}).edges || []).map(c => c.node.frontmatter);
+  const settings = data.settings.edges[0].node.frontmatter;
+  const homepageAboutProject = data.homepageSettings.edges[0].node.html;
+  const subscribeSettings = data.subscribeSettings.edges[0].node.frontmatter;
+  const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <div>
       <SEO defaults={settings} />
@@ -40,7 +39,7 @@ export default function Template (props) {
       <div className="homepage__about">
         <h1 className="homepage__about-header">Про проект</h1>
         <img className="homepage__graffiti homepage__graffiti--about-starts graffiti graffiti--stars" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
-        <div className="homepage__about-text" dangerouslySetInnerHTML={{__html: homepageAboutProject }} />
+        <div className="homepage__about-text" dangerouslySetInnerHTML={{ __html: homepageAboutProject }} />
       </div>
       {
         advice && advice.length

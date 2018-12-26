@@ -2,7 +2,8 @@ import React from 'react';
 import ListPage from './listPage';
 
 export default props => {
-  const adviceList = props.pathContext.group.map(advice => (
+  const { pageContext } = props;
+  const adviceList = pageContext.group.map(advice => (
     Object.assign({}, {
       html: advice.node.html
     }, advice.node.frontmatter)));
@@ -19,4 +20,3 @@ export default props => {
     </ListPage>
   );
 };
-

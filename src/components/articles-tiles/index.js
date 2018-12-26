@@ -1,13 +1,13 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import './index.less';
 
-export default props => (
+export default ({ items }) => (
   <div className="articles-tiles">
     <h2>Статті</h2>
     <ul className="articles-tiles__list">
       {
-        props.items.map(i => {
+        items.map(i => {
           const url = `/articles/${i.path}`;
           return (
             <li key={url} className="article-tiles__article">

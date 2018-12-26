@@ -1,8 +1,7 @@
 import React from 'react';
-import Link, { withPrefix } from 'gatsby-link';
+import { Link, withPrefix } from 'gatsby';
 import classNames from 'classnames';
-import FaBars from 'react-icons/lib/fa/bars';
-import FaClose from 'react-icons/lib/fa/close';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 import SocialIcons from '../social-icons';
 import './index.less';
@@ -16,30 +15,34 @@ export default class VpersheNav extends React.Component {
       isOpen: false
     };
   }
+
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   }
+
   render() {
+    const {
+      className, links, location, socialIcons
+    } = this.props;
+    const { isOpen } = this.state;
     const navClasses = classNames('nav', {
-      'nav--expanded': this.state.isOpen,
-      'nav--custom': this.props.className
+      'nav--expanded': isOpen,
+      'nav--custom': className
     });
     const navInnerClasses = classNames('nav__inner', {
-      'nav__inner--custom': this.props.className
+      'nav__inner--custom': className
     });
     return (
       <nav className={navClasses}>
         <div className={navInnerClasses}>
           <Link to="/" className="nav__logo"><img src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
-          <button onClick={this.toggle} className="nav__burger-btn" aria-label="Menu">
-            { this.state.isOpen ? <FaClose /> : <FaBars /> }
+          <button type="button" onClick={this.toggle} className="nav__burger-btn" aria-label="Menu">
+            { isOpen ? <FaTimes /> : <FaBars /> }
           </button>
           <ul className="nav__menu">
-            {(this.props.links || []).map(link => {
+            {(links || []).map(link => {
               const linkClasses = classNames('nav__menu-link', {
-                'nav__menu-link--current': this.props.location.startsWith(link.url)
+                'nav__menu-link--current': location.startsWith(link.url)
               }, `nav__menu-link--${link.url.split('/')[1]}`);
               return (
                 <li className="nav__menu-item" key={link.url}>
@@ -48,7 +51,7 @@ export default class VpersheNav extends React.Component {
               );
             })}
           </ul>
-          <SocialIcons listItemClassName="nav__social-icons-item" linkClassName="nav__social-icons-item-link" listClassName="nav__social-icons" icons={this.props.socialIcons} />
+          <SocialIcons listItemClassName="nav__social-icons-item" linkClassName="nav__social-icons-item-link" listClassName="nav__social-icons" icons={socialIcons} />
         </div>
       </nav>
     );

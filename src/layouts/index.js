@@ -1,8 +1,8 @@
 import React from 'react';
-import graphql from 'graphql';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
-import { withPrefix } from 'gatsby-link';
+import { StaticQuery, graphql, withPrefix } from 'gatsby';
+import { Location } from '@reach/router';
 
 import './reset.css';
 import '../components/styleguide/index.less';
@@ -20,11 +20,11 @@ class Layout extends React.Component {
     };
     this.blurPage = this.blurPage.bind(this);
   }
+
   blurPage() {
-    this.setState({
-      isPageBlurred: !this.state.isPageBlurred
-    });
+    this.setState(prevState => ({ isPageBlurred: !prevState.isPageBlurred }));
   }
+
   render () {
     const {
       children, location, data: {
@@ -35,11 +35,12 @@ class Layout extends React.Component {
       }
     } = this.props;
     const isHomePage = !(location.pathname.split('/')[1]);
+    const { isPageBlurred } = this.state;
     const wrapperClasses = classNames(
       'page-wrapper',
       {
         'page-wrapper--custom': !isHomePage,
-        'page-wrapper--blurred': this.state.isPageBlurred
+        'page-wrapper--blurred': isPageBlurred
       },
       `page-wrapper--${location.pathname.split('/')[1]}`
     );
@@ -71,17 +72,19 @@ class Layout extends React.Component {
               : null
           }
           <img className="wrapper__graffiti graffiti wrapper__graffiti--arrows" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
-          {children()}
+          {children}
           {
             location.pathname.split('/')[1]
-              ? <Subscribe
-                title={subscribeSettings.title}
-                emailPlaceholder={subscribeSettings.email_placeholder}
-                emailLabel={subscribeSettings.email_label}
-                buttonText={subscribeSettings.button_text}
-                thanksTitle={subscribeSettings.thanks_title}
-                thanksText={subscribeSettings.thanks_text}
-              />
+              ? (
+                <Subscribe
+                  title={subscribeSettings.title}
+                  emailPlaceholder={subscribeSettings.email_placeholder}
+                  emailLabel={subscribeSettings.email_label}
+                  buttonText={subscribeSettings.button_text}
+                  thanksTitle={subscribeSettings.thanks_title}
+                  thanksText={subscribeSettings.thanks_text}
+                />
+              )
               : null
           }
 
@@ -93,10 +96,7 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
-
-
-export const pageQuery = graphql`
+const pageQuery = graphql`
 query FooterData {
   FooterSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "footer_settings"} }}){
     edges{
@@ -163,3 +163,14 @@ query FooterData {
   }
 }
 `;
+
+export default ({ children }) => (
+  <StaticQuery
+    query={pageQuery}
+    render={data => (
+      <Location>
+        {({ location }) => (<Layout data={data} location={location}>{children}</Layout>)}
+      </Location>
+    )}
+  />
+);

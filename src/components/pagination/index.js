@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'gatsby';
 import './index.less';
 
 export default props => {
@@ -14,9 +15,9 @@ export default props => {
     const url = `/${props.prefix}/${i === 0 ? '' : i + 1}`;
     pages.push((
       <li key={url} className="pagination__page">
-        <a className={classes} href={url}>
+        <Link className={classes} to={url}>
           {i + 1}
-        </a>
+        </Link>
       </li>
     ));
   }

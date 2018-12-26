@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import FaClose from 'react-icons/lib/fa/close';
-import { withPrefix } from 'gatsby-link';
-import Heart from 'react-icons/lib/fa/heart';
+import { FaTimes, FaHeart } from 'react-icons/fa';
+import { withPrefix } from 'gatsby';
 import './index.less';
 
 export default class QuestionboxForm extends React.Component {
@@ -18,11 +17,13 @@ export default class QuestionboxForm extends React.Component {
       sent: false
     };
   }
+
   handleSubmit(event) {
+    const { onSubmit } = this.props;
     event.preventDefault();
     this.setState({ inProgress: true });
-    const promise = this.props.onSubmit
-      ? this.props.onSubmit(event)
+    const promise = onSubmit
+      ? onSubmit(event)
       : Promise.resolve();
     const allowedToShare = new FormData(event.target).get('allowed_to_share') === 'true';
     promise.then(() => {
@@ -33,42 +34,59 @@ export default class QuestionboxForm extends React.Component {
       });
     });
   }
+
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-    if (!this.state.isOpen) {
+    const { isOpen } = this.state;
+    const { onBoxToggle } = this.props;
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+    if (!isOpen) {
       if (!window) {
         return;
       }
       window.scrollTo(0, 0);
     } else {
-      this.setState({ sent: false })
+      this.setState({ sent: false });
     }
-    if (this.props.onBoxToggle) {
-      this.props.onBoxToggle();
+    if (onBoxToggle) {
+      onBoxToggle();
     }
   }
+
   keyboardToggle(e) {
     if (e.charCode && e.charCode === 13) {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
+      this.setState(prevState => ({ isOpen: !prevState.isOpen }));
     }
   }
+
   render() {
+    const {
+      isOpen, sent, inProgress, allowedToShare
+    } = this.state;
+    const {
+      toggleButtonText,
+      thanksTitle,
+      thanksTextAllowedToShare,
+      thanksTextNotAllowedToShare,
+      formInstructions,
+      emailLabel,
+      allowToShareLabel,
+      yesLabel,
+      noLabel,
+      questionAreaLabel,
+      submitButtonText
+    } = this.props;
     const classes = classNames('questionbox', {
-      'questionbox--open': this.state.isOpen,
-      'questionbox--sent': this.state.sent
+      'questionbox--open': isOpen,
+      'questionbox--sent': sent
     });
     const formClasses = classNames('questionbox__form', {
-      'questionbox__form--in-progress': this.state.inProgress
+      'questionbox__form--in-progress': inProgress
     });
 
     return (
       <div className={classes}>
         <div role="button" tabIndex="0" onKeyPress={this.keyboardToggle} onClick={this.toggle} className="questionbox__toggler" aria-label="Потрібна порада?">
-          <div className="questionbox__toggler-text">{this.props.toggleButtonText}</div>
+          <div className="questionbox__toggler-text">{toggleButtonText}</div>
           <img className="questionbox__toggle-icon" src={withPrefix('assets/chat.svg')} alt="" />
         </div>
         <div className="questionbox__container">
@@ -77,38 +95,38 @@ export default class QuestionboxForm extends React.Component {
             onClick={this.toggle}
             type="button"
           >
-            <FaClose />
+            <FaTimes />
           </button>
           {
-            this.state.sent
+            sent
               ? (
                 <div className="questionbox__thanks-container">
-                  <Heart className="questionbox__heart" />
-                  <p className="questionbox__thanks-title">{this.props.thanksTitle}</p>
+                  <FaHeart className="questionbox__heart" />
+                  <p className="questionbox__thanks-title">{thanksTitle}</p>
                   <p className="questionbox__thanks-text">
                     {
-                      this.state.allowedToShare
-                        ? this.props.thanksTextAllowedToShare
-                        : this.props.thanksTextNotAllowedToShare
+                      allowedToShare
+                        ? thanksTextAllowedToShare
+                        : thanksTextNotAllowedToShare
                     }
                   </p>
                 </div>
               )
               : (
                 <form className={formClasses} onSubmit={this.handleSubmit}>
-                  <p className="questionbox__form-description">{this.props.formInstructions}</p>
-                  <label className="questionbox__form-label" htmlFor="form-contact">{this.props.emailLabel}</label>
-                  <input id="form-contact" className="questionbox__email-input" type="email" name="email" placeholder={this.props.emailLabel} required />
-                  <p className="questionbox__form-allow-to-share-text">{this.props.allowToShareLabel}</p>
+                  <p className="questionbox__form-description">{formInstructions}</p>
+                  <label className="questionbox__form-label" htmlFor="form-contact">{emailLabel}</label>
+                  <input id="form-contact" className="questionbox__email-input" type="email" name="email" placeholder={emailLabel} required />
+                  <p className="questionbox__form-allow-to-share-text">{allowToShareLabel}</p>
                   <div className="questionbox__form-radiogroup">
                     <input className="questionbox__form-radio-btn" type="radio" id="allowed_to_share_y" name="allowed_to_share" value="true" checked />
-                    <label htmlFor="allowed_to_share_y">{this.props.yesLabel}</label>
+                    <label htmlFor="allowed_to_share_y">{yesLabel}</label>
                     <input className="questionbox__form-radio-btn questionbox__form-radio-btn--no" type="radio" id="allowed_to_share_n" name="allowed_to_share" value="false" />
-                    <label htmlFor="allowed_to_share_n">{this.props.noLabel}</label>
+                    <label htmlFor="allowed_to_share_n">{noLabel}</label>
                   </div>
-                  <label className="questionbox__form-label" htmlFor="form-message" >{this.props.questionAreaLabel}</label>
-                  <textarea className="questionbox__form-textarea" id="form-message" name="question" required placeholder={this.props.questionAreaLabel} />
-                  <button className="btn questionbox__form-btn" type="submit">{this.props.submitButtonText}</button>
+                  <label className="questionbox__form-label" htmlFor="form-message">{questionAreaLabel}</label>
+                  <textarea className="questionbox__form-textarea" id="form-message" name="question" required placeholder={questionAreaLabel} />
+                  <button className="btn questionbox__form-btn" type="submit">{submitButtonText}</button>
                 </form>
               )
           }

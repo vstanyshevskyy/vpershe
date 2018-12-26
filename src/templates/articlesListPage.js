@@ -3,7 +3,8 @@ import ArticleCard from '../components/article-card';
 import ListPage from './listPage';
 
 export default props => {
-  const { group, additionalContext: { contentType } } = props.pathContext;
+  const { pageContext } = props;
+  const { group, additionalContext: { contentType } } = pageContext;
   const entries = group.map(entry => entry.node.frontmatter);
 
   return (

@@ -1,17 +1,20 @@
+/* eslint-disable camelcase */
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import './index.less';
 
-export default props => (
+export default ({
+  url, image, image_alt, contentType, title, subtitle
+}) => (
   <li className="article-card">
-    <Link to={props.url}>
-      <img alt={props.image_alt} className="article-card__image" src={props.image} />
+    <Link to={url}>
+      <img alt={image_alt} className="article-card__image" src={image} />
     </Link>
-    <Link className={`article-card__title article-card__title--${props.contentType}`} to={props.url}>
-      {props.title}
+    <Link className={`article-card__title article-card__title--${contentType}`} to={url}>
+      {title}
     </Link>
     <p className="article-card__subtitle">
-      {props.subtitle}
+      {subtitle}
     </p>
   </li>
 );

@@ -2,10 +2,10 @@ import React from 'react';
 import ArticleCard from '../article-card';
 import './index.less';
 
-export default props => (
+export default ({ items }) => (
   <ul className="articles-list">
     {
-      props.items.map(i => {
+      items.map(i => {
         const url = `/${i.contentType || 'stories'}/${i.path}`;
         return (
           <ArticleCard

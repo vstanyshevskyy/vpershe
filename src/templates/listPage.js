@@ -4,14 +4,14 @@ import TagsList from '../components/tags';
 import Pagination from '../components/pagination';
 import SEO from '../components/SEO';
 
-export default props => {
+export default ({ pageContext, children }) => {
   const {
     index, pageCount,
     additionalContext: {
       tag, tags, settings, globalSettings, contentType
     }
-  } = props.pathContext;
-  const url = `${props.pathContext.pathPrefix}${index === 1 ? '' : `/${index}`}`;
+  } = pageContext;
+  const url = `${pageContext.pathPrefix}${index === 1 ? '' : `/${index}`}`;
   const seoData = Object.assign({}, settings, { url });
 
   return (
@@ -20,14 +20,16 @@ export default props => {
       <ul className={`index-page__list index-page__list--${contentType}`}>
         <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
           {tags.length
-            ? <TagsList
-              pageName={contentType}
-              current={tag}
-              tags={tags}
-            />
+            ? (
+              <TagsList
+                pageName={contentType}
+                current={tag}
+                tags={tags}
+              />
+            )
             : null}
         </div>
-        { props.children }
+        { children }
       </ul>
       <hr className={`hr hr--${contentType} hr--pagination`} />
       <Pagination pages={pageCount} current={index} prefix={contentType} />

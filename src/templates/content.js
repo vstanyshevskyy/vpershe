@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { withPrefix } from 'gatsby-link';
+import { withPrefix } from 'gatsby';
 import moment from 'moment';
 import 'moment/locale/uk';
 import Config from '../config';
@@ -16,23 +16,26 @@ export default class Content extends React.Component {
     this.renderRelatedArticles = this.renderRelatedArticles.bind(this);
     this.makeLinksOpenInNewTab = this.makeLinksOpenInNewTab.bind(this);
   }
+
   componentDidMount = () => {
     this.mountAddThis();
     this.makeLinksOpenInNewTab();
   }
+
   mountAddThis = () => {
     const script = document.createElement('script');
-    script.src =
-      `//s7.addthis.com/js/300/addthis_widget.js#pubid=${Config.addThis.id}`;
+    script.src = `//s7.addthis.com/js/300/addthis_widget.js#pubid=${Config.addThis.id}`;
     script.async = true;
     document.body.appendChild(script);
   }
+
   makeLinksOpenInNewTab() {
     this.contentNode.querySelectorAll('a').forEach(el => {
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener');
     });
   }
+
   renderRelatedArticles = items => {
     if (!items.length) return null;
     const articles = items.map(i => {
@@ -46,13 +49,14 @@ export default class Content extends React.Component {
       </div>
     );
   }
+
   render() {
     moment.locale('uk');
+    const { pageContext } = this.props;
     const pageData = Object.assign({}, {
-      html: this.props.pathContext.data.html
-    }, this.props.pathContext.data.frontmatter);
-    const settings = this.props.pathContext.settings;
-    const globalSettings = this.props.pathContext.globalSettings;
+      html: pageContext.data.html
+    }, pageContext.data.frontmatter);
+    const { settings, globalSettings } = pageContext;
     const relatedBottom = (pageData.related_bottom || []);
     const relatedAside = (pageData.related_sidebar || []).map(item => ({
       url: `/${item.contentType}/${item.path}`,

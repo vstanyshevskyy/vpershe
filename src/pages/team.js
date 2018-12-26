@@ -1,18 +1,17 @@
 import React from 'react';
-import graphql from 'graphql';
-import { withPrefix } from 'gatsby-link';
+import { graphql, withPrefix } from 'gatsby';
 import './team.less';
 import SEO from '../components/SEO';
 
-export default function Template (props) {
-  const data = props.data.team.edges[0].node.frontmatter;
-  const settings = props.data.settings.edges[0].node.frontmatter;
+export default function Template ({ data }) {
+  const pageData = data.team.edges[0].node.frontmatter;
+  const settings = data.settings.edges[0].node.frontmatter;
   return (
     <div className="index-page__content-wrapper">
-      <SEO data={data} defaults={settings} />
+      <SEO data={pageData} defaults={settings} />
       <ul className="teams-list">
         {
-          data.groups.map(group => (group.people && group.people.length
+          pageData.groups.map(group => (group.people && group.people.length
             ? (
               <li className="teams-list__team">
                 <h2 className="teams-list__team-title">{group.name}</h2>

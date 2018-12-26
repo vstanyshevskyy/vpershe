@@ -15,8 +15,8 @@ const prepareRelatedContent = (input, allContent) => {
     }).filter(el => el);
 };
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions;
 
   return graphql(`
     {

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import Heart from 'react-icons/lib/fa/heart';
-import { withPrefix } from 'gatsby-link';
+import { FaHeart } from 'react-icons/fa';
+import { withPrefix } from 'gatsby';
 import './index.less';
 
 class SubscribeForm extends React.Component {
@@ -12,11 +12,13 @@ class SubscribeForm extends React.Component {
       inProgress: false
     };
   }
+
   handleSubmit(event) {
+    const { onSubmit } = this.props;
     event.preventDefault();
     this.setState({ inProgress: true });
-    const promise = this.props.onSubmit
-      ? this.props.onSubmit(event)
+    const promise = onSubmit
+      ? onSubmit(event)
       : Promise.resolve();
     promise.then(() => {
       this.setState({
@@ -25,37 +27,47 @@ class SubscribeForm extends React.Component {
       });
     });
   }
+
   render() {
+    const { thanks, inProgress } = this.state;
+    const {
+      thanksTitle,
+      thanksText,
+      title,
+      emailLabel,
+      emailPlaceholder,
+      buttonText
+    } = this.props;
     const subscribeClasses = classNames('subscribe', {
-      'subscribe--thanks': this.state.thanks,
-      'subscribe--in-progress': this.state.inProgress
+      'subscribe--thanks': thanks,
+      'subscribe--in-progress': inProgress
     });
     const thanksMessage = (
       <div className={subscribeClasses}>
-        <Heart className="subscribe__heart" />
-        <p className="h3">{this.props.thanksTitle}</p>
-        <p>{this.props.thanksText}</p>
+        <FaHeart className="subscribe__heart" />
+        <p className="h3">{thanksTitle}</p>
+        <p>{thanksText}</p>
       </div>
     );
-    return this.state.thanks ? thanksMessage : (
+    return thanks ? thanksMessage : (
       <div className={subscribeClasses}>
         <form
           className="subscribe__form"
           onSubmit={this.handleSubmit}
         >
-          <h3 className="subscribe_header">{this.props.title}</h3>
+          <h3 className="subscribe_header">{title}</h3>
           <div className="subscribe__controls">
             <input
-              aria-label={this.props.emailLabel}
+              aria-label={emailLabel}
               id="subscribe__form-email"
               className="subscribe__form-email"
               type="email"
               required
               name="email"
-              placeholder={this.props.emailPlaceholder}
+              placeholder={emailPlaceholder}
             />
             <img className="subscribe__graffiti graffiti graffiti--birds" alt="" width="67" src={withPrefix('assets/graffiti/birds.svg')} aria-hidden="true" />
-            <button className="btn subscribe__form-btn">{this.props.buttonText}</button>
+            <button type="submit" className="btn subscribe__form-btn">{buttonText}</button>
           </div>
         </form>
       </div>

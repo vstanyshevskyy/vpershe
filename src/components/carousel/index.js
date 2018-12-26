@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
-import Link, { withPrefix } from 'gatsby-link';
+import { Link, withPrefix } from 'gatsby';
 import SliderButton from './PrevNextButton';
 import './index.less';
 
@@ -65,20 +65,24 @@ export default class Carousel extends React.Component {
       ]
     };
   }
+
   onSliderInit() {
     this.setState({
       isLoaded: true
     });
   }
+
   render() {
-    const sliderClasses = classNames('slider', this.props.className);
+    const { className, items } = this.props;
+    const { isLoaded } = this.state;
+    const sliderClasses = classNames('slider', className);
     return (
       <Slider className={sliderClasses} {...this.settings}>
         {
-          this.props.items.map((i, index) => {
+          items.map((i, index) => {
             const url = `/${i.contentType}/${i.path}`;
             const classes = classNames('slider__item', {
-              'slider__item--hidden': index > 0 && !this.state.isLoaded
+              'slider__item--hidden': index > 0 && !isLoaded
             });
             return (
               <div key={url} className={classes}>

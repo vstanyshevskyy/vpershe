@@ -8,5 +8,7 @@ bottomLinks:
     url: /contacts
   - text: Вакансії
     url: /jobs
+  - text: Команда
+    url: /team
 ---
 

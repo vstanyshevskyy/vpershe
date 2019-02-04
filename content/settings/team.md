@@ -26,7 +26,7 @@ groups:
           role: Дизайнерка
       - person:
           name: Віталій Станишевський
-          photo: ''
+          photo: /assets/uploads/111.jpg
           role: 'Веб-розробник, адміністратор'
     perLine: 3
   - name: Автор(к)и

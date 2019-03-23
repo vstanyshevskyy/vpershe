@@ -5,6 +5,7 @@ import moment from 'moment';
 import 'moment/locale/uk';
 import Config from '../config';
 import './content.less';
+import Layout from '../layouts';
 import TagsList from '../components/tags';
 import ArticlesList from '../components/articles-list';
 import RelatedLinks from '../components/realted-links';
@@ -64,56 +65,58 @@ export default class Content extends React.Component {
     }));
     const seoData = Object.assign({}, settings, { image: pageData.image });
     return (
-      <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
-        <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
-        <article className="content__article">
-          { pageData.image
-            ? <img className="content__img" src={withPrefix(pageData.image)} alt="" />
-            : null }
-          <div className="content__article-head">
-            <h1 className="content__title">{pageData.title}</h1>
-            <div className="content__subtitle">{pageData.subtitle}</div>
-            {
-              pageData.publishTime
-                ? <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>
-                : null
-            }
-          </div>
-          <div className="content__article-wrapper">
-            <div
-              className="content__content"
-              dangerouslySetInnerHTML={{ __html: pageData.html }}
-              ref={c => { this.contentNode = c; }}
-            />
-            <aside className="content__sidebar">
+      <Layout>
+        <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
+          <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
+          <article className="content__article">
+            { pageData.image
+              ? <img className="content__img" src={withPrefix(pageData.image)} alt="" />
+              : null }
+            <div className="content__article-head">
+              <h1 className="content__title">{pageData.title}</h1>
+              <div className="content__subtitle">{pageData.subtitle}</div>
               {
-                pageData.related_sidebar && pageData.related_sidebar.length
-                  ? <RelatedLinks links={relatedAside} />
+                pageData.publishTime
+                  ? <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>
                   : null
               }
-              <div className="content__addthis addthis_toolbox">
-                <div className="content__addthis-images-container custom_images">
-                  <a className="addthis_custom_button addthis_button_facebook"><img className="addthis_button_icon" height="23" src={withPrefix('assets/facebook.svg')} alt="Share with Facebook" /></a>
-                  <a className="addthis_custom_button addthis_button_twitter"><img className="addthis_button_icon" height="20" src={withPrefix('assets/twitter.svg')} alt="Share with Twitter" /></a>
-                  <a className="addthis_custom_button addthis_button_link"><img className="addthis_button_icon" height="20" src={withPrefix('assets/link.svg')} alt="Copy Link" /></a>
-                  <a className="addthis_custom_button addthis_button_email"><img className="addthis_button_icon" height="17" src={withPrefix('assets/envelope.svg')} alt="Share via Twitter" /></a>
+            </div>
+            <div className="content__article-wrapper">
+              <div
+                className="content__content"
+                dangerouslySetInnerHTML={{ __html: pageData.html }}
+                ref={c => { this.contentNode = c; }}
+              />
+              <aside className="content__sidebar">
+                {
+                  pageData.related_sidebar && pageData.related_sidebar.length
+                    ? <RelatedLinks links={relatedAside} />
+                    : null
+                }
+                <div className="content__addthis addthis_toolbox">
+                  <div className="content__addthis-images-container custom_images">
+                    <a className="addthis_custom_button addthis_button_facebook"><img className="addthis_button_icon" height="23" src={withPrefix('assets/facebook.svg')} alt="Share with Facebook" /></a>
+                    <a className="addthis_custom_button addthis_button_twitter"><img className="addthis_button_icon" height="20" src={withPrefix('assets/twitter.svg')} alt="Share with Twitter" /></a>
+                    <a className="addthis_custom_button addthis_button_link"><img className="addthis_button_icon" height="20" src={withPrefix('assets/link.svg')} alt="Copy Link" /></a>
+                    <a className="addthis_custom_button addthis_button_email"><img className="addthis_button_icon" height="17" src={withPrefix('assets/envelope.svg')} alt="Share via Twitter" /></a>
+                  </div>
                 </div>
-              </div>
-            </aside>
-          </div>
-        </article>
-        <aside>
-          <div className="content__tags-social-container">
-            {
-              pageData.tags && pageData.tags.length
-                ? <TagsList pageName={pageData.contentType} tags={pageData.tags} />
-                : null
-            }
-          </div>
-          { this.renderRelatedArticles(relatedBottom) }
-        </aside>
+              </aside>
+            </div>
+          </article>
+          <aside>
+            <div className="content__tags-social-container">
+              {
+                pageData.tags && pageData.tags.length
+                  ? <TagsList pageName={pageData.contentType} tags={pageData.tags} />
+                  : null
+              }
+            </div>
+            { this.renderRelatedArticles(relatedBottom) }
+          </aside>
 
-      </div>
+        </div>
+      </Layout>
     );
   }
 }

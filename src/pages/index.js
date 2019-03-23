@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql, Link, withPrefix } from 'gatsby';
 import './index.less';
-import Layout from '../layouts';
 import SEO from '../components/SEO';
 import Subscribe from '../components/subscribe';
 import Carousel from '../components/carousel';
@@ -18,43 +17,41 @@ export default function Template ({ data }) {
   const subscribeSettings = data.subscribeSettings.edges[0].node.frontmatter;
   const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
-    <Layout>
-      <div>
-        <SEO defaults={settings} />
-        <Carousel items={carouselItems} />
-        <ArticlesTiles items={articles} />
-        <div className="homepage__stories">
-          <img className="homepage__graffiti homepage__graffiti--stories-eye graffiti graffiti--eye" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
-          <h2 className="homepage__stories-title">Історії</h2>
-          <ArticlesList items={stories} />
-          <img className="homepage__graffiti homepage__graffiti--vpershe graffiti graffiti--vpershe" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
-          <Link to="/stories" className="link__all-records">Всі історії</Link>
-        </div>
-        <Subscribe
-          title={subscribeSettings.title}
-          emailPlaceholder={subscribeSettings.email_placeholder}
-          emailLabel={subscribeSettings.email_label}
-          buttonText={subscribeSettings.button_text}
-          thanksTitle={subscribeSettings.thanks_title}
-          thanksText={subscribeSettings.thanks_text}
-        />
-        <div className="homepage__about">
-          <h1 className="homepage__about-header">Про проект</h1>
-          <img className="homepage__graffiti homepage__graffiti--about-starts graffiti graffiti--stars" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
-          <div className="homepage__about-text" dangerouslySetInnerHTML={{ __html: homepageAboutProject }} />
-        </div>
-        {
-          advice && advice.length
-            ? (
-              <React.Fragment>
-                <hr />
-                <Advice items={advice} />
-              </React.Fragment>
-            )
-            : null
-        }
+    <div>
+      <SEO defaults={settings} />
+      <Carousel items={carouselItems} />
+      <ArticlesTiles items={articles} />
+      <div className="homepage__stories">
+        <img className="homepage__graffiti homepage__graffiti--stories-eye graffiti graffiti--eye" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
+        <h2 className="homepage__stories-title">Історії</h2>
+        <ArticlesList items={stories} />
+        <img className="homepage__graffiti homepage__graffiti--vpershe graffiti graffiti--vpershe" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
+        <Link to="/stories" className="link__all-records">Всі історії</Link>
       </div>
-    </Layout>
+      <Subscribe
+        title={subscribeSettings.title}
+        emailPlaceholder={subscribeSettings.email_placeholder}
+        emailLabel={subscribeSettings.email_label}
+        buttonText={subscribeSettings.button_text}
+        thanksTitle={subscribeSettings.thanks_title}
+        thanksText={subscribeSettings.thanks_text}
+      />
+      <div className="homepage__about">
+        <h1 className="homepage__about-header">Про проект</h1>
+        <img className="homepage__graffiti homepage__graffiti--about-starts graffiti graffiti--stars" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
+        <div className="homepage__about-text" dangerouslySetInnerHTML={{ __html: homepageAboutProject }} />
+      </div>
+      {
+        advice && advice.length
+          ? (
+            <React.Fragment>
+              <hr />
+              <Advice items={advice} />
+            </React.Fragment>
+          )
+          : null
+      }
+    </div>
   );
 }
 

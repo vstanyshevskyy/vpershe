@@ -11,7 +11,7 @@ class SliderButton extends React.Component {
       'slider__arrow--next': !isPrev
     });
     return (
-      <button {...this.props} type="button">
+      <button {...this.props} type="button" aria-label={isPrev ? 'Назад' : 'Вперед'}>
         <img className={btnClasses} src={withPrefix('assets/navigation.svg')} alt="" />
         {this.children}
       </button>

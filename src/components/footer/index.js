@@ -15,13 +15,15 @@ export default ({ socialIcons, bottomLinks, copyrightText }) => (
           linkClassName="social-icons-link--footer"
         />
       </div>
-      <ul className="footer__nav" role="navigation">
-        {bottomLinks.map(link => (
-          <li className="footer__nav-item" key={link.url}>
-            <Link className="footer__nav-link" to={link.url}>{link.text}</Link>
-          </li>
-        ))}
-      </ul>
+      <div className="footer__nav-container" role="navigation">
+        <ul className="footer__nav">
+          {bottomLinks.map(link => (
+            <li className="footer__nav-item" key={link.url}>
+              <Link className="footer__nav-link" to={link.url}>{link.text}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="footer__copyright">
         {copyrightText}
       </div>

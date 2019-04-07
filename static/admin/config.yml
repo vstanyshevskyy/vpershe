@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: vstanyshevskyy/vpershe
-  branch: main
+  branch: adventures
 
 media_folder: "static/assets/uploads"
 public_folder: "/assets/uploads"
@@ -461,6 +461,35 @@ collections:
                 options: ["Facebook", "Twitter", "Instagram", "Google"]
               - label: "Посилання"
                 name: "url"
+                widget: "string"
+  - name: games
+    label: Інтерактив
+    folder: "content/games"
+    filter: {field: "contentType", value: "games"}
+    create: true
+    fields:
+      - {label: "Type", name: "contentType", widget: "hidden", default: "games"}
+      - {label: "Url", name: "path", widget: "string"}
+      - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "Мініатюра для списку", name: "bannerUrl", widget: "string"}
+      - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
+      - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
+      - label: "steps"
+        name: "steps"
+        widget: "list"
+        fields:
+          - {label: "#", name: "id", widget: "string"}
+          - {label: "Заголовок", name: "title", widget: "string"}
+          - {label: "Текст", name: "body", widget: "markdown"} 
+          - label: "Варіанти"
+            name: "options"
+            widget: "list"
+            fields:
+              - label: "Текст"
+                name: "text"
+                widget: "string"
+              - label: "Крок #"
+                name: "targetId"
                 widget: "string"
   - name: content
     label: Весь контент - краще не чіпати

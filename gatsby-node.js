@@ -1,6 +1,7 @@
 const path = require('path');
-const config = require('./src/config');
 const createPaginatedPages = require('gatsby-paginate');
+const config = require('./src/config');
+const gatsbyGameQuery = require('./gatsby-game-query');
 
 const prepareRelatedContent = (input, allContent) => {
   const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
@@ -17,6 +18,8 @@ const prepareRelatedContent = (input, allContent) => {
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
+
+  gatsbyGameQuery(createPage, graphql);
 
   return graphql(`
     {

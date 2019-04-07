@@ -43,6 +43,13 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/games`,
+        name: 'games'
+      }
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Vpershe',

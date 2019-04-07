@@ -1,6 +1,46 @@
 const path = require('path');
-const config = require('./src/config');
 const createPaginatedPages = require('gatsby-paginate');
+const { createFilePath } = require('gatsby-source-filesystem');
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
+
+// exports.onCreateNode = ({ node }) => {
+//   fmImagesToRelative(node);
+// };
+const config = require('./src/config');
+
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+  fmImagesToRelative(node);
+
+  if (node.internal.type === 'MarkdownRemark') {
+    const value = createFilePath({ node, getNode });
+    createNodeField({
+      name: 'slug',
+      node,
+      value
+    });
+  }
+};
+
+// exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
+//   const { createNodeField } = boundActionCreators;
+//   if (node.internal.type === 'MarkdownRemark') {
+//     console.log(Object.keys(node.frontmatter));
+//     if (node.frontmatter && node.frontmatter.image) {
+//       node.frontmatter = {
+//         ...node.frontmatter,
+//         imageFile: createFilePath({ node, getNode })
+//       }
+//     }
+//     // const value = createFilePath({ node, getNode });
+//     // createNodeField({
+//     //   name: 'slug',
+//     //   node,
+//     //   value
+//     // });
+//   }
+// };
 
 const prepareRelatedContent = (input, allContent) => {
   const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;

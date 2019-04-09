@@ -45,15 +45,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/games`,
-        name: 'games'
+        name: 'games',
+        path: `${__dirname}/content/games`
       }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/gameSteps`,
-        name: 'gameSteps'
+        name: 'gameSteps',
+        path: `${__dirname}/content/gameSteps`
       }
     },
     {

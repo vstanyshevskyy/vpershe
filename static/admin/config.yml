@@ -480,6 +480,7 @@ collections:
     filter: {field: "contentType", value: "gameSteps"}
     create: true
     fields:
+      - {label: "Type", name: "contentType", widget: "hidden", default: "gameSteps"}
       - widget: "relation"
         label: 'Гра'
         hint: 'Шукай за назвою'

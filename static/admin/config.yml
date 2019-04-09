@@ -474,23 +474,56 @@ collections:
       - {label: "Мініатюра для списку", name: "bannerUrl", widget: "string"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
-      - label: "steps"
-        name: "steps"
+  - name: gameSteps
+    label: Інтерактив - кроки
+    folder: "content/gameSteps"
+    filter: {field: "contentType", value: "gameSteps"}
+    create: true
+    fields:
+      - widget: "relation"
+        label: 'Гра'
+        hint: 'Шукай за назвою'
+        name: 'game'
+        collection: "games"
+        searchFields: ["title"]
+        displayFields: ["title"]
+        valueField: "title"
+        required: true
+      - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "Текст", name: "body", widget: "markdown", required: false}
+      - label: "Посилання на статтю"
+        name: "content"
         widget: "list"
+        required: false
+        default: []
         fields:
-          - {label: "#", name: "id", widget: "string"}
-          - {label: "Заголовок", name: "title", widget: "string"}
-          - {label: "Текст", name: "body", widget: "markdown"} 
-          - label: "Варіанти"
-            name: "options"
-            widget: "list"
-            fields:
-              - label: "Текст"
-                name: "text"
-                widget: "string"
-              - label: "Крок #"
-                name: "targetId"
-                widget: "string"
+          - widget: "relation"
+            label: 'URL'
+            hint: 'Шукай за назвою'
+            name: 'path'
+            collection: "content"
+            searchFields: ["title"]
+            displayFields: ["title", "contentType"]
+            valueField: "path"
+          - label: "Текст"
+            name: "text"
+            widget: "string"
+      - label: "Варіанти"
+        name: "options"
+        widget: "list"
+        default: []
+        fields:
+          - label: "Текст"
+            name: "text"
+            widget: "string"
+          - widget: "relation"
+            label: 'Крок'
+            hint: 'Шукай за назвою'
+            name: 'gameSteps'
+            collection: "gameSteps"
+            searchFields: ["title"]
+            displayFields: ["title"]
+            valueField: "title"
   - name: content
     label: Весь контент - краще не чіпати
     folder: "content/content"

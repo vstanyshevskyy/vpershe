@@ -47,6 +47,8 @@ exports.createPages = ({ actions, graphql }) => {
               related_sidebar {
                 path
               }
+              relatedSidebarMobilePosition
+              relatedSidebarMobileTitle
               related_bottom {
                 path
               }
@@ -80,6 +82,8 @@ exports.createPages = ({ actions, graphql }) => {
               related_sidebar {
                 path
               }
+              relatedSidebarMobilePosition
+              relatedSidebarMobileTitle
               related_bottom {
                 path
               }
@@ -113,6 +117,8 @@ exports.createPages = ({ actions, graphql }) => {
               related_sidebar {
                 path
               }
+              relatedSidebarMobilePosition
+              relatedSidebarMobileTitle
               related_bottom {
                 path
               }

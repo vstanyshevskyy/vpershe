@@ -35,6 +35,16 @@ collections:
         required: false
         fields:
           - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
+      - label: "Цікаве для тебе - заголовок для мобілок"
+        name: "relatedSidebarMobileTitle"
+        default: "Цікаве для тебе"
+        widget: "string"
+      - label: "Цікаве для тебе - показувати після Х абзацу"
+        name: "relatedSidebarMobilePosition"
+        default: 4
+        valueType: "int"
+        min: 1
+        widget: "number"
       - label: "Схожі матеріали"
         name: "related_bottom"
         widget: "list"
@@ -72,6 +82,16 @@ collections:
         required: false
         fields:
           - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
+      - label: "Цікаве для тебе - заголовок для мобілок"
+        name: "relatedSidebarMobileTitle"
+        default: "Цікаве для тебе"
+        widget: "string"
+      - label: "Цікаве для тебе - показувати після Х абзацу"
+        name: "relatedSidebarMobilePosition"
+        default: 4
+        valueType: "int"
+        min: 1
+        widget: "number"
       - label: "Схожі матеріали"
         name: "related_bottom"
         widget: "list"
@@ -109,6 +129,16 @@ collections:
         required: false
         fields:
           - {widget: "relation", label: 'URL', hint: 'Шукай за назвою', name: 'path', collection: "content", searchFields: ["title"], displayFields: ["title", "contentType"], valueField: "path"}
+      - label: "Цікаве для тебе - заголовок для мобілок"
+        name: "relatedSidebarMobileTitle"
+        default: "Цікаве для тебе"
+        widget: "string"
+      - label: "Цікаве для тебе - показувати після Х абзацу"
+        name: "relatedSidebarMobilePosition"
+        default: 4
+        valueType: "int"
+        min: 1
+        widget: "number"
       - label: "Схожі матеріали"
         name: "related_bottom"
         widget: "list"

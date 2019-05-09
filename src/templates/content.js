@@ -8,7 +8,7 @@ import './content.less';
 import Layout from '../layouts';
 import TagsList from '../components/tags';
 import ArticlesList from '../components/articles-list';
-import RelatedLinks from '../components/realted-links';
+import RelatedLinks from '../components/related-links';
 import SEO from '../components/SEO';
 
 export default class Content extends React.Component {

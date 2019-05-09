@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'gatsby';
 import './index.less';
 
-export default ({ links = [] }) => (
+export default ({ links = [], title = 'Цікаве для тебе' }) => (
   <div className="related-articles">
-    <h5 className="related-articles__title">Цікаве для тебе</h5>
+    <h5 className="related-articles__title">{title}</h5>
     <ul className="related-articles__list">
       {
         links.map(link => (
-          <li className="related-articles__list-item">
-            <Link key={link.url} className="related-articles__link" to={link.url}>{link.title}</Link>
+          <li key={link.url} className="related-articles__list-item">
+            <Link className="related-articles__link" to={link.url}>{link.title}</Link>
           </li>
         ))
       }

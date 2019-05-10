@@ -504,57 +504,231 @@ collections:
       - {label: "Мініатюра для списку", name: "bannerUrl", widget: "string"}
       - {label: "Час публікації", name: "publishTime", required: false, widget: "datetime"}
       - {label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false}
-  - name: gameSteps
-    label: Інтерактив - кроки
-    folder: "content/gameSteps"
-    filter: {field: "contentType", value: "gameSteps"}
-    create: true
-    fields:
-      - {label: "Type", name: "contentType", widget: "hidden", default: "gameSteps"}
-      - widget: "relation"
-        label: 'Гра'
-        hint: 'Шукай за назвою'
-        name: 'game'
-        collection: "games"
-        searchFields: ["title"]
-        displayFields: ["title"]
-        valueField: "title"
-        required: true
-      - {label: "Заголовок", name: "title", widget: "string"}
-      - {label: "Текст", name: "body", widget: "markdown", required: false}
-      - label: "Посилання на статтю"
-        name: "content"
+      - label: 'Варіанти'
+        name: 'options'
         widget: "list"
         required: false
         default: []
         fields:
-          - widget: "relation"
-            label: 'URL'
-            hint: 'Шукай за назвою'
-            name: 'path'
-            collection: "content"
-            searchFields: ["title"]
-            displayFields: ["title", "contentType"]
-            valueField: "path"
+          - widget: "string"
+            label: 'Текст кнопки'
+            required: false
+            name: 'buttonText'
+          - widget: "string"
+            label: 'Заголовок'
+            name: 'title'
+            required: false
           - label: "Текст"
             name: "text"
+            required: false
             widget: "string"
-      - label: "Варіанти"
-        name: "options"
-        widget: "list"
-        default: []
-        fields:
-          - label: "Текст"
-            name: "text"
-            widget: "string"
-          - widget: "relation"
-            label: 'Крок'
-            hint: 'Шукай за назвою'
-            name: 'gameSteps'
-            collection: "gameSteps"
-            searchFields: ["title"]
-            displayFields: ["title"]
-            valueField: "title"
+          - label: "Зображення"
+            name: "image"
+            widget: "image"
+            required: false
+          - label: "Варіанти"
+            name: 'options'
+            widget: "list"
+            required: false
+            default: []
+            fields:
+              - widget: "string"
+                label: 'Текст кнопки'
+                required: false
+                name: 'buttonText'
+              - widget: "string"
+                label: 'Заголовок'
+                name: 'title'
+                required: false
+              - label: "Текст"
+                name: "text"
+                required: false
+                widget: "string"
+              - label: "Зображення"
+                name: "image"
+                widget: "image"
+                required: false
+              - label: "Варіанти"
+                name: 'options'
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - widget: "string"
+                    label: 'Текст кнопки'
+                    required: false
+                    name: 'buttonText'
+                  - widget: "string"
+                    label: 'Заголовок'
+                    name: 'title'
+                    required: false
+                  - label: "Текст"
+                    name: "text"
+                    required: false
+                    widget: "string"
+                  - label: "Зображення"
+                    name: "image"
+                    widget: "image"
+                    required: false
+                  - label: "Варіанти"
+                    name: 'options'
+                    widget: "list"
+                    required: false
+                    default: []
+                    fields:
+                      - widget: "string"
+                        label: 'Текст кнопки'
+                        required: false
+                        name: 'buttonText'
+                      - widget: "string"
+                        label: 'Заголовок'
+                        name: 'title'
+                        required: false
+                      - label: "Текст"
+                        name: "text"
+                        required: false
+                        widget: "string"
+                      - label: "Зображення"
+                        name: "image"
+                        widget: "image"
+                        required: false
+                      - label: "Варіанти"
+                        name: 'options'
+                        widget: "list"
+                        required: false
+                        default: []
+                        fields:
+                          - widget: "string"
+                            label: 'Текст кнопки'
+                            required: false
+                            name: 'buttonText'
+                          - widget: "string"
+                            label: 'Заголовок'
+                            name: 'title'
+                            required: false
+                          - label: "Текст"
+                            name: "text"
+                            required: false
+                            widget: "string"
+                          - label: "Зображення"
+                            name: "image"
+                            widget: "image"
+                            required: false
+                          - label: "Варіанти"
+                            name: 'options'
+                            widget: "list"
+                            required: false
+                            default: []
+                            fields:
+                              - widget: "string"
+                                label: 'Текст кнопки'
+                                required: false
+                                name: 'buttonText'
+                              - widget: "string"
+                                label: 'Заголовок'
+                                name: 'title'
+                                required: false
+                              - label: "Текст"
+                                name: "text"
+                                required: false
+                                widget: "string"
+                              - label: "Зображення"
+                                name: "image"
+                                widget: "image"
+                                required: false
+                              - label: "Варіанти"
+                                name: 'options'
+                                widget: "list"
+                                required: false
+                                default: []
+                                fields:
+                                  - widget: "string"
+                                    label: 'Текст кнопки'
+                                    required: false
+                                    name: 'buttonText'
+                                  - widget: "string"
+                                    label: 'Заголовок'
+                                    name: 'title'
+                                    required: false
+                                  - label: "Текст"
+                                    name: "text"
+                                    required: false
+                                    widget: "string"
+                                  - label: "Зображення"
+                                    name: "image"
+                                    widget: "image"
+                                    required: false
+                                  - label: "Варіанти"
+                                    name: 'options'
+                                    widget: "list"
+                                    required: false
+                                    default: []
+                                    fields:
+                                      - widget: "string"
+                                        label: 'Текст кнопки'
+                                        required: false
+                                        name: 'buttonText'
+                                      - widget: "string"
+                                        label: 'Заголовок'
+                                        name: 'title'
+                                        required: false
+                                      - label: "Текст"
+                                        name: "text"
+                                        required: false
+                                        widget: "string"
+                                      - label: "Зображення"
+                                        name: "image"
+                                        widget: "image"
+                                        required: false
+                                      - label: "Варіанти"
+                                        name: 'options'
+                                        widget: "list"
+                                        required: false
+                                        default: []
+                                        fields:
+                                          - widget: "string"
+                                            label: 'Текст кнопки'
+                                            required: false
+                                            name: 'buttonText'
+                                          - widget: "string"
+                                            label: 'Заголовок'
+                                            name: 'title'
+                                            required: false
+                                          - label: "Текст"
+                                            name: "text"
+                                            required: false
+                                            widget: "string"
+                                          - label: "Зображення"
+                                            name: "image"
+                                            widget: "image"
+                                            required: false
+                                          - label: "Варіанти"
+                                            name: 'options'
+                                            widget: "list"
+                                            required: false
+                                            default: []
+                                            fields:
+                                              - widget: "string"
+                                                label: 'Текст кнопки'
+                                                required: false
+                                                name: 'buttonText'
+                                              - widget: "string"
+                                                label: 'Заголовок'
+                                                name: 'title'
+                                                required: false
+                                              - label: "Текст"
+                                                name: "text"
+                                                required: false
+                                                widget: "string"
+                                              - label: "Зображення"
+                                                name: "image"
+                                                widget: "image"
+                                                required: false
+                                              - label: "Варіанти"
+                                                name: 'options'
+                                                widget: "list"
+                                                required: false
+                                                default: []
   - name: content
     label: Весь контент - краще не чіпати
     folder: "content/content"

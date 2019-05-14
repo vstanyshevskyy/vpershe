@@ -15,11 +15,7 @@ module.exports = (createPage, graphql) => {
             frontmatter {
               path
               title
-              contentType,
-              steps {
-                body,
-                title
-              }
+              contentType
             }
           }
         }

@@ -56,13 +56,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'gameSteps',
-        path: `${__dirname}/content/gameSteps`
-      }
-    },
-    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Vpershe',

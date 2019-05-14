@@ -67,7 +67,7 @@ const games = {
     },
     { label: 'Url', name: 'path', widget: 'string' },
     { label: 'Заголовок', name: 'title', widget: 'string' },
-    { label: 'Мініатюра для списку', name: 'bannerUrl', widget: 'string' },
+    { label: 'Зображення', name: 'banner', widget: 'image' },
     {
       label: 'Час публікації', name: 'publishTime', required: false, widget: 'datetime'
     },

@@ -15,15 +15,30 @@ const optionsFields = {
     name: 'title',
     required: false
   }, {
+    label: 'Зображення',
+    name: 'image',
+    widget: 'image',
+    required: false
+  }, {
     label: 'Текст',
     name: 'text',
     required: false,
     widget: 'string'
   }, {
-    label: 'Зображення',
-    name: 'image',
-    widget: 'image',
-    required: false
+    label: 'Посилання',
+    name: 'link',
+    required: false,
+    widget: 'relation',
+    hint: 'Шукай за назвою',
+    collection: 'content',
+    searchFields: [
+      'title'
+    ],
+    displayFields: [
+      'title',
+      'contentType'
+    ],
+    valueField: 'path'
   }]
 };
 

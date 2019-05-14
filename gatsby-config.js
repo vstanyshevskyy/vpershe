@@ -4,7 +4,13 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-netlify-cms',
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        manualInit: true,
+        modulePath: `${__dirname}/src/cms/cms.js`
+      }
+    },
     'gatsby-transformer-remark',
     'gatsby-plugin-less',
     {

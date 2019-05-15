@@ -18,12 +18,14 @@ const optionsFields = {
     label: 'Зображення',
     name: 'image',
     widget: 'image',
-    required: false
+    required: false,
+    default: ''
   }, {
     label: 'Текст',
     name: 'text',
     required: false,
-    widget: 'string'
+    widget: 'string',
+    default: ''
   }, {
     label: 'Посилання',
     name: 'link',
@@ -31,6 +33,7 @@ const optionsFields = {
     widget: 'relation',
     hint: 'Шукай за назвою',
     collection: 'content',
+    default: '',
     searchFields: [
       'title'
     ],

@@ -15,13 +15,11 @@ class GameStep extends React.Component {
 
 export default props => {
   const transformPageContextItemToGameItem = options => {
-    const { node } = options.pageContext.contentType;
-    const game = node.frontmatter;
+    const game = options.pageContext.game;
 
     return {
-      gameLink: `games/${game.path}`,
-      title: game.title,
-      steps: game.steps
+      path: `games/${game.path}`,
+      ...game
     };
   };
   if (!props) {
@@ -31,10 +29,10 @@ export default props => {
   return (
     <div className="games-list">
       <h2>{game.title}</h2>
-      {game.steps && game.steps.map((gameStep, index) => {
-        gameStep.index = index;
+      {game.options && game.options.map((option, index) => {
+        option.index = index;
         return (
-          <GameStep {...gameStep} />
+          <GameStep {...option} />
         );
       })}
     </div>

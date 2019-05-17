@@ -7,12 +7,10 @@ import SEO from '../components/SEO';
 
 export default ({ pageContext, children }) => {
   const {
-    index, pageCount,
-    additionalContext: {
-      tag, tags, settings, globalSettings, contentType
-    }
+    currentPage, numPages,
+    tag, tags, settings, globalSettings, contentType
   } = pageContext;
-  const url = `${pageContext.pathPrefix}${index === 1 ? '' : `/${index}`}`;
+  const url = `${pageContext.pathPrefix}${currentPage === 1 ? '' : `/${currentPage}`}`;
   const seoData = Object.assign({}, settings, { url });
 
   return (
@@ -34,7 +32,7 @@ export default ({ pageContext, children }) => {
           { children }
         </ul>
         <hr className={`hr hr--${contentType} hr--pagination`} />
-        <Pagination pages={pageCount} current={index} prefix={contentType} />
+        <Pagination pages={numPages} current={currentPage} prefix={contentType} />
       </main>
     </Layout>
   );

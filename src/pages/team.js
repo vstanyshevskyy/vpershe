@@ -49,7 +49,9 @@ query TeamPage {
         frontmatter {
           contentType
           title
-          fbImage
+          fbImage  {
+            relativePath
+          }
           metaKeywords
           metaDescription
           groups {
@@ -73,14 +75,18 @@ query TeamPage {
       node {
         frontmatter {
           url
-          favicon
+          favicon  {
+            relativePath
+          }
           titleTemplate
           title
           metaDescription
           metaKeywords
           fbTitle
           fbDescription
-          fbImage
+          fbImage {
+            relativePath
+          }
         }
       }
     }

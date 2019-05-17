@@ -12,8 +12,8 @@ export default ({ items }) => (
             key={url}
             title={i.title}
             subtitle={i.subtitle}
-            image={i.list_image}
-            image_alt={i.list_image_alt}
+            image={i.image}
+            image_alt={i.image_alt}
             url={url}
           />
         );

@@ -71,14 +71,11 @@ exports.createPages = ({ actions, graphql }) => {
               path
               title
               subtitle
-              image
+              image {
+                relativePath
+              }
               image_alt
               carousel_featured
-              carousel_image
-              carousel_image_alt
-              list_image
-              list_image_articles
-              list_image_alt
               tags
               publishTime
               metaKeywords
@@ -105,12 +102,18 @@ exports.createPages = ({ actions, graphql }) => {
               path
               title
               subtitle
-              image
+              image {
+                relativePath
+              }
               image_alt
               carousel_featured
-              carousel_image
+              carousel_image {
+                relativePath
+              }
               carousel_image_alt
-              list_image
+              list_image {
+                relativePath
+              }
               list_image_alt
               tags
               publishTime
@@ -138,12 +141,18 @@ exports.createPages = ({ actions, graphql }) => {
               path
               title
               subtitle
-              image
+              image {
+                relativePath
+              }
               image_alt
               carousel_featured
-              carousel_image
+              carousel_image  {
+                relativePath
+              }
               carousel_image_alt
-              list_image
+              list_image {
+                relativePath
+              }
               list_image_alt
               tags
               publishTime
@@ -184,10 +193,14 @@ exports.createPages = ({ actions, graphql }) => {
               path
               title
               subtitle
-              image
+              image {
+                relativePath
+              }
               image_alt
               carousel_featured
-              carousel_image
+              carousel_image  {
+                relativePath
+              }
               carousel_image_alt
               publishTime
               metaKeywords
@@ -207,11 +220,15 @@ exports.createPages = ({ actions, graphql }) => {
               titleTemplate
               organizationTitle
               defaultAuthor
-              favicon
+              favicon  {
+                relativePath
+              }
               metaDescription
               metaKeywords
               fbTitle
-              fbImage
+              fbImage  {
+                relativePath
+              }
               fbDescription
             }
           }
@@ -309,45 +326,69 @@ exports.createPages = ({ actions, graphql }) => {
       });
       const contentTypeTags = Object.keys(contentByTags);
       const template = contentType === 'advice' ? 'advice' : 'articles';
-      createPaginatedPages({
-        edges: contentItems,
-        createPage,
-        pageTemplate: `src/templates/${template}ListPage.js`,
-        pageLength: config[contentType].perPage,
-        pathPrefix: contentType,
-        context: {
-          contentType,
-          tags: contentTypeTags,
-          settings: {
-            title: settings.title,
-            keywords: settings.metaKeywords,
-            description: settings.metaDescription
-          },
-          globalSettings
-        }
+
+
+      const postsPerPage = config[contentType].perPage;
+      const numPages = Math.ceil(contentItems.length / postsPerPage);
+      Array.from({ length: numPages }).forEach((_, i) => {
+        createPage({
+          path: `/${contentType}${i ? `/${i + 1}` : ''}`,
+          component: path.resolve(`./src/templates/${template}ListPage.js`),
+          context: {
+            limit: postsPerPage,
+            skip: i * postsPerPage,
+            numPages,
+            currentPage: i + 1,
+            contentType,
+            tags: contentTypeTags,
+            settings: {
+              title: settings.title,
+              keywords: settings.metaKeywords,
+              description: settings.metaDescription
+            },
+            globalSettings
+          }
+        });
       });
+      // createPaginatedPages({
+      //   edges: contentItems,
+      //   createPage,
+      //   pageTemplate: `src/templates/${template}ListPage.js`,
+      //   pageLength: config[contentType].perPage,
+      //   pathPrefix: contentType,
+      //   context: {
+      //     contentType,
+      //     tags: contentTypeTags,
+      //     settings: {
+      //       title: settings.title,
+      //       keywords: settings.metaKeywords,
+      //       description: settings.metaDescription
+      //     },
+      //     globalSettings
+      //   }
+      // });
       contentTypeTags.forEach(tag => {
         Object.keys(settings).forEach(key => {
           settings[key] = settings[key].replace(/{{tag}}/gi, tag);
         });
-        createPaginatedPages({
-          edges: contentByTags[tag],
-          createPage,
-          pageTemplate: `src/templates/${template}ListPage.js`,
-          pageLength: config[contentType].perPage,
-          pathPrefix: `${contentType}/tags/${tag}`,
-          context: {
-            contentType,
-            tag,
-            tags: Object.keys(contentByTags),
-            settings: Object.assign({}, globalSettings, {
-              title: settings.tags_title,
-              description: settings.tags_metaDescription,
-              keywords: settings.tags_metaKeywords
-            }),
-            globalSettings
-          }
-        });
+        // createPaginatedPages({
+        //   edges: contentByTags[tag],
+        //   createPage,
+        //   pageTemplate: `src/templates/${template}ListPage.js`,
+        //   pageLength: config[contentType].perPage,
+        //   pathPrefix: `${contentType}/tags/${tag}`,
+        //   context: {
+        //     contentType,
+        //     tag,
+        //     tags: Object.keys(contentByTags),
+        //     settings: Object.assign({}, globalSettings, {
+        //       title: settings.tags_title,
+        //       description: settings.tags_metaDescription,
+        //       keywords: settings.tags_metaKeywords
+        //     }),
+        //     globalSettings
+        //   }
+        // });
       });
       if (contentType !== 'advice') {
         result.data[contentType].edges.forEach(e => {

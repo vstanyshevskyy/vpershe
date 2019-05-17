@@ -71,8 +71,15 @@ query HomePage {
           contentType
           path
           subtitle
-          carousel_image
-          carousel_image_alt
+          image {
+            relativePath
+            childImageSharp {
+              fluid(width: 170, height: 170, cropFocus: CENTER, fit: COVER) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          image_alt
         }
       }
     }
@@ -114,8 +121,14 @@ query HomePage {
           contentType
           path
           subtitle
-          list_image
-          list_image_alt
+          image {
+            childImageSharp {
+              fluid(maxWidth: 320, maxHeight: 320) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          image_alt
         }
       }
     }
@@ -132,8 +145,15 @@ query HomePage {
           contentType
           path
           subtitle
-          list_image
-          list_image_alt
+          image {
+            relativePath
+            childImageSharp {
+              fluid(maxWidth: 533, maxHeight: 350) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          image_alt
         }
       }
     }
@@ -144,11 +164,15 @@ query HomePage {
         frontmatter {
           title
           url
-          favicon
+          favicon  {
+            relativePath
+          }
           metaDescription
           metaKeywords
           fbTitle
-          fbImage
+          fbImage {
+            relativePath
+          }
           fbDescription
         }
       }

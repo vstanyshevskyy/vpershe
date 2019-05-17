@@ -2,7 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import 'slick-carousel/slick/slick.css';
 import Slider from 'react-slick';
-import { Link, withPrefix } from 'gatsby';
+import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 import SliderButton from './PrevNextButton';
 import './index.less';
 
@@ -84,10 +85,11 @@ export default class Carousel extends React.Component {
             const classes = classNames('slider__item', {
               'slider__item--hidden': index > 0 && !isLoaded
             });
+
             return (
               <div key={url} className={classes}>
                 <Link to={url} className="slider__item-image-link ">
-                  <img width="170" height="170" alt={i.carousel_image_alt} className="slider__item-picture" src={withPrefix(i.carousel_image)} />
+                  <Img alt={i.image_alt} className="slider__item-picture" fixed={i.image.childImageSharp.fixed} />
                 </Link>
                 <Link to={url} className="slider__item-title ">{i.title}</Link>
               </div>

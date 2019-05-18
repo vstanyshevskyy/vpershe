@@ -1,40 +1,103 @@
 import React from 'react';
 
-class GameStep extends React.Component {
+const transformPageContextItemToGameItem = options => {
+  const game = options.pageContext.game;
+
+  return {
+    path: `games/${game.path}`,
+    ...game
+  };
+};
+
+class GameChoice extends React.Component {
   render() {
-    const { title, index } = this.props;
+    const { buttonText, index, onChoiceAnswer } = this.props;
     return (
-      <div>
+      <button onClick={onChoiceAnswer}>
         { index }
          :
-        {title}
-      </div>
+        { buttonText }
+      </button>
     );
   }
 }
 
-export default props => {
-  const transformPageContextItemToGameItem = options => {
-    const game = options.pageContext.game;
-
-    return {
-      path: `games/${game.path}`,
-      ...game
-    };
-  };
-  if (!props) {
-    return null;
+export default class Game extends React.Component {
+  state = {
+    title: '',
+    percentCompleted: 0,
+    options: [],
+    image: '',
+    link: '',
   }
-  const game = transformPageContextItemToGameItem(props);
-  return (
-    <div className="games-list">
-      <h2>{game.title}</h2>
-      {game.options && game.options.map((option, index) => {
-        option.index = index;
-        return (
-          <GameStep {...option} />
-        );
-      })}
-    </div>
-  );
+  initialState = {};
+  
+
+  componentDidMount() {
+    const game = transformPageContextItemToGameItem(this.props);
+    this.initialState = game;
+    this.setState({
+      title: game.title,
+      options: game.options
+    });
+    console.log('game data: ', game);
+  }
+
+  onChoiceAnswer(data) {
+    if (!data) return;
+    console.log('next game state: ', data);
+    const {title, percentCompleted, options, link, image} = data;
+    this.setState({title, percentCompleted, options, link, image});
+  }
+
+  restartGame() {
+    const { options, title} = this.initialState;
+    this.setState({
+      title,
+      options,
+      percentCompleted: 0,
+      link: '',
+      image: '',
+    });
+  }
+
+  render() {
+    const { title, percentCompleted, options, link, image } = this.state;
+        
+    if (!this.props) {
+      return null;
+    }
+
+    return (
+      <div className="game">
+        <h2>{title}</h2>
+        <h4>Current percentCompleted: {percentCompleted}</h4>
+        <ul>
+        {options && options.map((option, index) => (
+          <li key={index}>
+            <GameChoice
+              index={index} {...option} 
+              onChoiceAnswer={() => this.onChoiceAnswer(option)} 
+            />
+          </li>
+        ))}
+        </ul>
+        {percentCompleted == 100 &&
+          <div>
+            {link &&
+              <p>Use-full article:
+                <a href={link} target="_blank">
+                  {image 
+                    ? <img src={image} width={250} title={link} alt="use-full article image"></img>
+                    : <span>{link}</span>
+                  }
+                </a>
+              </p>
+            }
+            <button onClick={() => this.restartGame()}>Restart</button>
+          </div>
+        }
+      </div>
+    );
+  }
 };

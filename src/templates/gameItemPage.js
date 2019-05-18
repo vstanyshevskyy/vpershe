@@ -24,6 +24,7 @@ class GameChoice extends React.Component {
 
 export default class Game extends React.Component {
   state = {
+    isStarted: false,
     title: '',
     percentCompleted: 0,
     options: [],
@@ -50,6 +51,10 @@ export default class Game extends React.Component {
     this.setState({title, percentCompleted, options, link, image});
   }
 
+  startGame() {
+    this.setState({isStarted: true});
+  }
+
   restartGame() {
     const { options, title} = this.initialState;
     this.setState({
@@ -62,7 +67,7 @@ export default class Game extends React.Component {
   }
 
   render() {
-    const { title, percentCompleted, options, link, image } = this.state;
+    const { title, percentCompleted, options, link, image, isStarted } = this.state;
         
     if (!this.props) {
       return null;
@@ -73,14 +78,17 @@ export default class Game extends React.Component {
         <h2>{title}</h2>
         <h4>Current percentCompleted: {percentCompleted}</h4>
         <ul>
-        {options && options.map((option, index) => (
-          <li key={index}>
-            <GameChoice
-              index={index} {...option} 
-              onChoiceAnswer={() => this.onChoiceAnswer(option)} 
-            />
-          </li>
-        ))}
+        {isStarted 
+          ? options && options.map((option, index) => (
+              <li key={index}>
+                <GameChoice
+                  index={index} {...option} 
+                  onChoiceAnswer={() => this.onChoiceAnswer(option)} 
+                />
+              </li>
+            ))
+          : <button onClick={() => this.startGame()}>Start game</button>  
+        }
         </ul>
         {percentCompleted == 100 &&
           <div>

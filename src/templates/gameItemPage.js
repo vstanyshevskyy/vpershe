@@ -1,25 +1,44 @@
-import React from 'react';
+import React from 'react'
+
+import Layout from '../layouts'
+import './game.less'
 
 const transformPageContextItemToGameItem = options => {
-  const game = options.pageContext.game;
+  const game = options.pageContext.game
 
   return {
     path: `games/${game.path}`,
-    ...game
-  };
-};
-
-class GameChoice extends React.Component {
-  render() {
-    const { buttonText, index, onChoiceAnswer } = this.props;
-    return (
-      <button onClick={onChoiceAnswer}>
-        { index }
-         :
-        { buttonText }
-      </button>
-    );
+    ...game,
   }
+}
+
+export const GameChoice = props => {
+  const { buttonText, onChoiceAnswer } = props
+
+  return <button onClick={onChoiceAnswer}>{buttonText}</button>
+}
+
+export const GameProgressBar = props => {
+  return (
+    <div className="progressBar">
+      <span className="track" style={{ width: `${props.progress}%` }} />
+    </div>
+  )
+}
+
+export const GameUsefullLink = props => {
+  return (
+    <p className="usefullLink">
+      <img
+        src="/assets/uploads/illustration-final.png"
+        title="game image"
+        height={50}
+      />
+      <a href={props.link} target="blank">
+        Рекомендованна сттатя
+      </a>
+    </p>
+  )
 }
 
 export default class Game extends React.Component {
@@ -31,81 +50,97 @@ export default class Game extends React.Component {
     image: '',
     link: '',
   }
-  initialState = {};
-  
+  initialState = {}
 
   componentDidMount() {
-    const game = transformPageContextItemToGameItem(this.props);
-    this.initialState = game;
+    const game = transformPageContextItemToGameItem(this.props)
+    this.initialState = game
     this.setState({
       title: game.title,
-      options: game.options
-    });
-    console.log('game data: ', game);
+      options: game.options,
+    })
   }
 
   onChoiceAnswer(data) {
-    if (!data) return;
-    console.log('next game state: ', data);
-    const {title, percentCompleted, options, link, image} = data;
-    this.setState({title, percentCompleted, options, link, image});
+    const { title, percentCompleted, options, link, image } = data
+    this.setState({ title, percentCompleted, options, link, image })
   }
 
   startGame() {
-    this.setState({isStarted: true});
+    this.setState({ isStarted: true })
   }
 
   restartGame() {
-    const { options, title} = this.initialState;
+    const { options, title } = this.initialState
     this.setState({
       title,
       options,
       percentCompleted: 0,
       link: '',
       image: '',
-    });
+    })
   }
 
   render() {
-    const { title, percentCompleted, options, link, image, isStarted } = this.state;
-        
+    const {
+      title,
+      percentCompleted,
+      options,
+      link,
+      image,
+      isStarted,
+    } = this.state
+
     if (!this.props) {
-      return null;
+      return null
     }
 
     return (
-      <div className="game">
-        <h2>{title}</h2>
-        <h4>Current percentCompleted: {percentCompleted}</h4>
-        <ul>
-        {isStarted 
-          ? options && options.map((option, index) => (
-              <li key={index}>
-                <GameChoice
-                  index={index} {...option} 
-                  onChoiceAnswer={() => this.onChoiceAnswer(option)} 
-                />
-              </li>
-            ))
-          : <button onClick={() => this.startGame()}>Start game</button>  
-        }
-        </ul>
-        {percentCompleted == 100 &&
-          <div>
-            {link &&
-              <p>Use-full article:
-                <a href={link} target="_blank">
-                  {image 
-                    ? <img src={image} width={250} title={link} alt="use-full article image"></img>
-                    : <span>{link}</span>
-                  }
-                </a>
-              </p>
-            }
-            <button onClick={() => this.restartGame()}>Restart</button>
-          </div>
-        }
-      </div>
-    );
+      <Layout>
+        <div className="game-wrapper">
+          <header>
+            {isStarted ? (
+              <GameProgressBar progress={percentCompleted} />
+            ) : (
+              <h1>{title}</h1>
+            )}
+          </header>
+          <section>
+            <img
+              src={image ? image : '/assets/uploads/illustration-final.png'}
+              title="game image"
+              height={250}
+            />
+            {isStarted ? (
+              <>
+                <h2>{title}</h2>
+                <ul className="answers">
+                  {options && options.map((option, index) => (
+                    <li key={index}>
+                      <GameChoice
+                        {...option}
+                        onChoiceAnswer={() => this.onChoiceAnswer(option)}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <button onClick={() => this.startGame()}>Грати</button>
+            )}
+          </section>
+          <footer>
+            {percentCompleted == 100 && (
+              <div>
+                {link && <GameUsefullLink link={link} />}
+                <button onClick={() => this.restartGame()}>
+                  Спробувати ще раз
+                </button>
+              </div>
+            )}
+          </footer>
+        </div>
+      </Layout>
+    )
   }
-};
+}

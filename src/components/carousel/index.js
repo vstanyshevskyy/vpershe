@@ -89,7 +89,7 @@ export default class Carousel extends React.Component {
             return (
               <div key={url} className={classes}>
                 <Link to={url} className="slider__item-image-link ">
-                  <Img alt={i.image_alt} className="slider__item-picture" fixed={i.image.childImageSharp.fixed} />
+                  <Img alt={i.image_alt} className="slider__item-picture" fluid={i.image.childImageSharp.fluid} />
                 </Link>
                 <Link to={url} className="slider__item-title ">{i.title}</Link>
               </div>

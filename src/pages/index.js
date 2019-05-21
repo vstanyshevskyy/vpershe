@@ -74,7 +74,7 @@ query HomePage {
           image {
             relativePath
             childImageSharp {
-              fluid(width: 170, height: 170, cropFocus: CENTER, fit: COVER) {
+              fluid(maxWidth: 170, maxHeight: 170, cropFocus: CENTER, fit: COVER) {
                 ...GatsbyImageSharpFluid
               }
             }

@@ -62,7 +62,9 @@ query TeamPage {
                 email
                 name
                 role
-                photo
+                photo {
+                  relativePath
+                }
               }
             }
           }

@@ -47,8 +47,8 @@ export const pageQuery = graphql`
             image {
               relativePath
               childImageSharp {
-                resize(width: 320, height: 320) {
-                  src
+                fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

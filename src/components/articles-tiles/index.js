@@ -10,7 +10,7 @@ export default ({ items }) => (
       {
         items.map(i => {
           const url = `/articles/${i.path}`;
-          console.log(i.list_image);
+          console.log(i.image);
           return (
             <li key={url} className="article-tiles__article">
               <div className="article-tiles__article-wrapper">

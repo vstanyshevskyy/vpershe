@@ -1,45 +1,50 @@
-import React from 'react'
+import React from 'react';
 
-import Layout from '../layouts'
-import './game.less'
+import Layout from '../layouts';
+import './game.less';
 
 const transformPageContextItemToGameItem = options => {
-  const game = options.pageContext.game
+  const { game } = options.pageContext;
 
   return {
     path: `games/${game.path}`,
-    ...game,
-  }
-}
+    ...game
+  };
+};
 
 export const GameChoice = props => {
-  const { buttonText, onChoiceAnswer } = props
+  const { buttonText, onChoiceAnswer } = props;
 
-  return <button onClick={onChoiceAnswer}>{buttonText}</button>
-}
+  return <button type="button" onClick={onChoiceAnswer}>{buttonText}</button>;
+};
 
 export const GameProgressBar = props => {
+  const { progress } = props;
+
   return (
     <div className="progressBar">
-      <span className="track" style={{ width: `${props.progress}%` }} />
+      <span className="track" style={{ width: `${progress}%` }} />
     </div>
-  )
-}
+  );
+};
 
 export const GameUsefullLink = props => {
+  const { link } = props;
+
   return (
     <p className="usefullLink">
       <img
         src="/assets/uploads/illustration-final.png"
         title="game image"
+        alt="use-full article preview img"
         height={50}
       />
-      <a href={props.link} target="blank">
+      <a href={link} target="blank">
         Рекомендованна сттатя
       </a>
     </p>
-  )
-}
+  );
+};
 
 export default class Game extends React.Component {
   state = {
@@ -48,37 +53,42 @@ export default class Game extends React.Component {
     percentCompleted: 0,
     options: [],
     image: '',
-    link: '',
+    link: ''
   }
+
   initialState = {}
 
   componentDidMount() {
-    const game = transformPageContextItemToGameItem(this.props)
-    this.initialState = game
+    const game = transformPageContextItemToGameItem(this.props);
+    this.initialState = game;
     this.setState({
       title: game.title,
-      options: game.options,
-    })
+      options: game.options
+    });
   }
 
   onChoiceAnswer(data) {
-    const { title, percentCompleted, options, link, image } = data
-    this.setState({ title, percentCompleted, options, link, image })
+    const {
+      title, percentCompleted, options, link, image
+    } = data;
+    this.setState({
+      title, percentCompleted, options, link, image
+    });
   }
 
   startGame() {
-    this.setState({ isStarted: true })
+    this.setState({ isStarted: true });
   }
 
   restartGame() {
-    const { options, title } = this.initialState
+    const { options, title } = this.initialState;
     this.setState({
       title,
       options,
       percentCompleted: 0,
       link: '',
-      image: '',
-    })
+      image: ''
+    });
   }
 
   render() {
@@ -88,11 +98,11 @@ export default class Game extends React.Component {
       options,
       link,
       image,
-      isStarted,
-    } = this.state
+      isStarted
+    } = this.state;
 
     if (!this.props) {
-      return null
+      return null;
     }
 
     return (
@@ -107,33 +117,35 @@ export default class Game extends React.Component {
           </header>
           <section>
             <img
-              src={image ? image : '/assets/uploads/illustration-final.png'}
+              src={image || '/assets/uploads/illustration-final.png'}
               title="game image"
+              alt="question img"
               height={250}
             />
             {isStarted ? (
               <>
                 <h2>{title}</h2>
                 <ul className="answers">
-                  {options && options.map((option, index) => (
-                    <li key={index}>
-                      <GameChoice
-                        {...option}
-                        onChoiceAnswer={() => this.onChoiceAnswer(option)}
-                      />
-                    </li>
-                  ))}
+                  {options
+                    && options.map((option, index) => (
+                      <li key={index}>
+                        <GameChoice
+                          {...option}
+                          onChoiceAnswer={() => this.onChoiceAnswer(option)}
+                        />
+                      </li>
+                    ))}
                 </ul>
               </>
             ) : (
-              <button onClick={() => this.startGame()}>Грати</button>
+              <button type="button" onClick={() => this.startGame()}>Грати</button>
             )}
           </section>
           <footer>
-            {percentCompleted == 100 && (
+            {percentCompleted === 100 && (
               <div>
                 {link && <GameUsefullLink link={link} />}
-                <button onClick={() => this.restartGame()}>
+                <button type="button" onClick={() => this.restartGame()}>
                   Спробувати ще раз
                 </button>
               </div>
@@ -141,6 +153,6 @@ export default class Game extends React.Component {
           </footer>
         </div>
       </Layout>
-    )
+    );
   }
 }

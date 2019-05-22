@@ -60,7 +60,6 @@ export default class Game extends React.Component {
   componentDidMount() {
     const game = transformPageContextItemToGameItem(this.props);
     this.initialState = game;
-    console.log('game data: ', game);
     this.setState({
       title: game.title,
       options: game.options,

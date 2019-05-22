@@ -73,13 +73,8 @@ export default class Game extends React.Component {
   }
 
   restartGame() {
-    const { options, title } = this.initialState;
     this.setState({
-      title,
-      options,
-      percentCompleted: 0,
-      link: '',
-      image: ''
+      ...this.initialState
     });
   }
 
@@ -111,33 +106,39 @@ export default class Game extends React.Component {
             <img
               src={image}
               alt="game"
-              height={250}
             />
             {isStarted ? (
               <>
                 <h2>{title}</h2>
+                {link && <GameUsefullLink link={link} />}
                 <ul className="answers">
                   {options && options.map((option, index) => (
                     <li key={index}>
                       <GameChoice
                         {...option}
-                        onChoiceAnswer={() => this.onChoiceAnswer(option)}
+                        onChoiceAnswer={() => (option.percentCompleted <= 100 ? this.onChoiceAnswer(option) : this.restartGame())}
                       />
                     </li>
                   ))}
                 </ul>
               </>
             ) : (
-              <button onClick={() => this.startGame()} type="button">Грати</button>
+              <ul className="answers">
+                <button onClick={() => this.startGame()} type="button">Грати</button>
+              </ul>
             )}
           </section>
           <footer>
-            {percentCompleted === 100 && (
+            {console.log(percentCompleted)}
+            {!options && (
               <div>
-                {link && <GameUsefullLink link={link} />}
-                <button type="button" onClick={() => this.restartGame()}>
-                  Спробувати ще раз
-                </button>
+                <ul className="answers">
+                  <li>
+                    <button type="button" onClick={() => this.restartGame()}>
+                      Спробувати ще раз
+                    </button>
+                  </li>
+                </ul>
               </div>
             )}
           </footer>

@@ -58,6 +58,7 @@ export default class Game extends React.Component {
     this.setState({
       title: game.title,
       options: game.options,
+      image: game.image
     })
   }
 
@@ -107,7 +108,7 @@ export default class Game extends React.Component {
           </header>
           <section>
             <img
-              src={image ? image : '/assets/uploads/illustration-final.png'}
+              src={image}
               title="game image"
               height={250}
             />

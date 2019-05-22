@@ -4,7 +4,7 @@
 @brand-color: #EAB1F3;
 @black-color: #231F20;
 
-.game-wrapper {
+.quest-game {
     padding: 20px;
     min-height: 500px;
     display: flex;
@@ -71,88 +71,80 @@
             background-image: url("/assets/game/button-bg-hover.svg");
         }
     }
-    
+}
 
-    .question, .final {
-        .answers {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-    }
+.quest-game__progress-bar {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 10px;
+    background-color: @gray-color;
+    border-radius: 5px;
+    margin: 45px auto 30px;
 
-    .progressBar {
-        position: relative;
-        width: 100%;
-        max-width: 500px;
+    > span {
+        position: absolute;
+        top: 0;
+        left: 0;
         height: 10px;
-        background-color: @gray-color;
+        background-color: @brand-color;
         border-radius: 5px;
-        margin: 45px auto 30px;
-
-        .track {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 10px;
-            background-color: @brand-color;
-            border-radius: 5px;
-        }
-
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            display: block;
-            width: 25px;
-            height: 25px;
-        }
-
-        &::before {
-            left: -30px;
-            background-image: url("/assets/game/icon-flag-start.svg");
-        }
-
-        &::after {
-            right: -30px;
-            background-image: url("/assets/game/icon-flag-finish.svg");
-        }
     }
 
-    .answers {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        button {
-            margin: 5px;
-        }
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        display: block;
+        width: 25px;
+        height: 25px;
     }
 
-    .usefullLink {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 29px 0;
+    &::before {
+        left: -30px;
+        background-image: url("/assets/game/icon-flag-start.svg");
+    }
 
-        img {
-            max-width:200px;
-        }
-
-        &::after {
-            content: '';
-            display: block;
-            width: 15px;
-            height: 20px;
-            background-image: url("/assets/game/icon-arrow.svg");
-            margin-left: 10px;
-        }
+    &::after {
+        right: -30px;
+        background-image: url("/assets/game/icon-flag-finish.svg");
     }
 }
+
+.quest-game__answers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    button {
+        margin: 5px;
+    }
+}
+
+.quest-game__usefull-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 29px 0;
+
+    img {
+        max-width:200px;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 15px;
+        height: 20px;
+        background-image: url("/assets/game/icon-arrow.svg");
+        margin-left: 10px;
+    }
+}
+
 @media screen and (max-width: @screen-sm-max) {
-    .game-wrapper {
+    .quest-game {
         button {
             width: 300px;
             height: 62px;

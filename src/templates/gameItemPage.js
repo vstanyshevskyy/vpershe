@@ -22,8 +22,8 @@ export const GameProgressBar = props => {
   const { progress } = props;
 
   return (
-    <div className="progressBar">
-      <span className="track" style={{ width: `${progress}%` }} />
+    <div className="quest-game__progress-bar">
+      <span style={{ width: `${progress}%` }} />
     </div>
   );
 };
@@ -32,7 +32,7 @@ export const GameUsefullLink = props => {
   const { link } = props;
 
   return (
-    <p className="usefullLink">
+    <p className="quest-game__usefull-link">
       <img
         src="/assets/uploads/illustration-final.png"
         alt="link"
@@ -104,7 +104,7 @@ export default class Game extends React.Component {
 
     return (
       <Layout>
-        <div className="game-wrapper">
+        <div className="quest-game">
           <header>
             {isStarted ? (
               <GameProgressBar progress={percentCompleted} />
@@ -121,7 +121,7 @@ export default class Game extends React.Component {
               <>
                 <h2>{title}</h2>
                 {link && <GameUsefullLink link={link} />}
-                <ul className="answers">
+                <ul className="quest-game__answers">
                   {options && options.map((option, index) => (
                     <li key={index}>
                       <GameChoice
@@ -137,7 +137,7 @@ export default class Game extends React.Component {
                 </ul>
               </>
             ) : (
-              <div className="answers">
+              <div className="quest-game__answers">
                 <button onClick={() => this.startGame()} type="button">Грати</button>
               </div>
             )}
@@ -145,7 +145,7 @@ export default class Game extends React.Component {
           <footer>
             {!options && (
               <div>
-                <ul className="answers">
+                <ul className="quest-game__answers">
                   <li>
                     <button type="button" onClick={() => this.restartGame()}>
                       Спробувати ще раз

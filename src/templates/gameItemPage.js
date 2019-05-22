@@ -28,11 +28,11 @@ export const GameProgressBar = props => {
   );
 };
 
-export const GameUsefullLink = props => {
+export const GameUsefulLink = props => {
   const { link } = props;
 
   return (
-    <p className="quest-game__usefull-link">
+    <p className="quest-game__useful-link">
       <img
         src="/assets/uploads/illustration-final.png"
         alt="link"
@@ -119,7 +119,7 @@ export default class Game extends React.Component {
             {isStarted ? (
               <>
                 <h2>{title}</h2>
-                {link && <GameUsefullLink link={link} />}
+                {link && <GameUsefulLink link={link} />}
                 <ul className="quest-game__answers">
                   {options && options.map((option, index) => (
                     <li key={index}>

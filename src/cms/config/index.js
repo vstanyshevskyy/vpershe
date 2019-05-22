@@ -4,7 +4,7 @@ const config = {
   load_config_file: false,
   backend: {
     name: 'github',
-    repo: 'Nakan4u/vpershe',
+    repo: 'vstanyshevskyy/vpershe',
     branch: 'adventures'
   },
   media_folder: 'static/assets/uploads',

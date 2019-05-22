@@ -14,6 +14,7 @@ module.exports = (createPage, graphql) => {
             path
             title
             contentType
+            image
             options {
               buttonText
               title

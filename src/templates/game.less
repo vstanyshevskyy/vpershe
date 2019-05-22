@@ -1,3 +1,5 @@
+@import '../components/styleguide/variables.less';
+
 @gray-color: #F8F8F8;
 @brand-color: #EAB1F3;
 @black-color: #231F20;
@@ -55,7 +57,7 @@
         text-decoration: none;
         font-weight: bold;
         box-sizing: border-box;
-        min-height: 70px;
+        height: 70px;
         width: 340px;
         margin: 10px auto;
         padding: 0 10px;
@@ -131,22 +133,30 @@
 
     .usefullLink {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         margin: 29px 0;
 
         img {
-            margin-right: 20px;
             max-width:200px;
         }
 
         &::after {
             content: '';
-            display: inline-block;
+            display: block;
             width: 15px;
             height: 20px;
             background-image: url("/assets/game/icon-arrow.svg");
             margin-left: 10px;
+        }
+    }
+}
+@media screen and (max-width: @screen-sm-max) {
+    .game-wrapper {
+        button {
+            width: 300px;
+            height: 62px;
+            background-size: cover;
         }
     }
 }

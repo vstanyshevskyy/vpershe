@@ -18,24 +18,32 @@ export const GameChoice = props => {
   return <button onClick={onChoiceAnswer} type="button">{buttonText}</button>;
 };
 
-export const GameProgressBar = props => (
-  <div className="progressBar">
-    <span className="track" style={{ width: `${props.progress}%` }} />
-  </div>
-);
+export const GameProgressBar = props => {
+  const { progress } = props;
 
-export const GameUsefullLink = props => (
-  <p className="usefullLink">
-    <img
-      src="/assets/uploads/illustration-final.png"
-      alt="link"
-      height={50}
-    />
-    <a href={props.link} target="blank">
+  return (
+    <div className="progressBar">
+      <span className="track" style={{ width: `${progress}%` }} />
+    </div>
+  );
+};
+
+export const GameUsefullLink = props => {
+  const { link } = props;
+
+  return (
+    <p className="usefullLink">
+      <img
+        src="/assets/uploads/illustration-final.png"
+        alt="link"
+        height={50}
+      />
+      <a href={link} target="blank">
         Рекомендованна сттатя
-    </a>
-  </p>
-);
+      </a>
+    </p>
+  );
+};
 
 export default class Game extends React.Component {
   state = {
@@ -52,6 +60,7 @@ export default class Game extends React.Component {
   componentDidMount() {
     const game = transformPageContextItemToGameItem(this.props);
     this.initialState = game;
+    console.log('game data: ', game);
     this.setState({
       title: game.title,
       options: game.options,
@@ -74,7 +83,8 @@ export default class Game extends React.Component {
 
   restartGame() {
     this.setState({
-      ...this.initialState
+      ...this.initialState,
+      link: ''
     });
   }
 
@@ -116,20 +126,23 @@ export default class Game extends React.Component {
                     <li key={index}>
                       <GameChoice
                         {...option}
-                        onChoiceAnswer={() => (option.percentCompleted <= 100 ? this.onChoiceAnswer(option) : this.restartGame())}
+                        onChoiceAnswer={() => (
+                          option.percentCompleted <= 100
+                            ? this.onChoiceAnswer(option)
+                            : this.restartGame()
+                        )}
                       />
                     </li>
                   ))}
                 </ul>
               </>
             ) : (
-              <ul className="answers">
+              <div className="answers">
                 <button onClick={() => this.startGame()} type="button">Грати</button>
-              </ul>
+              </div>
             )}
           </section>
           <footer>
-            {console.log(percentCompleted)}
             {!options && (
               <div>
                 <ul className="answers">

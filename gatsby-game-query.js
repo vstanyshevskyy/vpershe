@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = (createPage, graphql) => {
-  const gamesPage = path.resolve('src/templates/gamesListPage.js');
   const gameItemPage = path.resolve('src/templates/gameItemPage.js');
 
   // TODO: add bannerUrl query property
@@ -14,6 +13,7 @@ module.exports = (createPage, graphql) => {
             path
             title
             contentType
+            image
             options {
               buttonText
               title
@@ -62,7 +62,7 @@ module.exports = (createPage, graphql) => {
           return dfs(n, stepDepth + 1);
         }) : [stepDepth];
         const stepMaxDepth = Math.max(...depths);
-        node.percentCompleted = Math.floor(stepDepth / stepMaxDepth * 100);
+        node.percentCompleted = Math.floor(stepDepth / (stepMaxDepth - 1) * 100) || 100;
         return stepMaxDepth;
       };
       dfs(gameEdge.node.frontmatter);
@@ -76,22 +76,5 @@ module.exports = (createPage, graphql) => {
         }
       });
     });
-    // const contentItems = result.data.games;
-    // createPage({
-    //   path: 'games',
-    //   component: gamesPage,
-    //   context: {
-    //     contentItems
-    //   }
-    // });
-    // result.data.games.edges.forEach(edge => {
-    //   createPage({
-    //     path: `games/${edge.node.frontmatter.path}`,
-    //     component: gameItemPage,
-    //     context: {
-    //       contentType: edge
-    //     }
-    //   });
-    // });
   });
 };

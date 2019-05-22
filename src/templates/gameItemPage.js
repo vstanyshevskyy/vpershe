@@ -15,36 +15,27 @@ const transformPageContextItemToGameItem = options => {
 export const GameChoice = props => {
   const { buttonText, onChoiceAnswer } = props;
 
-  return <button type="button" onClick={onChoiceAnswer}>{buttonText}</button>;
+  return <button onClick={onChoiceAnswer} type="button">{buttonText}</button>;
 };
 
-export const GameProgressBar = props => {
-  const { progress } = props;
+export const GameProgressBar = props => (
+  <div className="progressBar">
+    <span className="track" style={{ width: `${props.progress}%` }} />
+  </div>
+);
 
-  return (
-    <div className="progressBar">
-      <span className="track" style={{ width: `${progress}%` }} />
-    </div>
-  );
-};
-
-export const GameUsefullLink = props => {
-  const { link } = props;
-
-  return (
-    <p className="usefullLink">
-      <img
-        src="/assets/uploads/illustration-final.png"
-        title="game image"
-        alt="use-full article preview img"
-        height={50}
-      />
-      <a href={link} target="blank">
+export const GameUsefullLink = props => (
+  <p className="usefullLink">
+    <img
+      src="/assets/uploads/illustration-final.png"
+      alt="link"
+      height={50}
+    />
+    <a href={props.link} target="blank">
         Рекомендованна сттатя
-      </a>
-    </p>
-  );
-};
+    </a>
+  </p>
+);
 
 export default class Game extends React.Component {
   state = {
@@ -63,7 +54,8 @@ export default class Game extends React.Component {
     this.initialState = game;
     this.setState({
       title: game.title,
-      options: game.options
+      options: game.options,
+      image: game.image
     });
   }
 
@@ -81,13 +73,8 @@ export default class Game extends React.Component {
   }
 
   restartGame() {
-    const { options, title } = this.initialState;
     this.setState({
-      title,
-      options,
-      percentCompleted: 0,
-      link: '',
-      image: ''
+      ...this.initialState
     });
   }
 
@@ -117,37 +104,41 @@ export default class Game extends React.Component {
           </header>
           <section>
             <img
-              src={image || '/assets/uploads/illustration-final.png'}
-              title="game image"
-              alt="question img"
-              height={250}
+              src={image}
+              alt="game"
             />
             {isStarted ? (
               <>
                 <h2>{title}</h2>
+                {link && <GameUsefullLink link={link} />}
                 <ul className="answers">
-                  {options
-                    && options.map((option, index) => (
-                      <li key={index}>
-                        <GameChoice
-                          {...option}
-                          onChoiceAnswer={() => this.onChoiceAnswer(option)}
-                        />
-                      </li>
-                    ))}
+                  {options && options.map((option, index) => (
+                    <li key={index}>
+                      <GameChoice
+                        {...option}
+                        onChoiceAnswer={() => (option.percentCompleted <= 100 ? this.onChoiceAnswer(option) : this.restartGame())}
+                      />
+                    </li>
+                  ))}
                 </ul>
               </>
             ) : (
-              <button type="button" onClick={() => this.startGame()}>Грати</button>
+              <ul className="answers">
+                <button onClick={() => this.startGame()} type="button">Грати</button>
+              </ul>
             )}
           </section>
           <footer>
-            {percentCompleted === 100 && (
+            {console.log(percentCompleted)}
+            {!options && (
               <div>
-                {link && <GameUsefullLink link={link} />}
-                <button type="button" onClick={() => this.restartGame()}>
-                  Спробувати ще раз
-                </button>
+                <ul className="answers">
+                  <li>
+                    <button type="button" onClick={() => this.restartGame()}>
+                      Спробувати ще раз
+                    </button>
+                  </li>
+                </ul>
               </div>
             )}
           </footer>

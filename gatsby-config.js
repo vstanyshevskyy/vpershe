@@ -4,7 +4,13 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-netlify-cms',
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        manualInit: true,
+        modulePath: `${__dirname}/src/cms/cms.js`
+      }
+    },
     'gatsby-transformer-remark',
     'gatsby-plugin-less',
     {
@@ -40,6 +46,13 @@ module.exports = {
       options: {
         name: 'settings',
         path: `${__dirname}/content/settings/`
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'games',
+        path: `${__dirname}/content/games`
       }
     },
     {

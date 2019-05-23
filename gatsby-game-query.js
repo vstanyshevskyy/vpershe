@@ -24,7 +24,7 @@ const getFullUrlBySlug = (slug, allPages) => {
 };
 
 module.exports = (createPage, graphql, allPages, settings) => {
-  const gameItemPage = path.resolve('src/templates/gameItemPage.js');
+  const gameItemPage = path.resolve('src/templates/games/index.js');
 
   return graphql(`
   {

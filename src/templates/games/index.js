@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from '../layouts';
-import SEO from '../components/SEO';
-import './game.less';
+import Layout from '../../layouts';
+import SEO from '../../components/SEO';
+import './index.less';
 
 const transformPageContextItemToGameItem = options => {
   const { game } = options.pageContext;

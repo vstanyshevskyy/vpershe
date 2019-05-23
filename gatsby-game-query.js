@@ -23,7 +23,7 @@ const getFullUrlBySlug = (slug, allPages) => {
   return linkData;
 };
 
-module.exports = (createPage, graphql, allPages) => {
+module.exports = (createPage, graphql, allPages, settings) => {
   const gameItemPage = path.resolve('src/templates/gameItemPage.js');
 
   return graphql(`
@@ -95,7 +95,8 @@ module.exports = (createPage, graphql, allPages) => {
         path: `games/${gameEdge.node.frontmatter.path}`,
         component: gameItemPage,
         context: {
-          game: gameEdge.node.frontmatter
+          game: gameEdge.node.frontmatter,
+          settings
         }
       });
     });

@@ -336,8 +336,7 @@ exports.createPages = ({ actions, graphql }) => {
         });
       }
     });
-
-    gatsbyGameQuery(createPage, graphql, result.data);
+    gatsbyGameQuery(createPage, graphql, result.data, globalSettings);
     result.data.pages.edges.forEach(e => {
       createPage({
         path: e.node.frontmatter.path,

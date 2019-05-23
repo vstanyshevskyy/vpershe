@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Layout from '../layouts';
+import SEO from '../components/SEO';
 import './game.less';
 
 const transformPageContextItemToGameItem = options => {
@@ -59,6 +60,9 @@ export default class Game extends React.Component {
 
   componentDidMount() {
     const game = transformPageContextItemToGameItem(this.props);
+    const { pageContext: { settings } } = this.props;
+    this.settings = settings;
+    console.log(settings);
     this.initialState = game;
     this.setState({
       title: game.title,
@@ -104,6 +108,7 @@ export default class Game extends React.Component {
 
     return (
       <Layout>
+        <SEO data={{ useTitleTemplate: false }} defaults={this.settings} />
         <div className="quest-game">
           <header>
             {isStarted ? (

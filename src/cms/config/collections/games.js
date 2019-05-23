@@ -75,7 +75,16 @@ const games = {
       label: 'Час публікації', name: 'publishTime', required: false, widget: 'datetime'
     },
     {
-      label: 'Meta Keywords', name: 'metaKeywords', widget: 'string', required: false
+      label: 'Meta Keywords',
+      name: 'metaKeywords',
+      widget: 'string',
+      required: false
+    },
+    {
+      label: 'Meta Description',
+      name: 'metaDescription',
+      widget: 'string',
+      required: false
     },
     generateGameEditor()
   ]

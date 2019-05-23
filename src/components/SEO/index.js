@@ -85,7 +85,7 @@ const getSchemaOrgJSONLD = ({
 const SEO = ({ data = {}, isBlogPost, defaults = {} }) => {
   const url = `${defaults.url || ''}/${data.url || ''}`;
   const parentUrl = `${defaults.url || ''}/${data.parentUrl || ''}`;
-  const title = `${data.title || defaults.title}${defaults.titleTemplate || ''}`;
+  const title = `${data.title || defaults.title}${data.useTitleTemplate ? (defaults.titleTemplate || '') : ''}`;
   const description = data.metaDescription || data.excerpt || defaults.metaDescription;
   const keywords = data.metaKeywords || defaults.metaKeywords;
   const fbDescription = data.fbDescription || defaults.fbDescription || description;

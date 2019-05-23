@@ -34,12 +34,12 @@ export const GameUsefulLink = props => {
   return (
     <p className="quest-game__useful-link">
       <img
-        src="/assets/uploads/illustration-final.png"
-        alt="link"
+        src={link.image}
+        alt={link.alt}
         height={50}
       />
-      <a href={link} target="blank">
-        Рекомендованна сттатя
+      <a href={link.url} target="blank">
+        {link.title}
       </a>
     </p>
   );
@@ -83,7 +83,8 @@ export default class Game extends React.Component {
   restartGame() {
     this.setState({
       ...this.initialState,
-      link: ''
+      link: '',
+      percentCompleted: 0
     });
   }
 

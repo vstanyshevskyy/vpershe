@@ -1,9 +1,31 @@
 const path = require('path');
 
-module.exports = (createPage, graphql) => {
+const getFullUrlBySlug = (slug, allPages) => {
+  let linkData;
+  Object.keys(allPages).forEach(key => {
+    allPages[key].edges.forEach(({
+      node: {
+        frontmatter: {
+          path: url, contentType, list_image: image, image_alt: alt, title
+        }
+      }
+    }) => {
+      if (path && path === slug) {
+        linkData = {
+          url: `/${contentType}/${url}`,
+          image,
+          alt,
+          title
+        };
+      }
+    });
+  });
+  return linkData;
+};
+
+module.exports = (createPage, graphql, allPages) => {
   const gameItemPage = path.resolve('src/templates/gameItemPage.js');
 
-  // TODO: add bannerUrl query property
   return graphql(`
   {
     games: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "games"}}}) {
@@ -58,16 +80,17 @@ module.exports = (createPage, graphql) => {
     }
     result.data.games.edges.map(gameEdge => {
       const dfs = (node, stepDepth = 0) => {
-        const depths = node.options ? node.options.map(n => {
-          return dfs(n, stepDepth + 1);
-        }) : [stepDepth];
+        if (node.link) {
+          node.link = getFullUrlBySlug(node.link, allPages);
+        }
+        const depths = node.options ? node.options.map(n => dfs(n, stepDepth + 1)) : [stepDepth];
         const stepMaxDepth = Math.max(...depths);
         node.percentCompleted = Math.floor(stepDepth / (stepMaxDepth - 1) * 100) || 100;
         return stepMaxDepth;
       };
       dfs(gameEdge.node.frontmatter);
 
-      console.log(JSON.stringify(gameEdge.node.frontmatter, null, 2));
+      // console.log(JSON.stringify(gameEdge.node.frontmatter, null, 2));
       createPage({
         path: `games/${gameEdge.node.frontmatter.path}`,
         component: gameItemPage,

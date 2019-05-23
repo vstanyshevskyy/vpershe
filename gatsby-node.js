@@ -19,8 +19,6 @@ const prepareRelatedContent = (input, allContent) => {
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  gatsbyGameQuery(createPage, graphql);
-
   return graphql(`
     {
       articles: allMarkdownRemark (
@@ -332,6 +330,8 @@ exports.createPages = ({ actions, graphql }) => {
         });
       }
     });
+
+    gatsbyGameQuery(createPage, graphql, result.data);
     result.data.pages.edges.forEach(e => {
       createPage({
         path: e.node.frontmatter.path,

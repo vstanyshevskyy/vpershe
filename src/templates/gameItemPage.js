@@ -18,24 +18,32 @@ export const GameChoice = props => {
   return <button onClick={onChoiceAnswer} type="button">{buttonText}</button>;
 };
 
-export const GameProgressBar = props => (
-  <div className="progressBar">
-    <span className="track" style={{ width: `${props.progress}%` }} />
-  </div>
-);
+export const GameProgressBar = props => {
+  const { progress } = props;
 
-export const GameUsefullLink = props => (
-  <p className="usefullLink">
-    <img
-      src="/assets/uploads/illustration-final.png"
-      alt="link"
-      height={50}
-    />
-    <a href={props.link} target="blank">
+  return (
+    <div className="quest-game__progress-bar">
+      <span style={{ width: `${progress}%` }} />
+    </div>
+  );
+};
+
+export const GameUsefulLink = props => {
+  const { link } = props;
+
+  return (
+    <p className="quest-game__useful-link">
+      <img
+        src="/assets/uploads/illustration-final.png"
+        alt="link"
+        height={50}
+      />
+      <a href={link} target="blank">
         Рекомендованна сттатя
-    </a>
-  </p>
-);
+      </a>
+    </p>
+  );
+};
 
 export default class Game extends React.Component {
   state = {
@@ -74,7 +82,8 @@ export default class Game extends React.Component {
 
   restartGame() {
     this.setState({
-      ...this.initialState
+      ...this.initialState,
+      link: ''
     });
   }
 
@@ -94,7 +103,7 @@ export default class Game extends React.Component {
 
     return (
       <Layout>
-        <div className="game-wrapper">
+        <div className="quest-game">
           <header>
             {isStarted ? (
               <GameProgressBar progress={percentCompleted} />
@@ -110,29 +119,32 @@ export default class Game extends React.Component {
             {isStarted ? (
               <>
                 <h2>{title}</h2>
-                {link && <GameUsefullLink link={link} />}
-                <ul className="answers">
+                {link && <GameUsefulLink link={link} />}
+                <ul className="quest-game__answers">
                   {options && options.map((option, index) => (
                     <li key={index}>
                       <GameChoice
                         {...option}
-                        onChoiceAnswer={() => (option.percentCompleted <= 100 ? this.onChoiceAnswer(option) : this.restartGame())}
+                        onChoiceAnswer={() => (
+                          option.percentCompleted <= 100
+                            ? this.onChoiceAnswer(option)
+                            : this.restartGame()
+                        )}
                       />
                     </li>
                   ))}
                 </ul>
               </>
             ) : (
-              <ul className="answers">
+              <div className="quest-game__answers">
                 <button onClick={() => this.startGame()} type="button">Грати</button>
-              </ul>
+              </div>
             )}
           </section>
           <footer>
-            {console.log(percentCompleted)}
             {!options && (
               <div>
-                <ul className="answers">
+                <ul className="quest-game__answers">
                   <li>
                     <button type="button" onClick={() => this.restartGame()}>
                       Спробувати ще раз

@@ -5,7 +5,7 @@ const config = {
   backend: {
     name: 'github',
     repo: 'vstanyshevskyy/vpershe',
-    branch: 'adventures'
+    branch: 'main'
   },
   media_folder: 'static/assets/uploads',
   public_folder: '/assets/uploads',

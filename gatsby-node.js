@@ -1,13 +1,9 @@
 const path = require('path');
-const createPaginatedPages = require('gatsby-paginate');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
-// exports.onCreateNode = ({ node }) => {
-//   fmImagesToRelative(node);
-// };
+const gatsbyGameQuery = require('./gatsby-game-query');
 const config = require('./src/config');
-
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -22,25 +18,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
-
-// exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-//   const { createNodeField } = boundActionCreators;
-//   if (node.internal.type === 'MarkdownRemark') {
-//     console.log(Object.keys(node.frontmatter));
-//     if (node.frontmatter && node.frontmatter.image) {
-//       node.frontmatter = {
-//         ...node.frontmatter,
-//         imageFile: createFilePath({ node, getNode })
-//       }
-//     }
-//     // const value = createFilePath({ node, getNode });
-//     // createNodeField({
-//     //   name: 'slug',
-//     //   node,
-//     //   value
-//     // });
-//   }
-// };
 
 const prepareRelatedContent = (input, allContent) => {
   const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
@@ -84,6 +61,8 @@ exports.createPages = ({ actions, graphql }) => {
               related_sidebar {
                 path
               }
+              relatedSidebarMobilePosition
+              relatedSidebarMobileTitle
               related_bottom {
                 path
               }
@@ -123,6 +102,8 @@ exports.createPages = ({ actions, graphql }) => {
               related_sidebar {
                 path
               }
+              relatedSidebarMobilePosition
+              relatedSidebarMobileTitle
               related_bottom {
                 path
               }
@@ -162,6 +143,8 @@ exports.createPages = ({ actions, graphql }) => {
               related_sidebar {
                 path
               }
+              relatedSidebarMobilePosition
+              relatedSidebarMobileTitle
               related_bottom {
                 path
               }
@@ -410,6 +393,7 @@ exports.createPages = ({ actions, graphql }) => {
         });
       }
     });
+    gatsbyGameQuery(createPage, graphql, result.data, globalSettings);
     result.data.pages.edges.forEach(e => {
       createPage({
         path: e.node.frontmatter.path,

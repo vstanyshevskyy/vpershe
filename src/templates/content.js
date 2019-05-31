@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { withPrefix } from 'gatsby';
 import moment from 'moment';
 import 'moment/locale/uk';
@@ -8,7 +9,7 @@ import './content.less';
 import Layout from '../layouts';
 import TagsList from '../components/tags';
 import ArticlesList from '../components/articles-list';
-import RelatedLinks from '../components/realted-links';
+import Sidebar from '../components/article-sidebar';
 import SEO from '../components/SEO';
 
 export default class Content extends React.Component {
@@ -16,11 +17,13 @@ export default class Content extends React.Component {
     super();
     this.renderRelatedArticles = this.renderRelatedArticles.bind(this);
     this.makeLinksOpenInNewTab = this.makeLinksOpenInNewTab.bind(this);
+    this.insertMobileSidebar = this.insertMobileSidebar.bind(this);
   }
 
   componentDidMount = () => {
     this.mountAddThis();
     this.makeLinksOpenInNewTab();
+    this.insertMobileSidebar();
   }
 
   mountAddThis = () => {
@@ -35,6 +38,21 @@ export default class Content extends React.Component {
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener');
     });
+  }
+
+  insertMobileSidebar() {
+    const paragraph = document.querySelectorAll('.content__content p')[this.relatedSidebarMobilePosition || 4];
+    if (!paragraph) {
+      return;
+    }
+    const container = document.createElement('div');
+    paragraph.parentNode.insertBefore(container, paragraph.nextSibling);
+    ReactDOM.render(<Sidebar
+      relatedLinks={this.asideRelatedLinks}
+      elatedLinksTitle={this.relatedSidebarMobileTitle}
+      isMobile
+    />,
+    container);
   }
 
   renderRelatedArticles = items => {
@@ -59,10 +77,12 @@ export default class Content extends React.Component {
     }, pageContext.data.frontmatter);
     const { settings, globalSettings } = pageContext;
     const relatedBottom = (pageData.related_bottom || []);
-    const relatedAside = (pageData.related_sidebar || []).map(item => ({
+    this.asideRelatedLinks = (pageData.related_sidebar || []).map(item => ({
       url: `/${item.contentType}/${item.path}`,
       title: item.title
     }));
+    this.relatedSidebarMobilePosition = pageData.relatedSidebarMobilePosition || 4;
+    this.relatedSidebarMobileTitle = pageData.relatedSidebarMobileTitle || '';
     const seoData = Object.assign({}, settings, { image: pageData.image });
     return (
       <Layout>
@@ -87,21 +107,7 @@ export default class Content extends React.Component {
                 dangerouslySetInnerHTML={{ __html: pageData.html }}
                 ref={c => { this.contentNode = c; }}
               />
-              <aside className="content__sidebar">
-                {
-                  pageData.related_sidebar && pageData.related_sidebar.length
-                    ? <RelatedLinks links={relatedAside} />
-                    : null
-                }
-                <div className="content__addthis addthis_toolbox">
-                  <div className="content__addthis-images-container custom_images">
-                    <a className="addthis_custom_button addthis_button_facebook"><img className="addthis_button_icon" height="23" src={withPrefix('assets/facebook.svg')} alt="Share with Facebook" /></a>
-                    <a className="addthis_custom_button addthis_button_twitter"><img className="addthis_button_icon" height="20" src={withPrefix('assets/twitter.svg')} alt="Share with Twitter" /></a>
-                    <a className="addthis_custom_button addthis_button_link"><img className="addthis_button_icon" height="20" src={withPrefix('assets/link.svg')} alt="Copy Link" /></a>
-                    <a className="addthis_custom_button addthis_button_email"><img className="addthis_button_icon" height="17" src={withPrefix('assets/envelope.svg')} alt="Share via Twitter" /></a>
-                  </div>
-                </div>
-              </aside>
+              <Sidebar relatedLinks={this.asideRelatedLinks} />
             </div>
           </article>
           <aside>

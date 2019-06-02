@@ -20,7 +20,7 @@ export default ({ pageContext, children }) => {
       <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
         <SEO {...{ data: seoData, defaults: globalSettings }} />
         <ul className={`index-page__list index-page__list--${contentType}`}>
-          <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
+          <div className={`article-card--tags-${contentType}`}>
             {tags.length
               ? (
                 <TagsList
@@ -31,7 +31,7 @@ export default ({ pageContext, children }) => {
               )
               : null}
           </div>
-          { children }
+          {children}
         </ul>
         <hr className={`hr hr--${contentType} hr--pagination`} />
         <Pagination pages={pageCount} current={index} prefix={contentType} />

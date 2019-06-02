@@ -159,9 +159,9 @@
   }
 }
 .nav__social-icons {
-
   align-self: flex-end;
   display: flex;
+  align-items: center;
   align-items: space-between;
   position:absolute;
   top: 22px;
@@ -173,6 +173,11 @@
 
 .nav__social-icons-item-link {
   color: @clr-text;
+  display: flex;
+
+  svg {
+    margin: auto;
+  }
 }
 
 .nav__burger-btn {
@@ -237,11 +242,13 @@
       width: 100%;
       height: 50px;
       line-height: 50px;
+      align-items: center;
       justify-content: center;
     }
 
     .nav__social-icons-item {
       width: 40px;
+      display: flex;
     }
   }
 }

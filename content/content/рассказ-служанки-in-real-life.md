@@ -3,12 +3,12 @@ contentType: sexoteca
 path: rasskaz-sluzhanki-in-real-life
 title: Рассказ служанки in real life
 subtitle: 'Почему запрет абортов не поможет ни женщинам, ни обществу'
-image: /assets/uploads/zrzut-ekranu-2018-08-01-o-00.11.54.png
+image: /assets/uploads/main-abortions.jpg
 image_alt: women support each other because they have shared trauma
 carousel_featured: true
-carousel_image: /assets/uploads/zrzut-ekranu-2018-08-01-o-00.11.54.png
+carousel_image: /assets/uploads/main-abortions-karusel.jpg
 carousel_image_alt: women support each other because they have shared trauma
-list_image: /assets/uploads/zrzut-ekranu-2018-08-01-o-00.11.54.png
+list_image: /assets/uploads/main-abortions-karusel.jpg
 list_image_alt: women support each other because they have shared trauma
 tags:
   - секс

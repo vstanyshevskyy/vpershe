@@ -1,5 +1,14 @@
 @import '../styleguide/variables.less';
 .tags {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-right: 15px;
+}
+.tags__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 .tags__title {
   margin-bottom: 25px;
@@ -47,5 +56,11 @@
   &:hover,
   &:focus {
     text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: @screen-sm-max) {
+  .tags {
+    width: 100%;
   }
 }

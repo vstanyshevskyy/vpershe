@@ -89,7 +89,7 @@ const SEO = ({ data = {}, isBlogPost, defaults = {} }) => {
   const description = data.metaDescription || data.excerpt || defaults.metaDescription;
   const keywords = data.metaKeywords || defaults.metaKeywords;
   const fbDescription = data.fbDescription || defaults.fbDescription || description;
-  const image = `${defaults.url || ''}${withPrefix(data.image || data.fbImage || defaults.fbImage)}`;
+  const image = `${defaults.url || ''}/assets/${(data.image && data.image.relativePath || data.fbImage && data.fbImage.relativePath || defaults.fbImage && defaults.fbImage.relativePath)}`;
   const datePublished = isBlogPost ? data.datePublished : false;
   const author = data.author || defaults.defaultAuthor;
 
@@ -128,7 +128,7 @@ const SEO = ({ data = {}, isBlogPost, defaults = {} }) => {
       { data.fbAppID
         ? <meta property="fb:app_id" content={data.fbAppID} />
         : null }
-      <link rel="shortcut icon" type="image/x-icon" href={withPrefix(data.favicon || defaults.favicon)} />
+      <link rel="shortcut icon" type="image/x-icon" href={`/assets/${(data.favicon && data.favicon.relativePath || defaults.favicon && defaults.favicon.relativePath)}`} />
     </Helmet>
   );
 };

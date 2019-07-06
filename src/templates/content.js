@@ -1,16 +1,30 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withPrefix } from 'gatsby';
+import { graphql } from 'gatsby';
 import moment from 'moment';
 import 'moment/locale/uk';
 import Config from '../config';
 import './content.less';
 import Layout from '../layouts';
+import NonStrechedImage from '../components/NonStrechedImage';
 import TagsList from '../components/tags';
 import ArticlesList from '../components/articles-list';
 import Sidebar from '../components/article-sidebar';
 import SEO from '../components/SEO';
+
+const prepareRelatedContent = (input, allContent) => {
+  const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
+  return (input || [])
+    .map(({ path }) => {
+      if (!path) {
+        return null;
+      }
+      const filteredPath = path.replace(PATH_REPLACE_REGEX, '');
+      const item = allContent.find(content => content.path === filteredPath);
+      return item;
+    }).filter(el => el);
+};
 
 export default class Content extends React.Component {
   constructor() {
@@ -57,54 +71,71 @@ export default class Content extends React.Component {
 
   renderRelatedArticles = items => {
     if (!items.length) return null;
-    const articles = items.map(i => {
-      i.list_image = i.list_image_articles || i.list_image;
-      return i;
-    });
     return (
       <div className="content__related-items-bottom">
         <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
-        <ArticlesList items={articles} />
+        <ArticlesList items={items} />
       </div>
     );
   }
 
   render() {
     moment.locale('uk');
-    const { pageContext } = this.props;
-    const pageData = Object.assign({}, {
-      html: pageContext.data.html
-    }, pageContext.data.frontmatter);
-    const { settings, globalSettings } = pageContext;
-    const relatedBottom = (pageData.related_bottom || []);
-    this.asideRelatedLinks = (pageData.related_sidebar || []).map(item => ({
+    const { data: {
+      page: {
+        html,
+        frontmatter: {
+          related_bottom,
+          related_sidebar,
+          relatedSidebarMobilePosition,
+          relatedSidebarMobileTitle,
+          image,
+          imageAlt,
+          title,
+          subtitle,
+          publishTime,
+          tags,
+          metaKeywords,
+          metaDescription,
+          path
+        }
+      },
+      allPages,
+      generalSettings: { edges: [{ node: { frontmatter: globalSettings } }]}
+    }, pageContext: {
+      contentType
+    }} = this.props;
+
+    const relatedBottom = prepareRelatedContent(related_bottom, allPages.edges.map(n => n.node.frontmatter));
+    const relatedSidebar = prepareRelatedContent(related_sidebar, allPages.edges.map(n => n.node.frontmatter));
+    this.asideRelatedLinks = (relatedSidebar || []).map(item => ({
       url: `/${item.contentType}/${item.path}`,
       title: item.title
     }));
-    this.relatedSidebarMobilePosition = pageData.relatedSidebarMobilePosition || 4;
-    this.relatedSidebarMobileTitle = pageData.relatedSidebarMobileTitle || '';
-    const seoData = Object.assign({}, settings, { image: pageData.image });
+    this.relatedSidebarMobilePosition = relatedSidebarMobilePosition || 4;
+    this.relatedSidebarMobileTitle = relatedSidebarMobileTitle || '';
+    const seoData = Object.assign({ title, metaKeywords, metaDescription, useTitleTemplate: true, url: `${contentType}/${path}`, image });
     return (
       <Layout>
-        <div className={`index-page__content-wrapper index-page__content-wrapper--${pageData.contentType}`}>
+        <div className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
           <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
           <article className="content__article">
-            { pageData.image
-              ? <img className="content__img" src={withPrefix(pageData.image)} alt="" />
+            { image
+              ? <NonStrechedImage alt={imageAlt} className="article-card__image" fluid={image.childImageSharp.fluid} />
               : null }
             <div className="content__article-head">
-              <h1 className="content__title">{pageData.title}</h1>
-              <div className="content__subtitle">{pageData.subtitle}</div>
+              <h1 className="content__title">{title}</h1>
+              <div className="content__subtitle">{subtitle}</div>
               {
-                pageData.publishTime
-                  ? <div className="content__date">{moment(pageData.publishTime).format('LL')}</div>
+                publishTime
+                  ? <div className="content__date">{moment(publishTime).format('LL')}</div>
                   : null
               }
             </div>
             <div className="content__article-wrapper">
               <div
                 className="content__content"
-                dangerouslySetInnerHTML={{ __html: pageData.html }}
+                dangerouslySetInnerHTML={{ __html: html }}
                 ref={c => { this.contentNode = c; }}
               />
               <Sidebar relatedLinks={this.asideRelatedLinks} />
@@ -113,16 +144,107 @@ export default class Content extends React.Component {
           <aside>
             <div className="content__tags-social-container">
               {
-                pageData.tags && pageData.tags.length
-                  ? <TagsList pageName={pageData.contentType} tags={pageData.tags} />
+                tags && tags.length
+                  ? <TagsList pageName={contentType} tags={tags} />
                   : null
               }
             </div>
             { this.renderRelatedArticles(relatedBottom) }
           </aside>
-
         </div>
       </Layout>
     );
   }
 }
+
+export const pageQuery = graphql`
+  query contentQuery($slug: String!, $contentType: String!) {
+    page: markdownRemark(
+      frontmatter: {
+        path: { eq: $slug }
+        contentType: { eq: $contentType }
+      }
+    ) {
+      html
+      frontmatter {
+        path
+        related_bottom {
+          path
+        }
+        related_sidebar{
+          path
+        }
+        relatedSidebarMobilePosition
+        relatedSidebarMobileTitle
+        image {
+          relativePath
+          childImageSharp {
+            fluid(maxHeight: 1160) {
+              ...GatsbyImageSharpFluid
+              presentationWidth
+            }
+          }
+        }
+        imageAlt: image_alt
+        title
+        subtitle
+        publishTime
+        tags
+        metaKeywords
+        metaDescription
+      }
+    }
+    allPages: allMarkdownRemark(
+      filter: {
+        frontmatter: {
+          contentType: { in: ["articles", "stories", "sexoteca"] }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            path
+            contentType
+            image {
+              childImageSharp {
+                fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            imageAlt: image_alt
+            title
+            subtitle
+          }
+        }
+      }
+    }
+    generalSettings: allMarkdownRemark(
+      filter: { frontmatter:  { contentType: { eq: "general_settings" }}}
+    ) {
+      edges {
+        node {
+          html
+          frontmatter {
+            title
+            url
+            titleTemplate
+            organizationTitle
+            defaultAuthor
+            favicon {
+              relativePath
+            }
+            metaDescription
+            metaKeywords
+            fbTitle
+            fbImage {
+              relativePath
+            }
+            fbDescription
+          }
+        }
+      }
+    }
+  }
+`;

@@ -119,7 +119,7 @@ export default class QuestionboxForm extends React.Component {
                   <input id="form-contact" className="questionbox__email-input" type="email" name="email" placeholder={emailLabel} required />
                   <p className="questionbox__form-allow-to-share-text">{allowToShareLabel}</p>
                   <div className="questionbox__form-radiogroup">
-                    <input className="questionbox__form-radio-btn" type="radio" id="allowed_to_share_y" name="allowed_to_share" value="true" checked />
+                    <input className="questionbox__form-radio-btn" type="radio" id="allowed_to_share_y" name="allowed_to_share" value="true" defaultChecked />
                     <label htmlFor="allowed_to_share_y">{yesLabel}</label>
                     <input className="questionbox__form-radio-btn questionbox__form-radio-btn--no" type="radio" id="allowed_to_share_n" name="allowed_to_share" value="false" />
                     <label htmlFor="allowed_to_share_n">{noLabel}</label>

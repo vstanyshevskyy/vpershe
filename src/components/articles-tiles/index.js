@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 import './index.less';
 
 export default ({ items }) => (
@@ -13,7 +14,7 @@ export default ({ items }) => (
             <li key={url} className="article-tiles__article">
               <div className="article-tiles__article-wrapper">
                 <Link to={url} className="article-tiles__article-image-link">
-                  <img alt={i.list_image_alt} className="article-tiles__article-image" src={i.list_image} />
+                  <Img alt={i.image_alt} className="article-tiles__article-image" fluid={i.image.childImageSharp.fluid} />
                 </Link>
                 <Link to={url} className="article-tiles__article-link">{i.title}</Link>
               </div>

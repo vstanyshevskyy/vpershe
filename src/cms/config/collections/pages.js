@@ -44,18 +44,6 @@ const pages = {
       required: false
     },
     {
-      label: 'Фото для каруселі на головній (170*170)',
-      name: 'carousel_image',
-      widget: 'image',
-      required: false
-    },
-    {
-      label: 'Фото для каруселі ALT',
-      name: 'carousel_image_alt',
-      widget: 'string',
-      required: false
-    },
-    {
       label: 'Текст',
       name: 'body',
       widget: 'markdown'

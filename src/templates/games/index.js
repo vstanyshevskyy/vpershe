@@ -35,7 +35,7 @@ export const GameUsefulLink = props => {
   return (
     <p className="quest-game__useful-link">
       <img
-        src={link.image}
+        src={`/assets/${link.image.relativePath}`}
         alt={link.alt}
         height={50}
       />
@@ -62,7 +62,6 @@ export default class Game extends React.Component {
     const game = transformPageContextItemToGameItem(this.props);
     const { pageContext: { settings } } = this.props;
     this.settings = settings;
-    console.log(settings);
     this.initialState = game;
     this.setState({
       title: game.title,
@@ -119,7 +118,7 @@ export default class Game extends React.Component {
           </header>
           <section>
             <img
-              src={image}
+              src={image.relativePath ? `/assets/${image.relativePath}` : '/' + image.replace(/.\.\/static/g, '')}
               alt="game"
             />
             {isStarted ? (

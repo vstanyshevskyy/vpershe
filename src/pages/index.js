@@ -75,7 +75,7 @@ query HomePage {
             relativePath
             childImageSharp {
               fluid(maxWidth: 170, maxHeight: 170, cropFocus: CENTER, fit: COVER) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_tracedSVG
               }
             }
           }
@@ -124,7 +124,7 @@ query HomePage {
           image {
             childImageSharp {
               fluid(maxWidth: 320, maxHeight: 320) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_tracedSVG
               }
             }
           }
@@ -149,7 +149,7 @@ query HomePage {
             relativePath
             childImageSharp {
               fluid(maxWidth: 533, maxHeight: 350) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_tracedSVG
               }
             }
           }

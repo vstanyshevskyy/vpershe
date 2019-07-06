@@ -180,7 +180,7 @@ export const pageQuery = graphql`
           relativePath
           childImageSharp {
             fluid(maxHeight: 1160) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_tracedSVG
               presentationWidth
             }
           }
@@ -209,7 +209,7 @@ export const pageQuery = graphql`
             image {
               childImageSharp {
                 fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_tracedSVG
                 }
               }
             }

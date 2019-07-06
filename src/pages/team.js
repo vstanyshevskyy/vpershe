@@ -67,7 +67,7 @@ query TeamPage {
                   relativePath
                   childImageSharp {
                     fluid(maxWidth: 500, maxHeight: 500, cropFocus: CENTER) {
-                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluid_tracedSVG
                     }
                   }
                 }

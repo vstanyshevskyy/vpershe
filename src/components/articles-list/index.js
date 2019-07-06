@@ -15,6 +15,7 @@ export default ({ items }) => (
             image={i.image}
             image_alt={i.image_alt}
             url={url}
+            contentType={i.contentType}
           />
         );
       })

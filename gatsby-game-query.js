@@ -2,28 +2,26 @@ const path = require('path');
 
 const getFullUrlBySlug = (slug, allPages) => {
   let linkData;
-  Object.keys(allPages).forEach(key => {
-    allPages[key].edges.forEach(({
-      node: {
-        frontmatter: {
-          path: url, contentType, list_image: image, image_alt: alt, title
-        }
+  allPages.forEach(({
+    node: {
+      frontmatter: {
+        path: url, contentType, list_image: image, image_alt: alt, title
       }
-    }) => {
-      if (path && path === slug) {
-        linkData = {
-          url: `/${contentType}/${url}`,
-          image,
-          alt,
-          title
-        };
-      }
-    });
+    }
+  }) => {
+    if (path && path === slug) {
+      linkData = {
+        url: `/${contentType}/${url}`,
+        image,
+        alt,
+        title
+      };
+    }
   });
   return linkData;
 };
 
-module.exports = (createPage, graphql, allPages, settings) => {
+module.exports = (createPage, graphql) => {
   const gameItemPage = path.resolve('src/templates/games/index.js');
 
   return graphql(`
@@ -35,11 +33,15 @@ module.exports = (createPage, graphql, allPages, settings) => {
             path
             title
             contentType
-            image
+            image {
+              relativePath
+            }
             options {
               buttonText
               title
-              image
+              image {
+                relativePath
+              }
               link
               options {
                 buttonText
@@ -73,6 +75,48 @@ module.exports = (createPage, graphql, allPages, settings) => {
         }
       }
     }
+    settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "general_settings"}}}) {
+      edges {
+        node {
+          frontmatter {
+            title
+            url
+            favicon  {
+              relativePath
+            }
+            metaDescription
+            metaKeywords
+            fbTitle
+            fbImage {
+              relativePath
+            }
+            fbDescription
+          }
+        }
+      }
+    }
+    allPages: allMarkdownRemark(
+      filter: {
+        frontmatter: {
+          contentType: { in: ["articles", "stories", "sexoteca"] }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            path
+            contentType
+            image {
+              relativePath
+            }
+            imageAlt: image_alt
+            title
+            subtitle
+          }
+        }
+      }
+    }
   }  
   `).then(result => {
     if (result.errors) {
@@ -81,7 +125,7 @@ module.exports = (createPage, graphql, allPages, settings) => {
     result.data.games.edges.map(gameEdge => {
       const dfs = (node, stepDepth = 0) => {
         if (node.link) {
-          node.link = getFullUrlBySlug(node.link, allPages);
+          node.link = getFullUrlBySlug(node.link, result.data.allPages.edges);
         }
         const depths = node.options ? node.options.map(n => dfs(n, stepDepth + 1)) : [stepDepth];
         const stepMaxDepth = Math.max(...depths);
@@ -90,13 +134,12 @@ module.exports = (createPage, graphql, allPages, settings) => {
       };
       dfs(gameEdge.node.frontmatter);
 
-      // console.log(JSON.stringify(gameEdge.node.frontmatter, null, 2));
       createPage({
         path: `games/${gameEdge.node.frontmatter.path}`,
         component: gameItemPage,
         context: {
           game: gameEdge.node.frontmatter,
-          settings
+          settings: result.data.settings.edges[0].node.frontmatter
         }
       });
     });

@@ -1,36 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import ArticleCard from '../components/article-card';
-import ListPage from './listPage';
+import ListPage from './articlesListPage';
 
-export default props => {
-  const { data: { articles: { edges } }, pageContext: { contentType } } = props;
-  const entries = edges.map(entry => entry.node.frontmatter);
-
-  return (
-    <ListPage {...props}>
-      {entries.map(entry => {
-        const url = `/${contentType}/${entry.path}`;
-        return (
-          <ArticleCard
-            key={url}
-            url={url}
-            title={entry.title}
-            subtitle={entry.subtitle}
-            image={entry.image}
-            image_alt={entry.image_alt}
-            contentType={contentType}
-          />
-        );
-      })}
-    </ListPage>
-  );
-};
+export default props => <ListPage {...props} />;
 
 export const pageQuery = graphql`
-  query contentListQuery($skip: Int!, $limit: Int!, $contentType: String!) {
+  query tagContentListQuery($skip: Int!, $limit: Int!, $contentType: String!, $tag: String!) {
     articles: allMarkdownRemark(
-      filter: { frontmatter:  { contentType: { eq: $contentType }}}
+      filter: {
+        frontmatter: {
+          contentType: { eq: $contentType }
+          tags: { in: [$tag] }
+        }
+      }
       sort: { fields: [frontmatter___publishTime], order: DESC }
       limit: $limit
       skip: $skip
@@ -63,9 +45,9 @@ export const pageQuery = graphql`
           html
           frontmatter {
             contentType
-            title
-            metaDescription
-            metaKeywords
+            title: tags_title
+            metaDescription: tags_metaDescription
+            metaKeywords: tags_metaKeywords
           }
         }
       }

@@ -5,18 +5,41 @@ import TagsList from '../components/tags';
 import Pagination from '../components/pagination';
 import SEO from '../components/SEO';
 
-export default ({ pageContext, children }) => {
+export default props => { 
   const {
-    currentPage, numPages,
-    tag, tags, settings, globalSettings, contentType
-  } = pageContext;
-  const url = `${pageContext.pathPrefix}${currentPage === 1 ? '' : `/${currentPage}`}`;
-  const seoData = Object.assign({}, settings, { url });
+    children,
+    data: {
+      settings: { edges: settings },
+      generalSettings: {
+        edges: [{
+          node: {
+            frontmatter: generalSettings
+          }
+        }]
+      }
+    },
+    pageContext: {
+      currentPage,
+      numPages,
+      tag,
+      tags,
+      contentType,
+      pathPrefix
+    }
+  } = props;
+  const contentTypeSettings = settings.find(s => s.node.frontmatter.contentType === `${contentType}_settings`).node.frontmatter;
+  if (tag) {
+    Object.keys(contentTypeSettings).forEach(key => {
+      contentTypeSettings[key] = contentTypeSettings[key].replace(/{{tag}}/gi, tag);
+    });
+  }
+  const url = `${pathPrefix}${currentPage === 1 ? '' : `/${currentPage}`}`;
+  const seoData = Object.assign({}, contentTypeSettings, { url });
 
   return (
     <Layout>
       <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
-        <SEO {...{ data: seoData, defaults: globalSettings }} />
+        <SEO {...{ data: seoData, defaults: generalSettings }} />
         <ul className={`index-page__list index-page__list--${contentType}`}>
           <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
             {tags.length

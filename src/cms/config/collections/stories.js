@@ -48,30 +48,6 @@ const stories = {
       required: false
     },
     {
-      label: 'Фото для каруселі на головній (170*170)',
-      name: 'carousel_image',
-      widget: 'image',
-      required: false
-    },
-    {
-      label: 'Фото для каруселі ALT',
-      name: 'carousel_image_alt',
-      widget: 'string',
-      required: false
-    },
-    {
-      label: 'Фото для списку (250*250)',
-      name: 'list_image',
-      widget: 'image',
-      required: false
-    },
-    {
-      label: 'Фото для списку ALT',
-      name: 'list_image_alt',
-      widget: 'string',
-      required: false
-    },
-    {
       label: 'Теги',
       name: 'tags',
       widget: 'list',

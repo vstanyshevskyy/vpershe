@@ -1,29 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import ListPage from './listPage';
+import ListPage from './adviceListPage';
 
-export default props => {
-  const { data: { advice: { edges } } } = props;
-  const entries = edges.map(entry => ({ ...entry.node.frontmatter, html: entry.node.html }));
-
-  return (
-    <ListPage {...props}>
-      {entries.map(({ title, html }) => (
-        <li id={title} className="article-card article-card--advice" key={title}>
-          <h3 className="article-card__title article-card__title--advice">
-            { title }
-          </h3>
-          <div className="article-card__content" dangerouslySetInnerHTML={{ __html: html }} />
-        </li>
-      ))}
-    </ListPage>
-  );
-};
+export default props => <ListPage {...props} />;
 
 export const pageQuery = graphql`
-  query adviceListQuery($skip: Int!, $limit: Int!) {
+  query adviceTagListQuery($skip: Int!, $limit: Int!, $tag: String!) {
     advice: allMarkdownRemark(
-      filter: { frontmatter:  { contentType: { eq: "advice" }}}
+      filter: {
+        frontmatter:  {
+          contentType: { eq: "advice" }
+          tags: { in: [$tag] }
+        }
+      }
       sort: { fields: [frontmatter___publishTime], order: DESC }
       limit: $limit
       skip: $skip
@@ -38,16 +27,16 @@ export const pageQuery = graphql`
       }
     }
     settings: allMarkdownRemark(
-      filter: { frontmatter:  { contentType: { glob: "advice_settings" }}}
+      filter: { frontmatter:  { contentType: { glob: "*_settings" }}}
     ) {
       edges {
         node {
           html
           frontmatter {
             contentType
-            title
-            metaDescription
-            metaKeywords
+            title: tags_title
+            metaDescription: tags_metaDescription
+            metaKeywords: tags_metaKeywords
           }
         }
       }

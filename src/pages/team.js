@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, withPrefix } from 'gatsby';
+import Img from 'gatsby-image';
 import './team.less';
 import Layout from '../layouts';
 import SEO from '../components/SEO';
@@ -15,13 +16,13 @@ export default function Template ({ data }) {
           {
             pageData.groups.map(group => (group.people && group.people.length
               ? (
-                <li className="teams-list__team">
+                <li className="teams-list__team" key={group.name}>
                   <h2 className="teams-list__team-title">{group.name}</h2>
                   <ul className="teams-list__team-persons-list">
                     {(group.people || []).map(p => (
-                      <li className={`teams-list__team-person teams-list__team-person--1-of-${group.perLine}`}>
+                      <li className={`teams-list__team-person teams-list__team-person--1-of-${group.perLine}`} key={p.person.email}>
                         { p.person.photo
-                          ? <img className="teams-list__team-person-photo" src={withPrefix(p.person.photo)} alt={p.person.name} />
+                          ? <Img alt={p.person.name} className="teams-list__team-person-photo" fluid={p.person.photo.childImageSharp.fluid} />
                           : <div className="teams-list__team-person-silhoute" />
                         }
                         <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{p.person.name}</p>
@@ -64,6 +65,11 @@ query TeamPage {
                 role
                 photo {
                   relativePath
+                  childImageSharp {
+                    fluid(maxWidth: 500, maxHeight: 500, cropFocus: CENTER) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
             }

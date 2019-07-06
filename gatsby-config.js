@@ -1,15 +1,15 @@
-const netlifyCmsPaths = {
-  resolve: 'gatsby-plugin-netlify-cms-paths',
-  options: {
-    cmsConfig: '/static/admin/config.yml'
-  }
-};
-
 module.exports = {
   siteMetadata: {
     title: 'Vpershe Site'
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/static/assets`
+      }
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-netlify-cms',
@@ -58,13 +58,6 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: `${__dirname}/static/assets`
-      }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
         name: 'games',
         path: `${__dirname}/content/games`
       }
@@ -83,15 +76,13 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-transformer-sharp',
-    netlifyCmsPaths,
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          // netlifyCmsPaths, // Including in your Remark plugins will transform any paths in your markdown body
           {
-            resolve: `gatsby-remark-relative-images`,
+            resolve: 'gatsby-remark-relative-images'
           },
           {
             resolve: 'gatsby-remark-images',

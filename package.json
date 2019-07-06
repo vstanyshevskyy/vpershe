@@ -31,7 +31,6 @@
     "gatsby-plugin-less": "^2.0.13",
     "gatsby-plugin-manifest": "^2.1.1",
     "gatsby-plugin-netlify-cms": "^3.0.18",
-    "gatsby-plugin-netlify-cms-paths": "^1.2.1",
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.37",
@@ -49,7 +48,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.7.0",
-    "react-slick": "^0.23.2",
+    "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

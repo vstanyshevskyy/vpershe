@@ -1,11 +1,44 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import Layout from '../../layouts';
 import SEO from '../../components/SEO';
 import './index.less';
 
-const transformPageContextItemToGameItem = options => {
-  const { game } = options.pageContext;
+const getFullUrlBySlug = (slug, allPages) => {
+  let linkData;
+  allPages.forEach(({
+    node: {
+      frontmatter: {
+        path: url, contentType, image, imageAlt: alt, title
+      }
+    }
+  }) => {
+    if (url && url === slug) {
+      linkData = {
+        url: `/${contentType}/${url}`,
+        image,
+        alt,
+        title
+      };
+    }
+  });
+  return linkData;
+};
+
+const prepareGameData = (game, allPages) => {
+  const dfs = (gameData, stepDepth = 0) => {
+    if (gameData.link) {
+      gameData.link = getFullUrlBySlug(gameData.link, allPages);
+    }
+    const depths = gameData.options ? gameData.options.map(n => dfs(n, stepDepth + 1)) : [stepDepth];
+    const stepMaxDepth = Math.max(...depths);
+    gameData.percentCompleted = Math.floor(stepDepth / (stepMaxDepth - 1) * 100) || 100;
+    return stepMaxDepth;
+  };
+
+  dfs(game);
 
   return {
     path: `games/${game.path}`,
@@ -33,16 +66,16 @@ export const GameUsefulLink = props => {
   const { link } = props;
 
   return (
-    <p className="quest-game__useful-link">
-      <img
-        src={`/assets/${link.image.relativePath}`}
+    <div className="quest-game__useful-link">
+      <Img
+        fluid={link.image.childImageSharp.fluid}
         alt={link.alt}
         height={50}
       />
       <a href={link.url} target="blank">
         {link.title}
       </a>
-    </p>
+    </div>
   );
 };
 
@@ -59,8 +92,14 @@ export default class Game extends React.Component {
   initialState = {}
 
   componentDidMount() {
-    const game = transformPageContextItemToGameItem(this.props);
-    const { pageContext: { settings } } = this.props;
+    const {
+      data: {
+        game: { frontmatter: gameData },
+        generalSettings: { frontmatter: settings },
+        allPages: { edges: allPages }
+      }
+    } = this.props;
+    const game = prepareGameData(gameData, allPages);
     this.settings = settings;
     this.initialState = game;
     this.setState({
@@ -164,3 +203,106 @@ export default class Game extends React.Component {
     );
   }
 }
+
+
+export const pageQuery = graphql`
+  query gameQuery($slug: String!) {
+    game: markdownRemark(
+      frontmatter: {
+        path: { eq: $slug }
+        contentType: { eq: "games" }
+      }
+    ) {
+      frontmatter {
+        path
+        title
+        contentType
+        image {
+          relativePath
+        }
+        options {
+          buttonText
+          title
+          image {
+            relativePath
+          }
+          link
+          options {
+            buttonText
+            title
+            link
+            image
+            options {
+              buttonText
+              title
+              image
+              link
+              options {
+                buttonText
+                title
+                image
+                link
+                options {
+                  buttonText
+                  title
+                  image
+                  link
+                  options {
+                    buttonText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allPages: allMarkdownRemark(
+      filter: {
+        frontmatter: {
+          contentType: { in: ["articles", "stories", "sexoteca"] }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            path
+            contentType
+            image {
+              childImageSharp {
+                fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
+            imageAlt: image_alt
+            title
+            subtitle
+          }
+        }
+      }
+    }
+    generalSettings: markdownRemark(
+      frontmatter:  { contentType: { eq: "general_settings" }}
+    ) {
+      frontmatter {
+        title
+        url
+        titleTemplate
+        organizationTitle
+        defaultAuthor
+        favicon {
+          relativePath
+        }
+        metaDescription
+        metaKeywords
+        fbTitle
+        fbImage {
+          relativePath
+        }
+        fbDescription
+      }
+    }
+  }
+`;

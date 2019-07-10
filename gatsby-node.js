@@ -2,7 +2,6 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
-const gatsbyGameQuery = require('./gatsby-game-query');
 const config = require('./src/config');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -46,6 +45,15 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               path
               contentType
+            }
+          }
+        }
+      }
+      games: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "games"}}}) {
+        edges {
+          node {
+            frontmatter {
+              path
             }
           }
         }
@@ -123,7 +131,6 @@ exports.createPages = ({ actions, graphql }) => {
         });
       }
     });
-    gatsbyGameQuery(createPage, graphql, result.data);
     result.data.pages.edges.forEach(e => {
       createPage({
         path: e.node.frontmatter.path,
@@ -131,6 +138,15 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           contentType: e.node.frontmatter.contentType,
           slug: e.node.frontmatter.path
+        }
+      });
+    });
+    result.data.games.edges.forEach(({ node: { frontmatter: { path: slug } } }) => {
+      createPage({
+        path: `games/${slug}`,
+        component: path.resolve('src/templates/games/index.js'),
+        context: {
+          slug
         }
       });
     });

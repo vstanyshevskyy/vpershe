@@ -32,7 +32,6 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               contentType
               path
-              title
               tags
             }
           }
@@ -41,7 +40,6 @@ exports.createPages = ({ actions, graphql }) => {
       pages: allMarkdownRemark (filter: { frontmatter:  { contentType: { eq: "pages"}}}) {
         edges {
           node {
-            html
             frontmatter {
               path
               contentType

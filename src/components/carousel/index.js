@@ -86,14 +86,14 @@ export default class Carousel extends React.Component {
               'slider__item--hidden': index > 0 && !isLoaded
             });
 
-            return (
+            return i.image ? (
               <div key={url} className={classes}>
                 <Link to={url} className="slider__item-image-link ">
                   <Img alt={i.image_alt} className="slider__item-picture" fluid={i.image.childImageSharp.fluid} />
                 </Link>
                 <Link to={url} className="slider__item-title ">{i.title}</Link>
               </div>
-            );
+            ) : null;
           })
         }
       </Slider>

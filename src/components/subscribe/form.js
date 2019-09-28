@@ -66,7 +66,7 @@ class SubscribeForm extends React.Component {
               name="email"
               placeholder={emailPlaceholder}
             />
-            <img className="subscribe__graffiti graffiti graffiti--birds" alt="" width="67" src={withPrefix('assets/graffiti/birds.svg')} aria-hidden="true" />
+            <img className="subscribe__graffiti graffiti graffiti--birds" loading="lazy" alt="" width="67" src={withPrefix('assets/graffiti/birds.svg')} aria-hidden="true" />
             <button type="submit" className="btn subscribe__form-btn">{buttonText}</button>
           </div>
         </form>

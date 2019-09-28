@@ -87,7 +87,7 @@ export default class QuestionboxForm extends React.Component {
       <div className={classes}>
         <div role="button" tabIndex="0" onKeyPress={this.keyboardToggle} onClick={this.toggle} className="questionbox__toggler" aria-label="Потрібна порада?">
           <div className="questionbox__toggler-text">{toggleButtonText}</div>
-          <img className="questionbox__toggle-icon" src={withPrefix('assets/chat.svg')} alt="" />
+          <img className="questionbox__toggle-icon" loading="lazy" src={withPrefix('assets/chat.svg')} alt="" />
         </div>
         <div className="questionbox__container">
           <button

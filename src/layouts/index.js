@@ -69,10 +69,10 @@ class Layout extends React.Component {
           <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
           {
             !isHomePage
-              ? <img className="wrapper__graffiti graffiti wrapper__graffiti--stars" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
+              ? <img className="wrapper__graffiti graffiti wrapper__graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
               : null
           }
-          <img className="wrapper__graffiti graffiti wrapper__graffiti--arrows" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
+          <img className="wrapper__graffiti graffiti wrapper__graffiti--arrows" loading="lazy" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
           {children}
           {
             location.pathname.split('/')[1]

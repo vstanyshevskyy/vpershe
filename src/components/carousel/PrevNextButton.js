@@ -12,7 +12,7 @@ class SliderButton extends React.Component {
     });
     return (
       <button {...this.props} type="button" aria-label={isPrev ? 'Назад' : 'Вперед'}>
-        <img className={btnClasses} src={withPrefix('assets/navigation.svg')} alt="" />
+        <img className={btnClasses} loading="lazy" src={withPrefix('assets/navigation.svg')} alt="" />
         {this.children}
       </button>
     );

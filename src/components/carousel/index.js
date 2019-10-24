@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import SliderButton from './PrevNextButton';
+import { getUniqueId, CardClickHelper } from '../../helpers';
 import './index.less';
 
 export default class Carousel extends React.Component {
@@ -13,6 +14,8 @@ export default class Carousel extends React.Component {
     this.state = {
       isLoaded: false
     };
+
+    this.clickHelper = new CardClickHelper();
 
     this.onSliderInit = this.onSliderInit.bind(this);
     this.settings = {
@@ -82,16 +85,21 @@ export default class Carousel extends React.Component {
         {
           items.map((i, index) => {
             const url = `/${i.contentType}/${i.path}`;
-            const classes = classNames('slider__item', {
+            const itemClassName = 'slider__item';
+            const uid = `${itemClassName}-${getUniqueId(url)}`;
+            const classes = classNames(itemClassName, {
               'slider__item--hidden': index > 0 && !isLoaded
             });
 
             return i.image ? (
-              <div key={url} className={classes}>
-                <Link to={url} className="slider__item-image-link ">
-                  <Img alt={i.image_alt} className="slider__item-picture" fluid={i.image.childImageSharp.fluid} />
-                </Link>
-                <Link to={url} className="slider__item-title ">{i.title}</Link>
+              <div
+                key={uid}
+                className={classes}
+                onMouseUp={e => this.clickHelper.onMouseUp(e, index)}
+                onMouseDown={e => this.clickHelper.onMouseDown(e)}
+              >
+                <Img alt="" className="slider__item-picture" fluid={i.image.childImageSharp.fluid} />
+                <Link to={url} ref={el => this.clickHelper.addLink(el, index)} className="slider__item-title ">{i.title}</Link>
               </div>
             ) : null;
           })

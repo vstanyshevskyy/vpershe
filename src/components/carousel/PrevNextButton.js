@@ -4,14 +4,16 @@ import classNames from 'classnames';
 
 class SliderButton extends React.Component {
   render() {
-    const { className } = this.props;
+    const {
+      currentSlide, slideCount, children, className, ...props
+    } = this.props;
     const isPrev = className.indexOf('slick-prev') > -1;
     const btnClasses = classNames('slider__arrow', {
       'slider__arrow--prev': isPrev,
       'slider__arrow--next': !isPrev
     });
     return (
-      <button {...this.props} type="button" aria-label={isPrev ? 'Назад' : 'Вперед'}>
+      <button {...{ props, className }} type="button" aria-label={isPrev ? 'Назад' : 'Вперед'}>
         <img className={btnClasses} loading="lazy" src={withPrefix('assets/navigation.svg')} alt="" />
         {this.children}
       </button>

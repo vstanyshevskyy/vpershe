@@ -52,6 +52,24 @@
   width: ~"calc(100% - 90px)";
 }
 
+.slider__item {
+  cursor: pointer;
+  &:focus-within,
+  &:hover {
+    img {
+      transition: all .5s ease!important;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      filter: grayscale(100%);
+      transform: scale(1.2);
+    }
+  }
+  
+  &:focus-within .slider__item-title:focus {
+    text-decoration: none;
+  }
+}
+
 .slider__item-picture {
   max-width: @slider-item-image-height;
   margin: 0 auto;
@@ -67,6 +85,9 @@
   margin: 20px auto 0;
   font-size: @font-size-slider;
   line-height: @line-height-slider;
+  &:focus {
+    text-decoration: underline;
+  }
 }
 
 .slick-slide {

@@ -101,6 +101,24 @@ table {
   top: 800px;
 }
 
+.skip-navigation {
+  height: 1px;
+  left: -999px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+  z-index: -999;
+  &:focus {
+    height: auto;
+    width: auto;
+    position: static;
+    color: #333;
+    z-index:0;
+    margin-left: 15px;
+  }
+}
+
 @media screen and (max-width: @screen-sm-max) {
   .page-wrapper {
     border: none;

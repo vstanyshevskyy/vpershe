@@ -5,7 +5,7 @@ import TagsList from '../components/tags';
 import Pagination from '../components/pagination';
 import SEO from '../components/SEO';
 
-export default props => { 
+export default props => {
   const {
     children,
     data: {
@@ -38,7 +38,7 @@ export default props => {
 
   return (
     <Layout>
-      <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
+      <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`} id="content">
         <SEO {...{ data: seoData, defaults: generalSettings }} />
         <ul className={`index-page__list index-page__list--${contentType}`}>
           <div className={`article-card article-card--tags article-card--tags-${contentType}`}>

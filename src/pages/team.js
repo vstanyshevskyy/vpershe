@@ -10,7 +10,7 @@ export default function Template ({ data }) {
   const settings = data.settings.edges[0].node.frontmatter;
   return (
     <Layout>
-      <div className="index-page__content-wrapper">
+      <div className="index-page__content-wrapper" id="content">
         <SEO data={pageData} defaults={settings} />
         <ul className="teams-list">
           {

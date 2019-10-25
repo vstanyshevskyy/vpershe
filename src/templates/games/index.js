@@ -147,7 +147,7 @@ export default class Game extends React.Component {
     return (
       <Layout>
         <SEO data={{ useTitleTemplate: false }} defaults={this.settings} />
-        <div className="quest-game">
+        <div className="quest-game" id="content">
           <header>
             {isStarted ? (
               <GameProgressBar progress={percentCompleted} />

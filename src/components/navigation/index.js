@@ -36,10 +36,17 @@ export default class VpersheNav extends React.Component {
       <nav className={navClasses}>
         <div className={navInnerClasses}>
           <Link to="/" className="nav__logo"><img loading="lazy" src={withPrefix('assets/logo/black_text.svg')} alt="Вперше" /></Link>
-          <button type="button" onClick={this.toggle} className="nav__burger-btn" aria-label="Menu">
+          <button
+            type="button"
+            onClick={this.toggle}
+            className="nav__burger-btn"
+            aria-label="Menu"
+            aria-expanded={isOpen}
+            aria-controls="nav__menu"
+          >
             { isOpen ? <FaTimes /> : <FaBars /> }
           </button>
-          <ul className="nav__menu">
+          <ul className="nav__menu" id="nav__menu">
             {(links || []).map(link => {
               const linkClasses = classNames('nav__menu-link', {
                 'nav__menu-link--current': location.startsWith(link.url)

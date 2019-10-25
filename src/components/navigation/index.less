@@ -68,28 +68,42 @@
     box-shadow: 2px 1px @clr-blue-4;
   }
 
+  .nav__menu-link {
+    outline: none;
+  }
+
+
+  .nav__menu-link.nav__menu-link--current:focus {
+    outline: 2px solid @clr-blue;
+  }
+
   .nav__menu-link--stories.nav__menu-link--current,
   .nav__menu-link--stories:hover,
+  .nav__menu-link--stories:focus,
   .nav__menu-link--stories:active {
     color: @clr-blue;
   }
   .nav__menu-link--articles.nav__menu-link--current,
   .nav__menu-link--articles:hover,
+  .nav__menu-link--articles:focus,
   .nav__menu-link--articles:active {
     color: @clr-night;
   }
   .nav__menu-link--sexoteca.nav__menu-link--current,
   .nav__menu-link--sexoteca:hover,
+  .nav__menu-link--sexoteca:focus,
   .nav__menu-link--sexoteca:active {
     color: @clr-mint-3;
   }
   .nav__menu-link--advice.nav__menu-link--current,
   .nav__menu-link--advice:hover,
+  .nav__menu-link--advice:focus,
   .nav__menu-link--advice:active {
     color: @clr-rose;
   }
 
   &:nth-child(1) .nav__menu-link:hover:after,
+  &:nth-child(1) .nav__menu-link:focus:after,
   &:nth-child(1) .nav__menu-link--current:after,
   &:nth-child(1) .nav__menu-link:active:after {
     animation: shadowFadeOut1 .75s;
@@ -97,6 +111,7 @@
     z-index: -1;
   }
   &:nth-child(2) .nav__menu-link:hover:after,
+  &:nth-child(2) .nav__menu-link:focus:after,
   &:nth-child(2) .nav__menu-link--current:after,
   &:nth-child(2) .nav__menu-link:active:after {
     animation: shadowFadeOut2 .75s;
@@ -104,6 +119,7 @@
     z-index: -1;
   }
   &:nth-child(3) .nav__menu-link:hover:after,
+  &:nth-child(3) .nav__menu-link:focus:after,
   &:nth-child(3) .nav__menu-link--current:after,
   &:nth-child(3) .nav__menu-link:active:after {
     animation: shadowFadeOut3 .75s;
@@ -111,6 +127,7 @@
     z-index: -1;
   }
   &:nth-child(4) .nav__menu-link:hover:after,
+  &:nth-child(4) .nav__menu-link:focus:after,
   &:nth-child(4) .nav__menu-link--current:after,
   &:nth-child(4) .nav__menu-link:active:after {
     z-index: -1;

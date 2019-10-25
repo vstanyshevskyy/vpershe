@@ -19,7 +19,7 @@ export default function Template ({ data }) {
   const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <Layout>
-      <div>
+      <div id="content">
         <SEO defaults={settings} />
         <Carousel items={carouselItems} />
         <ArticlesTiles items={articles} />

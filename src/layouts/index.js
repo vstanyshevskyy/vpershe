@@ -66,6 +66,7 @@ class Layout extends React.Component {
             <link href="/assets/splashscreen/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
             <link rel="preconnect" href="https://www.google-analytics.com" />
           </Helmet>
+          <a href="#content" className="skip-navigation">Пропустити навігацію</a>
           <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
           {
             !isHomePage

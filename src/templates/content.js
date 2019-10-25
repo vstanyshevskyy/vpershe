@@ -117,7 +117,7 @@ export default class Content extends React.Component {
     const seoData = Object.assign({ title, metaKeywords, metaDescription, useTitleTemplate: true, url: `${contentType}/${path}`, image });
     return (
       <Layout>
-        <div className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`}>
+        <div className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`} id="content">
           <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
           <article className="content__article">
             { image

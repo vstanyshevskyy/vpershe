@@ -29,6 +29,7 @@ export default class Carousel extends React.Component {
       initialSlide: 0,
       lazyLoad: true,
       onInit: this.onSliderInit,
+      accessibility: true,
       responsive: [
         {
           breakpoint: 1160,

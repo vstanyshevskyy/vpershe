@@ -140,17 +140,20 @@ const settings = {
                     {
                       label: 'Роль',
                       name: 'role',
-                      widget: 'string'
+                      widget: 'string',
+                      required: false
                     },
                     {
                       label: 'Email',
                       name: 'email',
-                      widget: 'string'
+                      widget: 'string',
+                      required: false
                     },
                     {
                       label: 'Деталі',
                       name: 'details',
-                      widget: 'string'
+                      widget: 'string',
+                      required: false
                     },
                     {
                       label: 'Фото',

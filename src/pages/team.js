@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, withPrefix } from 'gatsby';
+import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import './team.less';
 import Layout from '../layouts';
@@ -8,33 +8,51 @@ import SEO from '../components/SEO';
 export default function Template ({ data }) {
   const pageData = data.team.edges[0].node.frontmatter;
   const settings = data.settings.edges[0].node.frontmatter;
+
   return (
     <Layout>
       <div className="index-page__content-wrapper" id="content">
         <SEO data={pageData} defaults={settings} />
         <ul className="teams-list">
           {
-            pageData.groups.map(group => (group.people && group.people.length
-              ? (
+            pageData.groups.map(group => {
+              if (!group.people || !group.people.length) {
+                return null;
+              }
+              return (
                 <li className="teams-list__team" key={group.name}>
                   <h2 className="teams-list__team-title">{group.name}</h2>
                   <ul className="teams-list__team-persons-list">
-                    {(group.people || []).map(p => (
-                      <li className={`teams-list__team-person teams-list__team-person--1-of-${group.perLine}`} key={p.person.email}>
-                        { p.person.photo
-                          ? <Img alt={p.person.name} className="teams-list__team-person-photo" fluid={p.person.photo.childImageSharp.fluid} />
-                          : <div className="teams-list__team-person-silhoute" />
-                        }
-                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{p.person.name}</p>
-                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--role">{p.person.role}</p>
-                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--email">{p.person.email}</p>
-                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--details">{p.person.details}</p>
-                      </li>
-                    ))}
+                    {(group.people || []).map(p => {
+                      const {
+                        email, name, role, details
+                      } = p;
+                      return (
+                        <li className={`teams-list__team-person teams-list__team-person--1-of-${group.perLine}`} key={name}>
+                          { p.person.photo
+                            ? <Img alt={p.person.name} className="teams-list__team-person-photo" fluid={p.person.photo.childImageSharp.fluid} />
+                            : <div className="teams-list__team-person-silhoute" />
+                          }
+                          <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{name}</p>
+                          { role && role.trim().length
+                            ? <p className="teams-list__team-person-attribute teams-list__team-person-attribute--role">{role}</p>
+                            : null
+                          }
+                          { email && email.trim().length
+                            ? <p className="teams-list__team-person-attribute teams-list__team-person-attribute--email">{email}</p>
+                            : null
+                          }
+                          { details && details.trim().length
+                            ? <p className="teams-list__team-person-attribute teams-list__team-person-attribute--details">{details}</p>
+                            : null
+                          }
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
-              )
-              : null))
+              );
+            })
           }
         </ul>
       </div>

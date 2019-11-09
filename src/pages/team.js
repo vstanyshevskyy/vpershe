@@ -25,12 +25,12 @@ export default function Template ({ data }) {
                   <ul className="teams-list__team-persons-list">
                     {(group.people || []).map(p => {
                       const {
-                        email, name, role, details
-                      } = p;
+                        email, name, role, details, photo
+                      } = p.person;
                       return (
                         <li className={`teams-list__team-person teams-list__team-person--1-of-${group.perLine}`} key={name}>
                           { p.person.photo
-                            ? <Img alt={p.person.name} className="teams-list__team-person-photo" fluid={p.person.photo.childImageSharp.fluid} />
+                            ? <Img alt={name} className="teams-list__team-person-photo" fluid={photo.childImageSharp.fluid} />
                             : <div className="teams-list__team-person-silhoute" />
                           }
                           <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{name}</p>

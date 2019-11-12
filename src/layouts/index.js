@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 
+import ThemeContext from '../context/ThemeContext';
 import Questionbox from '../components/questionbox';
 import Navbar from '../components/navigation';
 import Footer from '../components/footer';
@@ -34,11 +35,13 @@ class Layout extends React.Component {
         SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
       }
     } = this.props;
+    const { isDarkModeEnabled } = this.context;
     const isHomePage = !(location.pathname.split('/')[1]);
     const { isPageBlurred } = this.state;
     const wrapperClasses = classNames(
       'page-wrapper',
       {
+        'page-wrapper--dark': isDarkModeEnabled,
         'page-wrapper--custom': !isHomePage,
         'page-wrapper--blurred': isPageBlurred
       },
@@ -47,7 +50,7 @@ class Layout extends React.Component {
     return (
       <React.Fragment>
         <div className={wrapperClasses}>
-          <Helmet>
+          <Helmet bodyAttributes={{ class: classNames({ 'body--dark': isDarkModeEnabled }) }}>
             <html lang="uk" />
             <link href="/assets/icon-57x57.png" sizes="57x57" rel="apple-touch-icon" />
             <link href="/assets/icon-72x72.png" sizes="72x72" rel="apple-touch-icon" />
@@ -98,6 +101,8 @@ class Layout extends React.Component {
     );
   }
 }
+
+Layout.contextType = ThemeContext;
 
 const pageQuery = graphql`
 query FooterData {

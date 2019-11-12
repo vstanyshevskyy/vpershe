@@ -4,9 +4,11 @@ import ReactDOM from 'react-dom';
 import { graphql } from 'gatsby';
 import moment from 'moment';
 import 'moment/locale/uk';
+import classNames from 'classnames';
 import Config from '../config';
 import './content.less';
 import Layout from '../layouts';
+import ThemeContext from '../context/ThemeContext';
 import NonStrechedImage from '../components/NonStrechedImage';
 import TagsList from '../components/tags';
 import ArticlesList from '../components/articles-list';
@@ -106,6 +108,8 @@ export default class Content extends React.Component {
       contentType
     }} = this.props;
 
+    const { isDarkModeEnabled } = this.context;
+
     const relatedBottom = prepareRelatedContent(related_bottom, allPages.edges.map(n => n.node.frontmatter));
     const relatedSidebar = prepareRelatedContent(related_sidebar, allPages.edges.map(n => n.node.frontmatter));
     this.asideRelatedLinks = (relatedSidebar || []).map(item => ({
@@ -115,9 +119,16 @@ export default class Content extends React.Component {
     this.relatedSidebarMobilePosition = relatedSidebarMobilePosition || 4;
     this.relatedSidebarMobileTitle = relatedSidebarMobileTitle || '';
     const seoData = Object.assign({ title, metaKeywords, metaDescription, useTitleTemplate: true, url: `${contentType}/${path}`, image });
+    const className = classNames(
+      'index-page__content-wrapper',
+      `index-page__content-wrapper--${contentType}`,
+      {
+        'index-page__content-wrapper--dark': isDarkModeEnabled
+      }
+    );
     return (
       <Layout>
-        <div className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`} id="content">
+        <div className={className} id="content">
           <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
           <article className="content__article">
             { image
@@ -128,7 +139,11 @@ export default class Content extends React.Component {
               <div className="content__subtitle">{subtitle}</div>
               {
                 publishTime
-                  ? <div className="content__date">{moment(publishTime).format('LL')}</div>
+                  ? (
+                    <div className={classNames('content__date', { 'content__date--dark': isDarkModeEnabled })}>
+                      {moment(publishTime).format('LL')}
+                    </div>
+                  )
                   : null
               }
             </div>
@@ -156,6 +171,8 @@ export default class Content extends React.Component {
     );
   }
 }
+
+Content.contextType = ThemeContext;
 
 export const pageQuery = graphql`
   query contentQuery($slug: String!, $contentType: String!) {

@@ -67,6 +67,11 @@ h3,
   }
 }
 
+.btn--dark {
+  border-color: @clr-highlight;
+  color: @clr-highlight
+}
+
 input,
 textarea {
   font-family: @font-primary;
@@ -75,6 +80,23 @@ textarea {
   border: none;
   color: @clr-text;
   background: @white;
+}
+
+.input--dark {
+  background-color: @bg-dark;
+  color: @white;
+  &::placeholder {
+    color:@white;
+    opacity: 1;
+  }
+  
+  &:-ms-input-placeholder {
+    color: @white;
+  }
+  
+  &::-ms-input-placeholder {
+    color: @white;
+  }
 }
 
 p + p {

@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { FaTimes, FaHeart } from 'react-icons/fa';
 import { withPrefix } from 'gatsby';
+import ThemeContext from '../../context/ThemeContext';
 import './index.less';
 
 export default class QuestionboxForm extends React.Component {
@@ -62,6 +63,7 @@ export default class QuestionboxForm extends React.Component {
     const {
       isOpen, sent, inProgress, allowedToShare
     } = this.state;
+    const { isDarkModeEnabled } = this.context;
     const {
       toggleButtonText,
       thanksTitle,
@@ -82,16 +84,19 @@ export default class QuestionboxForm extends React.Component {
     const formClasses = classNames('questionbox__form', {
       'questionbox__form--in-progress': inProgress
     });
+    const containerClasses = classNames('questionbox__container', {
+      'questionbox__container--dark': isDarkModeEnabled
+    });
 
     return (
       <div className={classes}>
         <div role="button" tabIndex="0" onKeyPress={this.keyboardToggle} onClick={this.toggle} className="questionbox__toggler" aria-label="Потрібна порада?">
-          <div className="questionbox__toggler-text">{toggleButtonText}</div>
+          <div className={classNames('questionbox__toggler-text', { 'questionbox__toggler-text--dark': isDarkModeEnabled })}>{toggleButtonText}</div>
           <img className="questionbox__toggle-icon" loading="lazy" src={withPrefix('assets/chat.svg')} alt="" />
         </div>
-        <div className="questionbox__container">
+        <div className={containerClasses}>
           <button
-            className="questionbox__form-close"
+            className={classNames('questionbox__form-close', { 'questionbox__form-close--dark': isDarkModeEnabled })}
             onClick={this.toggle}
             type="button"
           >
@@ -116,7 +121,14 @@ export default class QuestionboxForm extends React.Component {
                 <form className={formClasses} onSubmit={this.handleSubmit}>
                   <p className="questionbox__form-description">{formInstructions}</p>
                   <label className="questionbox__form-label" htmlFor="form-contact">{emailLabel}</label>
-                  <input id="form-contact" className="questionbox__email-input" type="email" name="email" placeholder={emailLabel} required />
+                  <input
+                    id="form-contact"
+                    className={classNames('input', 'questionbox__email-input', { 'input--dark': isDarkModeEnabled })}
+                    type="email"
+                    name="email"
+                    placeholder={emailLabel}
+                    required
+                  />
                   <p className="questionbox__form-allow-to-share-text">{allowToShareLabel}</p>
                   <div className="questionbox__form-radiogroup">
                     <input className="questionbox__form-radio-btn" type="radio" id="allowed_to_share_y" name="allowed_to_share" value="true" defaultChecked />
@@ -125,8 +137,19 @@ export default class QuestionboxForm extends React.Component {
                     <label htmlFor="allowed_to_share_n">{noLabel}</label>
                   </div>
                   <label className="questionbox__form-label" htmlFor="form-message">{questionAreaLabel}</label>
-                  <textarea className="questionbox__form-textarea" id="form-message" name="question" required placeholder={questionAreaLabel} />
-                  <button className="btn questionbox__form-btn" type="submit">{submitButtonText}</button>
+                  <textarea
+                    className={classNames('input', 'questionbox__form-textarea', { 'input--dark': isDarkModeEnabled })}
+                    id="form-message"
+                    name="question"
+                    required
+                    placeholder={questionAreaLabel}
+                  />
+                  <button
+                    className={classNames('btn', 'btn questionbox__form-btn', { 'btn--dark': isDarkModeEnabled })}
+                    type="submit"
+                  >
+                    {submitButtonText}
+                  </button>
                 </form>
               )
           }
@@ -135,3 +158,6 @@ export default class QuestionboxForm extends React.Component {
     );
   }
 }
+
+
+QuestionboxForm.contextType = ThemeContext;

@@ -81,7 +81,7 @@ export default class VpersheNav extends React.Component {
             listClassName="nav__social-icons"
             icons={socialIcons}
           />
-          <button type="button" className={classNames('nav__theme-switcher', { 'nav__theme-switcher--dark': isDarkModeEnabled })} onClick={toggleDark}>
+          <button type="button" className={classNames('nav__theme-switcher', { 'nav__theme-switcher--dark': isDarkModeEnabled })} onClick={toggleDark} aria-label="Увімкнути нічний режим відображення">
             {isDarkModeEnabled ? <FaSun /> : <FaMoon />}
           </button>
         </div>

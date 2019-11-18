@@ -19,15 +19,15 @@ groups:
           photo: /assets/uploads/img_0570.jpg
           role: Менеджерка онлайн-спільнот
       - person:
-          details: ''
-          email: ''
-          name: Юлія Бенюх
-          photo: /assets/uploads/11160674_1037756749575309_1534353746737673711_n.jpg
-          role: Дизайнерка
-      - person:
           name: Віталій Станишевський
           photo: /assets/uploads/111.jpg
           role: 'Веб-розробник, адміністратор'
+      - person:
+          details: ''
+          email: ''
+          name: Аліна Тимощук
+          photo: /assets/uploads/img_20191026_164441-1-.jpg
+          role: Літературна редакторка
     perLine: 3
   - name: Автор(к)и
     perLine: 4
@@ -54,9 +54,9 @@ groups:
           photo: /assets/uploads/36852215_960787320765855_5697258072146182144_n.jpg
           role: Активіст підліткового руху Teenergizer
     perLine: 3
-title: Наша команда - Вперше
-metaDescription: Команда - автори вперше
-metaKeywords: 'Комнада, вперше'
+title: Хто робить Вперше
+metaDescription: Команда Вперше
+metaKeywords: 'Команда, вперше'
 fbImage: /assets/uploads/full_logo.png
 ---
 

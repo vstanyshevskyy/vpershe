@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Vpershe Site'
+    title: 'Vpershe Site',
+    siteUrl: 'https://vpershe.com'
   },
   plugins: [
     {
@@ -95,6 +96,16 @@ module.exports = {
             }
           }
         ]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{
+          userAgent: '*',
+          allow: '/',
+          disallow: '/tags'
+        }]
       }
     }
   ]

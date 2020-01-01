@@ -13,7 +13,7 @@ class SliderButton extends React.Component {
       'slider__arrow--next': !isPrev
     });
     return (
-      <button {...{ props, className }} type="button" aria-label={isPrev ? 'Назад' : 'Вперед'}>
+      <button {...{ ...props, className }} type="button" aria-label={isPrev ? 'Назад' : 'Вперед'}>
         <img className={btnClasses} loading="lazy" src={withPrefix('assets/navigation.svg')} alt="" />
         {this.children}
       </button>

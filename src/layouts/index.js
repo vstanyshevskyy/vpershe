@@ -29,8 +29,6 @@ class Layout extends React.Component {
   render () {
     const {
       children, location, data: {
-        FooterSettings: { edges: [{ node: { frontmatter: footerData } }] },
-        NavbarSettings: { edges: [{ node: { frontmatter: navbarSettings } }] },
         QuestionBoxSettings: { edges: [{ node: { frontmatter: questionBoxSettings } }] },
         SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
       }
@@ -71,7 +69,7 @@ class Layout extends React.Component {
             <link rel="preconnect" href="https://www.google.com" />
           </Helmet>
           <a href="#content" className="skip-navigation">Пропустити навігацію</a>
-          <Navbar location={location.pathname} className={location.pathname.split('/')[1]} {...navbarSettings} />
+          <Navbar />
           {
             !isHomePage
               ? <img className="wrapper__graffiti graffiti wrapper__graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
@@ -94,7 +92,7 @@ class Layout extends React.Component {
               : null
           }
 
-          <Footer {...footerData} {...navbarSettings} />
+          <Footer />
         </div>
         <Questionbox {...questionBoxSettings} onBoxToggle={this.blurPage} />
       </React.Fragment>
@@ -106,36 +104,6 @@ Layout.contextType = ThemeContext;
 
 const pageQuery = graphql`
 query FooterData {
-  FooterSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "footer_settings"} }}){
-    edges{
-     node{
-       frontmatter{
-        contentType
-        copyrightText
-        bottomLinks {
-          url
-          text
-        }
-       }
-     }
-    }
-  }
-  NavbarSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "navbar_settings"} }}){
-    edges{
-     node{
-       frontmatter{
-        links {
-          text
-          url
-        }
-        socialIcons {
-          type
-          url
-        }
-       }
-     }
-    }
-  }
   QuestionBoxSettings: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "ask_box_settings"}}}) {
     edges {
       node {

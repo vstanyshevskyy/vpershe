@@ -29,7 +29,6 @@ class Layout extends React.Component {
   render () {
     const {
       children, location, data: {
-        QuestionBoxSettings: { edges: [{ node: { frontmatter: questionBoxSettings } }] },
         SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
       }
     } = this.props;
@@ -94,7 +93,7 @@ class Layout extends React.Component {
 
           <Footer />
         </div>
-        <Questionbox {...questionBoxSettings} onBoxToggle={this.blurPage} />
+        <Questionbox onBoxToggle={this.blurPage} />
       </React.Fragment>
     );
   }
@@ -104,25 +103,6 @@ Layout.contextType = ThemeContext;
 
 const pageQuery = graphql`
 query FooterData {
-  QuestionBoxSettings: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "ask_box_settings"}}}) {
-    edges {
-      node {
-        frontmatter {
-          toggleButtonText
-          formInstructions
-          emailLabel
-          allowToShareLabel
-          yesLabel
-          noLabel
-          questionAreaLabel
-          submitButtonText
-          thanksTitle
-          thanksTextAllowedToShare
-          thanksTextNotAllowedToShare
-        }
-      }
-    }
-  }
   SubscribeSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "subscribe_form_settings"}}}) {
     edges {
       node {

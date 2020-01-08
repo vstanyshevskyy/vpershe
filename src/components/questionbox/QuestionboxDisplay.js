@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { FaTimes, FaHeart } from 'react-icons/fa';
 import { withPrefix } from 'gatsby';
-import ThemeContext from '../../context/ThemeContext';
 import './index.less';
 
 export default class QuestionboxForm extends React.Component {
@@ -63,7 +62,6 @@ export default class QuestionboxForm extends React.Component {
     const {
       isOpen, sent, inProgress, allowedToShare
     } = this.state;
-    const { isDarkModeEnabled } = this.context;
     const {
       toggleButtonText,
       thanksTitle,
@@ -75,7 +73,8 @@ export default class QuestionboxForm extends React.Component {
       yesLabel,
       noLabel,
       questionAreaLabel,
-      submitButtonText
+      submitButtonText,
+      isDarkModeEnabled
     } = this.props;
     const classes = classNames('questionbox', {
       'questionbox--open': isOpen,
@@ -158,6 +157,3 @@ export default class QuestionboxForm extends React.Component {
     );
   }
 }
-
-
-QuestionboxForm.contextType = ThemeContext;

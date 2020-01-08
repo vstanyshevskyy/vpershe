@@ -29,16 +29,16 @@ class Layout extends React.Component {
   render () {
     const { children, location } = this.props;
     const { isDarkModeEnabled } = this.context;
-    const isHomePage = !(location.pathname.split('/')[1]);
+    const contentType = location.pathname.split('/')[1];
+    const isHomePage = !contentType;
     const { isPageBlurred } = this.state;
     const wrapperClasses = classNames(
       'page-wrapper',
       {
         'page-wrapper--dark': isDarkModeEnabled,
-        'page-wrapper--custom': !isHomePage,
         'page-wrapper--blurred': isPageBlurred
       },
-      `page-wrapper--${location.pathname.split('/')[1]}`
+      `page-wrapper--${contentType}`
     );
     return (
       <React.Fragment>
@@ -72,12 +72,7 @@ class Layout extends React.Component {
           }
           <img className="wrapper__graffiti graffiti wrapper__graffiti--arrows" loading="lazy" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
           {children}
-          {
-            location.pathname.split('/')[1]
-              ? (<Subscribe />)
-              : null
-          }
-
+          { isHomePage ? null : <Subscribe /> }
           <Footer />
         </div>
         <Questionbox onBoxToggle={this.blurPage} />

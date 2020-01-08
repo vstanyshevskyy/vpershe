@@ -10,7 +10,6 @@ import ArticlesTiles from '../components/articles-tiles';
 import ArticlesList from '../components/articles-list';
 
 export default function Template ({ data }) {
-  const carouselItems = ((data.carouselItems || {}).edges || []).map(c => c.node.frontmatter);
   const stories = ((data.stories || {}).edges || []).map(c => c.node.frontmatter);
   const articles = ((data.articles || {}).edges || []).map(c => c.node.frontmatter);
   const settings = data.settings.edges[0].node.frontmatter;
@@ -20,7 +19,7 @@ export default function Template ({ data }) {
     <Layout>
       <div id="content">
         <SEO defaults={settings} />
-        <Carousel items={carouselItems} />
+        <Carousel />
         <ArticlesTiles items={articles} />
         <div className="homepage__stories">
           <img className="homepage__graffiti homepage__graffiti--stories-eye graffiti graffiti--eye" loading="lazy" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
@@ -52,30 +51,6 @@ export default function Template ({ data }) {
 
 export const pageQuery = graphql`
 query HomePage {
-  carouselItems: allMarkdownRemark(
-    filter: { frontmatter:  { carousel_featured: { eq: true} }}
-    sort: { fields: [frontmatter___publishTime], order: DESC }
-  ){
-    edges{
-      node{
-        frontmatter {
-          title
-          contentType
-          path
-          subtitle
-          image {
-            relativePath
-            childImageSharp {
-              fluid(maxWidth: 170, maxHeight: 170, cropFocus: CENTER, fit: COVER) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
-          }
-          image_alt
-        }
-      }
-    }
-  }
   homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
     edges {
       node {

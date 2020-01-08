@@ -9,14 +9,7 @@ export default props => {
   const {
     children,
     data: {
-      settings: { edges: settings },
-      generalSettings: {
-        edges: [{
-          node: {
-            frontmatter: generalSettings
-          }
-        }]
-      }
+      settings: { edges: settings }
     },
     pageContext: {
       currentPage,
@@ -39,7 +32,7 @@ export default props => {
   return (
     <Layout>
       <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`} id="content">
-        <SEO {...{ data: seoData, defaults: generalSettings }} />
+        <SEO data={seoData} />
         <ul className={`index-page__list index-page__list--${contentType}`}>
           <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
             {tags.length

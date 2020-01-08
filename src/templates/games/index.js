@@ -95,12 +95,10 @@ export default class Game extends React.Component {
     const {
       data: {
         game: { frontmatter: gameData },
-        generalSettings: { frontmatter: settings },
         allPages: { edges: allPages }
       }
     } = this.props;
     const game = prepareGameData(gameData, allPages);
-    this.settings = settings;
     this.initialState = game;
     this.setState({
       title: game.title,
@@ -146,7 +144,7 @@ export default class Game extends React.Component {
 
     return (
       <Layout>
-        <SEO data={{ useTitleTemplate: false }} defaults={this.settings} />
+        <SEO data={{ useTitleTemplate: false }} />
         <div className="quest-game" id="content">
           <header>
             {isStarted ? (
@@ -281,27 +279,6 @@ export const pageQuery = graphql`
             subtitle
           }
         }
-      }
-    }
-    generalSettings: markdownRemark(
-      frontmatter:  { contentType: { eq: "general_settings" }}
-    ) {
-      frontmatter {
-        title
-        url
-        titleTemplate
-        organizationTitle
-        defaultAuthor
-        favicon {
-          relativePath
-        }
-        metaDescription
-        metaKeywords
-        fbTitle
-        fbImage {
-          relativePath
-        }
-        fbDescription
       }
     }
   }

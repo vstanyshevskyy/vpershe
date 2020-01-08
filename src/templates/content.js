@@ -102,8 +102,7 @@ export default class Content extends React.Component {
           path
         }
       },
-      allPages,
-      generalSettings: { edges: [{ node: { frontmatter: globalSettings } }]}
+      allPages
     }, pageContext: {
       contentType
     }} = this.props;
@@ -129,7 +128,7 @@ export default class Content extends React.Component {
     return (
       <Layout>
         <div className={className} id="content">
-          <SEO {...{ data: seoData, defaults: globalSettings, isBlogPost: true }} />
+          <SEO data={seoData} isBlogPost />
           <article className="content__article">
             { image
               ? <NonStrechedImage alt={imageAlt} className="article-card__image" fluid={image.childImageSharp.fluid} />
@@ -233,32 +232,6 @@ export const pageQuery = graphql`
             imageAlt: image_alt
             title
             subtitle
-          }
-        }
-      }
-    }
-    generalSettings: allMarkdownRemark(
-      filter: { frontmatter:  { contentType: { eq: "general_settings" }}}
-    ) {
-      edges {
-        node {
-          html
-          frontmatter {
-            title
-            url
-            titleTemplate
-            organizationTitle
-            defaultAuthor
-            favicon {
-              relativePath
-            }
-            metaDescription
-            metaKeywords
-            fbTitle
-            fbImage {
-              relativePath
-            }
-            fbDescription
           }
         }
       }

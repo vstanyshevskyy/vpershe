@@ -7,12 +7,11 @@ import SEO from '../components/SEO';
 
 export default function Template ({ data }) {
   const pageData = data.team.edges[0].node.frontmatter;
-  const settings = data.settings.edges[0].node.frontmatter;
 
   return (
     <Layout>
       <div className="index-page__content-wrapper" id="content">
-        <SEO data={pageData} defaults={settings} />
+        <SEO data={pageData} />
         <ul className="teams-list">
           {
             pageData.groups.map(group => {
@@ -91,27 +90,6 @@ query TeamPage {
                 }
               }
             }
-          }
-        }
-      }
-    }
-  }
-  settings: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "general_settings"}}}) {
-    edges {
-      node {
-        frontmatter {
-          url
-          favicon  {
-            relativePath
-          }
-          titleTemplate
-          title
-          metaDescription
-          metaKeywords
-          fbTitle
-          fbDescription
-          fbImage {
-            relativePath
           }
         }
       }

@@ -12,13 +12,12 @@ import ArticlesList from '../components/articles-list';
 export default function Template ({ data }) {
   const stories = ((data.stories || {}).edges || []).map(c => c.node.frontmatter);
   const articles = ((data.articles || {}).edges || []).map(c => c.node.frontmatter);
-  const settings = data.settings.edges[0].node.frontmatter;
   const homepageAboutProject = data.homepageSettings.edges[0].node.html;
   const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <Layout>
       <div id="content">
-        <SEO defaults={settings} />
+        <SEO />
         <Carousel />
         <ArticlesTiles items={articles} />
         <div className="homepage__stories">
@@ -107,26 +106,6 @@ query HomePage {
             }
           }
           image_alt
-        }
-      }
-    }
-  }
-  settings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "general_settings"}}}) {
-    edges {
-      node {
-        frontmatter {
-          title
-          url
-          favicon  {
-            relativePath
-          }
-          metaDescription
-          metaKeywords
-          fbTitle
-          fbImage {
-            relativePath
-          }
-          fbDescription
         }
       }
     }

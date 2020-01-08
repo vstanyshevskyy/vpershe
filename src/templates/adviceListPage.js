@@ -52,31 +52,5 @@ export const pageQuery = graphql`
         }
       }
     }
-    generalSettings: allMarkdownRemark(
-      filter: { frontmatter:  { contentType: { eq: "general_settings" }}}
-    ) {
-      edges {
-        node {
-          html
-          frontmatter {
-            title
-            url
-            titleTemplate
-            organizationTitle
-            defaultAuthor
-            favicon {
-              relativePath
-            }
-            metaDescription
-            metaKeywords
-            fbTitle
-            fbImage {
-              relativePath
-            }
-            fbDescription
-          }
-        }
-      }
-    }
   }
 `;

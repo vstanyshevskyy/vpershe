@@ -15,7 +15,6 @@ export default function Template ({ data }) {
   const articles = ((data.articles || {}).edges || []).map(c => c.node.frontmatter);
   const settings = data.settings.edges[0].node.frontmatter;
   const homepageAboutProject = data.homepageSettings.edges[0].node.html;
-  const subscribeSettings = data.subscribeSettings.edges[0].node.frontmatter;
   const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <Layout>
@@ -30,14 +29,7 @@ export default function Template ({ data }) {
           <img className="homepage__graffiti homepage__graffiti--vpershe graffiti graffiti--vpershe" loading="lazy" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
           <Link to="/stories" className="link__all-records">Всі історії</Link>
         </div>
-        <Subscribe
-          title={subscribeSettings.title}
-          emailPlaceholder={subscribeSettings.email_placeholder}
-          emailLabel={subscribeSettings.email_label}
-          buttonText={subscribeSettings.button_text}
-          thanksTitle={subscribeSettings.thanks_title}
-          thanksText={subscribeSettings.thanks_text}
-        />
+        <Subscribe />
         <div className="homepage__about">
           <h1 className="homepage__about-header">Про проект</h1>
           <img className="homepage__graffiti homepage__graffiti--about-starts graffiti graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
@@ -91,20 +83,6 @@ query HomePage {
         frontmatter {
           contactFormEmail
           contactFormTitle
-        }
-      }
-    }
-  }
-  subscribeSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "subscribe_form_settings"}}}) {
-    edges {
-      node {
-        frontmatter {
-          title
-          email_placeholder
-          email_label
-          button_text
-          thanks_title
-          thanks_text
         }
       }
     }

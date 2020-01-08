@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
-import { StaticQuery, graphql, withPrefix } from 'gatsby';
+import { withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 
 import ThemeContext from '../context/ThemeContext';
@@ -27,11 +27,7 @@ class Layout extends React.Component {
   }
 
   render () {
-    const {
-      children, location, data: {
-        SubscribeSettings: { edges: [{ node: { frontmatter: subscribeSettings } }] }
-      }
-    } = this.props;
+    const { children, location } = this.props;
     const { isDarkModeEnabled } = this.context;
     const isHomePage = !(location.pathname.split('/')[1]);
     const { isPageBlurred } = this.state;
@@ -78,16 +74,7 @@ class Layout extends React.Component {
           {children}
           {
             location.pathname.split('/')[1]
-              ? (
-                <Subscribe
-                  title={subscribeSettings.title}
-                  emailPlaceholder={subscribeSettings.email_placeholder}
-                  emailLabel={subscribeSettings.email_label}
-                  buttonText={subscribeSettings.button_text}
-                  thanksTitle={subscribeSettings.thanks_title}
-                  thanksText={subscribeSettings.thanks_text}
-                />
-              )
+              ? (<Subscribe />)
               : null
           }
 
@@ -101,32 +88,8 @@ class Layout extends React.Component {
 
 Layout.contextType = ThemeContext;
 
-const pageQuery = graphql`
-query FooterData {
-  SubscribeSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "subscribe_form_settings"}}}) {
-    edges {
-      node {
-        frontmatter {
-          title
-          email_placeholder
-          email_label
-          button_text
-          thanks_title
-          thanks_text
-        }
-      }
-    }
-  }
-}
-`;
-
 export default ({ children }) => (
-  <StaticQuery
-    query={pageQuery}
-    render={data => (
-      <Location>
-        {({ location }) => (<Layout data={data} location={location}>{children}</Layout>)}
-      </Location>
-    )}
-  />
+  <Location>
+    {({ location }) => (<Layout location={location}>{children}</Layout>)}
+  </Location>
 );

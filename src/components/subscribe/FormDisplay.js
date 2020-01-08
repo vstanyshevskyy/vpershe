@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { FaHeart } from 'react-icons/fa';
 import { withPrefix } from 'gatsby';
-import ThemeContext from '../../context/ThemeContext';
 import './index.less';
 
 class SubscribeForm extends React.Component {
@@ -37,22 +36,24 @@ class SubscribeForm extends React.Component {
       title,
       emailLabel,
       emailPlaceholder,
-      buttonText
+      buttonText,
+      isDarkModeEnabled
     } = this.props;
-    const { isDarkModeEnabled } = this.context;
     const subscribeClasses = classNames('subscribe', {
       'subscribe--thanks': thanks,
       'subscribe--in-progress': inProgress,
       'subscribe--dark': isDarkModeEnabled
     });
-    const thanksMessage = (
-      <div className={subscribeClasses}>
-        <FaHeart className="subscribe__heart" />
-        <p className="h3">{thanksTitle}</p>
-        <p>{thanksText}</p>
-      </div>
-    );
-    return thanks ? thanksMessage : (
+    if (thanks) {
+      return (
+        <div className={subscribeClasses}>
+          <FaHeart className="subscribe__heart" />
+          <p className="h3">{thanksTitle}</p>
+          <p>{thanksText}</p>
+        </div>
+      );
+    }
+    return (
       <div className={subscribeClasses}>
         <form
           className="subscribe__form"
@@ -77,7 +78,5 @@ class SubscribeForm extends React.Component {
     );
   }
 }
-
-SubscribeForm.contextType = ThemeContext;
 
 export default SubscribeForm;

@@ -19,6 +19,9 @@
 .subscribe--in-progress {
   animation: pulse 5s infinite;
   pointer-events: none;
+  &.subscribe--dark {
+    animation: pulseDark 5s infinite;
+  }
 }
 
 @keyframes pulse {
@@ -27,6 +30,15 @@
   }
   100% {
     background-color: lighten(@clr-highlight, 80%);
+  }
+}
+
+@keyframes pulseDark {
+  0% {
+    background-color: @clr-highlight--night;
+  }
+  100% {
+    background-color: lighten(@clr-highlight--night, 80%);
   }
 }
 

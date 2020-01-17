@@ -1,0 +1,40 @@
+@import '../styleguide/variables.less';
+
+.about-project {
+  display: flex;
+  max-width: @content-width;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-top: 90px;
+  padding: 0 @desktop-padding;
+  position:relative;
+}
+
+.about-project__graffiti--stars {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+}
+
+.about-project__text {
+  max-width: 712px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+@media screen and (max-width: @screen-sm-max) {
+  .about-project {
+    flex-direction: column;
+    padding: 0 @mobile-padding;
+  }
+
+  .about-project__text {
+    margin-top: 20px;
+  }
+
+  .about-project__graffiti--stars {
+    right: 10px;
+    top: -5px;
+    left: auto;
+  }
+}

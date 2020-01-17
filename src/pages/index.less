@@ -1,27 +1,5 @@
 @import '../components/styleguide/variables.less';
 
-.homepage__about {
-  display: flex;
-  max-width: @content-width;
-  margin: 0 auto;
-  justify-content: space-between;
-  margin-top: 90px;
-  padding: 0 @desktop-padding;
-  position:relative;
-}
-
-.homepage__graffiti--about-starts {
-  position: absolute;
-  top: 50%;
-  left: -30px;
-}
-
-.homepage__about-text {
-  max-width: 712px;
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
-
 .homepage__stories {
   max-width: @content-width;
   margin: 0 auto 20px;
@@ -49,27 +27,11 @@
 }
 
 @media screen and (max-width: @screen-sm-max) {
-
   .homepage__stories {
     padding: 0 @mobile-padding;
   }
 
-  .homepage__about {
-    flex-direction: column;
-    padding: 0 @mobile-padding;
-  }
-
-  .homepage__about-text {
-    margin-top: 20px;
-  }
-
   .homepage__graffiti--vpershe {
     margin-left: 0;
-  }
-
-  .homepage__graffiti--about-starts {
-    right: 10px;
-    top: -5px;
-    left: auto;
   }
 }

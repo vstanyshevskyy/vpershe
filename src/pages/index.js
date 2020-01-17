@@ -8,11 +8,11 @@ import Carousel from '../components/carousel';
 import Advice from '../components/advice';
 import ArticlesTiles from '../components/articles-tiles';
 import ArticlesList from '../components/articles-list';
+import AboutProject from '../components/about-project';
 
 export default function Template ({ data }) {
   const stories = ((data.stories || {}).edges || []).map(c => c.node.frontmatter);
   const articles = ((data.articles || {}).edges || []).map(c => c.node.frontmatter);
-  const homepageAboutProject = data.homepageSettings.edges[0].node.html;
   const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <Layout>
@@ -30,11 +30,7 @@ export default function Template ({ data }) {
           <img className="homepage__graffiti homepage__graffiti--vpershe" loading="lazy" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
         </div>
         <Subscribe />
-        <div className="homepage__about">
-          <h1 className="homepage__about-header">Про проект</h1>
-          <img className="homepage__graffiti homepage__graffiti--about-starts graffiti graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
-          <div className="homepage__about-text" dangerouslySetInnerHTML={{ __html: homepageAboutProject }} />
-        </div>
+        <AboutProject />
         {
           advice && advice.length
             ? (
@@ -52,17 +48,6 @@ export default function Template ({ data }) {
 
 export const pageQuery = graphql`
 query HomePage {
-  homepageSettings: allMarkdownRemark(filter: { frontmatter:  { contentType: { eq: "homepage_settings"}}}) {
-    edges {
-      node {
-        html
-        frontmatter {
-          contactFormEmail
-          contactFormTitle
-        }
-      }
-    }
-  }
   stories: allMarkdownRemark(
     filter: { frontmatter:  { contentType: { eq: "stories"} }}
     sort: { fields: [frontmatter___publishTime], order: DESC }

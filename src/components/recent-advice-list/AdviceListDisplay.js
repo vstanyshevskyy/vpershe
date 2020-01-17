@@ -8,14 +8,16 @@ export default ({ items }) => (
     <h2>Поради</h2>
     <img className="advice__graffiti advice__graffiti--moon" loading="lazy" alt="" width="78" src={withPrefix('assets/graffiti/moon.svg')} aria-hidden="true" />
     <ul className="advice__list">
-      { items.map((item, index) => {
+      { items.map(({
+        path, title
+      }, index) => {
         const page = Math.floor(index / Config.advice.perPage) + 1;
         const displayPage = page === 1 ? '' : `/${page}`;
-        const url = `/advice${displayPage}#${item.url}`;
+        const url = `/advice${displayPage}#${path}`;
         return (
           <li key={url} className="advice__item">
             <Link className="advice__item-link" to={url}>
-              {item.title}
+              {title}
             </Link>
           </li>
         );

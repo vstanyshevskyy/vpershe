@@ -18,8 +18,8 @@ export default class ArticleTiles extends React.Component {
         <h2>Статті</h2>
         <ul className="articles-tiles__list">
           {
-            items.map((i, index) => {
-              const url = `/articles/${i.path}`;
+            items.map(({ path, image, title }, index) => {
+              const url = `/articles/${path}`;
               return (
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 <li
@@ -29,8 +29,8 @@ export default class ArticleTiles extends React.Component {
                   onMouseDown={e => this.clickHelper.onMouseDown(e)}
                 >
                   <div className="article-tiles__article-wrapper">
-                    <Img alt="" className="article-tiles__article-image" fluid={i.image.childImageSharp.fluid} />
-                    <Link to={url} ref={el => this.clickHelper.addLink(el, index)} className="article-tiles__article-link">{i.title}</Link>
+                    <Img alt="" className="article-tiles__article-image" fluid={image.childImageSharp.fluid} />
+                    <Link to={url} ref={el => this.clickHelper.addLink(el, index)} className="article-tiles__article-link">{title}</Link>
                   </div>
                 </li>
               );

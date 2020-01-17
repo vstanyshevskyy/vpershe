@@ -66,11 +66,11 @@ class Layout extends React.Component {
           <a href="#content" className="skip-navigation">Пропустити навігацію</a>
           <Navbar />
           {
-            !isHomePage
-              ? <img className="wrapper__graffiti graffiti wrapper__graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
-              : null
+            isHomePage
+              ? null
+              : <img className="wrapper__graffiti wrapper__graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
           }
-          <img className="wrapper__graffiti graffiti wrapper__graffiti--arrows" loading="lazy" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
+          <img className="wrapper__graffiti wrapper__graffiti--arrows" loading="lazy" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
           {children}
           { isHomePage ? null : <Subscribe /> }
           <Footer />

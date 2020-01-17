@@ -16,11 +16,7 @@ export default () => (
         }
       }
     `}
-    render={(
-      {
-        aboutProject: { edges: [{ node: { html } }] }
-      }
-    ) => (
+    render={({ aboutProject: { edges: [{ node: { html } }] } }) => (
       <div className="about-project">
         <h1 className="about-project__header">Про проект</h1>
         <img className="about-project__graffiti--stars graffiti graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />

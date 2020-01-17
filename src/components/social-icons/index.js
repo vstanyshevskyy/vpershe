@@ -6,8 +6,8 @@ import {
 import './index.less';
 
 export default class SocialIcons extends React.Component {
-  getIconComponent(iconData) {
-    switch (iconData.type) {
+  getIconComponent(type) {
+    switch (type) {
     case 'Facebook':
       return <FaFacebookF className="social-icon social-icon--facebook" />;
     case 'Twitter':
@@ -23,19 +23,20 @@ export default class SocialIcons extends React.Component {
 
   render() {
     const {
-      listClassName, listItemClassName, linkClassName, icons
+      listClassName, listItemClassName, linkClassName, icons = []
     } = this.props;
     const listClass = listClassName || 'navbar-nav col-2 justify-content-end d-none d-md-flex social-icons';
     const listItemClass = listItemClassName || 'nav-item';
     const linkClass = linkClassName || 'nav-link';
     return (
       <ul className={listClass}>
-        {(icons || []).map(icon => (
-          <li key={icon.type} className={listItemClass}>
-            <a className={linkClass} target="_blank" rel="noopener noreferrer" href={icon.url} title={icon.type}>
-              {this.getIconComponent(icon)}
+        {icons.map(({ type, url }) => (
+          <li key={type} className={listItemClass}>
+            <a className={linkClass} target="_blank" rel="noopener noreferrer" href={url} title={type}>
+              {this.getIconComponent(type)}
             </a>
-          </li>))}
+          </li>
+        ))}
       </ul>
     );
   }

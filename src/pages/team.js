@@ -5,49 +5,37 @@ import './team.less';
 import Layout from '../layouts';
 import SEO from '../components/SEO';
 
-export default function Template ({ data }) {
-  const pageData = data.team.edges[0].node.frontmatter;
-
+export default function Template ({ data: { team: { edges: [{ node: { frontmatter: pageData } }] } } }) {
   return (
     <Layout>
       <div className="index-page__content-wrapper" id="content">
         <SEO data={pageData} />
         <ul className="teams-list">
           {
-            pageData.groups.map(group => {
-              if (!group.people || !group.people.length) {
+            pageData.groups.map(({ people = [], name: groupName, perLine }) => {
+              if (!people || !people.length) {
                 return null;
               }
               return (
-                <li className="teams-list__team" key={group.name}>
-                  <h2 className="teams-list__team-title">{group.name}</h2>
+                <li className="teams-list__team" key={groupName}>
+                  <h2 className="teams-list__team-title">{groupName}</h2>
                   <ul className="teams-list__team-persons-list">
-                    {(group.people || []).map(p => {
-                      const {
+                    { people.map(({
+                      person: {
                         email, name, role, details, photo
-                      } = p.person;
-                      return (
-                        <li className={`teams-list__team-person teams-list__team-person--1-of-${group.perLine}`} key={name}>
-                          { p.person.photo
-                            ? <Img alt={name} className="teams-list__team-person-photo" fluid={photo.childImageSharp.fluid} />
-                            : <div className="teams-list__team-person-silhoute" />
-                          }
-                          <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{name}</p>
-                          { role && role.trim().length
-                            ? <p className="teams-list__team-person-attribute teams-list__team-person-attribute--role">{role}</p>
-                            : null
-                          }
-                          { email && email.trim().length
-                            ? <p className="teams-list__team-person-attribute teams-list__team-person-attribute--email">{email}</p>
-                            : null
-                          }
-                          { details && details.trim().length
-                            ? <p className="teams-list__team-person-attribute teams-list__team-person-attribute--details">{details}</p>
-                            : null
-                          }
-                        </li>
-                      );
-                    })}
+                      }
+                    }) => (
+                      <li className={`teams-list__team-person teams-list__team-person--1-of-${perLine}`} key={name}>
+                        { photo
+                          ? <Img alt={name} className="teams-list__team-person-photo" fluid={photo.childImageSharp.fluid} />
+                          : <div className="teams-list__team-person-silhoute" />
+                        }
+                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{name || ''}</p>
+                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--role">{(role || '')}</p>
+                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--email">{(email || '')}</p>
+                        <p className="teams-list__team-person-attribute teams-list__team-person-attribute--details">{(details || '')}</p>
+                      </li>
+                    ))}
                   </ul>
                 </li>
               );

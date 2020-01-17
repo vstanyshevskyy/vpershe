@@ -24,7 +24,7 @@ export default class VpersheNav extends React.Component {
 
   render() {
     const {
-      className, links, location, socialIcons, isDarkModeEnabled, toggleDark
+      className, links = [], location, socialIcons, isDarkModeEnabled, toggleDark
     } = this.props;
     const { isOpen } = this.state;
     const navClasses = classNames('nav', {
@@ -58,15 +58,15 @@ export default class VpersheNav extends React.Component {
             { isOpen ? <FaTimes /> : <FaBars /> }
           </button>
           <ul className="nav__menu" id="nav__menu">
-            {(links || []).map(link => {
+            {links.map(({ url, text }) => {
               const linkClasses = classNames('nav__menu-link', {
-                'nav__menu-link--current': location.startsWith(link.url),
+                'nav__menu-link--current': location.startsWith(url),
                 'nav__menu-link--dark': isDarkModeEnabled,
-                'nav__menu-link--dark-current': isDarkModeEnabled && location.startsWith(link.url)
-              }, `nav__menu-link--${link.url.split('/')[1]}`);
+                'nav__menu-link--dark-current': isDarkModeEnabled && location.startsWith(url)
+              }, `nav__menu-link--${url.split('/')[1]}`);
               return (
-                <li className="nav__menu-item" key={link.url}>
-                  <Link className={linkClasses} to={link.url}>{link.text}</Link>
+                <li className="nav__menu-item" key={url}>
+                  <Link className={linkClasses} to={url}>{text}</Link>
                 </li>
               );
             })}

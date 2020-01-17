@@ -25,9 +25,9 @@ export default ({
       </div>
       <div className="footer__nav-container" role="navigation">
         <ul className="footer__nav">
-          {bottomLinks.map(link => (
-            <li className="footer__nav-item" key={link.url}>
-              <Link className="footer__nav-link" to={link.url}>{link.text}</Link>
+          {bottomLinks.map(({ url, text }) => (
+            <li className="footer__nav-item" key={url}>
+              <Link className="footer__nav-link" to={url}>{text}</Link>
             </li>
           ))}
         </ul>

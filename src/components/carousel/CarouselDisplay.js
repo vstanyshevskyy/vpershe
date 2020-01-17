@@ -84,23 +84,25 @@ export default class Carousel extends React.Component {
     return (
       <Slider className={sliderClasses} {...this.settings}>
         {
-          items.map((i, index) => {
-            const url = `/${i.contentType}/${i.path}`;
+          items.map(({
+            contentType, path, image, title
+          }, index) => {
+            const url = `/${contentType}/${path}`;
             const itemClassName = 'slider__item';
             const uid = `${itemClassName}-${getUniqueId(url)}`;
             const classes = classNames(itemClassName, {
               'slider__item--hidden': index > 0 && !isLoaded
             });
 
-            return i.image ? (
+            return image ? (
               <div
                 key={uid}
                 className={classes}
                 onMouseUp={e => this.clickHelper.onMouseUp(e, index)}
                 onMouseDown={e => this.clickHelper.onMouseDown(e)}
               >
-                <Img alt="" className="slider__item-picture" fluid={i.image.childImageSharp.fluid} />
-                <Link to={url} ref={el => this.clickHelper.addLink(el, index)} className="slider__item-title ">{i.title}</Link>
+                <Img alt="" className="slider__item-picture" fluid={image.childImageSharp.fluid} />
+                <Link to={url} ref={el => this.clickHelper.addLink(el, index)} className="slider__item-title ">{title}</Link>
               </div>
             ) : null;
           })

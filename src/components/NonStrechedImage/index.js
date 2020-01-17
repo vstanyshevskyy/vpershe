@@ -2,7 +2,8 @@ import React from 'react';
 import Img from 'gatsby-image';
 
 export default props => {
-  let { normalizedProps, fluid: { presentationWidth }, style } = props;
+  let { normalizedProps } = props;
+  const { fluid: { presentationWidth }, style } = props;
   if (presentationWidth) {
     normalizedProps = {
       ...props,

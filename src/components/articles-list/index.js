@@ -5,17 +5,19 @@ import './index.less';
 export default ({ items }) => (
   <ul className="articles-list">
     {
-      items.map(i => {
-        const url = `/${i.contentType || 'stories'}/${i.path}`;
+      items.map(({
+        title, subtitle, image, image_alt: imageAlt, contentType, path
+      }) => {
+        const url = `/${contentType || 'stories'}/${path}`;
         return (
           <ArticleCard
             key={url}
-            title={i.title}
-            subtitle={i.subtitle}
-            image={i.image}
-            image_alt={i.image_alt}
+            title={title}
+            subtitle={subtitle}
+            image={image}
+            image_alt={imageAlt}
             url={url}
-            contentType={i.contentType}
+            contentType={contentType}
           />
         );
       })

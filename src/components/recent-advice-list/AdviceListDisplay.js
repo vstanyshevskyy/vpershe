@@ -9,7 +9,7 @@ export default ({ items }) => (
     <img className="advice__graffiti advice__graffiti--moon" loading="lazy" alt="" width="78" src={withPrefix('assets/graffiti/moon.svg')} aria-hidden="true" />
     <ul className="advice__list">
       { items.map(({
-        path, title
+        url: path, title
       }, index) => {
         const page = Math.floor(index / Config.advice.perPage) + 1;
         const displayPage = page === 1 ? '' : `/${page}`;

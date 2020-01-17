@@ -9,7 +9,7 @@ import Config from '../config';
 import './content.less';
 import Layout from '../layouts';
 import ThemeContext from '../context/ThemeContext';
-import NonStrechedImage from '../components/NonStrechedImage';
+import NonStrechedImage from '../components/non-stretched-image';
 import TagsList from '../components/tags';
 import ArticlesList from '../components/articles-list';
 import Sidebar from '../components/article-sidebar';

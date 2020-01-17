@@ -20,12 +20,14 @@ export default function Template ({ data }) {
         <SEO />
         <Carousel />
         <ArticlesTiles items={articles} />
+        <img className="homepage__graffiti homepage__graffiti--eye" loading="lazy" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
         <div className="homepage__stories">
-          <img className="homepage__graffiti homepage__graffiti--stories-eye graffiti graffiti--eye" loading="lazy" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
           <h2 className="homepage__stories-title">Історії</h2>
           <ArticlesList items={stories} />
-          <img className="homepage__graffiti homepage__graffiti--vpershe graffiti graffiti--vpershe" loading="lazy" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
           <Link to="/stories" className="link__all-records">Всі історії</Link>
+        </div>
+        <div className="homepage__graffiti-wrapper">
+          <img className="homepage__graffiti homepage__graffiti--vpershe" loading="lazy" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
         </div>
         <Subscribe />
         <div className="homepage__about">

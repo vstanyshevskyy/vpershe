@@ -158,7 +158,8 @@ const settings = {
                     {
                       label: 'Фото',
                       name: 'photo',
-                      widget: 'image'
+                      widget: 'image',
+                      required: true
                     }
                   ]
                 }

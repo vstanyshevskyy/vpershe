@@ -22,14 +22,11 @@ export default function Template ({ data: { team: { edges: [{ node: { frontmatte
                   <ul className="teams-list__team-persons-list">
                     { people.map(({
                       person: {
-                        email, name, role, details, photo
+                        email, name, role, details, photo = { childImageSharp: { fluid: '' } }
                       }
                     }) => (
                       <li className={`teams-list__team-person teams-list__team-person--1-of-${perLine}`} key={name}>
-                        { photo
-                          ? <Img alt={name} className="teams-list__team-person-photo" fluid={photo.childImageSharp.fluid} />
-                          : <div className="teams-list__team-person-silhoute" />
-                        }
+                        <Img alt={name} className="teams-list__team-person-photo" fluid={photo.childImageSharp.fluid} />
                         <p className="teams-list__team-person-attribute teams-list__team-person-attribute--name">{name || ''}</p>
                         <p className="teams-list__team-person-attribute teams-list__team-person-attribute--role">{(role || '')}</p>
                         <p className="teams-list__team-person-attribute teams-list__team-person-attribute--email">{(email || '')}</p>

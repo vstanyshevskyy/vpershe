@@ -95,7 +95,7 @@ export default class Content extends React.Component {
           imageAlt,
           title,
           subtitle,
-          publishTime,
+          publishTime = '',
           tags,
           metaKeywords,
           metaDescription,
@@ -136,15 +136,9 @@ export default class Content extends React.Component {
             <div className="content__article-head">
               <h1 className="content__title">{title}</h1>
               <div className="content__subtitle">{subtitle}</div>
-              {
-                publishTime
-                  ? (
-                    <div className={classNames('content__date', { 'content__date--dark': isDarkModeEnabled })}>
-                      {moment(publishTime).format('LL')}
-                    </div>
-                  )
-                  : null
-              }
+              <div className={classNames('content__date', { 'content__date--dark': isDarkModeEnabled })}>
+                {moment(publishTime).format('LL')}
+              </div>
             </div>
             <div className="content__article-wrapper">
               <div
@@ -157,11 +151,7 @@ export default class Content extends React.Component {
           </article>
           <aside>
             <div className="content__tags-social-container">
-              {
-                tags && tags.length
-                  ? <TagsList pageName={contentType} tags={tags} />
-                  : null
-              }
+              <TagsList pageName={contentType} tags={tags} />
             </div>
             { this.renderRelatedArticles(relatedBottom) }
           </aside>

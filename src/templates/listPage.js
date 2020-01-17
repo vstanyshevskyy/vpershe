@@ -35,15 +35,11 @@ export default props => {
         <SEO data={seoData} />
         <ul className={`index-page__list index-page__list--${contentType}`}>
           <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
-            {tags.length
-              ? (
-                <TagsList
-                  pageName={contentType}
-                  current={tag}
-                  tags={tags}
-                />
-              )
-              : null}
+            <TagsList
+              pageName={contentType}
+              current={tag}
+              tags={tags}
+            />
           </div>
           { children }
         </ul>

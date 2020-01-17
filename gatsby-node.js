@@ -62,7 +62,8 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
     const postsGroupedByType = {};
-    result.data.posts.edges.forEach(({ node: { frontmatter: post }}) => {
+    const { data: { posts: { edges: posts }, pages: { edges: pages }, games: { edges: games } } } = result;
+    posts.forEach(({ node: { frontmatter: post } }) => {
       const { contentType } = post;
       postsGroupedByType[contentType] = postsGroupedByType[contentType] || [];
       postsGroupedByType[contentType].push(post);
@@ -129,17 +130,17 @@ exports.createPages = ({ actions, graphql }) => {
         });
       }
     });
-    result.data.pages.edges.forEach(e => {
+    pages.forEach(({ node: { frontmatter: { path: pagePath, contentType } } }) => {
       createPage({
-        path: e.node.frontmatter.path,
+        path: pagePath,
         component: path.resolve('src/templates/content.js'),
         context: {
-          contentType: e.node.frontmatter.contentType,
-          slug: e.node.frontmatter.path
+          contentType,
+          slug: pagePath
         }
       });
     });
-    result.data.games.edges.forEach(({ node: { frontmatter: { path: slug } } }) => {
+    games.forEach(({ node: { frontmatter: { path: slug } } }) => {
       createPage({
         path: `games/${slug}`,
         component: path.resolve('src/templates/games/index.js'),

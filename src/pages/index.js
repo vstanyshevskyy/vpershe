@@ -5,7 +5,7 @@ import Layout from '../layouts';
 import SEO from '../components/SEO';
 import Subscribe from '../components/subscribe';
 import Carousel from '../components/carousel';
-import Advice from '../components/advice';
+import RecentAdviceList from '../components/recent-advice-list';
 import ArticlesTiles from '../components/articles-tiles';
 import ArticlesList from '../components/articles-list';
 import AboutProject from '../components/about-project';
@@ -31,16 +31,8 @@ export default function Template ({ data }) {
         </div>
         <Subscribe />
         <AboutProject />
-        {
-          advice && advice.length
-            ? (
-              <React.Fragment>
-                <hr />
-                <Advice items={advice} />
-              </React.Fragment>
-            )
-            : null
-        }
+        <hr />
+        <RecentAdviceList items={advice} />
       </div>
     </Layout>
   );
@@ -93,19 +85,6 @@ query HomePage {
             }
           }
           image_alt
-        }
-      }
-    }
-  }
-  advice: allMarkdownRemark(
-    filter: { frontmatter:  { contentType: { eq: "advice"}}}
-    limit: 10
-  ) {
-    edges {
-      node {
-        frontmatter {
-          title
-          url
         }
       }
     }

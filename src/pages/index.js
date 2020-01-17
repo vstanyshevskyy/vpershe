@@ -13,7 +13,6 @@ import AboutProject from '../components/about-project';
 export default function Template ({ data }) {
   const stories = ((data.stories || {}).edges || []).map(c => c.node.frontmatter);
   const articles = ((data.articles || {}).edges || []).map(c => c.node.frontmatter);
-  const advice = ((data.advice || {}).edges || []).map(a => a.node.frontmatter);
   return (
     <Layout>
       <div id="content">
@@ -32,7 +31,7 @@ export default function Template ({ data }) {
         <Subscribe />
         <AboutProject />
         <hr />
-        <RecentAdviceList items={advice} />
+        <RecentAdviceList />
       </div>
     </Layout>
   );

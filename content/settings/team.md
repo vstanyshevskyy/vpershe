@@ -28,31 +28,10 @@ groups:
           name: Аліна Тимощук
           photo: /assets/uploads/img_20191026_164441-1-.jpg
           role: Літературна редакторка
-    perLine: 3
-  - name: Автор(к)и
-    perLine: 4
-  - name: Експерти
-    people:
       - person:
-          email: Львів
-          name: Ольга Авраменко
-          photo: /assets/uploads/image-2018-11-01-190956.jpg
-          role: Практикуюча психологиня
-      - person:
-          email: 'Центр «Джерело», Львів'
-          name: Дана Яковенко
-          photo: /assets/uploads/image-2018-11-01-191046.jpg
-          role: Практикуюча психологиня
-      - person:
-          email: 'Міжнародна академія здорового життя, м. Торонто, Канада'
-          name: Олена Березовська
-          photo: /assets/uploads/201.jpg
-          role: 'Гінекологиня, дослідниця'
-      - person:
-          email: Київ
-          name: Даня Столбунов
-          photo: /assets/uploads/36852215_960787320765855_5697258072146182144_n.jpg
-          role: Активіст підліткового руху Teenergizer
+          name: Юлія Ігнатуха
+          photo: /assets/uploads/IMG_5816.JPG
+          role: Журналістка
     perLine: 3
 title: Хто робить Вперше
 metaDescription: Команда Вперше

@@ -32,6 +32,10 @@ groups:
           name: Юлія Ігнатуха
           photo: /assets/uploads/IMG_5816.JPG
           role: Журналістка
+      - person:
+          name: Артем Марков
+          photo: /assets/uploads/ава фб2.png
+          role: Дизайнер
     perLine: 3
 title: Хто робить Вперше
 metaDescription: Команда Вперше

@@ -32,17 +32,17 @@ export default ({ onBoxToggle }) => (
       }
     `}
     render={({questionBoxSettings: { edges: [{ node: { frontmatter: questionboxParams } }] } }) => (
-      <SheetsSubmitter apiUrl={Config.questionApiUrl}>
-        <ThemeContext.Consumer>
-          { ({ isDarkModeEnabled }) => (
+      <ThemeContext.Consumer>
+        { ({ isDarkModeEnabled }) => (
+          <SheetsSubmitter apiUrl={Config.questionApiUrl}>
             <QuestionboxForm
               {...questionboxParams}
               onBoxToggle={onBoxToggle}
               isDarkModeEnabled={isDarkModeEnabled}
             />
-          )}
-        </ThemeContext.Consumer>
-      </SheetsSubmitter>
+          </SheetsSubmitter>
+        )}
+      </ThemeContext.Consumer>
     )}
   />
 );

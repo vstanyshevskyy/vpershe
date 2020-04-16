@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withPrefix } from 'gatsby';
 import classNames from 'classnames';
 
+import Logo from '../logo';
 import SocialIcons from '../social-icons';
 import './index.less';
 
@@ -14,7 +15,7 @@ export default ({
     <div className="footer__inner">
       <div className="footer__logo-icons-wrapper">
         <Link to="/" className="nav__logo footer__logo">
-          <img loading="lazy" src={withPrefix(isDarkModeEnabled ? 'assets/logo/white_text.svg' : 'assets/logo/black_text.svg')} alt="Вперше" />
+          <Logo />
         </Link>
         <SocialIcons
           icons={socialIcons}

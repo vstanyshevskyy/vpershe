@@ -1,4 +1,3 @@
-import advice from './advice.js';
 import articles from './articles.js';
 import content from './content.js';
 import games from './games.js';
@@ -11,7 +10,6 @@ export default [
   articles,
   stories,
   sexoteca,
-  advice,
   pages,
   settings,
   games,

@@ -5,7 +5,6 @@ import Layout from '../layouts';
 import SEO from '../components/SEO';
 import Subscribe from '../components/subscribe';
 import Carousel from '../components/carousel';
-import RecentAdviceList from '../components/recent-advice-list';
 import ArticlesTiles from '../components/recent-articles-tiles';
 import RecentStories from '../components/recent-stories-list';
 import AboutProject from '../components/about-project';
@@ -24,8 +23,6 @@ export default function Template () {
         </div>
         <Subscribe />
         <AboutProject />
-        <hr />
-        <RecentAdviceList />
       </div>
     </Layout>
   );

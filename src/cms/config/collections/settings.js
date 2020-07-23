@@ -316,48 +316,6 @@ const settings = {
       ]
     },
     {
-      label: 'Поради',
-      name: 'advice',
-      file: 'content/settings/advice.md',
-      fields: [
-        {
-          name: 'contentType',
-          widget: 'hidden',
-          default: 'stories_settings'
-        },
-        {
-          label: 'Page Title',
-          name: 'title',
-          widget: 'string'
-        },
-        {
-          label: 'Meta Description',
-          name: 'metaDescription',
-          widget: 'string'
-        },
-        {
-          label: 'Meta Keywords',
-          name: 'metaKeywords',
-          widget: 'string'
-        },
-        {
-          label: 'Tag Page Title',
-          name: 'tags_title',
-          widget: 'string'
-        },
-        {
-          label: 'Tags Meta Description',
-          name: 'tags_metaDescription',
-          widget: 'string'
-        },
-        {
-          label: 'Tags Meta Keywords',
-          name: 'tags_metaKeywords',
-          widget: 'string'
-        }
-      ]
-    },
-    {
       label: 'Підписка на новини',
       name: 'subscribe_form_settings',
       file: 'content/settings/subscribe_form.md',

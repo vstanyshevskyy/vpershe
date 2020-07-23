@@ -24,7 +24,7 @@ exports.createPages = ({ actions, graphql }) => {
   return graphql(`
     {
       posts: allMarkdownRemark (
-        filter: { frontmatter:  { contentType: { in: ["articles", "stories", "sexoteca", "advice"] } } }
+        filter: { frontmatter:  { contentType: { in: ["articles", "stories", "sexoteca"] } } }
         sort: { fields: [frontmatter___publishTime], order: DESC }
       ) {
         edges {
@@ -80,7 +80,7 @@ exports.createPages = ({ actions, graphql }) => {
         });
       });
       const contentTypeTags = Object.keys(contentByTags);
-      const template = contentType === 'advice' ? 'advice' : 'articles';
+      const template = 'articles';
 
       const postsPerPage = config[contentType].perPage;
       const numPages = Math.ceil(contentItems.length / postsPerPage);
@@ -116,19 +116,17 @@ exports.createPages = ({ actions, graphql }) => {
           });
         });
       });
-      if (contentType !== 'advice') {
-        contentItems.forEach(({ path: pagePath }) => {
-          const url = `${contentType}/${pagePath}`;
-          createPage({
-            path: url,
-            component: path.resolve('src/templates/content.js'),
-            context: {
-              contentType,
-              slug: pagePath
-            }
-          });
+      contentItems.forEach(({ path: pagePath }) => {
+        const url = `${contentType}/${pagePath}`;
+        createPage({
+          path: url,
+          component: path.resolve('src/templates/content.js'),
+          context: {
+            contentType,
+            slug: pagePath
+          }
         });
-      }
+      });
     });
     pages.forEach(({ node: { frontmatter: { path: pagePath, contentType } } }) => {
       createPage({

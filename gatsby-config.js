@@ -40,13 +40,6 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/advice`,
-        name: 'advice'
-      }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
         path: `${__dirname}/content/pages`,
         name: 'pages'
       }
@@ -153,28 +146,13 @@ module.exports = {
                 }
               }
             }
-
-            advice: allMarkdownRemark (
-              filter: { frontmatter:  { contentType: { in: ["advice"] } } }
-            ) {
-              edges {
-                node {
-                  frontmatter {
-                    path
-                  }
-                }
-              }
-            }
         }`,
         serialize: ({
           site: { siteMetadata: { siteUrl } },
           posts: { edges: posts },
-          pages: { edges: pages },
-          advice: { edges: advice }
+          pages: { edges: pages }
         }) => {
-          const counters = {
-            advice: advice.length
-          };
+          const counters = {};
           let result = [{
             url: siteUrl,
             changefreq: 'daily',

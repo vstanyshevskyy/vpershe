@@ -1,7 +1,4 @@
 module.exports = {
-  advice: {
-    perPage: 10
-  },
   articles: {
     perPage: 10
   },

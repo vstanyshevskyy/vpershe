@@ -62,6 +62,7 @@ export default class Content extends React.Component {
       return;
     }
     const container = document.createElement('div');
+    container.classList.add('content__sidebar--mobile-wrapper');
     paragraph.parentNode.insertBefore(container, paragraph.nextSibling);
     ReactDOM.render(<Sidebar
       relatedLinks={this.asideRelatedLinks}

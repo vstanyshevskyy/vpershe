@@ -1,4 +1,18 @@
 module.exports = {
+  categories: [
+    {
+      label: 'Секс',
+      value: 'sex'
+    },
+    {
+      label: 'Тіло',
+      value: 'body'
+    },
+    {
+      label: 'Стосунки',
+      value: 'relationships'
+    }
+  ],
   articles: {
     perPage: 10
   },

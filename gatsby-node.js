@@ -24,7 +24,7 @@ exports.createPages = ({ actions, graphql }) => {
   return graphql(`
     {
       posts: allMarkdownRemark (
-        filter: { frontmatter:  { contentType: { in: ["articles", "stories", "sexoteca"] } } }
+        filter: { frontmatter:  { contentType: { eq: "post" } } }
         sort: { fields: [frontmatter___publishTime], order: DESC }
       ) {
         edges {
@@ -52,16 +52,16 @@ exports.createPages = ({ actions, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
-    const postsGroupedByType = {};
+    const postsGroupedByCategory = {};
     const { data: { posts: { edges: posts }, pages: { edges: pages } } } = result;
     posts.forEach(({ node: { frontmatter: post } }) => {
-      const { contentType } = post;
-      postsGroupedByType[contentType] = postsGroupedByType[contentType] || [];
-      postsGroupedByType[contentType].push(post);
+      const { category } = post;
+      postsGroupedByCategory[category] = postsGroupedByCategory[category] || [];
+      postsGroupedByCategory[category].push(post);
     });
-    Object.keys(postsGroupedByType).forEach(contentType => {
+    Object.keys(postsGroupedByCategory).forEach(category => {
       const contentByTags = {};
-      const contentItems = postsGroupedByType[contentType];
+      const contentItems = postsGroupedByCategory[category];
       contentItems.forEach(post => {
         post.tags.forEach(tag => {
           if (!tag) {
@@ -70,30 +70,30 @@ exports.createPages = ({ actions, graphql }) => {
           contentByTags[tag] = (contentByTags[tag] || []).concat(post);
         });
       });
-      const contentTypeTags = Object.keys(contentByTags);
+      const categoryTags = Object.keys(contentByTags);
       const template = 'articles';
 
-      const postsPerPage = config[contentType].perPage;
+      const postsPerPage = 10;
       const numPages = Math.ceil(contentItems.length / postsPerPage);
       Array.from({ length: numPages }).forEach((_, i) => {
         createPage({
-          path: `/${contentType}${i ? `/${i + 1}` : ''}`,
+          path: `/${category}${i ? `/${i + 1}` : ''}`,
           component: path.resolve(`./src/templates/${template}ListPage.js`),
           context: {
             limit: postsPerPage,
             skip: i * postsPerPage,
             numPages,
             currentPage: i + 1,
-            contentType,
-            tags: contentTypeTags
+            contentType: category, //!!!!
+            tags: categoryTags
           }
         });
       });
-      contentTypeTags.forEach(tag => {
+      categoryTags.forEach(tag => {
         const numTagPages = Math.ceil(contentByTags[tag].length / postsPerPage);
         Array.from({ length: numTagPages }).forEach((_, i) => {
           createPage({
-            path: `/${contentType}/tags/${tag}${i ? `/${i + 1}` : ''}`,
+            path: `/${category}/tags/${tag}${i ? `/${i + 1}` : ''}`,
             component: path.resolve(`./src/templates/${template}TagListPage.js`),
             context: {
               limit: postsPerPage,
@@ -102,18 +102,18 @@ exports.createPages = ({ actions, graphql }) => {
               tag,
               tags: Object.keys(contentByTags),
               currentPage: i + 1,
-              contentType
+              contentType: category//!!!!!
             }
           });
         });
       });
       contentItems.forEach(({ path: pagePath }) => {
-        const url = `${contentType}/${pagePath}`;
+        const url = `${category}/${pagePath}`;
         createPage({
           path: url,
           component: path.resolve('src/templates/content.js'),
           context: {
-            contentType,
+            contentType: category,//!!!!!
             slug: pagePath
           }
         });

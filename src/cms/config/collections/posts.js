@@ -1,9 +1,10 @@
 import config from '../../../config'
-const articles = {
+const posts = {
   name: 'posts',
-  label: 'Пости',
+  label: 'Всі пости',
   folder: 'content/posts',
   create: true,
+  sortableFields: ['publishTime', 'title'],
   fields: [
     {
       label: 'Type',
@@ -67,13 +68,13 @@ const articles = {
           label: 'URL',
           hint: 'Шукай за назвою',
           name: 'path',
-          collection: 'content',
+          collection: 'posts',
           searchFields: [
             'title'
           ],
           displayFields: [
             'title',
-            'contentType'
+            'category'
           ],
           valueField: 'path'
         }
@@ -90,13 +91,13 @@ const articles = {
           label: 'URL',
           hint: 'Шукай за назвою',
           name: 'path',
-          collection: 'content',
+          collection: 'posts',
           searchFields: [
             'title'
           ],
           displayFields: [
             'title',
-            'contentType'
+            'category'
           ],
           valueField: 'path'
         }
@@ -128,4 +129,4 @@ const articles = {
   ]
 };
 
-export default articles;
+export default posts;

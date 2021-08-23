@@ -47,22 +47,13 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-      games: allMarkdownRemark(filter: {frontmatter: {contentType: {eq: "games"}}}) {
-        edges {
-          node {
-            frontmatter {
-              path
-            }
-          }
-        }
-      }
     }
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
     const postsGroupedByType = {};
-    const { data: { posts: { edges: posts }, pages: { edges: pages }, games: { edges: games } } } = result;
+    const { data: { posts: { edges: posts }, pages: { edges: pages } } } = result;
     posts.forEach(({ node: { frontmatter: post } }) => {
       const { contentType } = post;
       postsGroupedByType[contentType] = postsGroupedByType[contentType] || [];
@@ -135,15 +126,6 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           contentType,
           slug: pagePath
-        }
-      });
-    });
-    games.forEach(({ node: { frontmatter: { path: slug } } }) => {
-      createPage({
-        path: `games/${slug}`,
-        component: path.resolve('src/templates/games/index.js'),
-        context: {
-          slug
         }
       });
     });

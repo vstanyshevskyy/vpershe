@@ -1,6 +1,5 @@
 import articles from './articles.js';
 import content from './content.js';
-import games from './games.js';
 import pages from './pages.js';
 import settings from './settings.js';
 import sexoteca from './sexoteca.js';
@@ -12,6 +11,5 @@ export default [
   sexoteca,
   pages,
   settings,
-  games,
   content
 ];

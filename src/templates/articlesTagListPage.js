@@ -2,7 +2,9 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import ListPage from './articlesListPage';
 
-export default props => <ListPage {...props} />;
+const Page = props => <ListPage {...props} />;
+
+export default Page;
 
 export const pageQuery = graphql`
   query tagContentListQuery($skip: Int!, $limit: Int!, $contentType: String!, $tag: String!) {

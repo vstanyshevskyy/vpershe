@@ -5,11 +5,12 @@ import ListPage from './articlesListPage';
 export default props => <ListPage {...props} />;
 
 export const pageQuery = graphql`
-  query tagContentListQuery($skip: Int!, $limit: Int!, $contentType: String!, $tag: String!) {
+  query tagContentListQuery($skip: Int!, $limit: Int!, $category: String!, $tag: String!) {
     articles: allMarkdownRemark(
       filter: {
         frontmatter: {
-          contentType: { eq: $contentType }
+          contentType: { eq: "post" }
+          category: { eq: $category }
           tags: { in: [$tag] }
         }
       }
@@ -22,6 +23,7 @@ export const pageQuery = graphql`
           html
           frontmatter {
             path
+            category
             title
             subtitle
             image {

@@ -17,10 +17,6 @@ export default () => (
                   text
                   url
                 }
-                socialIcons {
-                  type
-                  url
-                }
               }
             }
           }
@@ -37,7 +33,6 @@ export default () => (
                   location={location.pathname}
                   className={location.pathname.split('/')[1]}
                   links={links}
-                  socialIcons={socialIcons}
                   isDarkModeEnabled={isDarkModeEnabled}
                   toggleDark={toggleDark}
                 />

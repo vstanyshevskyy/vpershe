@@ -62,15 +62,10 @@ class Layout extends React.Component {
             <link href="/assets/splashscreen/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
             <link rel="preconnect" href="https://www.google-analytics.com" />
             <link rel="preconnect" href="https://www.google.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
           </Helmet>
           <a href="#content" className="skip-navigation">Пропустити навігацію</a>
           <Navbar />
-          {
-            isHomePage
-              ? null
-              : <img className="wrapper__graffiti wrapper__graffiti--stars" loading="lazy" alt="" width="86" src={withPrefix('assets/graffiti/stars.svg')} aria-hidden="true" />
-          }
-          <img className="wrapper__graffiti wrapper__graffiti--arrows" loading="lazy" alt="" width="45" src={withPrefix('assets/graffiti/arrows.svg')} aria-hidden="true" />
           {children}
           { isHomePage ? null : <Subscribe /> }
           <Footer />

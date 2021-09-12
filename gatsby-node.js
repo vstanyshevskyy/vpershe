@@ -31,6 +31,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             frontmatter {
               contentType
+              category
               path
               tags
             }
@@ -84,7 +85,7 @@ exports.createPages = ({ actions, graphql }) => {
             skip: i * postsPerPage,
             numPages,
             currentPage: i + 1,
-            contentType: category, //!!!!
+            category,
             tags: categoryTags
           }
         });
@@ -102,7 +103,7 @@ exports.createPages = ({ actions, graphql }) => {
               tag,
               tags: Object.keys(contentByTags),
               currentPage: i + 1,
-              contentType: category//!!!!!
+              category
             }
           });
         });

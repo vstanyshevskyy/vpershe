@@ -1,5 +1,6 @@
 ---
 contentType: post
+category: sex
 path: sex-addiction
 title: 'Залежність від сексу: що це таке та як подолати '
 subtitle: 'Що робити, якщо постійно хочеться сексу, але вгамувати голод не виходить'

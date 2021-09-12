@@ -1,12 +1,13 @@
 @import '../styleguide/variables.less';
 
 .article-card {
+  font-family: @font-family-base;
   box-shadow: none; 
-  margin-bottom: 40px;
+  margin: 0 30px 70px 0;
   width: 250px;
   width: ~"calc(25% - 30px)";
-  margin-left: 15px;
-  margin-right: 15px;
+  // margin-left: 15px;
+  // margin-right: 15px;
   position: relative;
   cursor: pointer;
 
@@ -24,24 +25,40 @@
   &:focus-within .article-card__title:focus {
     text-decoration: none;
   }
+  &--half {
+    margin-right: 0;
+    width: calc(50% - 15px)
+  }
+  &--third {
+    margin-right: 0;
+    width: calc(33% - 15px)
+  }
+  &--full {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+.article-card__text {
+  padding: 20px 30px 0;
+}
+
+.article-card__category {
+  background-color: @clr-highlight;
+  text-transform: lowercase;
+  padding: 0 5px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .article-card__title {
   display: block;
   text-decoration: none;
-  max-width: 250px;
-  font-weight: bold;
   line-height: @line-height-text;
-  font-size: @font-size-h3;
-  margin: 25px 0 12px;
-  &:after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 60px;
-    background-color: @clr-highlight;
-    margin-top: 20px;
-  }
+  font-size: 25px;
+  line-height: 33px;
+  margin: 25px 0 0;
+  border-bottom: 2px solid @clr-highlight;
+  padding-bottom: 30px;
   &:focus {
     text-decoration: underline;
   }
@@ -57,13 +74,13 @@
   max-width: 100%;
 }
 
-.article-card__title--articles:after {
+.article-card__title--sex:after {
   background-color: @clr-night;
 }
-.article-card__title--stories:after {
+.article-card__title--body:after {
   background-color: @clr-blue-3;
 }
-.article-card__title--sexoteca:after {
+.article-card__title--relationships:after {
   background-color: @clr-mint-2;
 }
 
@@ -72,8 +89,51 @@
     height: auto;
   }
   .article-card {
-    margin-bottom: 30px;
-    width: ~"calc(50% - 30px)";
+    width: ~"calc(100% - 30px)";
+    margin: 0 auto 50px;
+    display: flex;
+    flex-direction: row;
+  }
+  .article-card__image {
+    width: 40%;
+  }
+  .article-card__text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    justify-content: space-between;
+  }
+  .article-card__title {
+    border: 0;
+    margin: 0;
+  }
+  .article-card__category {
+    display: inline-block;
+    width: auto;
+    margin-right: auto;
+  }
+  .article-card__category {
+    order: 2;
+  }
+  .article-card:nth-child(3n + 1) {
+    flex-direction: column;
+    .article-card__image,
+    .article-card__text {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+      border-bottom: 2px solid @clr-highlight;
+    }
+    .article-card__title {
+      order: 2;
+    }
+    .article-card__category {
+      order: 1;
+      align-self: flex-end;
+      margin-top: auto;
+      margin: 30px auto 30px 0;
+    }
   }
 }
 

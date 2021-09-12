@@ -13,13 +13,13 @@ module.exports = {
       value: 'relationships'
     }
   ],
-  articles: {
+  sex: {
     perPage: 10
   },
-  stories: {
+  body: {
     perPage: 10
   },
-  sexoteca: {
+  relationships: {
     perPage: 10
   },
   addThis: {

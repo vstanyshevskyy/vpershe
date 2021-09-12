@@ -116,12 +116,12 @@ module.exports = {
             }
   
             posts: allMarkdownRemark (
-              filter: { frontmatter:  { contentType: { in: ["articles", "stories", "sexoteca"] } } }
+              filter: { frontmatter:  { contentType: { eq: "post" } } }
             ) {
               edges {
                 node {
                   frontmatter {
-                    contentType
+                    category
                     path
                   }
                 }
@@ -129,7 +129,7 @@ module.exports = {
             }
 
             pages: allMarkdownRemark (
-              filter: { frontmatter:  { contentType: { in: ["pages"] } } }
+              filter: { frontmatter:  { contentType: { eq: "pages" } } }
             ) {
               edges {
                 node {
@@ -161,10 +161,10 @@ module.exports = {
             changefreq: 'weekly',
             priority: 0.6
           })));
-          result = result.concat(posts.map(({ node: { frontmatter: { path, contentType } } }) => {
-            counters[contentType] = counters[contentType] ? counters[contentType] + 1 : 1;
+          result = result.concat(posts.map(({ node: { frontmatter: { path, category } } }) => {
+            counters[category] = counters[category] ? counters[category] + 1 : 1;
             return {
-              url: `${siteUrl}/${contentType}/${path}`,
+              url: `${siteUrl}/${category}/${path}`,
               changefreq: 'daily',
               priority: 0.7
             };

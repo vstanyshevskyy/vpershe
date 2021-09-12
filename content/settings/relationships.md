@@ -1,6 +1,6 @@
 ---
-contentType: stories_settings
-title: Історії - Вперше
+contentType: relationships_settings
+title: Стосунки - Вперше
 metaDescription: Історії про "це" від авторів і читачів Вперше
 metaKeywords: 'історії, досвід'
 tags_title: 'Історії з тегом {{tag}} - Вперше'

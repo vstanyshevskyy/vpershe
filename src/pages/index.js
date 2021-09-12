@@ -4,9 +4,7 @@ import './index.less';
 import Layout from '../layouts';
 import SEO from '../components/SEO';
 import Subscribe from '../components/subscribe';
-import Carousel from '../components/carousel';
-import ArticlesTiles from '../components/recent-articles-tiles';
-import RecentStories from '../components/recent-stories-list';
+import HomePageArticles from '../components/home-page-articles';
 import AboutProject from '../components/about-project';
 
 export default function Template () {
@@ -14,13 +12,7 @@ export default function Template () {
     <Layout>
       <div id="content">
         <SEO />
-        <Carousel />
-        <ArticlesTiles />
-        <img className="homepage__graffiti homepage__graffiti--eye" loading="lazy" alt="" width="76" src={withPrefix('assets/graffiti/eye.svg')} aria-hidden="true" />
-        <RecentStories />
-        <div className="homepage__graffiti-wrapper">
-          <img className="homepage__graffiti homepage__graffiti--vpershe" loading="lazy" alt="" width="241" src={withPrefix('assets/graffiti/vpershe.svg')} aria-hidden="true" />
-        </div>
+        <HomePageArticles />
         <Subscribe />
         <AboutProject />
       </div>

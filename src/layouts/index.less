@@ -53,7 +53,7 @@ table {
 
 .page-wrapper {
   background-color: @white; 
-  border: 10px solid @clr-highlight;
+  border-top: 10px solid @clr-highlight;
   @animation-duration: .3s;
   -webkit-transition: @animation-duration all linear;
   -moz-transition: @animation-duration all linear;
@@ -81,15 +81,15 @@ table {
 }
 
 
-.page-wrapper--stories {
+.page-wrapper--sex {
   border-color: @clr-rose-3;
 }
 
-.page-wrapper--articles {
+.page-wrapper--body {
   border-color: @clr-mint-4;
 }
 
-.page-wrapper--sexoteca {
+.page-wrapper--relationships {
   border-color: @clr-violet;
 }
 
@@ -101,18 +101,6 @@ table {
   -ms-filter: blur(@blur); 
   filter: blur(@blur); 
   filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
-}
-
-.wrapper__graffiti--stars {
-  position: absolute;
-  left: 20px;
-  top: 420px;
-}
-
-.wrapper__graffiti--arrows {
-  position: absolute;
-  right: 10px;
-  top: 800px;
 }
 
 .skip-navigation {
@@ -136,21 +124,5 @@ table {
 @media screen and (max-width: @screen-sm-max) {
   .page-wrapper {
     border: none;
-  }
-
-  .wrapper__graffiti--stars {
-    position: absolute;
-    left: 20px;
-    top: 250px;
-  }
-
-  .wrapper__graffiti--arrows {
-    display: none;
-  }
-}
-
-@media screen and (max-width: @screen-xs-max) {
-  .wrapper__graffiti--stars {
-    display: none;
   }
 }

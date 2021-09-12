@@ -4,13 +4,13 @@ import ArticleCard from '../components/article-card';
 import ListPage from './listPage';
 
 export default props => {
-  const { data: { articles: { edges } }, pageContext: { contentType } } = props;
+  const { data: { articles: { edges } }, pageContext: { category } } = props;
   const entries = edges.map(entry => entry.node.frontmatter);
 
   return (
     <ListPage {...props}>
       {entries.map(entry => {
-        const url = `/${contentType}/${entry.path}`;
+        const url = `/${category}/${entry.path}`;
         return (
           <ArticleCard
             key={url}
@@ -19,7 +19,7 @@ export default props => {
             subtitle={entry.subtitle}
             image={entry.image}
             image_alt={entry.image_alt}
-            contentType={contentType}
+            category={category}
           />
         );
       })}
@@ -28,9 +28,9 @@ export default props => {
 };
 
 export const pageQuery = graphql`
-  query contentListQuery($skip: Int!, $limit: Int!, $contentType: String!) {
+  query contentListQuery($skip: Int!, $limit: Int!, $category: String!) {
     articles: allMarkdownRemark(
-      filter: { frontmatter:  { contentType: { eq: $contentType }}}
+      filter: { frontmatter:  { category: { eq: $category }}}
       sort: { fields: [frontmatter___publishTime], order: DESC }
       limit: $limit
       skip: $skip

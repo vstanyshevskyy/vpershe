@@ -6,9 +6,9 @@ export default ({ items }) => (
   <ul className="articles-list">
     {
       items.map(({
-        title, subtitle, image, image_alt: imageAlt, contentType, path
+        title, subtitle, image, image_alt: imageAlt, category, path
       }) => {
-        const url = `/${contentType || 'stories'}/${path}`;
+        const url = `/${category}/${path}`;
         return (
           <ArticleCard
             key={url}
@@ -17,7 +17,7 @@ export default ({ items }) => (
             image={image}
             image_alt={imageAlt}
             url={url}
-            contentType={contentType}
+            category={category}
           />
         );
       })

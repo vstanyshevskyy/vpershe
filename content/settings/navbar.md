@@ -1,12 +1,12 @@
 ---
 contentType: navbar_settings
 links:
-  - text: Історії
-    url: /stories
-  - text: Статті
-    url: /articles
-  - text: Сексотека
-    url: /sexoteca
+  - text: Секс
+    url: /sex
+  - text: Тіло
+    url: /body
+  - text: Стосунки
+    url: /relationships
 socialIcons:
   - type: Facebook
     url: 'https://www.facebook.com/vpershe'

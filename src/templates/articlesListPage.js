@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import ArticleCard from '../components/article-card';
 import ListPage from './listPage';
 
-export default props => {
+const ArticlesListPage = props => {
   const { data: { articles: { edges } }, pageContext: { category } } = props;
   const entries = edges.map(entry => entry.node.frontmatter);
 
@@ -26,6 +26,8 @@ export default props => {
     </ListPage>
   );
 };
+
+export default ArticlesListPage;
 
 export const pageQuery = graphql`
   query contentListQuery($skip: Int!, $limit: Int!, $category: String!) {

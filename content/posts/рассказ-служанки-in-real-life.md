@@ -6,7 +6,6 @@ title: Рассказ служанки in real life
 subtitle: 'Почему запрет абортов не поможет ни женщинам, ни обществу'
 image: /assets/uploads/main-abortions.jpg
 image_alt: women support each other because they have shared trauma
-carousel_featured: true
 tags:
   - секс
   - тіло

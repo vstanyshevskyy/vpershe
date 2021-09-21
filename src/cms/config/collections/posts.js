@@ -46,12 +46,6 @@ const posts = {
       required: false
     },
     {
-      label: 'Додати до каруселі на головній',
-      name: 'carousel_featured',
-      widget: 'boolean',
-      required: false
-    },
-    {
       label: 'Теги',
       name: 'tags',
       widget: 'list',

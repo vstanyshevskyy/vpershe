@@ -6,12 +6,6 @@ title: 'Клітор і точка G: жіночий оргазм і як йог
 subtitle: 'Як знайти клітор, чи існує точка G і як досягти оргазму'
 image: /assets/uploads/оргазм-главная.jpg
 image_alt: 'клітор відстрілюється, бо хтось думає, що дівчата не можуть досягти оргазму'
-carousel_featured: true
-carousel_image: /assets/uploads/оргазм-карусель.jpg
-carousel_image_alt: 'клітор відстрілюється, бо хтось думає, що дівчата не можуть досягти оргазму'
-list_image_articles: /assets/uploads/оргазм-карусель.jpg
-list_image: /assets/uploads/оргазм-меню.jpg
-list_image_alt: 'клітор відстрілюється, бо хтось думає, що дівчата не можуть досягти оргазму'
 tags:
   - секс
   - тіло

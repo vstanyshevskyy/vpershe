@@ -8,11 +8,6 @@ subtitle: >-
   про "це"
 image: /assets/uploads/village-yak-hovoryty-pro-sex-avramenko-vpershe.jpg
 image_alt: Як говорити про секс із партнером чи партнеркою та чому це важливо
-carousel_featured: true
-carousel_image: /assets/uploads/village-yak-hovoryty-pro-sex-avramenko-vpershe-karusel.jpg
-carousel_image_alt: Як говорити про секс із партнером чи партнеркою та чому це важливо
-list_image: /assets/uploads/village-yak-hovoryty-pro-sex-avramenko-vpershe-karusel.jpg
-list_image_alt: Як говорити про секс із партнером чи партнеркою та чому це важливо
 tags:
   - секс
   - як говорити про це

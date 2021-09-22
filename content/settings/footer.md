@@ -1,6 +1,6 @@
 ---
 contentType: footer_settings
-copyrightText: '© 2018 Вперше - сексуальна освіта '
+copyrightText: '© 2021 Вперше - сексуальна освіта '
 bottomLinks:
   - text: Про проект
     url: /about

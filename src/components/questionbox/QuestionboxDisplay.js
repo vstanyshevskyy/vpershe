@@ -24,8 +24,6 @@ export default class QuestionboxForm extends React.Component {
     this.setState({ inProgress: true });
 
     const data = new FormData(event.target);
-    console.log(event.target)
-    console.log(...data)
     const formObj = {};
     data.forEach((value, key) => formObj[key] = value);
     const promise = onSubmit

@@ -36,6 +36,14 @@ export const pageQuery = graphql`
                 }
               }
             }
+            image_half: image {
+              relativePath
+              childImageSharp {
+                fluid(maxWidth: 495, maxHeight: 328) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
             image_alt
           }
         }

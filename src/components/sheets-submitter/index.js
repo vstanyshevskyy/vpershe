@@ -1,34 +1,25 @@
 import React from 'react';
 
-class SheetsSubmitter extends React.Component {
-  constructor() {
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    const { apiUrl } = this.props;
-
+const FirebaseSubmitter = ({children, apiUrl}) => {
+  const onSubmit = (data) => {
     return window.fetch(apiUrl, {
       method: 'POST',
-      body: data
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      body: JSON.stringify(data)
     })
       .then(res => res.json());
   }
 
-  render() {
-    const { children } = this.props;
+  const childrenWithProps = React.Children.map(children, child => React.cloneElement(child,
+    { onSubmit }));
 
-    const childrenWithProps = React.Children.map(children, child => React.cloneElement(child,
-      { onSubmit: this.handleSubmit }));
-    return (
-      <React.Fragment>
-        {childrenWithProps}
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      {childrenWithProps}
+    </React.Fragment>
+  );
 }
 
-export default SheetsSubmitter;
+export default FirebaseSubmitter;

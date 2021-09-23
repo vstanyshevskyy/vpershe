@@ -33,16 +33,18 @@ export default props => {
     <Layout>
       <main className={`index-page__content-wrapper index-page__content-wrapper--${category}`} id="content">
         <SEO data={seoData} />
-        <ul className={`index-page__list index-page__list--${category}`}>
-          <div className={`article-card article-card--tags article-card--tags-${category}`}>
-            <TagsList
-              pageName={category}
-              current={tag}
-              tags={tags}
-            />
+        <div className="list-with-tags">
+          <ul className={`index-page__list index-page__list--${category}`}>
+            { children }
+          </ul>
+          <div className={`tags-list tags-list--${category}`}>
+              <TagsList
+                pageName={category}
+                current={tag}
+                tags={tags}
+              />
           </div>
-          { children }
-        </ul>
+        </div>
         <hr className={`hr hr--${category} hr--pagination`} />
         <Pagination pages={numPages} current={currentPage} prefix={category} />
       </main>

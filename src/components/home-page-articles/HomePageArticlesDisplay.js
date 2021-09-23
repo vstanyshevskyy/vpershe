@@ -23,7 +23,7 @@ export default ({ items }) => {
           </ul>
         </>
       ))}
-      <button className="btn load-more-btn" onClick={() => setPage(page + 1)}>Читати більше</button>
+      {page!==groups.length && <button className="btn load-more-btn" onClick={() => setPage(page + 1)}>Читати більше</button>}
     </>
   )
 }

@@ -21,7 +21,6 @@ export default class ArticleCard extends React.Component {
     const {
       url, image, category, title, subtitle, type
     } = this.props;
-    console.log(this.props)
     const uid = getUniqueId(url);
     const subtitleClassName = 'article-card__subtitle';
     const textUid = `${subtitleClassName}-${uid}`;

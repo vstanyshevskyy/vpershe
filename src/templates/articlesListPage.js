@@ -18,8 +18,10 @@ const ArticlesListPage = props => {
             title={entry.title}
             subtitle={entry.subtitle}
             image={entry.image}
+            image_half={entry.image_half}
             image_alt={entry.image_alt}
             category={category}
+            type="half"
           />
         );
       })}
@@ -48,6 +50,14 @@ export const pageQuery = graphql`
               relativePath
               childImageSharp {
                 fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
+            image_half: image {
+              relativePath
+              childImageSharp {
+                fluid(maxWidth: 495, maxHeight: 328) {
                   ...GatsbyImageSharpFluid_tracedSVG
                 }
               }

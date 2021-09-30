@@ -1,7 +1,7 @@
 ---
 contentType: subscribe_form_settings
-title: Найцікавіше, для тебе!
-email_placeholder: Твій e-mail
+title: "Не пропусти нові тексти про секс, здоров'я та стосунки:"
+email_placeholder: email
 email_label: Введи свій email для того щоб регулярно отримувати наші публікації
 button_text: Підписатися
 thanks_title: Дякуємо

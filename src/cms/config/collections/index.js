@@ -1,15 +1,19 @@
-import articles from './articles.js';
-import content from './content.js';
+import config from '../../../config'
+import posts from './posts.js';
 import pages from './pages.js';
 import settings from './settings.js';
-import sexoteca from './sexoteca.js';
-import stories from './stories.js';
 
 export default [
-  articles,
-  stories,
-  sexoteca,
+  ...config.categories.map(c => ({
+    ...posts,
+    filter: {
+      field: 'category',
+      value: c.value
+    },
+    name: c.value,
+    label: c.label
+  })),
+  posts,
   pages,
-  settings,
-  content
+  settings
 ];

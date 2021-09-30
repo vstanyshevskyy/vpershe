@@ -12,12 +12,6 @@ export default ({ pageName, tags, current }) => {
     <ThemeContext.Consumer>
       {({ isDarkModeEnabled }) => (
         <div className={`tags tags--${pageName}`}>
-          <h3 className={classNames(`tags__title tags__title--${pageName}`, {
-            'tags__title--dark': isDarkModeEnabled
-          })}
-          >
-            Теги
-          </h3>
           <ul className="tags__list">
             { tags.map(tag => {
               const url = `/${pageName}/tags/${tag}`;

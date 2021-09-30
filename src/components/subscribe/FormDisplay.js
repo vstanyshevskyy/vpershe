@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FaHeart } from 'react-icons/fa';
-import { withPrefix } from 'gatsby';
 import './index.less';
 
 class SubscribeForm extends React.Component {
@@ -17,8 +16,12 @@ class SubscribeForm extends React.Component {
     const { onSubmit } = this.props;
     event.preventDefault();
     this.setState({ inProgress: true });
+
+    const data = new FormData(event.target);
+    const formObj = {};
+    data.forEach((value, key) => formObj[key] = value);
     const promise = onSubmit
-      ? onSubmit(event)
+      ? onSubmit(formObj.email)
       : Promise.resolve();
     promise.then(() => {
       this.setState({
@@ -70,7 +73,6 @@ class SubscribeForm extends React.Component {
               name="email"
               placeholder={emailPlaceholder}
             />
-            <img className="subscribe__graffiti graffiti graffiti--birds" loading="lazy" alt="" width="67" src={withPrefix('assets/graffiti/birds.svg')} aria-hidden="true" />
             <button type="submit" className="btn subscribe__form-btn">{buttonText}</button>
           </div>
         </form>

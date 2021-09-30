@@ -7,11 +7,12 @@ const Page = props => <ListPage {...props} />;
 export default Page;
 
 export const pageQuery = graphql`
-  query tagContentListQuery($skip: Int!, $limit: Int!, $contentType: String!, $tag: String!) {
+  query tagContentListQuery($skip: Int!, $limit: Int!, $category: String!, $tag: String!) {
     articles: allMarkdownRemark(
       filter: {
         frontmatter: {
-          contentType: { eq: $contentType }
+          contentType: { eq: "post" }
+          category: { eq: $category }
           tags: { in: [$tag] }
         }
       }
@@ -24,12 +25,21 @@ export const pageQuery = graphql`
           html
           frontmatter {
             path
+            category
             title
             subtitle
             image {
               relativePath
               childImageSharp {
                 fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
+            image_half: image {
+              relativePath
+              childImageSharp {
+                fluid(maxWidth: 495, maxHeight: 328) {
                   ...GatsbyImageSharpFluid_tracedSVG
                 }
               }

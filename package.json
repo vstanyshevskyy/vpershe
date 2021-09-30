@@ -13,6 +13,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "build-serve": "gatsby build && gatsby serve",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "info": "gatsby info --clipboard",

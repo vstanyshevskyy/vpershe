@@ -16,11 +16,11 @@ export default props => {
       numPages,
       tag,
       tags,
-      contentType,
+      category,
       pathPrefix
     }
   } = props;
-  const contentTypeSettings = settings.find(s => s.node.frontmatter.contentType === `${contentType}_settings`).node.frontmatter;
+  const contentTypeSettings = settings.find(s => s.node.frontmatter.contentType === `${category}_settings`).node.frontmatter;
   if (tag) {
     Object.keys(contentTypeSettings).forEach(key => {
       contentTypeSettings[key] = contentTypeSettings[key].replace(/{{tag}}/gi, tag);
@@ -31,20 +31,22 @@ export default props => {
 
   return (
     <Layout>
-      <main className={`index-page__content-wrapper index-page__content-wrapper--${contentType}`} id="content">
+      <main className={`index-page__content-wrapper index-page__content-wrapper--${category}`} id="content">
         <SEO data={seoData} />
-        <ul className={`index-page__list index-page__list--${contentType}`}>
-          <div className={`article-card article-card--tags article-card--tags-${contentType}`}>
-            <TagsList
-              pageName={contentType}
-              current={tag}
-              tags={tags}
-            />
+        <div className="list-with-tags">
+          <ul className={`index-page__list index-page__list--${category}`}>
+            { children }
+          </ul>
+          <div className={`tags-list tags-list--${category}`}>
+              <TagsList
+                pageName={category}
+                current={tag}
+                tags={tags}
+              />
           </div>
-          { children }
-        </ul>
-        <hr className={`hr hr--${contentType} hr--pagination`} />
-        <Pagination pages={numPages} current={currentPage} prefix={contentType} />
+        </div>
+        <hr className={`hr hr--${category} hr--pagination`} />
+        <Pagination pages={numPages} current={currentPage} prefix={category} />
       </main>
     </Layout>
   );

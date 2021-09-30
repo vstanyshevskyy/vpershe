@@ -16,7 +16,7 @@ import Sidebar from '../components/article-sidebar';
 import SEO from '../components/SEO';
 
 const prepareRelatedContent = (input, allContent) => {
-  const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca)\//gi;
+  const PATH_REPLACE_REGEX = /https?:\/\/(?:www.)?vpershe.(?:netlify.)?com\/(?:articles|stories|sexoteca|sex|body|relationship)\//gi;
   return (input || [])
     .map(({ path }) => {
       if (!path) {
@@ -77,7 +77,7 @@ export default class Content extends React.Component {
     return (
       <div className="content__related-items-bottom">
         <h5 className="content__related-items-bottom-title">Схожі матеріали</h5>
-        <ArticlesList items={items} />
+        <ArticlesList items={items} type="half" />
       </div>
     );
   }
@@ -165,11 +165,10 @@ export default class Content extends React.Component {
 Content.contextType = ThemeContext;
 
 export const pageQuery = graphql`
-  query contentQuery($slug: String!, $contentType: String!) {
+  query contentQuery($slug: String!) {
     page: markdownRemark(
       frontmatter: {
         path: { eq: $slug }
-        contentType: { eq: $contentType }
       }
     ) {
       html
@@ -204,7 +203,7 @@ export const pageQuery = graphql`
     allPages: allMarkdownRemark(
       filter: {
         frontmatter: {
-          contentType: { in: ["articles", "stories", "sexoteca"] }
+          contentType: { eq: "post" }
         }
       }
     ) {
@@ -212,10 +211,18 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             path
-            contentType
+            category
             image {
               childImageSharp {
                 fluid(maxWidth: 320, maxHeight: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
+            image_half: image {
+              relativePath
+              childImageSharp {
+                fluid(maxWidth: 495, maxHeight: 328) {
                   ...GatsbyImageSharpFluid_tracedSVG
                 }
               }

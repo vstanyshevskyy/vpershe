@@ -190,14 +190,14 @@ const settings = {
       ]
     },
     {
-      label: 'Статті',
-      name: 'articles',
-      file: 'content/settings/articles.md',
+      label: 'Секс',
+      name: 'sex',
+      file: 'content/settings/sex.md',
       fields: [
         {
           name: 'contentType',
           widget: 'hidden',
-          default: 'articles_settings'
+          default: 'sex_settings'
         },
         {
           label: 'Page Title',
@@ -232,14 +232,14 @@ const settings = {
       ]
     },
     {
-      label: 'Сексотека',
-      name: 'sexoteca',
-      file: 'content/settings/sexoteca.md',
+      label: 'Тіло',
+      name: 'body',
+      file: 'content/settings/body.md',
       fields: [
         {
           name: 'contentType',
           widget: 'hidden',
-          default: 'sexoteca_settings'
+          default: 'body_settings'
         },
         {
           label: 'Page Title',
@@ -274,14 +274,14 @@ const settings = {
       ]
     },
     {
-      label: 'Історії',
-      name: 'stories',
-      file: 'content/settings/stories.md',
+      label: 'Стосунки',
+      name: 'relationships',
+      file: 'content/settings/relationships.md',
       fields: [
         {
           name: 'contentType',
           widget: 'hidden',
-          default: 'stories_settings'
+          default: 'relationships_settings'
         },
         {
           label: 'Page Title',

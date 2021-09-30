@@ -6,8 +6,8 @@
 
 .index-page__content-wrapper {
   width: 100%;
-  max-width: 1160px;
-  padding: 80px 30px;
+  max-width: @content-width;
+  padding: 0px 30px 80px;
   margin: 0 auto;
   padding-bottom: 95px;
 }
@@ -22,8 +22,16 @@
 }
 
 
-.tags {
-  // position: absolute;
+.list-with-tags {
+  display: flex;
+  flex-direction: column;
+}
+.index-page__list {
+  order: 1;
+}
+.tags-list {
+  order: 0;
+  margin-bottom: 25px;
 }
 
 .pagination {
@@ -31,6 +39,7 @@
   clear: both;
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
 
 @media screen and (max-width: @screen-sm-max) {

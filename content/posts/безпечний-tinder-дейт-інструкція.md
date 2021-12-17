@@ -5,10 +5,12 @@ path: bezpechnyi_tinder
 title: Безпечний Tinder-дейт. Інструкція
 subtitle: 7 історій з побачень та 8 кроків для безпеки
 image: /assets/uploads/flame-1846.png
-tags: []
+tags:
+  - лайфхаки
 related_sidebar:
   - path: dodatky-dlia-znaiomstv-ta-yak-vony-pratsiuiut
 publishTime: 2021-12-16T07:45:06.723Z
+metaKeywords: побачення лайфхаки безпека
 ---
 <!--StartFragment-->
 

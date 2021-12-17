@@ -4,6 +4,7 @@ category: relationships
 path: bezpechnyi_tinder
 title: Безпечний Tinder-дейт. Інструкція
 subtitle: 7 історій з побачень та 8 кроків для безпеки
+image: /assets/uploads/flame-1846.png
 tags: []
 related_sidebar:
   - path: dodatky-dlia-znaiomstv-ta-yak-vony-pratsiuiut

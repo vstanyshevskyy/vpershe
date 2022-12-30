@@ -25,7 +25,7 @@
   "dependencies": {
     "classnames": "^2.3.1",
     "fetch": "^1.1.0",
-    "gatsby": "^3.13.0",
+    "gatsby": "^3.15.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-google-tagmanager": "^3.13.0",
     "gatsby-plugin-layout": "^2.13.0",
